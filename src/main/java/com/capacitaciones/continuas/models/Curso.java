@@ -32,6 +32,8 @@ public class Curso {
     private String objetivoGeneralesCurso;
     private Integer numeroCuposCurso;
 
+    private String niveles;
+
     //Viene la lave de idprograma
     @ManyToOne
     @JoinColumn(name="idPrograma",referencedColumnName ="idPrograma")
