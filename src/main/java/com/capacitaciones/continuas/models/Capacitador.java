@@ -25,10 +25,10 @@ public class Capacitador {
 
     private Boolean estadoActivoCapacitador;
 
-    // Relacionado con usuario
 
     // Referencia con su hoja de vida
-    @OneToOne(mappedBy = "capacitador", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    @OneToOne(mappedBy = "capacitador")
     private HojaVidaCapacitador hojaVidaCapacitador;
 
     @ManyToOne
