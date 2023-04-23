@@ -24,7 +24,8 @@ public class HojaVidaCapacitador {
 
 
     // Relacion con capacitador
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idCapacitador")
+    @OneToOne
+    @JoinColumn(name = "idCapacitador", referencedColumnName = "idCapacitador")
     private Capacitador capacitador;
+
 }
