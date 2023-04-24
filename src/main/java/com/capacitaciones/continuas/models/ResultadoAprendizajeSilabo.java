@@ -1,9 +1,11 @@
 package com.capacitaciones.continuas.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Setter
 @Getter
@@ -13,8 +15,8 @@ public class ResultadoAprendizajeSilabo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idResultadoSilabo")
-    private Integer idResultadoSilabo;
+    @Column(name = "idResultadoAprendizajeSilabo")
+    private Integer idResultadoAprendizajeSilabo;
 
     private String temaUnidadSilabo;
     private String descripcionUnidadSilabo;
@@ -27,5 +29,6 @@ public class ResultadoAprendizajeSilabo {
     @ManyToOne
     @JoinColumn(name="idSilabo",referencedColumnName ="idSilabo")
     private Silabo silabo;
+
 
 }
