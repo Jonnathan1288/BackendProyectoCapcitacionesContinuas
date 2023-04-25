@@ -2,6 +2,7 @@ package com.capacitaciones.continuas.controllers;
 
 import com.capacitaciones.continuas.models.EntornoAprendizajeCurricular;
 import com.capacitaciones.continuas.models.Especialidad;
+import com.capacitaciones.continuas.models.Programas;
 import com.capacitaciones.continuas.services.EntornoAprendizajeCurricularService;
 import com.capacitaciones.continuas.services.EspecialidadService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,19 @@ public class EspecialidadController {
     public ResponseEntity<List<Especialidad>> listEspecialidad(){
         try {
             return new ResponseEntity<>(especialidadService.findByAll(), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/especialidad/findbyId/{id}")
+    public ResponseEntity<?> getEspecialidadById(@PathVariable("id") Integer id){
+        try {
+            Especialidad especialidad = especialidadService.findById(id);
+            if(especialidad != null){
+                return new ResponseEntity<>(especialidad, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("ESPECIALIDAD NO ENCONTRADA", HttpStatus.NOT_FOUND);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
