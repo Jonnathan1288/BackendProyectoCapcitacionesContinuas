@@ -20,6 +20,7 @@ public class Curso {
     private String nombreCurso;
     private String periodoCurso;
     private String tipoCurso;
+    private String fotoCurso;
     private Integer duracionCurso;
     private LocalDate fechaInicioCuros;
     private LocalDate fechaFinCurso;
