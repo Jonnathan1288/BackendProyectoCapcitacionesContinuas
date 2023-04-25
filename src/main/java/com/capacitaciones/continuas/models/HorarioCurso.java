@@ -20,12 +20,14 @@ public class HorarioCurso {
     @Column(name = "estadoHorarioCurso")
     private Boolean estadoHorarioCurso;
 
-    //Viene la llave idcurso
-    //Relacion con control horario
+    @Column(name = "dias")
+    private String dias;
 
-    @ManyToOne
-    @JoinColumn(name="idControlHorario",referencedColumnName ="idControlHorario")
-    private ControlHorario controlHorario;
+    @Column(name = "horaInicio")
+    private String horaInicio;
+
+    @Column(name = "horaFin")
+    private String horaFin;
 
     @ManyToOne
     @JoinColumn(name="idCurso",referencedColumnName ="idCurso")
