@@ -17,7 +17,8 @@ public class Notas {
     @Column(name = "idNota")
     private Integer idNota;
 
-    private Integer valor;
+    private Integer parcial;
+    private Integer examenFinal;
     private LocalDate fechaNota;
     private String observacion;
 
