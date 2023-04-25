@@ -1,5 +1,6 @@
 package com.capacitaciones.continuas.controllers;
 
+import com.capacitaciones.continuas.models.Especialidad;
 import com.capacitaciones.continuas.models.MecanismosEvaluacionCurricular;
 import com.capacitaciones.continuas.models.NecesidadCurso;
 import com.capacitaciones.continuas.services.MecanismoEvaluacionCurricularService;
@@ -20,12 +21,34 @@ public class NecesidadCursoController {
     NecesidadCursoService necesidadCursoService;
 
     @GetMapping("/necesidadCurso/listar")
-    public ResponseEntity<List<NecesidadCurso>> obtenerLista() {
-        return new ResponseEntity<>(necesidadCursoService.findByAll(), HttpStatus.OK);
+    public ResponseEntity<List<NecesidadCurso>> obtenerNecesidadCurso() {
+        try {
+            return new ResponseEntity<>(necesidadCursoService.findByAll(), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/necesidadCurso/findbyId/{id}")
+    public ResponseEntity<?> getNecesidadCursoById(@PathVariable("id") Integer id){
+        try {
+            NecesidadCurso necesidadCurso = necesidadCursoService.findById(id);
+            if(necesidadCurso != null){
+                return new ResponseEntity<>(necesidadCurso, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("NECESIDAD CURSO NO ENCONTRADO", HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping("/necesidadCurso/crear")
-    public ResponseEntity<NecesidadCurso> crear(@RequestBody NecesidadCurso c) {
-        return new ResponseEntity<>(necesidadCursoService.save(c), HttpStatus.CREATED);
+    public ResponseEntity<NecesidadCurso> crearNecesidadCurso(@RequestBody NecesidadCurso c) {
+        try {
+            return new ResponseEntity<>(necesidadCursoService.save(c), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
+
 }

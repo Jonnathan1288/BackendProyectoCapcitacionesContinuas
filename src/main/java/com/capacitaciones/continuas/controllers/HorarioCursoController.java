@@ -15,15 +15,15 @@ import java.util.List;
 public class HorarioCursoController {
 
     @Autowired
-    HorarioCursoService horarioCursoService;
+    private HorarioCursoService horarioCursoService;
 
     @GetMapping("/horarioCurso/listar")
-    public ResponseEntity<List<HorarioCurso>> obtenerLista() {
+    public ResponseEntity<List<HorarioCurso>> obtenerHorarioCurso() {
         return new ResponseEntity<>(horarioCursoService.findByAll(), HttpStatus.OK);
     }
 
     @PostMapping("/horarioCurso/crear")
-    public ResponseEntity<HorarioCurso> crear(@RequestBody HorarioCurso c) {
+    public ResponseEntity<HorarioCurso> crearHorarioCurso(@RequestBody HorarioCurso c) {
         return new ResponseEntity<>(horarioCursoService.save(c), HttpStatus.CREATED);
     }
 }
