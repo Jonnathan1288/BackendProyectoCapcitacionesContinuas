@@ -18,11 +18,8 @@ public class NecesidadCurso {
     @Column(name = "idNecesidadCurso")
     private Integer idNecesidadCurso;
 
-    @Column(name = "necesidadCurso")
-    private String necesidadCurso;
-
     @Column(name = "estadoImpartirNecesidadCurso")
-    private String estadoImpartirNecesidadCurso;
+    private String espacioImpartirNecesidadCurso;
 
     @Column(name = "resumenCurso")
     private String resumenCurso;
@@ -36,4 +33,9 @@ public class NecesidadCurso {
     @JoinColumn(name="idCurso",referencedColumnName ="idCurso")
     private Curso curso;
     //
+
+    // REFERENCIA DE LAS RELACIONES
+    @JsonIgnore
+    @OneToMany(mappedBy = "necesidadCurso")
+    private List<ListaNecesidadCurso> listaNecesidadCursos;
 }

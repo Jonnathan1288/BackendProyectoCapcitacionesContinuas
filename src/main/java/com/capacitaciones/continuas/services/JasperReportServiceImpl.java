@@ -18,11 +18,12 @@ public class JasperReportServiceImpl implements JasperReportService{
     @Autowired
     private JdbcTemplate jdbcTemplate;
     @Override
-    public void generateReport(HttpServletResponse response) {
+    public void generateReport(HttpServletResponse response, Integer ids) {
         try {
-            InputStream reportStream = this.getClass().getResourceAsStream("/Reports//reportp.jasper");
+            InputStream reportStream = this.getClass().getResourceAsStream("/Reports/js.jasper");
 
             Map<String, Object> params = new HashMap<>();
+            params.put("idSilabo", ids);
 
 
             JasperPrint jasperPrint = JasperFillManager.fillReport(reportStream, params, jdbcTemplate.getDataSource().getConnection());

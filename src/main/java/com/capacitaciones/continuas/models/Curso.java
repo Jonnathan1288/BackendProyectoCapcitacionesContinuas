@@ -20,6 +20,7 @@ public class Curso {
     private String nombreCurso;
     private String periodoCurso;
     private String tipoCurso;
+    private String fotoCurso;
     private Integer duracionCurso;
     private LocalDate fechaInicioCuros;
     private LocalDate fechaFinCurso;
@@ -31,6 +32,8 @@ public class Curso {
     private String descripcionCurso;
     private String objetivoGeneralesCurso;
     private Integer numeroCuposCurso;
+
+    private String niveles;
 
     //Viene la lave de idprograma
     @ManyToOne
