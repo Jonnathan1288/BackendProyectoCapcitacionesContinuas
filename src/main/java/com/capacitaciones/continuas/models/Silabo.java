@@ -18,6 +18,8 @@ public class Silabo {
 
     private String bibliografia;
 
+    private String campoFormacion;
+
     // Se relaciona con curso
 
     @ManyToOne

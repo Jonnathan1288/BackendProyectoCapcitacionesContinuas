@@ -30,6 +30,6 @@ public class ContenidoSilabo {
     // Se relaciona con Silabo
 
     @ManyToOne
-    @JoinColumn(name="idSilabo",referencedColumnName ="idSilabo")
-    private Silabo silabo;
+    @JoinColumn(name="idResultadoAprendizajeSilabo",referencedColumnName ="idResultadoAprendizajeSilabo")
+    private ResultadoAprendizajeSilabo resultadoAprendizajeSilabo;
 }
