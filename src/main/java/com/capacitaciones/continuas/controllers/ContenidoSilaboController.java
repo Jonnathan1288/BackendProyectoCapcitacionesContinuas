@@ -33,4 +33,41 @@ public class ContenidoSilaboController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/contenidosilabo/findbyId/{id}")
+    public ResponseEntity<?> getContenidosilaboById(@PathVariable("id") Integer id){
+        try {
+            ContenidoSilabo contenidoSilabo = contenidoSilaboService.findById(id);
+            if(contenidoSilabo != null){
+                return new ResponseEntity<>(contenidoSilabo, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("CONTENIDO SILABO NO ENCONTRADO", HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/capacitador/actualizar/{id}")
+    public ResponseEntity<ContenidoSilabo> actualizarCapacitador(@PathVariable Integer id, @RequestBody ContenidoSilabo contenidoSilabo) {
+        try {
+            if (contenidoSilaboService.findById(id) == null) {
+                return ResponseEntity.notFound().build();
+            }
+            contenidoSilabo.setTemaContenido(contenidoSilabo.getTemaContenido());
+            contenidoSilabo.setDiaContenido(contenidoSilabo.getDiaContenido());
+            contenidoSilabo.setActividadesDocencia(contenidoSilabo.getActividadesDocencia());
+            contenidoSilabo.setHorasClaseContenido(contenidoSilabo.getHorasClaseContenido());
+            contenidoSilabo.setActividadesPracticas(contenidoSilabo.getActividadesPracticas());
+            contenidoSilabo.setHorasPracticas(contenidoSilabo.getHorasPracticas());
+            contenidoSilabo.setActividadesAutonomas(contenidoSilabo.getActividadesAutonomas());
+            contenidoSilabo.setHorasAutonomas(contenidoSilabo.getHorasAutonomas());
+            contenidoSilabo.setObservaciones(contenidoSilabo.getObservaciones());
+            contenidoSilabo.setEstadoContenido(contenidoSilabo.getEstadoContenido());
+
+            ContenidoSilabo newObject = contenidoSilaboService.save(contenidoSilabo);
+            return new ResponseEntity<>(newObject, HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
