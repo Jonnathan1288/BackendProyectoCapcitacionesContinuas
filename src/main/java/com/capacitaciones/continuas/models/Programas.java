@@ -21,8 +21,6 @@ public class Programas {
     @Column(name = "nombrePrograma")
     private String nombrePrograma;
 
-    @Column(name = "periodoPrograma")
-    private String periodoPrograma;
 
     @Column(name = "fechaInicioPrograma")
     private LocalDate fechaInicioPrograma;
