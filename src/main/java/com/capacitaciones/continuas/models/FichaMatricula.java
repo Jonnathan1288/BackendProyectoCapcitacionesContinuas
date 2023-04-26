@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Getter
 @Entity
 @Table(name = "fichamatriculas")
-public class FichaMatricula {
+public class FichaMatricula { // esta entidad esta en vigencia.
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +30,6 @@ public class FichaMatricula {
     // Se relaciona con la matricula
     //viene la llave de id curso
     @ManyToOne
-    @JoinColumn(name="idMatricula",referencedColumnName ="idMatricula")
-    private Matricula matricula;
+    @JoinColumn(name="idInscrito",referencedColumnName ="idInscrito")
+    private Inscrito inscrito;
 }

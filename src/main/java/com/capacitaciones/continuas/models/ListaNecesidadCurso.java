@@ -25,4 +25,5 @@ public class ListaNecesidadCurso {
     @ManyToOne
     @JoinColumn(name="idNecesidadCurso",referencedColumnName ="idNecesidadCurso")
     private NecesidadCurso necesidadCurso;
+    
 }

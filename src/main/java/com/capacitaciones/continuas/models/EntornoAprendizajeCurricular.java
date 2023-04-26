@@ -16,8 +16,13 @@ public class EntornoAprendizajeCurricular {
     @Column(name = "idEntornoCurricular")
     private Integer idEntornoCurricular;
 
+    @Column(name = "instalaciones")
     private String instalaciones;
+
+    @Column(name = "faseTeorica")
     private String faseTeorica;
+
+    @Column(name = "fasePractica")
     private String fasePractica ;
 
     // se relaciona con curriculo

@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Getter
 @Entity
 @Table(name = "informefinalcursos")
-public class InformeFinalCurso {
+public class InformeFinalCurso { //entidad en vigencia
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idInformeFinalCurso")

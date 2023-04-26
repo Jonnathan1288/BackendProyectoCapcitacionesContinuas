@@ -1,8 +1,6 @@
 package com.capacitaciones.continuas.controllers;
 
-import com.capacitaciones.continuas.models.DetalleEvaluacionFinal;
 import com.capacitaciones.continuas.models.DisenioCurricular;
-import com.capacitaciones.continuas.services.DetalleEvaluacionFinalService;
 import com.capacitaciones.continuas.services.DisenioCurricularService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
