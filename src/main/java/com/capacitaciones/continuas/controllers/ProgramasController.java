@@ -51,4 +51,19 @@ public class ProgramasController {
         }
     }
 
+    @PutMapping("/programa/actualizar/{id}")
+    public ResponseEntity<Programas> actualizarProgramas(@PathVariable Integer id, @RequestBody Programas programas) {
+        try {
+            if (programaService.findById(id) == null) {
+                return ResponseEntity.notFound().build();
+            }
+            programas.setNombrePrograma(programas.getNombrePrograma());
+            programas.setDescripcionPrograma(programas.getDescripcionPrograma());
+            programas.setEstadoProgramaActivo(programas.getEstadoProgramaActivo());
+            return new ResponseEntity<>(programaService.save(programas), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }

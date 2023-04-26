@@ -49,4 +49,19 @@ public class TipoCursoController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
+    @PutMapping("/tipoCurso/actualizar/{id}")
+    public ResponseEntity<TipoCurso> actualizarTipoCurso(@PathVariable Integer id, @RequestBody TipoCurso tipoCurso) {
+        try {
+            if (tipoCursoService.findById(id) == null) {
+                return ResponseEntity.notFound().build();
+            }
+            tipoCurso.setNombreTipoCurso(tipoCurso.getNombreTipoCurso());
+            tipoCurso.setEstadoTipoCurso(tipoCurso.getEstadoTipoCurso());
+            return new ResponseEntity<>(tipoCursoService.save(tipoCurso), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

@@ -33,4 +33,31 @@ public class MaterialConvencionalController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/materialConvencional/findbyId/{id}")
+    public ResponseEntity<?> getMaterialConvencionalById(@PathVariable("id") Integer id){
+        try {
+            MaterialConvencional materialConvencional = materialConvencionalService.findById(id);
+            if(materialConvencional != null){
+                return new ResponseEntity<>(materialConvencional, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("CAPACITADOR NO ENCONTRADO", HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/materialConvencional/actualizar/{id}")
+    public ResponseEntity<MaterialConvencional> actualizarMaterialConvencional(@PathVariable Integer id, @RequestBody MaterialConvencional materialConvencional) {
+        try {
+            if (materialConvencionalService.findById(id) == null) {
+                return ResponseEntity.notFound().build();
+            }
+            materialConvencional.setDescripcionMaterialConvencional(materialConvencional.getDescripcionMaterialConvencional());
+            materialConvencional.setEstadoMaterialConvencional(materialConvencional.getEstadoMaterialConvencional());
+            return new ResponseEntity<>(materialConvencionalService.save(materialConvencional), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

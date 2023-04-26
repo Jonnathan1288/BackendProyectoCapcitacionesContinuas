@@ -1,6 +1,7 @@
 package com.capacitaciones.continuas.controllers;
 
 import com.capacitaciones.continuas.models.DetalleFichaMatricula;
+import com.capacitaciones.continuas.models.NecesidadCurso;
 import com.capacitaciones.continuas.models.NivelCurso;
 import com.capacitaciones.continuas.services.DetalleFichaService;
 import com.capacitaciones.continuas.services.NivelCursoService;
@@ -45,6 +46,21 @@ public class NivelCursoController {
     public ResponseEntity<NivelCurso> saveNivelCurso(@RequestBody NivelCurso df){
         try {
             return new ResponseEntity<>(nivelCursoService.save(df), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/nivelCurso/actualizar/{id}")
+    public ResponseEntity<NivelCurso> actualizarNivelCurso(@PathVariable Integer id, @RequestBody NivelCurso nivelCurso) {
+        try {
+            if (nivelCursoService.findById(id) == null) {
+                return ResponseEntity.notFound().build();
+            }
+            nivelCurso.setNombreNivelCurso(nivelCurso.getNombreNivelCurso());
+            nivelCurso.setEstadoNivelCurso(nivelCurso.getEstadoNivelCurso());
+
+            return new ResponseEntity<>(nivelCursoService.save(nivelCurso), HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

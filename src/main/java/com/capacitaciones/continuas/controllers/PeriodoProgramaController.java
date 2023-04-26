@@ -27,24 +27,41 @@ public class PeriodoProgramaController {
         }
     }
 
-    @GetMapping("/periodoPrograma/findbyId/{id}")
-    public ResponseEntity<?> getperiodoProgramaById(@PathVariable("id") Integer id){
-        try {
-            PeriodoPrograma pp = periodoProgramaService.findById(id);
-            if(pp != null){
-                return new ResponseEntity<>(pp, HttpStatus.OK);
-            }
-            return new ResponseEntity<>("PERIODO PROGRAMA NO ENCONTRADA",HttpStatus.NOT_FOUND);
 
+    @PostMapping("/periodoPrograma/save")
+    public ResponseEntity<PeriodoPrograma> savePeriodoPrograma(@RequestBody PeriodoPrograma pp){
+        try {
+            return new ResponseEntity<>(periodoProgramaService.save(pp), HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @PostMapping("/periodoPrograma/save")
-    public ResponseEntity<PeriodoPrograma> saveperiodoPrograma(@RequestBody PeriodoPrograma pp){
+    @GetMapping("/periodoPrograma/findbyId/{id}")
+    public ResponseEntity<?> getPeriodoProgramaById(@PathVariable("id") Integer id){
         try {
-            return new ResponseEntity<>(periodoProgramaService.save(pp), HttpStatus.CREATED);
+            PeriodoPrograma nc = periodoProgramaService.findById(id);
+            if(nc != null){
+                return new ResponseEntity<>(nc, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("PERIODO PROGRAMA APROBADOS NO ENCONTRADA",HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/periodoPrograma/actualizar/{id}")
+    public ResponseEntity<PeriodoPrograma> actualizarPeriodoPrograma(@PathVariable Integer id, @RequestBody PeriodoPrograma periodoPrograma) {
+        try {
+            if (periodoProgramaService.findById(id) == null) {
+                return ResponseEntity.notFound().build();
+            }
+            periodoPrograma.setNombrePeriodoPrograma(periodoPrograma.getNombrePeriodoPrograma());
+            periodoPrograma.setFechaFinPeriodoPrograma(periodoPrograma.getFechaFinPeriodoPrograma());
+            periodoPrograma.setFechaInicioPeriodoPrograma(periodoPrograma.getFechaInicioPeriodoPrograma());
+            periodoPrograma.setEstadoPeriodoPrograma(periodoPrograma.getEstadoPeriodoPrograma());
+
+            return new ResponseEntity<>(periodoProgramaService.save(periodoPrograma), HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
