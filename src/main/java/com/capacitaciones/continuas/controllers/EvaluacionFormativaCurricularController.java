@@ -27,10 +27,39 @@ public class EvaluacionFormativaCurricularController {
         }
     }
 
+    @GetMapping("/evaluacionFormativaCurricular/findbyId/{id}")
+    public ResponseEntity<?> getEvalucionFormativaCurricularById(@PathVariable("id") Integer id){
+        try {
+            EvalucionFormativaCurricular dc = evaluacionFormativaCurricularService.findById(id);
+            if(dc != null){
+                return new ResponseEntity<>(dc, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("evaluacionFormativaCurricular NO ENCONTRADA",HttpStatus.NOT_FOUND);
+
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
     @PostMapping("/evaluacionFormativaCurricular/save")
     public ResponseEntity<EvalucionFormativaCurricular> saveEvaluacionFormativaCurricular(@RequestBody EvalucionFormativaCurricular efc){
         try {
             return new ResponseEntity<>(evaluacionFormativaCurricularService.save(efc), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/evaluacionFormativaCurricular/update/{id}")
+    public ResponseEntity<EvalucionFormativaCurricular> actualizarEvalucionFormativaCurricular(@PathVariable Integer id, @RequestBody EvalucionFormativaCurricular evadiag) {
+        try {
+            if (evaluacionFormativaCurricularService.findById(id) == null) {
+                return ResponseEntity.notFound().build();
+            }
+            evadiag.setTecnicaFormativa(evadiag.getTecnicaFormativa());
+            evadiag.setInstrumnetoFormativa(evadiag.getInstrumnetoFormativa());
+            evadiag.setDisenioCurricular(evadiag.getDisenioCurricular());
+            EvalucionFormativaCurricular newObject = evaluacionFormativaCurricularService.save(evadiag);
+            return new ResponseEntity<>(newObject, HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
