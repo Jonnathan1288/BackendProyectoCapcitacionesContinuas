@@ -16,6 +16,7 @@ public class ParticipantesAprobados { //estado en  vigencia
     @Column(name = "iParticipantesAprobados")
     private Integer idParticipantesAprobados;
 
+    @Column(name = "codigoSenecyt")
     private String codigoSenecyt;
 
     // Se relaciona con participantes matriculado

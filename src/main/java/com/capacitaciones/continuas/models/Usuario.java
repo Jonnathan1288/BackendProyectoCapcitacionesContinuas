@@ -38,9 +38,4 @@ public class Usuario {
     @ManyToOne
     @JoinColumn(name="idRol",referencedColumnName ="idRol")
     private Rol rol;
-
-    //Referencias
-    @JsonIgnore
-    @OneToMany(mappedBy = "usuario")
-    private List<Programas> programas;
 }

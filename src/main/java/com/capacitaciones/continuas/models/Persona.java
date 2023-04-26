@@ -19,32 +19,47 @@ public class Persona {
     @Column(name = "idPersona")
     private Integer idPersona;
 
+    @Column(name = "identificacion")
     private String identificacion;
+
+    @Column(name = "nombre1")
     private String nombre1;
+
+    @Column(name = "nombre2")
     private String nombre2;
+
+    @Column(name = "apellido1")
     private String apellido1;
+
+    @Column(name = "apellido2")
     private String apellido2;
+
+    @Column(name = "fechaNacimiento")
     private LocalDate fechaNacimiento;
+
+    @Column(name = "direccion")
     private String direccion;
+
+    @Column(name = "correo")
     private String correo;
+
+    @Column(name = "telefono")
     private String telefono;
+
+    @Column(name = "celular")
     private String celular;
+
+    @Column(name = "genero")
+    private String genero;
+
+    @Column(name = "etnia")
+    private String etnia;
+
+    @Column(name = "nivelInstruccion")
+    private String nivelInstruccion;
 
     // REFERENCIA DE LAS RELACIONES
     @JsonIgnore
     @OneToMany(mappedBy = "persona")
     private List<Usuario> usuario;
-
-    //Relaciones de uno..
-    @OneToOne
-    @JoinColumn(name = "idTipoGenero", referencedColumnName = "idTipoGenero")
-    private TipoGenero tipoGenero;
-
-    @OneToOne
-    @JoinColumn(name = "idEtniaPersona", referencedColumnName = "idEtniaPersona")
-    private EtniaPersona etniaPersona;
-
-    @OneToOne
-    @JoinColumn(name = "idNivelInstruccionPersona", referencedColumnName = "idNivelInstruccionPersona")
-    private NivelInstruccionPersona nivelInstruccionPersona;
 }

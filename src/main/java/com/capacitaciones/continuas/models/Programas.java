@@ -21,7 +21,6 @@ public class Programas {
     @Column(name = "nombrePrograma")
     private String nombrePrograma;
 
-
     @Column(name = "fechaInicioPrograma")
     private LocalDate fechaInicioPrograma;
 
@@ -33,11 +32,6 @@ public class Programas {
 
     @Column(name = "estadoProgramaActivo")
     private Boolean estadoProgramaActivo;
-
-    // Relacionado con usuario
-    @ManyToOne
-    @JoinColumn(name="idUsuario",referencedColumnName ="idUsuario")
-    private Usuario usuario;
 
     //Relacion de uno a uno
     @OneToOne
