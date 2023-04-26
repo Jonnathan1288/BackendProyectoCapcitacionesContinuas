@@ -17,9 +17,16 @@ public class Notas {
     @Column(name = "idNota")
     private Integer idNota;
 
+    @Column(name = "parcial")
     private Integer parcial;
+
+    @Column(name = "examenFinal")
     private Integer examenFinal;
+
+    @Column(name = "fechaNota")
     private LocalDate fechaNota;
+
+    @Column(name = "observacion")
     private String observacion;
 
     // se relacioina con el estudiante matriculado

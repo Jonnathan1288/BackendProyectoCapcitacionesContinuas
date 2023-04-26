@@ -47,4 +47,18 @@ public class AreaController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PutMapping("/area/actualizar/{id}")
+    public ResponseEntity<Area> actualizarArea(@PathVariable Integer id, @RequestBody Area area) {
+        try {
+        if (areaService.findById(id) == null) {
+            return ResponseEntity.notFound().build();
+        }
+            area.setNombreArea(area.getNombreArea());
+            area.setEstadoAreaActivo(area.getEstadoAreaActivo());
+            return new ResponseEntity<>(areaService.save(area), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

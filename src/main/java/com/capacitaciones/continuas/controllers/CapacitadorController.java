@@ -1,9 +1,7 @@
 package com.capacitaciones.continuas.controllers;
 
-import com.capacitaciones.continuas.models.Asistencia;
+
 import com.capacitaciones.continuas.models.Capacitador;
-import com.capacitaciones.continuas.models.Especialidad;
-import com.capacitaciones.continuas.services.AsistenciaService;
 import com.capacitaciones.continuas.services.CapacitadorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -45,6 +43,22 @@ public class CapacitadorController {
     public ResponseEntity<Capacitador> saveCapacitador(@RequestBody Capacitador capacitador){
         try {
             return new ResponseEntity<>(capacitadorService.save(capacitador), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/capacitador/actualizar/{id}")
+    public ResponseEntity<Capacitador> actualizarCapacitador(@PathVariable Integer id, @RequestBody Capacitador capacitador) {
+        try {
+            if (capacitadorService.findById(id) == null) {
+                return ResponseEntity.notFound().build();
+            }
+            capacitador.setTituloCapacitador(capacitador.getTituloCapacitador());
+            capacitador.setTipoAbreviaturaTitulo(capacitador.getTipoAbreviaturaTitulo());
+            capacitador.setEstadoActivoCapacitador(capacitador.getEstadoActivoCapacitador());
+            Capacitador newObject = capacitadorService.save(capacitador);
+            return new ResponseEntity<>(newObject, HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

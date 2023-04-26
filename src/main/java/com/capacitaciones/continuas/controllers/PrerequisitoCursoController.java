@@ -1,0 +1,52 @@
+package com.capacitaciones.continuas.controllers;
+
+import com.capacitaciones.continuas.models.DetalleFichaMatricula;
+import com.capacitaciones.continuas.models.PrerequisitoCurso;
+import com.capacitaciones.continuas.services.DetalleFichaService;
+import com.capacitaciones.continuas.services.PrerequisitoCursoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@CrossOrigin(origins = {"*"})
+@RestController
+@RequestMapping("/api")
+public class PrerequisitoCursoController {
+    @Autowired
+    private PrerequisitoCursoService prerequisitoCursoService;
+
+    @GetMapping("/prerequisitoCurso/list")
+    public ResponseEntity<List<PrerequisitoCurso>> listPrerequisitoCurso(){
+        try {
+            return new ResponseEntity<>(prerequisitoCursoService.findByAll(), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/prerequisitoCurso/findbyId/{id}")
+    public ResponseEntity<?> getPrerequisitoCursoById(@PathVariable("id") Integer id){
+        try {
+            PrerequisitoCurso pr = prerequisitoCursoService.findById(id);
+            if(pr != null){
+                return new ResponseEntity<>(pr, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("PREREQUISITO NO ENCONTRADA",HttpStatus.NOT_FOUND);
+
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/prerequisitoCurso/save")
+    public ResponseEntity<PrerequisitoCurso> savePrerequisitoCurso(@RequestBody PrerequisitoCurso df){
+        try {
+            return new ResponseEntity<>(prerequisitoCursoService.save(df), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+}

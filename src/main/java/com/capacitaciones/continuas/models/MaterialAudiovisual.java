@@ -25,4 +25,5 @@ public class MaterialAudiovisual {
     @JoinColumn(name="idSilabo",referencedColumnName ="idSilabo")
     private Silabo silabo;
 
+
 }

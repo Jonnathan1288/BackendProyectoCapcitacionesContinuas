@@ -16,11 +16,14 @@ public class EvaluacionDiagnosticaCurricular {
     @Column(name = "idEvaluacion")
     private Integer idEvaluacion;
 
+    @Column(name = "tecnicaEvaluar")
     private String tecnicaEvaluar;
+
+    @Column(name = "instrumnetoEvaluar")
     private String instrumnetoEvaluar;
 
     // se relaciona con mecanismo
     @ManyToOne
-    @JoinColumn(name="idMecanismo",referencedColumnName ="idMecanismo")
-    private MecanismosEvaluacionCurricular mecanismosEvaluacionCurricular;
+    @JoinColumn(name="idDisenioCurricular",referencedColumnName ="idDisenioCurricular")
+    private DisenioCurricular disenioCurricular;
 }
