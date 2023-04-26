@@ -1,9 +1,11 @@
 package com.capacitaciones.continuas.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Setter
 @Getter
@@ -35,4 +37,7 @@ public class Silabo {
     private Curso curso;
 
     //Falara referencir  con resultado aperesi, contenidosilabos, DisenioCurricular
+    @JsonIgnore
+    @OneToMany(mappedBy = "silabo")
+    private List<ContenidoSilabo> contenidoSilaboList;
 }
