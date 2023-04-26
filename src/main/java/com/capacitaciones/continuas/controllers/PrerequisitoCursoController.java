@@ -49,4 +49,18 @@ public class PrerequisitoCursoController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PutMapping("/prerequisitoCurso/actualizar/{id}")
+    public ResponseEntity<PrerequisitoCurso> actualizarPrerequisitoCurso(@PathVariable Integer id, @RequestBody PrerequisitoCurso prerequisitoCurso) {
+        try {
+            if (prerequisitoCursoService.findById(id) == null) {
+                return ResponseEntity.notFound().build();
+            }
+            prerequisitoCurso.setNombrePrerequisitoCurso(prerequisitoCurso.getNombrePrerequisitoCurso());
+            prerequisitoCurso.setEstadoPrerequisitoCurso(prerequisitoCurso.getEstadoPrerequisitoCurso());
+            return new ResponseEntity<>(prerequisitoCursoService.save(prerequisitoCurso), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

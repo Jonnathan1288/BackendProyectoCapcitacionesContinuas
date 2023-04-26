@@ -1,6 +1,7 @@
 package com.capacitaciones.continuas.controllers;
 
 import com.capacitaciones.continuas.models.NecesidadCurso;
+import com.capacitaciones.continuas.models.NivelCurso;
 import com.capacitaciones.continuas.models.Notas;
 import com.capacitaciones.continuas.services.NecesidadCursoService;
 import com.capacitaciones.continuas.services.NotasSevice;
@@ -21,11 +22,48 @@ public class NotasController {
 
     @GetMapping("/notas/listar")
     public ResponseEntity<List<Notas>> obtenerLista() {
+        try {
         return new ResponseEntity<>(notasSevice.findByAll(), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/notas/findbyId/{id}")
+    public ResponseEntity<?> getNotasById(@PathVariable("id") Integer id){
+        try {
+            Notas nc = notasSevice.findById(id);
+            if(nc != null){
+                return new ResponseEntity<>(nc, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("NOTAS NO ENCONTRADA",HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping("/notas/crear")
     public ResponseEntity<Notas> crear(@RequestBody Notas c) {
+        try {
         return new ResponseEntity<>(notasSevice.save(c), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/notas/actualizar/{id}")
+    public ResponseEntity<Notas> actualizarNotas(@PathVariable Integer id, @RequestBody Notas notas) {
+        try {
+            if (notasSevice.findById(id) == null) {
+                return ResponseEntity.notFound().build();
+            }
+            notas.setParcial(notas.getParcial());
+            notas.setExamenFinal(notas.getExamenFinal());
+            notas.setObservacion(notas.getObservacion());
+
+            return new ResponseEntity<>(notasSevice.save(notas), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
