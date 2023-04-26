@@ -21,14 +21,8 @@ public class Programas {
     @Column(name = "nombrePrograma")
     private String nombrePrograma;
 
-    @Column(name = "fechaInicioPrograma")
-    private LocalDate fechaInicioPrograma;
-
-    @Column(name = "fechaFinPrograma")
-    private LocalDate fechaFinPrograma;
-
-    @Column(name = "obervacionPrograma")
-    private String obervacionPrograma;
+    @Column(name = "descripcionPrograma")
+    private String descripcionPrograma;
 
     @Column(name = "estadoProgramaActivo")
     private Boolean estadoProgramaActivo;
