@@ -1,5 +1,6 @@
 package com.capacitaciones.continuas.controllers;
 
+import com.capacitaciones.continuas.models.FichaMatricula;
 import com.capacitaciones.continuas.models.HojaVidaCapacitador;
 import com.capacitaciones.continuas.services.HojaVidaCapacitadorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +20,53 @@ public class HojaVidaCapacitadorController {
 
     @GetMapping("/hojaVidaCapcitador/listar")
     public ResponseEntity<List<HojaVidaCapacitador>> obtenerLista() {
-        return new ResponseEntity<>(hojaVidaCapacitadorService.findByAll(), HttpStatus.OK);
+        try {
+            return new ResponseEntity<>(hojaVidaCapacitadorService.findByAll(), HttpStatus.OK);
+
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/hojaVidaCapcitador/findbyId/{id}")
+    public ResponseEntity<?> getHojaVidaCapacitadorById(@PathVariable("id") Integer id){
+        try {
+            HojaVidaCapacitador dc = hojaVidaCapacitadorService.findById(id);
+            if(dc != null){
+                return new ResponseEntity<>(dc, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("hojaVidaCapcitador NO ENCONTRADA",HttpStatus.NOT_FOUND);
+
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping("/hojaVidaCapcitador/crear")
     public ResponseEntity<HojaVidaCapacitador> crear(@RequestBody HojaVidaCapacitador c) {
-        return new ResponseEntity<>(hojaVidaCapacitadorService.save(c), HttpStatus.CREATED);
+        try {
+            return new ResponseEntity<>(hojaVidaCapacitadorService.save(c), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
+    @PutMapping("/hojaVidaCapcitador/update/{id}")
+    public ResponseEntity<HojaVidaCapacitador> actualizarHojaVidaCapacitador(@PathVariable Integer id, @RequestBody HojaVidaCapacitador hojavida) {
+        try {
+            if (hojaVidaCapacitadorService.findById(id) == null) {
+                return ResponseEntity.notFound().build();
+            }
+            hojavida.setExperiencialLaboral(hojavida.getExperiencialLaboral());
+            hojavida.setSobreMi(hojavida.getSobreMi());
+            hojavida.setExperienciaEscolar(hojavida.getExperienciaEscolar());
+            hojavida.setDestrezas(hojavida.getDestrezas());
+            hojavida.setIdiomas(hojavida.getIdiomas());
+            hojavida.setCapacitador(hojavida.getCapacitador());
+            HojaVidaCapacitador newObject = hojaVidaCapacitadorService.save(hojavida);
+            return new ResponseEntity<>(newObject, HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }

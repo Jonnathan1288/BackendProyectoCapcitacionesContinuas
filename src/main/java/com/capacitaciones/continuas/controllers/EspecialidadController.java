@@ -29,22 +29,41 @@ public class EspecialidadController {
     }
 
     @GetMapping("/especialidad/findbyId/{id}")
-    public ResponseEntity<?> getEspecialidadById(@PathVariable("id") Integer id){
+    public ResponseEntity<?> getespecialidadById(@PathVariable("id") Integer id){
         try {
-            Especialidad especialidad = especialidadService.findById(id);
-            if(especialidad != null){
-                return new ResponseEntity<>(especialidad, HttpStatus.OK);
+            Especialidad dc = especialidadService.findById(id);
+            if(dc != null){
+                return new ResponseEntity<>(dc, HttpStatus.OK);
             }
-            return new ResponseEntity<>("ESPECIALIDAD NO ENCONTRADA", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("especialidad NO ENCONTRADA",HttpStatus.NOT_FOUND);
+
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
+
     @PostMapping("/especialidad/save")
     public ResponseEntity<Especialidad> saveEspecialidad(@RequestBody Especialidad especialidad){
         try {
             return new ResponseEntity<>(especialidadService.save(especialidad), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/especialidad/update/{id}")
+    public ResponseEntity<Especialidad> actualizarEspecialidad(@PathVariable Integer id, @RequestBody Especialidad especialidad) {
+        try {
+            if (especialidadService.findById(id) == null) {
+                return ResponseEntity.notFound().build();
+            }
+            especialidad.setCodigoEspecialidad(especialidad.getCodigoEspecialidad());
+            especialidad.setNombreEspecialidad(especialidad.getNombreEspecialidad());
+            especialidad.setEstadoEspecialidadActivo(especialidad.getEstadoEspecialidadActivo());
+            especialidad.setArea(especialidad.getArea());
+            Especialidad newObject = especialidadService.save(especialidad);
+            return new ResponseEntity<>(newObject, HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

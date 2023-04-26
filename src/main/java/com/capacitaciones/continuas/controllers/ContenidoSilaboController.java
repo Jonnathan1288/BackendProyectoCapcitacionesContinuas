@@ -47,7 +47,7 @@ public class ContenidoSilaboController {
         }
     }
 
-    @PutMapping("/capacitador/actualizar/{id}")
+    @PutMapping("/contenidosilabo/actualizar/{id}")
     public ResponseEntity<ContenidoSilabo> actualizarCapacitador(@PathVariable Integer id, @RequestBody ContenidoSilabo contenidoSilabo) {
         try {
             if (contenidoSilaboService.findById(id) == null) {

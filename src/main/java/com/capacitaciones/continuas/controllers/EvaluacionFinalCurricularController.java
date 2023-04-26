@@ -27,10 +27,40 @@ public class EvaluacionFinalCurricularController {
         }
     }
 
+    @GetMapping("/evaluacionFinalCurricular/findbyId/{id}")
+    public ResponseEntity<?> getEvaluacionFinalCurricularById(@PathVariable("id") Integer id){
+        try {
+            EvaluacionFinalCurricular dc = evaluacionFinalCurricularService.findById(id);
+            if(dc != null){
+                return new ResponseEntity<>(dc, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("evaluacionFinalCurricular NO ENCONTRADA",HttpStatus.NOT_FOUND);
+
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @PostMapping("/evaluacionFinalCurricular/save")
     public ResponseEntity<EvaluacionFinalCurricular> saveEvaluacionFinalCurricular(@RequestBody EvaluacionFinalCurricular ef){
         try {
             return new ResponseEntity<>(evaluacionFinalCurricularService.save(ef), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/evaluacionFinalCurricular/update/{id}")
+    public ResponseEntity<EvaluacionFinalCurricular> actualizarEvaluacionDiagnosticaCurricular(@PathVariable Integer id, @RequestBody EvaluacionFinalCurricular evadiag) {
+        try {
+            if (evaluacionFinalCurricularService.findById(id) == null) {
+                return ResponseEntity.notFound().build();
+            }
+            evadiag.setTecnicaFormativaFinal(evadiag.getTecnicaFormativaFinal());
+            evadiag.setInstrumnetoFormativaFinal(evadiag.getInstrumnetoFormativaFinal());
+            evadiag.setDisenioCurricular(evadiag.getDisenioCurricular());
+            EvaluacionFinalCurricular newObject = evaluacionFinalCurricularService.save(evadiag);
+            return new ResponseEntity<>(newObject, HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
