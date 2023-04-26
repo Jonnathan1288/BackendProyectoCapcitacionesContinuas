@@ -31,4 +31,5 @@ public class Area {
     @JsonIgnore
     @OneToMany(mappedBy = "area")
     private List<Especialidad> Especialidad;
+
 }

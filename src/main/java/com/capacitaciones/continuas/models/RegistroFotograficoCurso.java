@@ -27,4 +27,5 @@ public class RegistroFotograficoCurso {
     @ManyToOne
     @JoinColumn(name="idCurso",referencedColumnName ="idCurso")
     private Curso curso;
+
 }
