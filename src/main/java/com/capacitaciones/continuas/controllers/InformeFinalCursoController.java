@@ -1,6 +1,7 @@
 package com.capacitaciones.continuas.controllers;
 
 
+import com.capacitaciones.continuas.models.HorarioCurso;
 import com.capacitaciones.continuas.models.InformeFinalCurso;
 import com.capacitaciones.continuas.services.InformeFinalCursoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +21,51 @@ public class InformeFinalCursoController {
 
     @GetMapping("/informeFinalCurso/listar")
     public ResponseEntity<List<InformeFinalCurso>> obtenerLista() {
-        return new ResponseEntity<>(informeFinalCursoService.findByAll(), HttpStatus.OK);
+        try {
+            return new ResponseEntity<>(informeFinalCursoService.findByAll(), HttpStatus.OK);
+
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/informeFinalCurso/findbyId/{id}")
+    public ResponseEntity<?> getInformeFinalCursoById(@PathVariable("id") Integer id){
+        try {
+            InformeFinalCurso dc = informeFinalCursoService.findById(id);
+            if(dc != null){
+                return new ResponseEntity<>(dc, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("informeFinalCurso NO ENCONTRADA",HttpStatus.NOT_FOUND);
+
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping("/informeFinalCurso/crear")
     public ResponseEntity<InformeFinalCurso> crear(@RequestBody InformeFinalCurso c) {
-        return new ResponseEntity<>(informeFinalCursoService.save(c), HttpStatus.CREATED);
+        try {
+            return new ResponseEntity<>(informeFinalCursoService.save(c), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/informeFinalCurso/update/{id}")
+    public ResponseEntity<InformeFinalCurso> actualizarInformeFinalCurso(@PathVariable Integer id, @RequestBody InformeFinalCurso infofinalc) {
+        try {
+            if (informeFinalCursoService.findById(id) == null) {
+                return ResponseEntity.notFound().build();
+            }
+            infofinalc.setObservacionesInformeFinalCurso(infofinalc.getObservacionesInformeFinalCurso());
+            infofinalc.setLugarInformeFinalCurso(infofinalc.getLugarInformeFinalCurso());
+            infofinalc.setNombreCantonInformeFinalCurso(infofinalc.getNombreCantonInformeFinalCurso());
+            infofinalc.setCurso(infofinalc.getCurso());
+            InformeFinalCurso newObject = informeFinalCursoService.save(infofinalc);
+            return new ResponseEntity<>(newObject, HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

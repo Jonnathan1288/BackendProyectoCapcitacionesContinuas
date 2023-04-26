@@ -1,6 +1,7 @@
 package com.capacitaciones.continuas.controllers;
 
 import com.capacitaciones.continuas.models.Area;
+import com.capacitaciones.continuas.models.Capacitador;
 import com.capacitaciones.continuas.models.DetalleFichaMatricula;
 import com.capacitaciones.continuas.services.AreaService;
 import com.capacitaciones.continuas.services.DetalleFichaService;
@@ -49,4 +50,20 @@ public class DetalleFichaController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PutMapping("/detalleFicha/update/{id}")
+    public ResponseEntity<DetalleFichaMatricula> actualizarDetalleFichaMatricula(@PathVariable Integer id, @RequestBody DetalleFichaMatricula dfm) {
+        try {
+            if (detalleFichaService.findById(id) == null) {
+                return ResponseEntity.notFound().build();
+            }
+            dfm.setPreguntaDetalle(dfm.getPreguntaDetalle());
+            dfm.setFichaMatricula(dfm.getFichaMatricula());
+            DetalleFichaMatricula newObject = detalleFichaService.save(dfm);
+            return new ResponseEntity<>(newObject, HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }

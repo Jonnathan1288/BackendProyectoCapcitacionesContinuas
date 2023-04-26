@@ -47,8 +47,10 @@ public class ContenidoSilaboController {
         }
     }
 
-    @PutMapping("/contenidoSilabo/actualizar/{id}")
-    public ResponseEntity<ContenidoSilabo> actualizarContenidosilabo(@PathVariable Integer id, @RequestBody ContenidoSilabo contenidoSilabo) {
+
+    @PutMapping("/contenidosilabo/actualizar/{id}")
+    public ResponseEntity<ContenidoSilabo> actualizarCapacitador(@PathVariable Integer id, @RequestBody ContenidoSilabo contenidoSilabo) {
+
         try {
             if (contenidoSilaboService.findById(id) == null) {
                 return ResponseEntity.notFound().build();
