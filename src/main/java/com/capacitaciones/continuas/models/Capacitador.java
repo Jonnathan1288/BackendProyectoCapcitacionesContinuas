@@ -20,11 +20,8 @@ public class Capacitador {
     @Column(name = "tituloCapacitador")
     private String tituloCapacitador;
 
-
-    private String abreviatura;
-
+    @Column(name = "estadoActivoCapacitador")
     private Boolean estadoActivoCapacitador;
-
 
     // Referencia con su hoja de vida
     @JsonIgnore
@@ -35,5 +32,8 @@ public class Capacitador {
     @JoinColumn(name="idUsuario",referencedColumnName ="idUsuario")
     private Usuario usuario;
 
+    @OneToOne
+    @JoinColumn(name = "idAbreviaturaTitulo", referencedColumnName = "idAbreviaturaTitulo")
+    private AbreviaturaTitulo abreviaturaTitulo;
 
 }

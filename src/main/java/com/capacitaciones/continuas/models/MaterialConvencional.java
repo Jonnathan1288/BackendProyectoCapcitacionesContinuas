@@ -26,4 +26,5 @@ public class MaterialConvencional {
     @JoinColumn(name="idSilabo",referencedColumnName ="idSilabo")
     private Silabo silabo;
 
+
 }

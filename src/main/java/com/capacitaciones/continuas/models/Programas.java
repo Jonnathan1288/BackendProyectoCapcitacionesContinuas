@@ -18,15 +18,31 @@ public class Programas {
     @Column(name = "idPrograma")
     private Integer idPrograma;
 
+    @Column(name = "nombrePrograma")
     private String nombrePrograma;
+
+    @Column(name = "periodoPrograma")
     private String periodoPrograma;
+
+    @Column(name = "fechaInicioPrograma")
     private LocalDate fechaInicioPrograma;
+
+    @Column(name = "fechaFinPrograma")
     private LocalDate fechaFinPrograma;
+
+    @Column(name = "obervacionPrograma")
     private String obervacionPrograma;
+
+    @Column(name = "estadoProgramaActivo")
     private Boolean estadoProgramaActivo;
 
     // Relacionado con usuario
     @ManyToOne
     @JoinColumn(name="idUsuario",referencedColumnName ="idUsuario")
     private Usuario usuario;
+
+    //Relacion de uno a uno
+    @OneToOne
+    @JoinColumn(name = "idPeriodoPrograma", referencedColumnName = "idPeriodoPrograma")
+    private PeriodoPrograma periodoCurso;
 }

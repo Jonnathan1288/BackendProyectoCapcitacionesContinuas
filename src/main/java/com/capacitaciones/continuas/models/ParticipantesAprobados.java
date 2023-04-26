@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Getter
 @Entity
 @Table(name = "participantesaprobados")
-public class ParticipantesAprobados {
+public class ParticipantesAprobados { //estado en  vigencia
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
