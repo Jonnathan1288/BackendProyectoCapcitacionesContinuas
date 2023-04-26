@@ -1,8 +1,7 @@
 package com.capacitaciones.continuas.controllers;
 
-import com.capacitaciones.continuas.models.Area;
+
 import com.capacitaciones.continuas.models.ModalidadCurso;
-import com.capacitaciones.continuas.services.AreaService;
 import com.capacitaciones.continuas.services.ModalidadCursoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -45,6 +44,20 @@ public class ModalidadController {
     public ResponseEntity<ModalidadCurso> saveModalidad(@RequestBody ModalidadCurso mc){
         try {
             return new ResponseEntity<>(modalidadCursoService.save(mc), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/modalidadCurso/actualizar/{id}")
+    public ResponseEntity<ModalidadCurso> actualizarMaterialConvencional(@PathVariable Integer id, @RequestBody ModalidadCurso modalidadCurso) {
+        try {
+            if (modalidadCursoService.findById(id) == null) {
+                return ResponseEntity.notFound().build();
+            }
+            modalidadCurso.setNombreModalidadCurso(modalidadCurso.getNombreModalidadCurso());
+            modalidadCurso.setEstadoModalidadCurso(modalidadCurso.getEstadoModalidadCurso());
+            return new ResponseEntity<>(modalidadCursoService.save(modalidadCurso), HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

@@ -21,11 +21,21 @@ public class ParticipanteMatriculadosController {
 
     @GetMapping("/participantesMatriculados/listar")
     public ResponseEntity<List<PartipantesMatriculados>> obtenerLista() {
-        return new ResponseEntity<>(participantesMatriculadosService.findByAll(), HttpStatus.OK);
+        try {
+            return new ResponseEntity<>(participantesMatriculadosService.findByAll(), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping("/participantesMatriculados/crear")
     public ResponseEntity<PartipantesMatriculados> crear(@RequestBody PartipantesMatriculados c) {
-        return new ResponseEntity<>(participantesMatriculadosService.save(c), HttpStatus.CREATED);
+        try {
+            return new ResponseEntity<>(participantesMatriculadosService.save(c), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
+
+
 }

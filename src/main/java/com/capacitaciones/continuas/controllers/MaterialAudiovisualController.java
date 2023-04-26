@@ -35,4 +35,31 @@ public class MaterialAudiovisualController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/materialAudiovisual/findbyId/{id}")
+    public ResponseEntity<?> getMaterialAudiovisualById(@PathVariable("id") Integer id){
+        try {
+            MaterialAudiovisual materialConvencional = materialAudiovisualService.findById(id);
+            if(materialConvencional != null){
+                return new ResponseEntity<>(materialConvencional, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("CAPACITADOR NO ENCONTRADO", HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/materialAudiovisual/actualizar/{id}")
+    public ResponseEntity<MaterialAudiovisual> actualizarMaterialAudiovisual(@PathVariable Integer id, @RequestBody MaterialAudiovisual materialAudiovisual) {
+        try {
+            if (materialAudiovisualService.findById(id) == null) {
+                return ResponseEntity.notFound().build();
+            }
+            materialAudiovisual.setDescripcionMaterialAudiovisual(materialAudiovisual.getDescripcionMaterialAudiovisual());
+            materialAudiovisual.setEstadoMaterialAudiovisual(materialAudiovisual.getEstadoMaterialAudiovisual());
+            return new ResponseEntity<>(materialAudiovisualService.save(materialAudiovisual), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

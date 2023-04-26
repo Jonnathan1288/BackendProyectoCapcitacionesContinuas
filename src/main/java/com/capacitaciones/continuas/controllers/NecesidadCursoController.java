@@ -48,4 +48,19 @@ public class NecesidadCursoController {
         }
     }
 
+    @PutMapping("/necesidadCurso/actualizar/{id}")
+    public ResponseEntity<NecesidadCurso> actualizarNecesidadCurso(@PathVariable Integer id, @RequestBody NecesidadCurso necesidadCurso) {
+        try {
+            if (necesidadCursoService.findById(id) == null) {
+                return ResponseEntity.notFound().build();
+            }
+            necesidadCurso.setResumenCurso(necesidadCurso.getResumenCurso());
+            necesidadCurso.setEspacioImpartirNecesidadCurso(necesidadCurso.getEspacioImpartirNecesidadCurso());
+            necesidadCurso.setPoblacionDirijida(necesidadCurso.getPoblacionDirijida());
+            return new ResponseEntity<>(necesidadCursoService.save(necesidadCurso), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }
