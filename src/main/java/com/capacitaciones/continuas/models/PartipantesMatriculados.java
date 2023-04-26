@@ -16,7 +16,10 @@ public class PartipantesMatriculados { //estado en  vigencia
     @Column(name = "idParticipanteMatriculado")
     private Integer idParticipanteMatriculado;
 
+    @Column(name = "estadoParticipanteAprobacion")
     private String estadoParticipanteAprobacion;
+
+    @Column(name = "estadoParticipanteActivo")
     private Boolean estadoParticipanteActivo;
 
     // se referencia con matricula
