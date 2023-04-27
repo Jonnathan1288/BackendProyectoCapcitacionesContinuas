@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 @Setter
@@ -47,6 +48,12 @@ public class Curso {
 
     @Column(name = "numeroCuposCurso")
     private Integer numeroCuposCurso;
+
+    @Column(name = "fechaInicioCurso")
+    private LocalDate fechaInicioCurso;
+
+    @Column(name = "fechaFinalizacionCurso")
+    private LocalDate fechaFinalizacionCurso;
 
     //Viene la lave de idprograma
     @ManyToOne
