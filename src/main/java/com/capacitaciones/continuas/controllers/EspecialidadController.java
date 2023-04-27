@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = {"*"})
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api")
 public class EspecialidadController {
@@ -33,6 +33,16 @@ public class EspecialidadController {
                 return new ResponseEntity<>(dc, HttpStatus.OK);
             }
             return new ResponseEntity<>("especialidad NO ENCONTRADA",HttpStatus.NOT_FOUND);
+
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/especialidad/findbyIdArea/{id}")
+    public ResponseEntity<List<Especialidad>> getespecialidadByIdArea(@PathVariable("id") Integer id){
+        try {
+            return new ResponseEntity<>(especialidadService.findByAreaIdArea(id),HttpStatus.OK);
 
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

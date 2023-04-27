@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 
-@CrossOrigin(origins = {"*"})
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api")
 public class ReportsController {

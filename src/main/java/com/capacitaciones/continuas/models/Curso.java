@@ -21,7 +21,7 @@ public class Curso {
     @Column(name = "nombreCurso")
     private String nombreCurso;
 
-    @Column(name = "fotoCurso") //Foto al directorio
+    @Column(name = "fotoCurso",  columnDefinition = "LONGBLOB") //Foto al directorio
     private String fotoCurso;
 
     @Column(name = "duracionCurso")
