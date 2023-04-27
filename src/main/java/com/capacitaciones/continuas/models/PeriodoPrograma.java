@@ -30,7 +30,7 @@ public class PeriodoPrograma {
     private String nombrePeriodoPrograma;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "periodoCurso")
+    @OneToOne(mappedBy = "periodoPrograma")
     private Programas programas;
     
 }
