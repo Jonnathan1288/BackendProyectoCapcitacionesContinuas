@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.services;
 
-import models.MaterialAudiovisual;
+import com.capacitaciones.continuas.models.MaterialAudiovisual;
 import com.capacitaciones.continuas.repositorys.MaterialAudiovisualRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;

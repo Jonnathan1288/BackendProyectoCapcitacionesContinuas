@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.services;
 
-import models.Rol;
+import com.capacitaciones.continuas.models.Rol;
 
 public interface RolService extends GenericService<Rol,Integer>{
 }

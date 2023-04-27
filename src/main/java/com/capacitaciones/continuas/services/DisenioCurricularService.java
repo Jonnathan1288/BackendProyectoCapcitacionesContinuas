@@ -1,7 +1,7 @@
 package com.capacitaciones.continuas.services;
 
 
-import models.DisenioCurricular;
+import com.capacitaciones.continuas.models.DisenioCurricular;
 
 public interface DisenioCurricularService extends  GenericService<DisenioCurricular, Integer>{
 }

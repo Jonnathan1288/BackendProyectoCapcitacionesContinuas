@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.controllers;
 
-import models.RegistroFotograficoCurso;
+import com.capacitaciones.continuas.models.RegistroFotograficoCurso;
 import com.capacitaciones.continuas.services.RegistroFotograficoCursoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

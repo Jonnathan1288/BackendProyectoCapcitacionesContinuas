@@ -1,7 +1,7 @@
 package com.capacitaciones.continuas.services;
 
 
-import models.RegistroFotograficoCurso;
+import com.capacitaciones.continuas.models.RegistroFotograficoCurso;
 import com.capacitaciones.continuas.repositorys.RegistroFotograficoCurosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;

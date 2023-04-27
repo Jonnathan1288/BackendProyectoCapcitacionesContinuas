@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.services;
 
-import models.HojaVidaCapacitador;
+import com.capacitaciones.continuas.models.HojaVidaCapacitador;
 import com.capacitaciones.continuas.repositorys.HojaVidaCapacitadorRespository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;

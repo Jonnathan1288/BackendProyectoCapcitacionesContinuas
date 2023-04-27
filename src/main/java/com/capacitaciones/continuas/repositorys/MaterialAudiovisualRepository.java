@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.repositorys;
 
-import models.MaterialAudiovisual;
+import com.capacitaciones.continuas.models.MaterialAudiovisual;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

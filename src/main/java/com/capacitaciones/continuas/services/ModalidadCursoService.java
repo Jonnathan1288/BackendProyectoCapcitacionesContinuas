@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.services;
 
-import models.ModalidadCurso;
+import com.capacitaciones.continuas.models.ModalidadCurso;
 
 public interface ModalidadCursoService extends  GenericService<ModalidadCurso, Integer>{
 }

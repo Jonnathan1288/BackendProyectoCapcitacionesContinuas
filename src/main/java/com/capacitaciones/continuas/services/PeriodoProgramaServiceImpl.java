@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.services;
 
-import models.PeriodoPrograma;
+import com.capacitaciones.continuas.models.PeriodoPrograma;
 import com.capacitaciones.continuas.repositorys.PeriodoProgramaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;

@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.controllers;
 
-import models.HojaVidaCapacitador;
+import com.capacitaciones.continuas.models.HojaVidaCapacitador;
 import com.capacitaciones.continuas.services.HojaVidaCapacitadorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

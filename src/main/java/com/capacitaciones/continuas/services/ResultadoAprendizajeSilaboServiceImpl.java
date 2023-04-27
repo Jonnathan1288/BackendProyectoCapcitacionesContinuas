@@ -1,7 +1,7 @@
 package com.capacitaciones.continuas.services;
 
 
-import models.ResultadoAprendizajeSilabo;
+import com.capacitaciones.continuas.models.ResultadoAprendizajeSilabo;
 import com.capacitaciones.continuas.repositorys.ResultadosAprendizajeSilaboRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;

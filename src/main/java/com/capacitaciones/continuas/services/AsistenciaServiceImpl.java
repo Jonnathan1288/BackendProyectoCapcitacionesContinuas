@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.services;
 
-import models.Asistencia;
+import com.capacitaciones.continuas.models.Asistencia;
 import com.capacitaciones.continuas.repositorys.AsistenciaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;

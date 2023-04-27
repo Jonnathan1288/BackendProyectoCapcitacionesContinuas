@@ -1,7 +1,7 @@
 package com.capacitaciones.continuas.services;
 
 
-import models.EvalucionFormativaCurricular;
+import com.capacitaciones.continuas.models.EvalucionFormativaCurricular;
 
 public interface EvaluacionFormativaCurricularService extends  GenericService<EvalucionFormativaCurricular, Integer>{
 }

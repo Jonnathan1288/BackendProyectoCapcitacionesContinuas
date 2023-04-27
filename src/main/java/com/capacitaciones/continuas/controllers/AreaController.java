@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.controllers;
 
-import models.Area;
+import com.capacitaciones.continuas.models.Area;
 import com.capacitaciones.continuas.services.AreaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

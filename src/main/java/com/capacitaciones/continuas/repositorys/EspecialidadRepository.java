@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.repositorys;
 
-import models.Especialidad;
+import com.capacitaciones.continuas.models.Especialidad;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

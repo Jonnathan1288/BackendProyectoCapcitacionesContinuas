@@ -1,7 +1,7 @@
 package com.capacitaciones.continuas.services;
 
 
-import models.Inscrito;
+import com.capacitaciones.continuas.models.Inscrito;
 import com.capacitaciones.continuas.repositorys.InscritoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;

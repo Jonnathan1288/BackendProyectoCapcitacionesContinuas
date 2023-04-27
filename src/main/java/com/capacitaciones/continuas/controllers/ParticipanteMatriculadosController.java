@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.controllers;
 
-import models.PartipantesMatriculados;
+import com.capacitaciones.continuas.models.PartipantesMatriculados;
 import com.capacitaciones.continuas.services.ParticipantesMatriculadosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,7 +1,7 @@
 package com.capacitaciones.continuas.services;
 
 
-import models.FichaMatricula;
+import com.capacitaciones.continuas.models.FichaMatricula;
 
 public interface FichaMatriculaService extends  GenericService<FichaMatricula, Integer>{
 }

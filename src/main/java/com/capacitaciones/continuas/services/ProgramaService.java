@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.services;
 
-import models.Programas;
+import com.capacitaciones.continuas.models.Programas;
 
 public interface ProgramaService extends GenericService<Programas, Integer>{
 }

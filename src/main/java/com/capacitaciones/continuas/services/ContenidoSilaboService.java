@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.services;
 
-import models.ContenidoSilabo;
+import com.capacitaciones.continuas.models.ContenidoSilabo;
 
 public interface ContenidoSilaboService extends  GenericService<ContenidoSilabo, Integer>{
 }

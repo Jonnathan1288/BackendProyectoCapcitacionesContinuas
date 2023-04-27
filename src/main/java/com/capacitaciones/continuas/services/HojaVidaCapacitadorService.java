@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.services;
 
-import models.HojaVidaCapacitador;
+import com.capacitaciones.continuas.models.HojaVidaCapacitador;
 
 public interface HojaVidaCapacitadorService extends GenericService<HojaVidaCapacitador, Integer>{
 }

@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.repositorys;
 
-import models.FichaMatricula;
+import com.capacitaciones.continuas.models.FichaMatricula;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

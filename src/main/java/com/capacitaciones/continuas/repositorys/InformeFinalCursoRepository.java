@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.repositorys;
 
-import models.InformeFinalCurso;
+import com.capacitaciones.continuas.models.InformeFinalCurso;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

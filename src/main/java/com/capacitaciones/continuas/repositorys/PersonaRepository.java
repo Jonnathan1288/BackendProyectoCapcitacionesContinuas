@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.repositorys;
 
-import models.Persona;
+import com.capacitaciones.continuas.models.Persona;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

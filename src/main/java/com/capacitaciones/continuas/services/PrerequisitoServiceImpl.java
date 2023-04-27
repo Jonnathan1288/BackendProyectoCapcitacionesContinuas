@@ -1,7 +1,7 @@
 package com.capacitaciones.continuas.services;
 
 
-import models.PrerequisitoCurso;
+import com.capacitaciones.continuas.models.PrerequisitoCurso;
 import com.capacitaciones.continuas.repositorys.PrerequisitoCursoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;

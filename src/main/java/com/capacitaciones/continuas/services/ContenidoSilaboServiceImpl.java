@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.services;
 
-import models.ContenidoSilabo;
+import com.capacitaciones.continuas.models.ContenidoSilabo;
 import com.capacitaciones.continuas.repositorys.ContenidoSilaboRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;

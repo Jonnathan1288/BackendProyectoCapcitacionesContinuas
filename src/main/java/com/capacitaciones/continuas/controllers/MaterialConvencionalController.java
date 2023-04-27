@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.controllers;
 
-import models.MaterialConvencional;
+import com.capacitaciones.continuas.models.MaterialConvencional;
 import com.capacitaciones.continuas.services.MaterialConvencionalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

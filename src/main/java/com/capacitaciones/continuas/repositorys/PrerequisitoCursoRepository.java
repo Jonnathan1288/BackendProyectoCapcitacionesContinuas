@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.repositorys;
 
-import models.PrerequisitoCurso;
+import com.capacitaciones.continuas.models.PrerequisitoCurso;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

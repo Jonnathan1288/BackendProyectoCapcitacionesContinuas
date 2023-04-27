@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.controllers;
 
-import models.Rol;
+import com.capacitaciones.continuas.models.Rol;
 import com.capacitaciones.continuas.services.RolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

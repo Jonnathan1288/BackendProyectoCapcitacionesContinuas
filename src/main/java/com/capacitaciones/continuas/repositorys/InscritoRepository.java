@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.repositorys;
 
-import models.Inscrito;
+import com.capacitaciones.continuas.models.Inscrito;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

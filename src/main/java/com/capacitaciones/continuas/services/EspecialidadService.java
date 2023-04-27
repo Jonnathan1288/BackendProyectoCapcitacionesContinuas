@@ -1,7 +1,7 @@
 package com.capacitaciones.continuas.services;
 
 
-import models.Especialidad;
+import com.capacitaciones.continuas.models.Especialidad;
 
 public interface EspecialidadService extends  GenericService<Especialidad, Integer>{
 }

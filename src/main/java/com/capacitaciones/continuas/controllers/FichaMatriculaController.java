@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.controllers;
 
-import models.FichaMatricula;
+import com.capacitaciones.continuas.models.FichaMatricula;
 import com.capacitaciones.continuas.services.FichaMatriculaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

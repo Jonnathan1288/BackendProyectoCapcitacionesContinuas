@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.controllers;
 
-import models.Inscrito;
+import com.capacitaciones.continuas.models.Inscrito;
 import com.capacitaciones.continuas.services.InscritoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

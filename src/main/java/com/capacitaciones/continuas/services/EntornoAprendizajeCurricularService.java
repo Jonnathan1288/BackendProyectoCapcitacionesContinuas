@@ -1,7 +1,7 @@
 package com.capacitaciones.continuas.services;
 
 
-import models.EntornoAprendizajeCurricular;
+import com.capacitaciones.continuas.models.EntornoAprendizajeCurricular;
 
 public interface EntornoAprendizajeCurricularService extends  GenericService<EntornoAprendizajeCurricular, Integer>{
 }

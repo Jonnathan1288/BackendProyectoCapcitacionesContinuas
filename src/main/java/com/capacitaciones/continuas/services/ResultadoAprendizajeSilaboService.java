@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.services;
 
-import models.ResultadoAprendizajeSilabo;
+import com.capacitaciones.continuas.models.ResultadoAprendizajeSilabo;
 
 public interface ResultadoAprendizajeSilaboService extends GenericService<ResultadoAprendizajeSilabo,Integer>{
 }

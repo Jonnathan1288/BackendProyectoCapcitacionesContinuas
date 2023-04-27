@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.services;
 
-import models.TipoCurso;
+import com.capacitaciones.continuas.models.TipoCurso;
 
 public interface TipoCursoService extends  GenericService<TipoCurso, Integer>{
 }
