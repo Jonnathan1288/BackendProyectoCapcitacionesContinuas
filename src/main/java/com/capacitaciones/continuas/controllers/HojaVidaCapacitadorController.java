@@ -1,6 +1,5 @@
 package com.capacitaciones.continuas.controllers;
 
-import com.capacitaciones.continuas.models.FichaMatricula;
 import com.capacitaciones.continuas.models.HojaVidaCapacitador;
 import com.capacitaciones.continuas.services.HojaVidaCapacitadorService;
 import org.springframework.beans.factory.annotation.Autowired;

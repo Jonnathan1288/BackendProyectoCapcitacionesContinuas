@@ -1,6 +1,5 @@
 package com.capacitaciones.continuas.controllers;
 
-import com.capacitaciones.continuas.models.InformeFinalCurso;
 import com.capacitaciones.continuas.models.Inscrito;
 import com.capacitaciones.continuas.services.InscritoService;
 import org.springframework.beans.factory.annotation.Autowired;
