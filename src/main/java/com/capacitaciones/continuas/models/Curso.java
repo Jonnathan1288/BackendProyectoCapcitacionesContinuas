@@ -1,10 +1,11 @@
 package com.capacitaciones.continuas.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.util.List;
 
 @Setter
 @Getter
@@ -20,23 +21,11 @@ public class Curso {
     @Column(name = "nombreCurso")
     private String nombreCurso;
 
-    @Column(name = "periodoCurso")
-    private String periodoCurso;
-
-    @Column(name = "tipoCurso")
-    private String tipoCurso;
-
-    @Column(name = "fotoCurso")
+    @Column(name = "fotoCurso") //Foto al directorio
     private String fotoCurso;
 
     @Column(name = "duracionCurso")
     private Integer duracionCurso;
-
-    @Column(name = "fechaInicioCuros")
-    private LocalDate fechaInicioCuros;
-
-    @Column(name = "fechaFinCurso")
-    private LocalDate fechaFinCurso;
 
     @Column(name = "observacionCurso")
     private String observacionCurso;
@@ -50,12 +39,6 @@ public class Curso {
     @Column(name = "estadoPublicasionCurso")
     private Boolean estadoPublicasionCurso; // para el usuario
 
-    @Column(name = "modalidadCurso")
-    private String modalidadCurso;
-
-    @Column(name = "prerequisitosCurso")
-    private String prerequisitosCurso;
-
     @Column(name = "descripcionCurso")
     private String descripcionCurso;
 
@@ -64,9 +47,6 @@ public class Curso {
 
     @Column(name = "numeroCuposCurso")
     private Integer numeroCuposCurso;
-
-    @Column(name = "niveles")
-    private String niveles; //
 
     //Viene la lave de idprograma
     @ManyToOne
@@ -85,5 +65,23 @@ public class Curso {
 
 
     //Falta todas las referencias..
+    @OneToOne
+    @JoinColumn(name = "idModalidadCurso", referencedColumnName = "idModalidadCurso")
+    private ModalidadCurso modalidadCurso;
 
+    @OneToOne
+    @JoinColumn(name = "idTipoCurso", referencedColumnName = "idTipoCurso")
+    private TipoCurso tipoCurso;
+
+    @OneToOne
+    @JoinColumn(name = "idNivelCurso", referencedColumnName = "idNivelCurso")
+    private NivelCurso nivelCurso;
+
+    @OneToOne
+    @JoinColumn(name = "idHorarioCurso", referencedColumnName = "idHorarioCurso")
+    private HorarioCurso horarioCurso;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "curso")
+    private List<PrerequisitoCurso> prerequisitoCursos;
 }

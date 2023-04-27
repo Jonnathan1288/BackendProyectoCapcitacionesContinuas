@@ -16,8 +16,14 @@ public class DisenioCurricular {
     @Column(name = "idDisenioCurricular")
     private Integer idCDisenioCurricular;
 
+    @Column(name = "temasTransversales")
     private String temasTransversales;
+
+    @Column(name = "estrategiasAprendizaje")
     private String estrategiasAprendizaje;
+
+    @Column(name = "estadoDisenioCurricular")
+    private Boolean estadoDisenioCurricular;
 
     // RELACIONAR CON EL SILABO
     @ManyToOne

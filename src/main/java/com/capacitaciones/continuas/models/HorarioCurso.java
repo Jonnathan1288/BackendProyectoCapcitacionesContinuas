@@ -5,13 +5,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Setter
 @Getter
 @Entity
 @Table(name = "horarioscursos")
-public class HorarioCurso {
+public class HorarioCurso { //entidad en vigencia.
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idHorarioCurso")
@@ -29,7 +28,7 @@ public class HorarioCurso {
     @Column(name = "horaFin")
     private String horaFin;
 
-    @ManyToOne
-    @JoinColumn(name="idCurso",referencedColumnName ="idCurso")
+    @JsonIgnore
+    @OneToOne(mappedBy = "horarioCurso")
     private Curso curso;
 }

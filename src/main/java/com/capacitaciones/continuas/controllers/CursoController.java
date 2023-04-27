@@ -1,6 +1,5 @@
 package com.capacitaciones.continuas.controllers;
 
-import com.capacitaciones.continuas.models.Capacitador;
 import com.capacitaciones.continuas.models.Curso;
 import com.capacitaciones.continuas.services.CursoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +45,37 @@ public class CursoController {
             curso.setEstadoAprovacionCurso("P");
             curso.setEstadoPublicasionCurso(false);
             return new ResponseEntity<>(cursoService.save(curso), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/curso/update/{id}")
+    public ResponseEntity<Curso> updateCurso(@PathVariable Integer id, @RequestBody Curso curso) {
+        try {
+            if (cursoService.findById(id) == null) {
+                return ResponseEntity.notFound().build();
+            }
+            curso.setNombreCurso(curso.getNombreCurso());
+            curso.setFotoCurso(curso.getFotoCurso());
+            curso.setDuracionCurso(curso.getDuracionCurso());
+            curso.setObservacionCurso(curso.getObservacionCurso());
+            curso.setEstadoCurso(curso.getEstadoCurso());
+            curso.setEstadoAprovacionCurso(curso.getEstadoAprovacionCurso());
+            curso.setEstadoPublicasionCurso(curso.getEstadoPublicasionCurso());
+            curso.setDescripcionCurso(curso.getDescripcionCurso());
+            curso.setObjetivoGeneralesCurso(curso.getObjetivoGeneralesCurso());
+            curso.setNumeroCuposCurso(curso.getNumeroCuposCurso());
+            curso.setProgramas(curso.getProgramas());
+            curso.setEspecialidad(curso.getEspecialidad());
+            curso.setCapacitador(curso.getCapacitador());
+            curso.setModalidadCurso(curso.getModalidadCurso());
+            curso.setTipoCurso(curso.getTipoCurso());
+            curso.setNivelCurso(curso.getNivelCurso());
+            curso.setHorarioCurso(curso.getHorarioCurso());
+
+            Curso c = cursoService.save(curso);
+            return new ResponseEntity<>(c, HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

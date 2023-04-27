@@ -1,8 +1,6 @@
 package com.capacitaciones.continuas.controllers;
 
-import com.capacitaciones.continuas.models.Notas;
 import com.capacitaciones.continuas.models.ParticipantesAprobados;
-import com.capacitaciones.continuas.services.NotasSevice;
 import com.capacitaciones.continuas.services.ParticipantesAprobadosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,11 +19,45 @@ public class ParticipanteAprobadosController {
 
     @GetMapping("/participantesAprobados/listar")
     public ResponseEntity<List<ParticipantesAprobados>> obtenerLista() {
-        return new ResponseEntity<>(participantesAprobadosService.findByAll(), HttpStatus.OK);
+        try {
+            return new ResponseEntity<>(participantesAprobadosService.findByAll(), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping("/participantesAprobados/crear")
     public ResponseEntity<ParticipantesAprobados> crear(@RequestBody ParticipantesAprobados c) {
+        try {
         return new ResponseEntity<>(participantesAprobadosService.save(c), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/participantesAprobados/findbyId/{id}")
+    public ResponseEntity<?> getParticipantesAprobadosById(@PathVariable("id") Integer id){
+        try {
+            ParticipantesAprobados nc = participantesAprobadosService.findById(id);
+            if(nc != null){
+                return new ResponseEntity<>(nc, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("PARTICIPANTE APROBADOS NO ENCONTRADA",HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/participantesAprobados/actualizar/{id}")
+    public ResponseEntity<ParticipantesAprobados> actualizarParticipantesAprobados(@PathVariable Integer id, @RequestBody ParticipantesAprobados participantesAprobados) {
+        try {
+            if (participantesAprobadosService.findById(id) == null) {
+                return ResponseEntity.notFound().build();
+            }
+            participantesAprobados.setCodigoSenecyt(participantesAprobados.getCodigoSenecyt());
+            return new ResponseEntity<>(participantesAprobadosService.save(participantesAprobados), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

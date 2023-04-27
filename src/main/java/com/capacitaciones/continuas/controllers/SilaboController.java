@@ -1,8 +1,6 @@
 package com.capacitaciones.continuas.controllers;
 
-import com.capacitaciones.continuas.models.Rol;
 import com.capacitaciones.continuas.models.Silabo;
-import com.capacitaciones.continuas.services.RolService;
 import com.capacitaciones.continuas.services.SilaboService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,5 +25,34 @@ public class SilaboController {
     @PostMapping("/silabo/crear")
     public ResponseEntity<Silabo> crear(@RequestBody Silabo c) {
         return new ResponseEntity<>(silaboService.save(c), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/silabo/findbyId/{id}")
+    public ResponseEntity<?> SilaboFindById(@PathVariable("id") Integer id){
+        try {
+            Silabo nc = silaboService.findById(id);
+            if(nc != null){
+                return new ResponseEntity<>(nc, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("SILABO NO ENCONTRADA",HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/silabo/actualizar/{id}")
+    public ResponseEntity<Silabo> actualizarSilabo(@PathVariable Integer id, @RequestBody Silabo silabo) {
+        try {
+            if (silaboService.findById(id) == null) {
+                return ResponseEntity.notFound().build();
+            }
+            silabo.setBibliografia(silabo.getBibliografia());
+            silabo.setCampoRevisadoPor(silabo.getCampoRevisadoPor());
+            silabo.setCampoAprovadoPor(silabo.getCampoAprovadoPor());
+
+            return new ResponseEntity<>(silaboService.save(silabo), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

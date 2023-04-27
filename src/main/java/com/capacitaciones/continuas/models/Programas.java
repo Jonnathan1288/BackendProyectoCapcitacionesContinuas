@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 
 @Setter
@@ -18,15 +17,17 @@ public class Programas {
     @Column(name = "idPrograma")
     private Integer idPrograma;
 
+    @Column(name = "nombrePrograma")
     private String nombrePrograma;
-    private String periodoPrograma;
-    private LocalDate fechaInicioPrograma;
-    private LocalDate fechaFinPrograma;
-    private String obervacionPrograma;
+
+    @Column(name = "descripcionPrograma")
+    private String descripcionPrograma;
+
+    @Column(name = "estadoProgramaActivo")
     private Boolean estadoProgramaActivo;
 
-    // Relacionado con usuario
-    @ManyToOne
-    @JoinColumn(name="idUsuario",referencedColumnName ="idUsuario")
-    private Usuario usuario;
+    //Relacion de uno a uno
+    @OneToOne
+    @JoinColumn(name = "idPeriodoPrograma", referencedColumnName = "idPeriodoPrograma")
+    private PeriodoPrograma periodoPrograma;
 }

@@ -24,4 +24,5 @@ public class EstrategiasMetodologica {
     @ManyToOne
     @JoinColumn(name="idSilabo",referencedColumnName ="idSilabo")
     private Silabo silabo;
+
 }

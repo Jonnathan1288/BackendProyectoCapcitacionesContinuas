@@ -1,9 +1,6 @@
 package com.capacitaciones.continuas.controllers;
 
-import com.capacitaciones.continuas.models.Area;
-import com.capacitaciones.continuas.models.Persona;
 import com.capacitaciones.continuas.models.Programas;
-import com.capacitaciones.continuas.services.PersonaService;
 import com.capacitaciones.continuas.services.ProgramaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -46,6 +43,21 @@ public class ProgramasController {
     public ResponseEntity<Programas> crear(@RequestBody Programas c) {
         try {
             return new ResponseEntity<>(programaService.save(c), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/programa/actualizar/{id}")
+    public ResponseEntity<Programas> actualizarProgramas(@PathVariable Integer id, @RequestBody Programas programas) {
+        try {
+            if (programaService.findById(id) == null) {
+                return ResponseEntity.notFound().build();
+            }
+            programas.setNombrePrograma(programas.getNombrePrograma());
+            programas.setDescripcionPrograma(programas.getDescripcionPrograma());
+            programas.setEstadoProgramaActivo(programas.getEstadoProgramaActivo());
+            return new ResponseEntity<>(programaService.save(programas), HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

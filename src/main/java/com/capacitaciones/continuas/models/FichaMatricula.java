@@ -1,35 +1,32 @@
 package com.capacitaciones.continuas.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Setter
 @Getter
 @Entity
 @Table(name = "fichamatriculas")
-public class FichaMatricula {
+public class FichaMatricula { // esta entidad esta en vigencia.
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idFichaMatricula")
     private Integer idFichaMatricula;
 
-    private String informacion1;
-    private String informacion2;
-    private String informacion3;
-    private String informacion4;
-    private String informacion5;
-    private String informacion6;
-    private String informacion7;
-    private String informacion8;
-    private String informacion9;
-
     // Se relaciona con la matricula
     //viene la llave de id curso
+
     @ManyToOne
-    @JoinColumn(name="idMatricula",referencedColumnName ="idMatricula")
-    private Matricula matricula;
+    @JoinColumn(name="idInscrito",referencedColumnName ="idInscrito")
+    private Inscrito inscrito;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "fichaMatricula")
+    private List<DetalleFichaMatricula> detalleFichaMatricula;
 }

@@ -1,10 +1,7 @@
 package com.capacitaciones.continuas.controllers;
 
-import com.capacitaciones.continuas.models.Especialidad;
 import com.capacitaciones.continuas.models.EvaluacionDiagnosticaCurricular;
-import com.capacitaciones.continuas.services.EspecialidadService;
 import com.capacitaciones.continuas.services.EvaluacionDiacnosticaCurricularService;
-import com.capacitaciones.continuas.services.EvaluacionFormativaCurricularService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,10 +25,39 @@ public class EvaluacionDiacnosticoCurricularController {
         }
     }
 
+    @GetMapping("/evaluacionDiacnosticaCurricular/findbyId/{id}")
+    public ResponseEntity<?> getEvaluacionDiacnosticaCurricularById(@PathVariable("id") Integer id){
+        try {
+            EvaluacionDiagnosticaCurricular dc = evaluacionDiacnosticaCurricularService.findById(id);
+            if(dc != null){
+                return new ResponseEntity<>(dc, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("evaluacionDiacnosticaCurricular NO ENCONTRADA",HttpStatus.NOT_FOUND);
+
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
     @PostMapping("/evaluacionDiacnosticaCurricular/save")
     public ResponseEntity<EvaluacionDiagnosticaCurricular> saveEvaluacionDiacnosticoCurricular(@RequestBody EvaluacionDiagnosticaCurricular ev){
         try {
             return new ResponseEntity<>(evaluacionDiacnosticaCurricularService.save(ev), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/evaluacionDiacnosticaCurricular/update/{id}")
+    public ResponseEntity<EvaluacionDiagnosticaCurricular> actualizarEvaluacionDiagnosticaCurricular(@PathVariable Integer id, @RequestBody EvaluacionDiagnosticaCurricular evadiag) {
+        try {
+            if (evaluacionDiacnosticaCurricularService.findById(id) == null) {
+                return ResponseEntity.notFound().build();
+            }
+            evadiag.setTecnicaEvaluar(evadiag.getTecnicaEvaluar());
+            evadiag.setInstrumnetoEvaluar(evadiag.getInstrumnetoEvaluar());
+            evadiag.setDisenioCurricular(evadiag.getDisenioCurricular());
+            EvaluacionDiagnosticaCurricular newObject = evaluacionDiacnosticaCurricularService.save(evadiag);
+            return new ResponseEntity<>(newObject, HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

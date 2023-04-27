@@ -16,6 +16,9 @@ public class RegistroFotograficoCurso {
     @Column(name = "idRegistroFotograficoCurso")
     private Integer idRegistroFotograficoCurso;
 
+    @Column(name = "descripcionFoto")
+    private String descripcionFoto;
+
     @Column(name = "foto")
     private String foto;
 
@@ -27,4 +30,5 @@ public class RegistroFotograficoCurso {
     @ManyToOne
     @JoinColumn(name="idCurso",referencedColumnName ="idCurso")
     private Curso curso;
+
 }

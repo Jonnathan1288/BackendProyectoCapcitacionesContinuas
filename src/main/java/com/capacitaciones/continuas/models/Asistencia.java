@@ -20,8 +20,8 @@ public class Asistencia {
     @Column(name = "fechaAsistencia")
     private LocalDate fechaAsistencia;
 
-    @Column(name = "numeroFaltasAsistencia")
-    private Integer numeroFaltasAsistencia;
+    @Column(name = "estadoAsistencia") // Para contavilizar el numero de asistencias por día boolean true: asiste; false:Falta
+    private Boolean estadoAsistencia;
 
     @Column(name = "observacionAsistencia")
     private String observacionAsistencia;
@@ -30,7 +30,5 @@ public class Asistencia {
     @ManyToOne
     @JoinColumn(name="idParticipanteMatriculado",referencedColumnName ="idParticipanteMatriculado")
     private PartipantesMatriculados partipantesMatriculados;
-
-    //Falta
 
 }

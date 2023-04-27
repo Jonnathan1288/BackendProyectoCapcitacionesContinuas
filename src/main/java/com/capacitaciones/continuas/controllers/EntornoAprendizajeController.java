@@ -1,8 +1,6 @@
 package com.capacitaciones.continuas.controllers;
 
-import com.capacitaciones.continuas.models.DisenioCurricular;
 import com.capacitaciones.continuas.models.EntornoAprendizajeCurricular;
-import com.capacitaciones.continuas.services.DisenioCurricularService;
 import com.capacitaciones.continuas.services.EntornoAprendizajeCurricularService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,10 +25,41 @@ public class EntornoAprendizajeController {
         }
     }
 
+    @GetMapping("/entornoAprendizajeCurricular/findbyId/{id}")
+    public ResponseEntity<?> getEntornoAprendizajeCurricularById(@PathVariable("id") Integer id){
+        try {
+            EntornoAprendizajeCurricular dc = entornoAprendizajeCurricularService.findById(id);
+            if(dc != null){
+                return new ResponseEntity<>(dc, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("entornoAprendizajeCurricular NO ENCONTRADA",HttpStatus.NOT_FOUND);
+
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @PostMapping("/entornoAprendizajeCurricular/save")
     public ResponseEntity<EntornoAprendizajeCurricular> saveDisenioCurricular(@RequestBody EntornoAprendizajeCurricular entornoAprendizajeCurricular){
         try {
             return new ResponseEntity<>(entornoAprendizajeCurricularService.save(entornoAprendizajeCurricular), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/entornoAprendizajeCurricular/update/{id}")
+    public ResponseEntity<EntornoAprendizajeCurricular> actualizarEntornoAprendizajeCurricular(@PathVariable Integer id, @RequestBody EntornoAprendizajeCurricular enapc) {
+        try {
+            if (entornoAprendizajeCurricularService.findById(id) == null) {
+                return ResponseEntity.notFound().build();
+            }
+            enapc.setInstalaciones(enapc.getInstalaciones());
+            enapc.setFaseTeorica(enapc.getFaseTeorica());
+            enapc.setFasePractica(enapc.getFasePractica());
+            enapc.setDisenioCurricular(enapc.getDisenioCurricular());
+            EntornoAprendizajeCurricular newObject = entornoAprendizajeCurricularService.save(enapc);
+            return new ResponseEntity<>(newObject, HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

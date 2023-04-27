@@ -18,7 +18,10 @@ public class Rol {
     @Column(name = "idRol")
     private Integer idRol;
 
+    @Column(name = "nombreRol")
     private String nombreRol;
+
+    @Column(name = "estadoRolActivo")
     private Boolean estadoRolActivo;
 
     // REFERENCIA DE LAS RELACIONES

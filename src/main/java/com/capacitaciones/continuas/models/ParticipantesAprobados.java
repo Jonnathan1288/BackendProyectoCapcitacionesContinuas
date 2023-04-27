@@ -9,13 +9,14 @@ import javax.persistence.*;
 @Getter
 @Entity
 @Table(name = "participantesaprobados")
-public class ParticipantesAprobados {
+public class ParticipantesAprobados { //estado en  vigencia
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "iParticipantesAprobados")
     private Integer idParticipantesAprobados;
 
+    @Column(name = "codigoSenecyt")
     private String codigoSenecyt;
 
     // Se relaciona con participantes matriculado

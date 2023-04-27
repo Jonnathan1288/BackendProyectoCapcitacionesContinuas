@@ -1,9 +1,7 @@
 package com.capacitaciones.continuas.controllers;
 
 import com.capacitaciones.continuas.models.MaterialAudiovisual;
-import com.capacitaciones.continuas.models.MaterialConvencional;
 import com.capacitaciones.continuas.services.MaterialAudiovisualService;
-import com.capacitaciones.continuas.services.MaterialConvencionalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +28,33 @@ public class MaterialAudiovisualController {
     @PostMapping("/materialAudiovisual/save")
     public ResponseEntity<MaterialAudiovisual> saveMaterialAudiovisual(@RequestBody MaterialAudiovisual materialAudiovisual){
         try {
+            return new ResponseEntity<>(materialAudiovisualService.save(materialAudiovisual), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/materialAudiovisual/findbyId/{id}")
+    public ResponseEntity<?> getMaterialAudiovisualById(@PathVariable("id") Integer id){
+        try {
+            MaterialAudiovisual materialConvencional = materialAudiovisualService.findById(id);
+            if(materialConvencional != null){
+                return new ResponseEntity<>(materialConvencional, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("CAPACITADOR NO ENCONTRADO", HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/materialAudiovisual/actualizar/{id}")
+    public ResponseEntity<MaterialAudiovisual> actualizarMaterialAudiovisual(@PathVariable Integer id, @RequestBody MaterialAudiovisual materialAudiovisual) {
+        try {
+            if (materialAudiovisualService.findById(id) == null) {
+                return ResponseEntity.notFound().build();
+            }
+            materialAudiovisual.setDescripcionMaterialAudiovisual(materialAudiovisual.getDescripcionMaterialAudiovisual());
+            materialAudiovisual.setEstadoMaterialAudiovisual(materialAudiovisual.getEstadoMaterialAudiovisual());
             return new ResponseEntity<>(materialAudiovisualService.save(materialAudiovisual), HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

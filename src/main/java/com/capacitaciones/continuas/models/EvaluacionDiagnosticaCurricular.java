@@ -13,14 +13,17 @@ public class EvaluacionDiagnosticaCurricular {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idEvaluacion")
-    private Integer idEvaluacion;
+    @Column(name = "idEvaluacionDiagnosticaCurricular")
+    private Integer idEvaluacionDiagnosticaCurricular;
 
+    @Column(name = "tecnicaEvaluar")
     private String tecnicaEvaluar;
+
+    @Column(name = "instrumnetoEvaluar")
     private String instrumnetoEvaluar;
 
     // se relaciona con mecanismo
     @ManyToOne
-    @JoinColumn(name="idMecanismo",referencedColumnName ="idMecanismo")
-    private MecanismosEvaluacionCurricular mecanismosEvaluacionCurricular;
+    @JoinColumn(name="idDisenioCurricular",referencedColumnName ="idDisenioCurricular")
+    private DisenioCurricular disenioCurricular;
 }

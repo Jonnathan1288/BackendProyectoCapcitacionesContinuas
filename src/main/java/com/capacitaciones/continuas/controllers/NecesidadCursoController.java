@@ -1,9 +1,6 @@
 package com.capacitaciones.continuas.controllers;
 
-import com.capacitaciones.continuas.models.Especialidad;
-import com.capacitaciones.continuas.models.MecanismosEvaluacionCurricular;
 import com.capacitaciones.continuas.models.NecesidadCurso;
-import com.capacitaciones.continuas.services.MecanismoEvaluacionCurricularService;
 import com.capacitaciones.continuas.services.NecesidadCursoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -46,6 +43,21 @@ public class NecesidadCursoController {
     public ResponseEntity<NecesidadCurso> crearNecesidadCurso(@RequestBody NecesidadCurso c) {
         try {
             return new ResponseEntity<>(necesidadCursoService.save(c), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/necesidadCurso/actualizar/{id}")
+    public ResponseEntity<NecesidadCurso> actualizarNecesidadCurso(@PathVariable Integer id, @RequestBody NecesidadCurso necesidadCurso) {
+        try {
+            if (necesidadCursoService.findById(id) == null) {
+                return ResponseEntity.notFound().build();
+            }
+            necesidadCurso.setResumenCurso(necesidadCurso.getResumenCurso());
+            necesidadCurso.setEspacioImpartirNecesidadCurso(necesidadCurso.getEspacioImpartirNecesidadCurso());
+            necesidadCurso.setPoblacionDirijida(necesidadCurso.getPoblacionDirijida());
+            return new ResponseEntity<>(necesidadCursoService.save(necesidadCurso), HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

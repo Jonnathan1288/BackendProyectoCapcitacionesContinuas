@@ -1,11 +1,9 @@
 package com.capacitaciones.continuas.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Setter
 @Getter
@@ -18,9 +16,16 @@ public class Usuario {
     @Column(name = "idUsuario")
     private Integer idUsuario;
 
+    @Column(name = "username")
     private String username;
+
+    @Column(name = "password")
     private String password;
-    private String fotoPerfil;
+
+    @Column(name = "fotoPerfil", columnDefinition = "LONGBLOB")
+    private String fotoPerfil;  // igamen para la base de datos
+
+    @Column(name = "estadoUsuarioActivo")
     private boolean estadoUsuarioActivo;
 
     // RELACIONES
@@ -31,9 +36,4 @@ public class Usuario {
     @ManyToOne
     @JoinColumn(name="idRol",referencedColumnName ="idRol")
     private Rol rol;
-
-    //Referencias
-    @JsonIgnore
-    @OneToMany(mappedBy = "usuario")
-    private List<Programas> programas;
 }

@@ -9,22 +9,24 @@ import javax.persistence.*;
 @Getter
 @Entity
 @Table(name = "partipantesmatriculados")
-public class PartipantesMatriculados {
+public class PartipantesMatriculados { //estado en  vigencia
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idParticipanteMatriculado")
     private Integer idParticipanteMatriculado;
 
+    @Column(name = "estadoParticipanteAprobacion")
     private String estadoParticipanteAprobacion;
-    private Boolean estadoParticipanteActivo;
 
+    @Column(name = "estadoParticipanteActivo")
+    private Boolean estadoParticipanteActivo;
 
     // se referencia con matricula
 
     @ManyToOne
-    @JoinColumn(name="idMatricula",referencedColumnName ="idMatricula")
-    private Matricula matricula;
+    @JoinColumn(name="idInscrito",referencedColumnName ="idInscrito")
+    private Inscrito inscrito;
 
     //Flata ref with participantes.. ParticipantesAprobados, Notas, asistencias
 }
