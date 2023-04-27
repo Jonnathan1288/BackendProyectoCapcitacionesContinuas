@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.services;
 
-import com.capacitaciones.continuas.models.PartipantesMatriculados;
+import models.PartipantesMatriculados;
 import com.capacitaciones.continuas.repositorys.ParticipantesMatriculadosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;

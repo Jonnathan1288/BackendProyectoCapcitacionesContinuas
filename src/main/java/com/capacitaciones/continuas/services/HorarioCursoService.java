@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.services;
 
-import com.capacitaciones.continuas.models.HorarioCurso;
+import models.HorarioCurso;
 
 public interface HorarioCursoService extends GenericService<HorarioCurso, Integer>{
 }

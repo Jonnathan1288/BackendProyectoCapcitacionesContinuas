@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.services;
 
-import com.capacitaciones.continuas.models.EstrategiasMetodologica;
+import models.EstrategiasMetodologica;
 
 public interface EstrategiaMetodologicaService extends  GenericService<EstrategiasMetodologica, Integer>{
 }

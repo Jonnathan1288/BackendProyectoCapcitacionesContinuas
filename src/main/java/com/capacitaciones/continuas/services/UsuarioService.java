@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.services;
 
-import com.capacitaciones.continuas.models.Usuario;
+import models.Usuario;
 
 public interface UsuarioService extends GenericService<Usuario,Integer>{
 }

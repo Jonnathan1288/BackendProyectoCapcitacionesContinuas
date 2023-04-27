@@ -1,7 +1,7 @@
 package com.capacitaciones.continuas.repositorys;
 
 
-import com.capacitaciones.continuas.models.Programas;
+import models.Programas;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

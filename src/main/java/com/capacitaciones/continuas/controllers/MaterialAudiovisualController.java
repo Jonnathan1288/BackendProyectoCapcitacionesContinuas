@@ -1,9 +1,7 @@
 package com.capacitaciones.continuas.controllers;
 
-import com.capacitaciones.continuas.models.MaterialAudiovisual;
-import com.capacitaciones.continuas.models.MaterialConvencional;
+import models.MaterialAudiovisual;
 import com.capacitaciones.continuas.services.MaterialAudiovisualService;
-import com.capacitaciones.continuas.services.MaterialConvencionalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

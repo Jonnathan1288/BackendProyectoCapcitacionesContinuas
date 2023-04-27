@@ -1,7 +1,7 @@
 package com.capacitaciones.continuas.services;
 
 
-import com.capacitaciones.continuas.models.Notas;
+import models.Notas;
 import com.capacitaciones.continuas.repositorys.NotasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;

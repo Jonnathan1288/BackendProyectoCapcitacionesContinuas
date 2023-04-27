@@ -1,8 +1,6 @@
 package com.capacitaciones.continuas.services;
 
-import com.capacitaciones.continuas.models.EvaluacionFinalCurricular;
-import com.capacitaciones.continuas.models.EvalucionFormativaCurricular;
-import com.capacitaciones.continuas.repositorys.EvaluacionFinalCurricularRepository;
+import models.EvalucionFormativaCurricular;
 import com.capacitaciones.continuas.repositorys.EvaluacionFormativaCurricularRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;

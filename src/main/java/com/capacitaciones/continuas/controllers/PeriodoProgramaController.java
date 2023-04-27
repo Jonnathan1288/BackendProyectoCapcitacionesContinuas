@@ -1,8 +1,6 @@
 package com.capacitaciones.continuas.controllers;
 
-import com.capacitaciones.continuas.models.DetalleFichaMatricula;
-import com.capacitaciones.continuas.models.PeriodoPrograma;
-import com.capacitaciones.continuas.services.DetalleFichaService;
+import models.PeriodoPrograma;
 import com.capacitaciones.continuas.services.PeriodoProgramaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

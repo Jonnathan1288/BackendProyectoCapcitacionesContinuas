@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.services;
 
-import com.capacitaciones.continuas.models.PartipantesMatriculados;
+import models.PartipantesMatriculados;
 
 public interface ParticipantesMatriculadosService extends GenericService<PartipantesMatriculados, Integer>{
 }

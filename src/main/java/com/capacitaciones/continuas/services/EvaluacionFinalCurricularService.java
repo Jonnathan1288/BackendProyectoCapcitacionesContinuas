@@ -1,8 +1,7 @@
 package com.capacitaciones.continuas.services;
 
 
-import com.capacitaciones.continuas.models.EvaluacionDiagnosticaCurricular;
-import com.capacitaciones.continuas.models.EvaluacionFinalCurricular;
+import models.EvaluacionFinalCurricular;
 
 public interface EvaluacionFinalCurricularService extends  GenericService<EvaluacionFinalCurricular, Integer>{
 }

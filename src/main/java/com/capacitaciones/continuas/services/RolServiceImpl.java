@@ -1,7 +1,7 @@
 package com.capacitaciones.continuas.services;
 
 
-import com.capacitaciones.continuas.models.Rol;
+import models.Rol;
 import com.capacitaciones.continuas.repositorys.RolRespository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;

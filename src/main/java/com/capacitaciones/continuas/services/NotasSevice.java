@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.services;
 
-import com.capacitaciones.continuas.models.Notas;
+import models.Notas;
 
 public interface NotasSevice extends GenericService<Notas, Integer>{
 }

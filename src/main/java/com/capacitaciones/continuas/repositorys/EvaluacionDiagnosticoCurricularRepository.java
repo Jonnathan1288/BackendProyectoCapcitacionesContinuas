@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.repositorys;
 
-import com.capacitaciones.continuas.models.EvaluacionDiagnosticaCurricular;
+import models.EvaluacionDiagnosticaCurricular;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

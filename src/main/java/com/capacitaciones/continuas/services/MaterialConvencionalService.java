@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.services;
 
-import com.capacitaciones.continuas.models.MaterialConvencional;
+import models.MaterialConvencional;
 
 public interface MaterialConvencionalService extends  GenericService<MaterialConvencional, Integer>{
 }

@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.controllers;
 
-import com.capacitaciones.continuas.models.ContenidoSilabo;
+import models.ContenidoSilabo;
 import com.capacitaciones.continuas.services.ContenidoSilaboService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

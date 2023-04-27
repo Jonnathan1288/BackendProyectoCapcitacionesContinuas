@@ -1,7 +1,7 @@
 package com.capacitaciones.continuas.services;
 
 
-import com.capacitaciones.continuas.models.ParticipantesAprobados;
+import models.ParticipantesAprobados;
 import com.capacitaciones.continuas.repositorys.ParticipanteAprobadosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;

@@ -1,8 +1,6 @@
 package com.capacitaciones.continuas.controllers;
 
-import com.capacitaciones.continuas.models.Rol;
-import com.capacitaciones.continuas.models.Silabo;
-import com.capacitaciones.continuas.services.RolService;
+import models.Silabo;
 import com.capacitaciones.continuas.services.SilaboService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

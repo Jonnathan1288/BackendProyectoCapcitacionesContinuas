@@ -1,11 +1,7 @@
 package com.capacitaciones.continuas.controllers;
 
-import com.capacitaciones.continuas.models.Especialidad;
-import com.capacitaciones.continuas.models.EstrategiasMetodologica;
-import com.capacitaciones.continuas.models.EvaluacionDiagnosticaCurricular;
-import com.capacitaciones.continuas.services.EspecialidadService;
+import models.EvaluacionDiagnosticaCurricular;
 import com.capacitaciones.continuas.services.EvaluacionDiacnosticaCurricularService;
-import com.capacitaciones.continuas.services.EvaluacionFormativaCurricularService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

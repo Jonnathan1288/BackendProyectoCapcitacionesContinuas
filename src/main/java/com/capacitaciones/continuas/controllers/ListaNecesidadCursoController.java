@@ -1,9 +1,6 @@
 package com.capacitaciones.continuas.controllers;
 
-import com.capacitaciones.continuas.models.Area;
-import com.capacitaciones.continuas.models.ListaNecesidadCurso;
-import com.capacitaciones.continuas.models.MaterialAudiovisual;
-import com.capacitaciones.continuas.services.AreaService;
+import models.ListaNecesidadCurso;
 import com.capacitaciones.continuas.services.ListaNecesidadCursoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

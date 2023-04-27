@@ -1,8 +1,7 @@
 package com.capacitaciones.continuas.controllers;
 
 
-import com.capacitaciones.continuas.models.HorarioCurso;
-import com.capacitaciones.continuas.models.InformeFinalCurso;
+import models.InformeFinalCurso;
 import com.capacitaciones.continuas.services.InformeFinalCursoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
