@@ -30,5 +30,5 @@ public class Programas {
     //Relacion de uno a uno
     @OneToOne
     @JoinColumn(name = "idPeriodoPrograma", referencedColumnName = "idPeriodoPrograma")
-    private PeriodoPrograma periodoCurso;
+    private PeriodoPrograma periodoPrograma;
 }
