@@ -19,7 +19,7 @@ public class RegistroFotograficoCurso {
     @Column(name = "descripcionFoto")
     private String descripcionFoto;
 
-    @Column(name = "foto")
+    @Column(name = "foto",  columnDefinition = "LONGBLOB")
     private String foto;
 
     @Column(name = "fecha")
