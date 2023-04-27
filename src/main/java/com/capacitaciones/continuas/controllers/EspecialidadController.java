@@ -39,6 +39,16 @@ public class EspecialidadController {
         }
     }
 
+    @GetMapping("/especialidad/findbyIdArea/{id}")
+    public ResponseEntity<List<Especialidad>> getespecialidadByIdArea(@PathVariable("id") Integer id){
+        try {
+            return new ResponseEntity<>(especialidadService.findByAreaIdArea(id),HttpStatus.OK);
+
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
     @PostMapping("/especialidad/save")
     public ResponseEntity<Especialidad> saveEspecialidad(@RequestBody Especialidad especialidad){
