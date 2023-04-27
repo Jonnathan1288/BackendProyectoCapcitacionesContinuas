@@ -1,6 +1,5 @@
 package com.capacitaciones.continuas.controllers;
 
-import com.capacitaciones.continuas.models.Especialidad;
 import com.capacitaciones.continuas.models.EstrategiasMetodologica;
 import com.capacitaciones.continuas.services.EstrategiaMetodologicaService;
 import org.springframework.beans.factory.annotation.Autowired;

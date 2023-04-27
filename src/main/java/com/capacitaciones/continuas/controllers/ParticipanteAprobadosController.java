@@ -1,8 +1,6 @@
 package com.capacitaciones.continuas.controllers;
 
-import com.capacitaciones.continuas.models.Notas;
 import com.capacitaciones.continuas.models.ParticipantesAprobados;
-import com.capacitaciones.continuas.services.NotasSevice;
 import com.capacitaciones.continuas.services.ParticipantesAprobadosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

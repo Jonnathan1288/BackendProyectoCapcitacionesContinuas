@@ -1,6 +1,5 @@
 package com.capacitaciones.continuas.controllers;
 
-import com.capacitaciones.continuas.models.HojaVidaCapacitador;
 import com.capacitaciones.continuas.models.HorarioCurso;
 import com.capacitaciones.continuas.services.HorarioCursoService;
 import org.springframework.beans.factory.annotation.Autowired;

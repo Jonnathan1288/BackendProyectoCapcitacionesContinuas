@@ -1,8 +1,6 @@
 package com.capacitaciones.continuas.services;
 
-import com.capacitaciones.continuas.models.Especialidad;
 import com.capacitaciones.continuas.models.EvaluacionDiagnosticaCurricular;
-import com.capacitaciones.continuas.repositorys.EspecialidadRepository;
 import com.capacitaciones.continuas.repositorys.EvaluacionDiagnosticoCurricularRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
