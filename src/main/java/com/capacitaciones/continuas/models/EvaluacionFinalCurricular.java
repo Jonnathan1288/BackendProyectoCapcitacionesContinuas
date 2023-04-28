@@ -22,6 +22,8 @@ public class EvaluacionFinalCurricular {
     @Column(name = "instrumnetoFormativaFinal")
     private String instrumnetoFormativaFinal;
 
+    @Column(name = "estadoEvaluacionFinal")
+    private Boolean estadoEvaluacionFinal;
     // se relaciona con mecanismo
     @ManyToOne
     @JoinColumn(name="idDisenioCurricular",referencedColumnName ="idDisenioCurricular")

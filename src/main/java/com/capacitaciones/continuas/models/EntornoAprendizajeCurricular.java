@@ -25,6 +25,9 @@ public class EntornoAprendizajeCurricular {
     @Column(name = "fasePractica")
     private String fasePractica ;
 
+    @Column(name = "estadoEntornoAprendizaje")
+    private Boolean estadoEntornoAprendizaje;
+
     // se relaciona con curriculo
     @ManyToOne
     @JoinColumn(name="idDisenioCurricular",referencedColumnName ="idDisenioCurricular")
