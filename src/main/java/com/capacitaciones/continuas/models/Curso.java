@@ -72,19 +72,19 @@ public class Curso {
 
 
     //Falta todas las referencias..
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "idModalidadCurso", referencedColumnName = "idModalidadCurso")
     private ModalidadCurso modalidadCurso;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "idTipoCurso", referencedColumnName = "idTipoCurso")
     private TipoCurso tipoCurso;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "idNivelCurso", referencedColumnName = "idNivelCurso")
     private NivelCurso nivelCurso;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "idHorarioCurso", referencedColumnName = "idHorarioCurso")
     private HorarioCurso horarioCurso;
 

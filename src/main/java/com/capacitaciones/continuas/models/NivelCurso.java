@@ -22,8 +22,6 @@ public class NivelCurso {
     @Column(name = "nombreNivelCurso")
     private String nombreNivelCurso;
 
-    @JsonIgnore
-    @OneToOne(mappedBy = "nivelCurso")
-    private Curso curso;
+
 
 }
