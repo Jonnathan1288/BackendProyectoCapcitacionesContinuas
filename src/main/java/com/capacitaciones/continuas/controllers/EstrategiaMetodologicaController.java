@@ -47,6 +47,18 @@ public class EstrategiaMetodologicaController {
         }
     }
 
+    @GetMapping("/strategiaMetodologicaPorSilabo/findbyId/{IdSilabo}")
+    public ResponseEntity<?> getResultadosPorSilabo(@PathVariable("IdSilabo") Integer IdSilabo){
+        try {
+            List<EstrategiasMetodologica> nc = estrategiaMetodologicaService.findBySilaboIdSilabo(IdSilabo);
+            if(nc != null){
+                return new ResponseEntity<>(nc, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("NO ENCONTRADA",HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
     @PutMapping("/strategiaMetodologica/update/{id}")
     public ResponseEntity<EstrategiasMetodologica> actualizarEspecialidad(@PathVariable Integer id, @RequestBody EstrategiasMetodologica estrategism) {
         try {

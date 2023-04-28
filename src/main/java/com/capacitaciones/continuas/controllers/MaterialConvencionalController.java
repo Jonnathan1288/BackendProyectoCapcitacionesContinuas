@@ -47,6 +47,19 @@ public class MaterialConvencionalController {
         }
     }
 
+    @GetMapping("/materialConvencionalPorSilabo/findbyId/{IdSilabo}")
+    public ResponseEntity<?> getResultadosPorSilabo(@PathVariable("IdSilabo") Integer IdSilabo){
+        try {
+            List<MaterialConvencional> nc = materialConvencionalService.findBySilaboIdSilabo(IdSilabo);
+            if(nc != null){
+                return new ResponseEntity<>(nc, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("NO ENCONTRADA",HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @PutMapping("/materialConvencional/actualizar/{id}")
     public ResponseEntity<MaterialConvencional> actualizarMaterialConvencional(@PathVariable Integer id, @RequestBody MaterialConvencional materialConvencional) {
         try {
