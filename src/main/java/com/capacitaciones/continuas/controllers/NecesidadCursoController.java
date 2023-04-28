@@ -39,6 +39,21 @@ public class NecesidadCursoController {
         }
     }
 
+    @GetMapping("/necesidadCurso/findbyIdCurso/{id}")
+    public ResponseEntity<?> getNecesidadCursoByIdCurso(@PathVariable("id") Integer id){
+        try {
+            NecesidadCurso necesidadCurso = necesidadCursoService.findByCursoIdCurso(id);
+            if(necesidadCurso != null){
+                return new ResponseEntity<>(necesidadCurso, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("NECESIDAD CURSO NO ENCONTRADO", HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+
     @PostMapping("/necesidadCurso/crear")
     public ResponseEntity<NecesidadCurso> crearNecesidadCurso(@RequestBody NecesidadCurso c) {
         try {

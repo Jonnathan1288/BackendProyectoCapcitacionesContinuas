@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ListaNececidadCursoServiceImpl extends GenericServiceImpl<ListaNecesidadCurso, Integer> implements ListaNecesidadCursoService {
 
@@ -18,4 +20,8 @@ public class ListaNececidadCursoServiceImpl extends GenericServiceImpl<ListaNece
         return listaNecesidadCursoRepository;
     }
 
+    @Override
+    public List<ListaNecesidadCurso> findByNecesidadCurso_IdNecesidadCurso(Integer idNecesidad) {
+        return listaNecesidadCursoRepository.findByNecesidadCurso_IdNecesidadCurso(idNecesidad);
+    }
 }

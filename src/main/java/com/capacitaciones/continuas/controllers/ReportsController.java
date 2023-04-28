@@ -24,6 +24,15 @@ public class ReportsController {
         }
     }
 
+    @GetMapping("/reports/download-report/necesidad-curso/{id}")
+    public void downloadReportNecesidadCurso(HttpServletResponse response, @PathVariable("id") Integer id) throws Exception {
+        try {
+            jasperReportService.generateReportInformeNecesidadCurso(response, id);
+        }catch (Exception e){
+            System.out.println("Err-> "+e.getMessage());
+        }
+    }
+
 
     @GetMapping("/generarSilabo/downloadSilabo/{id}")
     public void downloadSilabo(HttpServletResponse response, @PathVariable("id") Integer id) throws Exception {
