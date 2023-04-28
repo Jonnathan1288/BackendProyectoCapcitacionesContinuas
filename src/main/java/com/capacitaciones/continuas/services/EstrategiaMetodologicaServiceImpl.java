@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class EstrategiaMetodologicaServiceImpl extends GenericServiceImpl<EstrategiasMetodologica, Integer> implements EstrategiaMetodologicaService {
     @Autowired
@@ -13,5 +15,9 @@ public class EstrategiaMetodologicaServiceImpl extends GenericServiceImpl<Estrat
     @Override
     public CrudRepository<EstrategiasMetodologica, Integer> getDao() {
         return estrategiaMetodologicaRepository;
+    }
+
+    public List<EstrategiasMetodologica> findBySilaboIdSilabo(Integer idSilabo) {
+        return estrategiaMetodologicaRepository.findBySilaboIdSilabo(idSilabo);
     }
 }
