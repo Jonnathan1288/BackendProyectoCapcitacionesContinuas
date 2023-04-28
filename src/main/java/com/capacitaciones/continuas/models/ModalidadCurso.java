@@ -22,8 +22,4 @@ public class ModalidadCurso {
     @Column(name = "nombreModalidadCurso")
     private String nombreModalidadCurso;
 
-    @JsonIgnore
-    @OneToOne(mappedBy = "modalidadCurso")
-    private Curso curso;
-
 }
