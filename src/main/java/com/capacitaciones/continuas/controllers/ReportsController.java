@@ -34,4 +34,13 @@ public class ReportsController {
     }
 
 
+    @GetMapping("/generarSilabo/downloadSilabo/{id}")
+    public void downloadSilabo(HttpServletResponse response, @PathVariable("id") Integer id) throws Exception {
+        try {
+            jasperReportService.generateSilabo(response, id);
+        }catch (Exception e){
+            System.out.println("Err-> "+e.getMessage());
+        }
+    }
+
 }
