@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 @Setter
@@ -48,6 +49,12 @@ public class Curso {
     @Column(name = "numeroCuposCurso")
     private Integer numeroCuposCurso;
 
+    @Column(name = "fechaInicioCurso")
+    private LocalDate fechaInicioCurso;
+
+    @Column(name = "fechaFinalizacionCurso")
+    private LocalDate fechaFinalizacionCurso;
+
     //Viene la lave de idprograma
     @ManyToOne
     @JoinColumn(name="idPrograma",referencedColumnName ="idPrograma")
@@ -65,19 +72,19 @@ public class Curso {
 
 
     //Falta todas las referencias..
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "idModalidadCurso", referencedColumnName = "idModalidadCurso")
     private ModalidadCurso modalidadCurso;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "idTipoCurso", referencedColumnName = "idTipoCurso")
     private TipoCurso tipoCurso;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "idNivelCurso", referencedColumnName = "idNivelCurso")
     private NivelCurso nivelCurso;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "idHorarioCurso", referencedColumnName = "idHorarioCurso")
     private HorarioCurso horarioCurso;
 

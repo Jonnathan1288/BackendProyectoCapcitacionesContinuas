@@ -44,6 +44,7 @@ public class CursoController {
             //Aprovacion del curso // N = NO NO APROVADO, A = APROVADO, P = PENDIENTE
             curso.setEstadoAprovacionCurso("P");
             curso.setEstadoPublicasionCurso(false);
+            curso.setEstadoCurso(true);
             return new ResponseEntity<>(cursoService.save(curso), HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

@@ -21,6 +21,9 @@ public class EstrategiasMetodologica {
     @Column(name = "finalidadEstrategiaMetodologica")
     private String finalidadEstrategiaMetodologica;
 
+    @Column(name = "estadoEstrategiaMetodologicaActivo")
+    private Boolean estadoEstrategiaMetodologicaActivo;
+
     @ManyToOne
     @JoinColumn(name="idSilabo",referencedColumnName ="idSilabo")
     private Silabo silabo;

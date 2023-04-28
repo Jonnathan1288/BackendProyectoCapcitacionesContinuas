@@ -47,6 +47,19 @@ public class MaterialAudiovisualController {
         }
     }
 
+    @GetMapping("/materialAudiovisualPorSilabo/findbyId/{IdSilabo}")
+    public ResponseEntity<?> getResultadosPorSilabo(@PathVariable("IdSilabo") Integer IdSilabo){
+        try {
+            List<MaterialAudiovisual> nc = materialAudiovisualService.findBySilaboIdSilabo(IdSilabo);
+            if(nc != null){
+                return new ResponseEntity<>(nc, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("NO ENCONTRADA",HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @PutMapping("/materialAudiovisual/actualizar/{id}")
     public ResponseEntity<MaterialAudiovisual> actualizarMaterialAudiovisual(@PathVariable Integer id, @RequestBody MaterialAudiovisual materialAudiovisual) {
         try {
