@@ -1,0 +1,1413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="repsilabo" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="67079858-5f55-4800-8541-1fc93a2236c6">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="recursos" uuid="d3bdf3d5-8928-43a8-9d51-69ee2c3ebf70">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<parameter name="idSilaboCap" class="java.lang.Integer"/>
+		<queryString>
+			<![CDATA[SELECT r.activades_resultado_aprendizaje, r.elementos_competencia_silabo,r.forma_evidenciar,r.tema_unidad_silabo
+FROM resultado_aprendizaje_silabo r
+WHERE r.id_silabo =  $P{idSilaboCap}  AND r.estado_unidad_activo = true]]>
+		</queryString>
+		<field name="activades_resultado_aprendizaje" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="activades_resultado_aprendizaje"/>
+			<property name="com.jaspersoft.studio.field.label" value="activades_resultado_aprendizaje"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="resultado_aprendizaje_silabo"/>
+		</field>
+		<field name="elementos_competencia_silabo" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="elementos_competencia_silabo"/>
+			<property name="com.jaspersoft.studio.field.label" value="elementos_competencia_silabo"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="resultado_aprendizaje_silabo"/>
+		</field>
+		<field name="forma_evidenciar" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="forma_evidenciar"/>
+			<property name="com.jaspersoft.studio.field.label" value="forma_evidenciar"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="resultado_aprendizaje_silabo"/>
+		</field>
+		<field name="tema_unidad_silabo" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="tema_unidad_silabo"/>
+			<property name="com.jaspersoft.studio.field.label" value="tema_unidad_silabo"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="resultado_aprendizaje_silabo"/>
+		</field>
+	</subDataset>
+	<subDataset name="Dataset1" uuid="e7afb467-81c3-44a7-a8d3-35fca66781d8">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+	</subDataset>
+	<subDataset name="contenidos" uuid="2664d352-153f-415e-82a9-cc47b0ebb6d9">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<parameter name="idSilaboCapTwo" class="java.lang.Integer"/>
+		<queryString>
+			<![CDATA[SELECT c.dia_contenido,c.tema_contenido,c.horas_clase_contenido,c.actividades_docencia,c.horas_practicas,c.actividades_practicas, c.horas_autonomas,c.actividades_autonomas,c.observaciones
+FROM contenidosilabos c
+WHERE c.id_silabo =  $P{idSilaboCapTwo} AND c.estado_contenido = true]]>
+		</queryString>
+		<field name="dia_contenido" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.name" value="dia_contenido"/>
+			<property name="com.jaspersoft.studio.field.label" value="dia_contenido"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="contenidosilabos"/>
+		</field>
+		<field name="tema_contenido" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="tema_contenido"/>
+			<property name="com.jaspersoft.studio.field.label" value="tema_contenido"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="contenidosilabos"/>
+		</field>
+		<field name="horas_clase_contenido" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.name" value="horas_clase_contenido"/>
+			<property name="com.jaspersoft.studio.field.label" value="horas_clase_contenido"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="contenidosilabos"/>
+		</field>
+		<field name="actividades_docencia" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="actividades_docencia"/>
+			<property name="com.jaspersoft.studio.field.label" value="actividades_docencia"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="contenidosilabos"/>
+		</field>
+		<field name="horas_practicas" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.name" value="horas_practicas"/>
+			<property name="com.jaspersoft.studio.field.label" value="horas_practicas"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="contenidosilabos"/>
+		</field>
+		<field name="actividades_practicas" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="actividades_practicas"/>
+			<property name="com.jaspersoft.studio.field.label" value="actividades_practicas"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="contenidosilabos"/>
+		</field>
+		<field name="horas_autonomas" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.name" value="horas_autonomas"/>
+			<property name="com.jaspersoft.studio.field.label" value="horas_autonomas"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="contenidosilabos"/>
+		</field>
+		<field name="actividades_autonomas" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="actividades_autonomas"/>
+			<property name="com.jaspersoft.studio.field.label" value="actividades_autonomas"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="contenidosilabos"/>
+		</field>
+		<field name="observaciones" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="observaciones"/>
+			<property name="com.jaspersoft.studio.field.label" value="observaciones"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="contenidosilabos"/>
+		</field>
+	</subDataset>
+	<subDataset name="estrategiasmetodologicas" uuid="95f140d5-0dc0-402a-9b57-0d74d49ad3f3">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<parameter name="idSilaboCapTree" class="java.lang.Integer"/>
+		<queryString>
+			<![CDATA[SELECT e.nombre_estrategia_metodologica, e.finalidad_estrategia_metodologica
+FROM estrategias_metodologicas e
+WHERE e.id_silabo =  $P{idSilaboCapTree}  AND e.estado_estrategia_metodologica_activo = true]]>
+		</queryString>
+		<field name="nombre_estrategia_metodologica" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="nombre_estrategia_metodologica"/>
+			<property name="com.jaspersoft.studio.field.label" value="nombre_estrategia_metodologica"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="estrategias_metodologicas"/>
+		</field>
+		<field name="finalidad_estrategia_metodologica" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="finalidad_estrategia_metodologica"/>
+			<property name="com.jaspersoft.studio.field.label" value="finalidad_estrategia_metodologica"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="estrategias_metodologicas"/>
+		</field>
+	</subDataset>
+	<subDataset name="recurdidacticos" uuid="c540d5dc-9e9b-4d25-86d8-14e56f854223">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+	</subDataset>
+	<subDataset name="listPrerrequisitos" uuid="14db11de-4e0d-4b95-84db-a95a45940535">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<parameter name="idSilaboPre" class="java.lang.Integer"/>
+		<queryString>
+			<![CDATA[SELECT GROUP_CONCAT(pc.nombre_prerequisito_curso) as requisitos
+FROM prerequisitos_cursos pc
+JOIN silabos s ON s.id_curso = pc.id_curso
+WHERE s.id_silabo =   $P{idSilaboPre}  AND pc.estado_prerequisito_curso = true
+;]]>
+		</queryString>
+		<field name="requisitos" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="requisitos"/>
+			<property name="com.jaspersoft.studio.field.label" value="requisitos"/>
+		</field>
+	</subDataset>
+	<subDataset name="listConvencionales" uuid="52da8788-f344-4514-8990-819b782ff493">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<parameter name="idSilaboDetalleOne" class="java.lang.Integer"/>
+		<queryString>
+			<![CDATA[SELECT  GROUP_CONCAT(m.descripcion_material_convencional) as materialesConvencionales
+FROM material_convencionales m
+WHERE m.id_silabo =  $P{idSilaboDetalleOne}  AND m.estado_material_convencional = true]]>
+		</queryString>
+		<field name="materialesConvencionales" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="materialesConvencionales"/>
+			<property name="com.jaspersoft.studio.field.label" value="materialesConvencionales"/>
+		</field>
+	</subDataset>
+	<subDataset name="listDetalleAudiovisuales" uuid="af9807d5-1f04-40c1-8237-9954f7b82e1a">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<parameter name="idSilaboDetalleTwo" class="java.lang.Integer"/>
+		<queryString>
+			<![CDATA[SELECT  GROUP_CONCAT(m.descripcion_material_audiovisual) as materialesAudiovisuales
+FROM material_audiovisuales m
+WHERE m.id_silabo =  $P{idSilaboDetalleTwo}  AND m.estado_material_audiovisual = true
+;]]>
+		</queryString>
+		<field name="materialesAudiovisuales" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="materialesAudiovisuales"/>
+			<property name="com.jaspersoft.studio.field.label" value="materialesAudiovisuales"/>
+		</field>
+	</subDataset>
+	<parameter name="cene" class="java.lang.String"/>
+	<parameter name="ista" class="java.lang.String"/>
+	<parameter name="idSilaboPrimary" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT s.id_silabo, s.campo_formacion, s.campo_revisado_por,s.campo_aprovado_por, s.bibliografia,
+c.nombre_curso,c.fecha_inicio_curso,c.fecha_finalizacion_curso,c.duracion_curso, c.descripcion_curso,c.objetivo_generales_curso,
+mc.nombre_modalidad_curso, hc.hora_fin,hc.hora_inicio, ar.nombre_area, e.codigo_especialidad, CONCAT(cp.tipo_abreviatura_titulo,'.',p.nombre1, ' ',p.nombre2,' ', p.apellido1, ' ', p.apellido2) as docente
+, SUM(cs.horas_autonomas) as horasAutonomas, SUM(cs.horas_clase_contenido) as horasDocencia,SUM(cs.horas_practicas) as horasPracticas, COUNT(cs.id_contenido_silabo) as actividades
+FROM silabos s
+JOIN cursos c ON s.id_curso = c.id_curso
+JOIN modalidades_cursos mc ON c.id_modalidad_curso = mc.id_modalidad_curso
+JOIN horarioscursos hc ON c.id_horario_curso = hc.id_horario_curso
+JOIN especialidades e ON c.id_especialidad = e.id_especialidad
+JOIN areas ar ON e.id_area = ar.id_area
+JOIN capacitadores cp ON c.id_capacitador = cp.id_capacitador
+JOIN usuarios us ON cp.id_usuario = us.id_usuario
+JOIN personas p ON us.id_persona = p.id_persona
+JOIN contenidosilabos cs ON cs.id_silabo = s.id_silabo
+WHERE s.id_silabo =  $P{idSilaboPrimary}  AND cs.estado_contenido = true]]>
+	</queryString>
+	<field name="id_silabo" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id_silabo"/>
+		<property name="com.jaspersoft.studio.field.label" value="id_silabo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="silabos"/>
+	</field>
+	<field name="campo_formacion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="campo_formacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="campo_formacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="silabos"/>
+	</field>
+	<field name="campo_revisado_por" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="campo_revisado_por"/>
+		<property name="com.jaspersoft.studio.field.label" value="campo_revisado_por"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="silabos"/>
+	</field>
+	<field name="campo_aprovado_por" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="campo_aprovado_por"/>
+		<property name="com.jaspersoft.studio.field.label" value="campo_aprovado_por"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="silabos"/>
+	</field>
+	<field name="bibliografia" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="bibliografia"/>
+		<property name="com.jaspersoft.studio.field.label" value="bibliografia"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="silabos"/>
+	</field>
+	<field name="nombre_curso" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre_curso"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre_curso"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cursos"/>
+	</field>
+	<field name="fecha_inicio_curso" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="fecha_inicio_curso"/>
+		<property name="com.jaspersoft.studio.field.label" value="fecha_inicio_curso"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cursos"/>
+	</field>
+	<field name="fecha_finalizacion_curso" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="fecha_finalizacion_curso"/>
+		<property name="com.jaspersoft.studio.field.label" value="fecha_finalizacion_curso"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cursos"/>
+	</field>
+	<field name="duracion_curso" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="duracion_curso"/>
+		<property name="com.jaspersoft.studio.field.label" value="duracion_curso"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cursos"/>
+	</field>
+	<field name="descripcion_curso" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="descripcion_curso"/>
+		<property name="com.jaspersoft.studio.field.label" value="descripcion_curso"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cursos"/>
+	</field>
+	<field name="objetivo_generales_curso" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="objetivo_generales_curso"/>
+		<property name="com.jaspersoft.studio.field.label" value="objetivo_generales_curso"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cursos"/>
+	</field>
+	<field name="nombre_modalidad_curso" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre_modalidad_curso"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre_modalidad_curso"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="modalidades_cursos"/>
+	</field>
+	<field name="hora_fin" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="hora_fin"/>
+		<property name="com.jaspersoft.studio.field.label" value="hora_fin"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="horarioscursos"/>
+	</field>
+	<field name="hora_inicio" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="hora_inicio"/>
+		<property name="com.jaspersoft.studio.field.label" value="hora_inicio"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="horarioscursos"/>
+	</field>
+	<field name="nombre_area" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre_area"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre_area"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="areas"/>
+	</field>
+	<field name="codigo_especialidad" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="codigo_especialidad"/>
+		<property name="com.jaspersoft.studio.field.label" value="codigo_especialidad"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="especialidades"/>
+	</field>
+	<field name="docente" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="docente"/>
+		<property name="com.jaspersoft.studio.field.label" value="docente"/>
+	</field>
+	<field name="horasAutonomas" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="horasAutonomas"/>
+		<property name="com.jaspersoft.studio.field.label" value="horasAutonomas"/>
+	</field>
+	<field name="horasDocencia" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="horasDocencia"/>
+		<property name="com.jaspersoft.studio.field.label" value="horasDocencia"/>
+	</field>
+	<field name="horasPracticas" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="horasPracticas"/>
+		<property name="com.jaspersoft.studio.field.label" value="horasPracticas"/>
+	</field>
+	<field name="actividades" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="actividades"/>
+		<property name="com.jaspersoft.studio.field.label" value="actividades"/>
+	</field>
+	<background>
+		<band height="42" splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="555" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="481" width="802" height="21" forecolor="#030303" backcolor="#BBC6FA" uuid="8449ab27-b0e6-4136-8aa1-67a64fd9c5ab"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="400" width="801" height="30" forecolor="#030303" backcolor="#BBC6FA" uuid="06b72291-cad2-462a-95bc-1e619923a471"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="332" width="802" height="21" forecolor="#030303" backcolor="#BBC6FA" uuid="4e67f0d3-7f78-405e-890a-1c6ff6b4afd8"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="391" y="134" width="162" height="198" forecolor="#FFFFFF" backcolor="#BBC6FA" uuid="eac0ef50-d778-4ef3-8d83-6e3a684ca55a"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="133" width="162" height="101" forecolor="#FFFFFF" backcolor="#BBC6FA" uuid="1bffe477-d3cb-4022-811d-0f66e0f1eddf"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="110" width="802" height="23" forecolor="#030303" backcolor="#BBC6FA" uuid="44d7844e-209b-48ae-8d02-580ab248c325"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="330" y="0" width="204" height="30" uuid="78d45638-2ba4-47cb-965a-7c8109395186"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="30" width="204" height="70" uuid="29c2c809-ff4c-485f-b356-9e50896aa261"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[
+Formulario g2                                                  Syllabus
+Dirección: 
+Cuidad – Ecuador ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="113" width="211" height="21" uuid="fe4ebfa1-51e0-41b1-8f1d-3b0bf61c05e2"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[1. INFORMACIÓN GENERAL DEL CURSO ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="398" y="233" width="153" height="31" uuid="f5dc097d-1cff-465c-b14f-0c555d889d5f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[N DE HORAS DEL CURSO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="163" width="70" height="37" uuid="39c26954-e5ec-4743-9f0a-c8d3618834fd"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE DEL CUSRO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="203" width="103" height="39" uuid="266316b8-a6e8-4db3-a870-2380b7fa4d06"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA DE INICIO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="396" y="169" width="90" height="31" uuid="5df1646c-a34d-4637-8c1c-6fa4ce58a53d"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CÓDIGO DEL CURSO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="249" width="126" height="70" uuid="a3615ef7-d639-4cfe-a4e3-143d977f7a7e"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DISTRIBUCIÓN DE  HORAS DE APRENDIZAJE:
+
+
+
+
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="398" y="200" width="90" height="31" uuid="52fab02d-2f59-4734-9caf-56453e53cebb"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA DE FINALIZACIÓN :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="398" y="253" width="90" height="31" uuid="4bfb599d-48d8-4dcc-a996-5ac109590d1e"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[MODALIDAD:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="398" y="278" width="144" height="31" uuid="b10428c6-d76e-4c55-86fd-33e07babd75a"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CAMPO DE FORMACION: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="396" y="303" width="161" height="31" uuid="c1cb42dd-71d1-4440-950c-dd93a8d1f595"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DOCENTE RESPONSABLE:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="552" y="133" width="1" height="200" uuid="5aa93c72-b773-4082-99ca-58a3446bf035"/>
+			</line>
+			<line>
+				<reportElement x="391" y="133" width="1" height="200" uuid="b79eeedd-3f45-4cad-a0f3-e73a2fe5a040"/>
+			</line>
+			<line>
+				<reportElement x="1" y="163" width="801" height="1" uuid="a5c263f9-dd92-45cd-af48-ae756f56b67d"/>
+			</line>
+			<line>
+				<reportElement x="1" y="233" width="801" height="1" uuid="03e05c45-10ae-41a3-8d52-7818a4a02806"/>
+			</line>
+			<line>
+				<reportElement x="162" y="293" width="640" height="1" uuid="5e6c2a4f-9c5e-4d5c-a079-ba3aa4fbbe6f"/>
+			</line>
+			<line>
+				<reportElement x="162" y="133" width="1" height="197" uuid="8b24e835-c496-4b7b-ac4a-f7a3725ed600">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</line>
+			<staticText>
+				<reportElement x="165" y="233" width="116" height="40" uuid="4d41b1d4-ef2b-4b91-b108-e0c2d53a150f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DOCENCIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="163" y="274" width="118" height="20" uuid="e7483892-733b-4a78-9cea-0dd484650c58"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRÁCTICAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="162" y="294" width="120" height="40" uuid="2e7a8d70-fda3-4f1d-9de7-3a171d90138d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TRABAJO AUTÓNOMO ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="134" width="52" height="31" uuid="a88ed232-c846-4eb7-b398-e76fc59e9029"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ÁREA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="396" y="142" width="60" height="31" uuid="94e2b35d-3c9b-4d53-8738-df60b902c3b1"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[HORARIO:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="193" width="801" height="1" uuid="64d1b83e-0f04-48c7-ac12-156eb3037ea6"/>
+			</line>
+			<line>
+				<reportElement x="162" y="273" width="640" height="1" uuid="09e61d37-e6ba-45ad-8339-ebe177f61812"/>
+			</line>
+			<line>
+				<reportElement x="281" y="233" width="1" height="100" uuid="8be56a3d-1f27-49aa-94d7-d9332fd757cf"/>
+			</line>
+			<line>
+				<reportElement x="392" y="253" width="410" height="1" uuid="32d575e4-cec4-4884-a0b2-89e18b11a7d6"/>
+			</line>
+			<line>
+				<reportElement x="0" y="353" width="802" height="1" uuid="a18b2535-5729-404d-9b14-b5218f17186c"/>
+			</line>
+			<staticText>
+				<reportElement x="12" y="332" width="211" height="21" uuid="a1beef68-277b-4731-9c6c-364f580243bb"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[2.PRERREQUISITOS]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="332" width="801" height="1" uuid="481caca4-0f9d-433f-a241-3a8a3eec54c7"/>
+			</line>
+			<staticText>
+				<reportElement x="8" y="401" width="211" height="21" uuid="b8aa08e7-ffbc-438c-a38e-35f5d8e16bd0"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[3. DESCRIPCIÓN DEL CURSO ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="481" width="211" height="21" uuid="39f3af8c-6a4b-49ac-a5d7-65c8fb2bb052"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[4. OBJETIVO GENERAL DEL CURSO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-1" y="0" width="1" height="555" uuid="e35f9c78-c379-4736-ba5d-8ed0dae8bcff"/>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="802" height="1" uuid="880d21ad-2c94-4d8d-83c4-12454bafd9d9"/>
+			</line>
+			<line>
+				<reportElement x="801" y="0" width="1" height="555" uuid="464e90bc-fa4f-4495-ad61-cb6030e415ce"/>
+			</line>
+			<textField>
+				<reportElement x="551" y="273" width="250" height="21" uuid="a9981e9b-6656-43a7-8dde-a2bd135332a1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{campo_formacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="163" y="193" width="228" height="40" uuid="c275114b-c377-4e37-b017-2d3e4365d2e8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fecha_inicio_curso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="552" y="193" width="249" height="40" uuid="bcbda6ec-fa87-4476-b0ba-3fe60f9e71df"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fecha_finalizacion_curso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="162" y="163" width="229" height="30" uuid="4ed9edd9-51fa-466f-aa77-c651031791af"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nombre_curso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="553" y="163" width="248" height="30" uuid="71a773bd-126e-46fd-968f-121498a428b9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{codigo_especialidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="681" y="135" width="59" height="28" uuid="67953182-6fd6-4811-9b11-cd592dd2ca6e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{hora_fin}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="612" y="134" width="58" height="29" uuid="6db762a0-0719-45aa-a3c0-27e85c69f7dd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{hora_inicio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="552" y="233" width="250" height="21" uuid="83d424de-268d-4d47-b214-a239a1e80cb7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{duracion_curso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="162" y="133" width="230" height="30" uuid="18fcaa5c-4f33-4360-b7e5-bb0c06dca432"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nombre_area}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="551" y="293" width="251" height="37" uuid="fc2557b4-b081-4613-a64e-39b341e1c664"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{docente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="282" y="293" width="109" height="37" uuid="7c420ad3-8d89-49ab-b0a1-3e208c9dacad"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{horasAutonomas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="281" y="233" width="110" height="40" uuid="11f3b92c-5fbd-4239-9118-31ef761c716c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{horasDocencia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="282" y="273" width="109" height="20" uuid="24fe2943-518c-4a8b-9fe8-6887aa76786e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{horasPracticas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="430" width="800" height="50" uuid="78bb5660-b83d-4f70-b8ee-80c78f0697b7"/>
+				<textFieldExpression><![CDATA[$F{descripcion_curso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="502" width="801" height="51" uuid="bbb8b0f4-4005-406c-9dd9-a014f1431186"/>
+				<textFieldExpression><![CDATA[$F{objetivo_generales_curso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="551" y="253" width="250" height="20" uuid="9e30af92-1e38-4501-a777-b52cba72a408"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nombre_modalidad_curso}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="11" y="360" width="769" height="30" uuid="257bdf9f-4a36-449e-a7ef-b272ef188453"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Horizontal">
+					<datasetRun subDataset="listPrerrequisitos" uuid="6662e1dc-f2a7-4a8a-a368-83b79b9b866b">
+						<datasetParameter name="idSilaboPre">
+							<datasetParameterExpression><![CDATA[$F{id_silabo}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="30" width="769">
+						<textField>
+							<reportElement x="0" y="0" width="769" height="30" uuid="8f3ae376-2b99-42b6-9409-6f796c9ad48e"/>
+							<textFieldExpression><![CDATA[$F{requisitos}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<staticText>
+				<reportElement x="672" y="140" width="13" height="15" uuid="cf110877-55b9-4c67-97d5-128ab9320d6b"/>
+				<text><![CDATA[a]]></text>
+			</staticText>
+			<image>
+				<reportElement x="50" y="10" width="100" height="80" uuid="83ed00b0-f64f-41bb-87ec-a2b2a4c3badf"/>
+				<imageExpression><![CDATA[$P{ista}]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="600" y="10" width="167" height="80" uuid="498740e3-98a3-46d2-b929-bd66e75cb898"/>
+				<imageExpression><![CDATA[$P{cene}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="100" splitType="Stretch">
+			<rectangle>
+				<reportElement x="-1" y="-1" width="801" height="21" forecolor="#030303" backcolor="#BBC6FA" uuid="4927825c-a3a3-4f3e-beee-ef5c855c80e4"/>
+			</rectangle>
+			<line>
+				<reportElement x="-1" y="-1" width="801" height="1" uuid="d59ca453-2eda-4ccb-a6ae-79dd8503871b"/>
+			</line>
+			<staticText>
+				<reportElement x="6" y="-1" width="250" height="21" uuid="276ec0fd-515f-4df1-9513-2105ec6b37dd"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[5. RESULTADOS DE APRENDIZAJE DEL CURSO ]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement stretchType="ElementGroupBottom" x="-1" y="18" width="801" height="80" uuid="f143fd42-c519-47fd-9621-4ffd7676e75f">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
+					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
+					<property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="recursos" uuid="cce2f74c-550c-4fe3-83a6-419537c98448">
+						<datasetParameter name="idSilaboCap">
+							<datasetParameterExpression><![CDATA[$F{id_silabo}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="140" uuid="c306997a-8b75-465a-8e60-52495646ef7c">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+						<jr:tableHeader style="Table_TH" height="50" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="140" height="50" uuid="4a79778c-d6bd-4280-a93c-00079559490b"/>
+								<textElement>
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[UNIDADES DE COMPETENCIA / PROCESOS]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="140" height="30" uuid="92a05f67-38cb-430a-b5b9-e1f5844e5296"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{tema_unidad_silabo}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="240" uuid="d42d37cf-6393-41df-b2a5-cdf1e33fda7f">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
+						<jr:tableHeader style="Table_TH" height="50" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="240" height="50" uuid="2042cffa-566b-480c-a792-c04a32bbbd08"/>
+								<textElement>
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[ELEMENTOS DE COMPETENCIA / SUBPROCESOS ]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="240" height="30" uuid="a17b3756-bceb-47a5-9396-0b1f00ce31c1"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{elementos_competencia_silabo}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="210" uuid="188aff02-137f-42df-ab19-c6b249c54a03">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
+						<jr:tableHeader style="Table_TH" height="50" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="210" height="50" uuid="c21860f0-e5d8-4bbc-bda6-91e80fc2111e"/>
+								<textElement>
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[RESULTADOS DE APRENDIZAJE / ACTIVIDADES]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="210" height="30" uuid="ffe4e9b8-d03a-4c34-86ee-21b37119e182"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{activades_resultado_aprendizaje}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="211" uuid="5c98219e-00f2-4c8e-bfab-ae3f80e52bea">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column4"/>
+						<jr:tableHeader style="Table_TH" height="50" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="211" height="50" uuid="7fdef878-8525-421e-95b5-1dc72742f9b5"/>
+								<textElement>
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[FORMA DE EVIDENCIAR]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="211" height="30" uuid="eedc24b3-d5cf-404d-b5e1-18623039798e"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{forma_evidenciar}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+		<band height="86">
+			<rectangle>
+				<reportElement x="0" y="-2" width="800" height="22" backcolor="#BBC6FA" uuid="0c4975f0-a4f5-451e-83db-9752ebe6a3c0"/>
+			</rectangle>
+			<componentElement>
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="26" width="801" height="60" uuid="4b14d201-e503-43e4-836a-6ef072641c5c">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+					<property name="com.jaspersoft.studio.table.style.table_header" value="Table 1_TH"/>
+					<property name="com.jaspersoft.studio.table.style.column_header" value="Table 1_CH"/>
+					<property name="com.jaspersoft.studio.table.style.detail" value="Table 1_TD"/>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="contenidos" uuid="ee65e143-4bd5-4426-8aca-96094a34ed89">
+						<datasetParameter name="idSilaboCapTwo">
+							<datasetParameterExpression><![CDATA[$F{id_silabo}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="30" uuid="d7fefb39-5c34-4f60-a178-7b33247c4843">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+						<jr:tableHeader style="Table 1_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="30" height="30" uuid="e45134b6-51ae-4023-b1f8-2315a6cd2060"/>
+								<textElement>
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[DÍA ]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="30" height="30" uuid="b906d7be-9f93-436f-abab-d7aa3aa7a9ec"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{dia_contenido}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="130" uuid="1f48b3d2-1d76-45ad-80af-27075fc61ef7">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
+						<jr:tableHeader style="Table 1_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="130" height="30" uuid="c96e3794-3dd4-4a3c-ad5d-b9a095da661a"/>
+								<textElement>
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[CONTENIDOS
+
+]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="130" height="30" uuid="1e8d2628-08e8-4652-a802-ede4b5ccc5c4"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{tema_contenido}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="40" uuid="f3f6e140-5c21-4f09-b7b7-3afdaa09eb94">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
+						<jr:tableHeader style="Table 1_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="40" height="30" uuid="7b3c2c30-bc92-4b7f-96fa-314440467573"/>
+								<textElement>
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Hora Clase ]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="40" height="30" uuid="4dcfb724-a584-40ab-b92d-41d07486b2da"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{horas_clase_contenido}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="130" uuid="094b637b-e423-43e0-ae8f-10ab68ca6d6d">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column4"/>
+						<jr:tableHeader style="Table 1_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="130" height="30" uuid="21595c30-3f21-46b2-819d-748a113fc737"/>
+								<textElement>
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Actividades de Docencia ]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="130" height="30" uuid="0e36b59e-e4c7-4d61-8b22-10ab5dc7894c"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{actividades_docencia}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="40" uuid="d47dad7e-aa4f-4841-ae6f-10fe46ee079e">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column5"/>
+						<jr:tableHeader style="Table 1_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="40" height="30" uuid="710ead49-1427-4c90-bf68-76e1d2990ce7"/>
+								<textElement>
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[H. Práctica ]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="40" height="30" uuid="9d434f5b-536e-43fb-9874-37be1cdaff84"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{horas_practicas}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="130" uuid="7ef056ef-5b58-408a-8f11-1fd905a90206">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column6"/>
+						<jr:tableHeader style="Table 1_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="130" height="30" uuid="4fd957ca-c7b3-4cef-92c0-08d46f7e2f97"/>
+								<textElement>
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Actividades Prácticas]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="130" height="30" uuid="f934a532-e17e-4cff-8f44-80faa9e92806"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{actividades_practicas}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="50" uuid="84b5af88-89c8-47c9-a2ef-0162e4a539a7">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column7"/>
+						<jr:tableHeader style="Table 1_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="50" height="30" uuid="43fde4e2-8695-49a0-862a-2ae712090304"/>
+								<textElement>
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[H. de trabajo autónomo ]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="50" height="30" uuid="2fda0a2d-d6e9-40d4-be0b-81d96e0256cf"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{horas_autonomas}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="120" uuid="aa8139eb-34b0-46f4-a516-b0987ee66e4e">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column8"/>
+						<jr:tableHeader style="Table 1_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="120" height="30" uuid="bbb01f3d-58c9-4a34-a0f0-15d4454a33b2"/>
+								<textElement>
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Actividades de Trabajo autónomo ]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="120" height="30" uuid="eb6c5878-96f9-4a14-ae20-1378624a8d03"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{actividades_autonomas}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="130" uuid="aac3a3d8-4334-4b01-b559-ae91ba8dc721">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column9"/>
+						<jr:tableHeader style="Table 1_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="130" height="30" uuid="96c51995-6839-46d4-bb09-2a7491d4b253"/>
+								<textElement>
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Observaciones 
+
+]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="130" height="30" uuid="2f034325-9375-4b4c-94d5-7614530b55bf"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{observaciones}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<staticText>
+				<reportElement x="10" y="0" width="250" height="21" uuid="8f3ad7ad-de78-4f14-8bac-d38af7368b5a"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[6. CONTENIDOS DEL CURSO ]]></text>
+			</staticText>
+		</band>
+		<band height="91">
+			<rectangle>
+				<reportElement x="1" y="0" width="800" height="25" backcolor="#BBC6FA" uuid="b41a8405-fe30-48dc-8503-cd495efd204a"/>
+			</rectangle>
+			<componentElement>
+				<reportElement x="1" y="25" width="799" height="60" uuid="7e573075-f4c4-4201-9263-41f49e495daf">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+					<property name="com.jaspersoft.studio.table.style.table_header" value="Table 2_TH"/>
+					<property name="com.jaspersoft.studio.table.style.column_header" value="Table 2_CH"/>
+					<property name="com.jaspersoft.studio.table.style.detail" value="Table 2_TD"/>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="estrategiasmetodologicas" uuid="22687cf9-b61d-45cf-b9a8-f455b3bf56a3">
+						<datasetParameter name="idSilaboCapTree">
+							<datasetParameterExpression><![CDATA[$F{id_silabo}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="270" uuid="fbd68ceb-c67f-486d-8804-8c686e6fb539">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+						<jr:tableHeader style="Table 2_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="270" height="30" uuid="4aa6a562-21a3-4141-90a1-bf5587cefec5"/>
+								<textElement>
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Estrategias Metodológicas]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="Table 2_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="270" height="30" uuid="b0b54691-c40d-4e8e-8f9f-761d96ebc38f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{nombre_estrategia_metodologica}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="529" uuid="7055ca11-7abe-4907-b6c2-2d22424f4973">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
+						<jr:tableHeader style="Table 2_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="529" height="30" uuid="e28e58e2-5c80-4445-bcbc-ed21a1dcba5e"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Finalidad]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="Table 2_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="529" height="30" uuid="3a442246-527b-4b8e-81df-a0d573f990d1"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{finalidad_estrategia_metodologica}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<staticText>
+				<reportElement x="4" y="4" width="794" height="16" uuid="913ba55c-f34c-483a-9d6d-19bda15e6b23"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[7. ESTRATEGIAS METODOLÓGICAS ]]></text>
+			</staticText>
+		</band>
+		<band height="286">
+			<rectangle>
+				<reportElement x="1" y="0" width="800" height="21" backcolor="#E6F1FC" uuid="91e84f5e-d607-4ca6-980e-b27e1f0f4cf6">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="283" y="3" width="250" height="21" uuid="00be58a0-fb52-4a93-bddd-b2dc82c36036"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[LOS RECURSOS DIDÁCTICOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="20" width="280" height="130" backcolor="#FFFFFF" uuid="171b0153-b747-4376-8166-50de257c148d"/>
+				<box padding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MATERIALES CONVENCIONALES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="150" width="280" height="130" backcolor="#FFFFFF" uuid="98d2ae15-c02c-4c60-91a5-0074e048a6de"/>
+				<box padding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MATERIALES AUDIOVISUALES]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement x="283" y="21" width="516" height="129" uuid="abf79abc-f998-46d1-95b5-5047570f4850"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="listConvencionales" uuid="2f81ddf0-1015-4d78-9f2c-afa5eb07790b">
+						<datasetParameter name="idSilaboDetalleOne">
+							<datasetParameterExpression><![CDATA[$F{id_silabo}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="129" width="516">
+						<textField>
+							<reportElement x="0" y="0" width="516" height="129" uuid="046332ba-affd-422c-9afa-65bb2766cab4"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{materialesConvencionales}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<componentElement>
+				<reportElement x="281" y="150" width="517" height="130" uuid="3ebd2d8f-3d6d-4411-a2f3-9a01d2fb84d8"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="listDetalleAudiovisuales" uuid="18f40058-f963-4237-9aa4-ed815bc562f3">
+						<datasetParameter name="idSilaboDetalleTwo">
+							<datasetParameterExpression><![CDATA[$F{id_silabo}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="130" width="517">
+						<textField>
+							<reportElement x="0" y="0" width="517" height="130" uuid="df3d2258-1acf-41d5-9160-b1a990206cd7"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{materialesAudiovisuales}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<line>
+				<reportElement x="803" y="7" width="1" height="271" uuid="8ddebf37-3fe7-4d89-8951-8ef7d6002e81"/>
+			</line>
+			<line>
+				<reportElement x="1" y="-1" width="1" height="281" uuid="349b2679-2e52-4d7e-8f5d-f5ede0c178d9"/>
+			</line>
+			<line>
+				<reportElement x="283" y="280" width="520" height="1" uuid="7c870481-b6fb-4876-8d06-09b2e4914ba8"/>
+			</line>
+			<line>
+				<reportElement x="284" y="150" width="520" height="1" uuid="a5c9d9c4-8269-43e6-bed2-250b79ded407"/>
+			</line>
+		</band>
+	</detail>
+	<summary>
+		<band height="447" splitType="Stretch">
+			<rectangle>
+				<reportElement x="1" y="10" width="800" height="21" backcolor="#BBC6FA" uuid="964654f3-cb57-41ac-9882-9c53133d4fe0">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="10" width="250" height="21" uuid="a73a9ab1-8a98-405c-9726-0906417debae"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[8. EVALUACIÓN DE ESTUDIANTE POR RESULTADO DE APRENDIZAJE]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="2" y="32" width="800" height="21" backcolor="#E3E7FA" uuid="4fcf1e5a-38ca-425d-832c-af3f898c04dd"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="32" width="250" height="21" uuid="aab87083-2933-4dce-9faf-ffbfe7eb9a0c"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TIPOS DE ACTIVIDADES EVALUATIVAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="221" y="32" width="250" height="21" uuid="1cf8d4f6-fa0e-4bcc-8de3-592e23b45925"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CANTIDAD DE ACTIVIDADES 
+
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="382" y="32" width="250" height="21" uuid="355caaf0-dc49-426e-8a28-f6a8c7bc22b3"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PORCENTAJE DE CALIFICACIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="579" y="32" width="223" height="21" uuid="798926c0-90a0-4cf1-96bc-aa7db985948a"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="220" y="32" width="1" height="94" uuid="795cd31d-43c8-408e-9eb0-dd0e9315c433"/>
+			</line>
+			<line>
+				<reportElement x="382" y="33" width="1" height="93" uuid="35e7cd84-5771-43ef-9664-bf333163dbb8"/>
+			</line>
+			<line>
+				<reportElement x="612" y="33" width="1" height="92" uuid="b62bfa31-f7a6-49f4-bb4d-755dfedff93f"/>
+			</line>
+			<line>
+				<reportElement x="1" y="86" width="801" height="1" uuid="4918eefb-6f3d-41ad-acdc-b16aaadcb078">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+			</line>
+			<staticText>
+				<reportElement x="19" y="56" width="192" height="21" uuid="53593df1-a49e-4cf8-83b9-ba45b8cc7b96"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Talleres individuales y grupales]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="22" y="96" width="189" height="21" uuid="d622ad8e-c01e-4404-87f9-a29428c3599f"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Evaluación
+]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="1" y="126" width="800" height="21" backcolor="#BBC6FA" uuid="47086ce7-9ee7-4429-bd71-54b696e95582">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="15" y="126" width="250" height="21" uuid="54266244-3bc5-41d1-bfe3-2fbcbfc06950"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[9. BIBLIOGRAFÍA ]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="1" y="145" width="800" height="21" backcolor="#E3E7FA" uuid="c8791a1e-fa59-4eb4-a26d-6053aeaac37a">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="18" y="147" width="250" height="21" uuid="581ba12f-68e6-48a3-a162-833b8d5b7b7d"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[BÁSICA]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="266" width="801" height="1" uuid="15403cad-e906-486a-b129-ed413afe75da"/>
+			</line>
+			<rectangle>
+				<reportElement x="1" y="267" width="800" height="21" backcolor="#BBC6FA" uuid="f25185e3-2139-4584-95bf-2b3a32d3ca38"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="286" width="800" height="21" backcolor="#E3E7FA" uuid="d2012d8c-4e90-4f5e-bbed-f262c7aba5e2"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="12" y="267" width="250" height="21" uuid="c4e54066-806e-4f6c-8c90-1f58a46913ff"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[10. ELABORACIÓN, REVISIÓN Y APROBACIÓN ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="286" width="250" height="21" uuid="18f22a16-8425-4c9d-bbc2-7eef6a7d39d7"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ELABORADO POR]]></text>
+			</staticText>
+			<line>
+				<reportElement x="301" y="286" width="1" height="153" uuid="7966557d-03a4-4bad-816a-ecfa2f20a3ff"/>
+			</line>
+			<staticText>
+				<reportElement x="310" y="286" width="250" height="21" uuid="0ee7ebcf-356b-45c0-b078-f65298e80d4d"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[REVISADO POR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="553" y="286" width="250" height="21" uuid="e32ef36b-5a00-416b-8be7-0e174592d8e3"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[APROBADO POR ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="2" y="347" width="801" height="1" uuid="2fbf312c-9621-4698-9401-8013c12eb3d1"/>
+			</line>
+			<line>
+				<reportElement x="2" y="410" width="801" height="1" uuid="f7664ac1-b4d4-4436-b860-2d453e6ff8da"/>
+			</line>
+			<line>
+				<reportElement x="571" y="285" width="1" height="157" uuid="e132fd55-5e98-4c92-a440-670ae642a298"/>
+			</line>
+			<line>
+				<reportElement x="-1" y="442" width="801" height="1" uuid="da93b469-dffc-4427-8d39-f2b23a2bdd1a"/>
+			</line>
+			<staticText>
+				<reportElement x="8" y="416" width="100" height="18" uuid="140b9b80-005d-40db-839f-9cc280d01c8f"/>
+				<text><![CDATA[FECHA: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="588" y="422" width="100" height="15" uuid="c9317ea4-1bc6-4f3e-9892-ecba3d9cfeca"/>
+				<text><![CDATA[FECHA: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="308" y="392" width="40" height="18" uuid="44a73e9f-98ff-4af2-8870-70faf4141b13"/>
+				<text><![CDATA[FRIMA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="308" y="416" width="100" height="18" uuid="5b1bc262-537c-49d5-ad5d-5341e670f5c1"/>
+				<text><![CDATA[FECHA: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="301" y="307" width="269" height="40" uuid="04021f7e-3a87-4ecd-85c3-174de31cefdc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{campo_revisado_por}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="307" width="300" height="40" uuid="e1841dcd-b045-400b-8abd-bb3a38ab9b69"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{docente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="571" y="307" width="230" height="40" uuid="604bc086-e101-4c3b-9d85-44173f5afe85"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{campo_aprovado_por}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="13" y="170" width="772" height="90" uuid="5bbdaa04-108a-4b65-ad63-03437a381632"/>
+				<textFieldExpression><![CDATA[$F{bibliografia}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="578" y="387" width="40" height="18" uuid="ea97b97d-fab1-4b03-8f5f-465620a4aee2"/>
+				<text><![CDATA[FRIMA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="390" width="40" height="18" uuid="78562a80-4ef0-46d0-8e4f-f71dde98c13d"/>
+				<text><![CDATA[FRIMA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="222" y="87" width="160" height="38" uuid="8756ec74-fe75-4059-9b0f-717c29e5b4e7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="382" y="87" width="230" height="39" uuid="bfab5f0e-c152-412f-9362-50b387a3cde4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[40%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="382" y="53" width="230" height="33" uuid="d50f4909-7e1c-438b-aba4-6627de5f162d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[40%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="612" y="87" width="190" height="38" uuid="540f40e2-1e7c-468f-a32a-357c6fdcabf9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[40%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="612" y="53" width="190" height="33" uuid="aa0f7cfe-8773-4822-98f1-a6c2e662e5ec"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[60%]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="222" y="54" width="160" height="33" uuid="0bf5e2cc-b833-42c1-944d-175b2882eb2f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{actividades}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MM/dd/yyyy">
+				<reportElement x="50" y="418" width="100" height="14" uuid="eb71623d-42ac-4662-bb83-09b54c837d85"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="MM/dd/yyyy">
+				<reportElement x="347" y="416" width="100" height="14" uuid="ec91c193-b39b-46fe-84df-fe568dfce4f5"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="MM/dd/yyyy">
+				<reportElement x="628" y="422" width="100" height="14" uuid="bca9ba2f-d1cf-40d8-a881-a012dd35cbb7"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="0" width="1" height="441" uuid="ba80b167-2949-402a-8d87-d7314cdfd9e7"/>
+			</line>
+			<line>
+				<reportElement x="802" y="0" width="1" height="441" uuid="b743e280-068f-4b04-84a7-62a07615de04"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>
