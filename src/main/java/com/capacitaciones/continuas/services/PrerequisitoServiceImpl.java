@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PrerequisitoServiceImpl extends GenericServiceImpl<PrerequisitoCurso, Integer> implements PrerequisitoCursoService {
 
@@ -16,5 +18,10 @@ public class PrerequisitoServiceImpl extends GenericServiceImpl<PrerequisitoCurs
     @Override
     public CrudRepository<PrerequisitoCurso, Integer> getDao() {
         return prerequisitoCursoRepository;
+    }
+
+    @Override
+    public List<PrerequisitoCurso> findByCursoIdCurso(Integer idCurso) {
+        return prerequisitoCursoRepository.findByCursoIdCurso(idCurso);
     }
 }
