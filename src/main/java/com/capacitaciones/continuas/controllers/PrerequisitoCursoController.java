@@ -39,6 +39,20 @@ public class PrerequisitoCursoController {
         }
     }
 
+    @GetMapping("/prerequisitoCurso/findbyIdCurso/{id}")
+    public ResponseEntity<?> getPrerequisitoCursoByIdCurso(@PathVariable("id") Integer id){
+        try {
+            List<PrerequisitoCurso> pr = prerequisitoCursoService.findByCursoIdCurso(id);
+            if(pr != null){
+                return new ResponseEntity<>(pr, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("PREREQUISITO DEL CURSO NO ENCONTRADA",HttpStatus.NOT_FOUND);
+
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @PostMapping("/prerequisitoCurso/save")
     public ResponseEntity<PrerequisitoCurso> savePrerequisitoCurso(@RequestBody PrerequisitoCurso df){
         try {
