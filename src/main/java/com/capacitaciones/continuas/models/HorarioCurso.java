@@ -28,7 +28,4 @@ public class HorarioCurso { //entidad en vigencia.
     @Column(name = "horaFin")
     private String horaFin;
 
-    @JsonIgnore
-    @OneToOne(mappedBy = "horarioCurso")
-    private Curso curso;
 }
