@@ -36,9 +36,22 @@ public class ResultadoAprendizajeSilaboController {
     }
 
     @GetMapping("/resultadoAprendizajeSilabo/findbyId/{id}")
-    public ResponseEntity<?> getResultadoAprendizajeSilaboById(@PathVariable("id") Integer id){
+    public ResponseEntity<?> getResultadoAprendizajeSilabo(@PathVariable("id") Integer id){
         try {
             ResultadoAprendizajeSilabo nc = resultadoAprendizajeSilaboService.findById(id);
+            if(nc != null){
+                return new ResponseEntity<>(nc, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("RESULTADO APRENDIZAJE APROBADOS NO ENCONTRADA",HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/resultadoAprendizajeSilaboIdSilabo/findbyId/{IdSilabo}")
+    public ResponseEntity<?> getResultadosPorSilabo(@PathVariable("IdSilabo") Integer IdSilabo){
+        try {
+            List<ResultadoAprendizajeSilabo> nc = resultadoAprendizajeSilaboService.findBySilaboIdSilabo(IdSilabo);
             if(nc != null){
                 return new ResponseEntity<>(nc, HttpStatus.OK);
             }
