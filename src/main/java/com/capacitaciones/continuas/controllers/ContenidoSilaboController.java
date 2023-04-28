@@ -47,6 +47,18 @@ public class ContenidoSilaboController {
         }
     }
 
+    @GetMapping("/contenidosilaboPorSilabo/findbyId/{IdSilabo}")
+    public ResponseEntity<?> getResultadosPorSilabo(@PathVariable("IdSilabo") Integer IdSilabo){
+        try {
+            List<ContenidoSilabo> nc = contenidoSilaboService.findBySilaboIdSilabo(IdSilabo);
+            if(nc != null){
+                return new ResponseEntity<>(nc, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("NO ENCONTRADA",HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @PutMapping("/contenidosilabo/actualizar/{id}")
     public ResponseEntity<ContenidoSilabo> actualizarCapacitador(@PathVariable Integer id, @RequestBody ContenidoSilabo contenidoSilabo) {

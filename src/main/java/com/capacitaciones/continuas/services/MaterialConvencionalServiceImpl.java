@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MaterialConvencionalServiceImpl extends GenericServiceImpl<MaterialConvencional, Integer> implements MaterialConvencionalService {
 
@@ -15,5 +17,9 @@ public class MaterialConvencionalServiceImpl extends GenericServiceImpl<Material
     @Override
     public CrudRepository<MaterialConvencional, Integer> getDao() {
         return recursoDidacticoRepository;
+    }
+
+    public List<MaterialConvencional> findBySilaboIdSilabo(Integer idSilabo) {
+        return recursoDidacticoRepository.findBySilaboIdSilabo(idSilabo);
     }
 }
