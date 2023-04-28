@@ -17,4 +17,9 @@ public class NecesidadCursoServiceImpl extends GenericServiceImpl<NecesidadCurso
     public CrudRepository<NecesidadCurso, Integer> getDao() {
         return necesidadCursoRepository;
     }
+
+    @Override
+    public NecesidadCurso findByCursoIdCurso(Integer idCurso) {
+        return necesidadCursoRepository.findByCursoIdCurso(idCurso);
+    }
 }

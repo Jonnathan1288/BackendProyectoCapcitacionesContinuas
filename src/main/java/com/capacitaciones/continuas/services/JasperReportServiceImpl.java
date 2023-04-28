@@ -25,7 +25,6 @@ public class JasperReportServiceImpl implements JasperReportService{
             Map<String, Object> params = new HashMap<>();
             params.put("idSilabo", ids);
 
-
             JasperPrint jasperPrint = JasperFillManager.fillReport(reportStream, params, jdbcTemplate.getDataSource().getConnection());
             byte[] reportContent = JasperExportManager.exportReportToPdf(jasperPrint);
 
@@ -42,11 +41,37 @@ public class JasperReportServiceImpl implements JasperReportService{
         }
     }
 
+@Override
+    public void generateReportInformeNecesidadCurso(HttpServletResponse response, Integer idCursoNecesidadC) {
+        try {
+            InputStream reportStream = this.getClass().getResourceAsStream("/Reports/informeNecesidad.jasper");
+
+            Map<String, Object> params = new HashMap<>();
+            params.put("ista", "ista.jpeg");
+            params.put("cene", "cene.png");
+            params.put("idCurso", idCursoNecesidadC);
+
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(reportStream, params, jdbcTemplate.getDataSource().getConnection());
+            byte[] reportContent = JasperExportManager.exportReportToPdf(jasperPrint);
+
+            response.setContentType("application/pdf");
+            response.setHeader("Content-Disposition", "attachment; filename=report.pdf");
+            response.setContentLength(reportContent.length);
+
+            OutputStream outStream = response.getOutputStream();
+            outStream.write(reportContent);
+            outStream.flush();
+            outStream.close();
+        }catch (Exception e){
+            System.out.println( "eService " + e.getMessage());
+        }
+    }
+    
     @Override
     public void generateSilabo(HttpServletResponse response, Integer idSilabo) {
         try {
             InputStream reportStream = this.getClass().getResourceAsStream("/Reports/repsilabo.jasper");
-
             Map<String, Object> params = new HashMap<>();
             params.put("cene", "cene.jpeg");
             params.put("ista", "istaf.jpeg");
@@ -56,7 +81,9 @@ public class JasperReportServiceImpl implements JasperReportService{
             byte[] reportContent = JasperExportManager.exportReportToPdf(jasperPrint);
 
             response.setContentType("application/pdf");
+
             response.setHeader("Content-Disposition", "attachment; filename=silaboReport.pdf");
+
             response.setContentLength(reportContent.length);
 
             OutputStream outStream = response.getOutputStream();
