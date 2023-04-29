@@ -19,6 +19,6 @@ public class CursoServiceImpl extends GenericServiceImpl<Curso, Integer> impleme
 
     @Override
     public List<Curso> findByCapacitadorIdCapacitador(Integer idCapacitador) {
-        return cursoRepositry.findByCapacitadorIdCapacitador(idCapacitador);
+        return cursoRepositry.findByCapacitadorUsuarioIdUsuario(idCapacitador);
     }
 }

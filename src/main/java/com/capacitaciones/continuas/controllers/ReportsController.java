@@ -43,4 +43,13 @@ public class ReportsController {
         }
     }
 
+    @GetMapping("/generarFichaInscripcion/downloadFicha/{id}")
+    public void downloadFichaInscripcion(HttpServletResponse response, @PathVariable("id") Integer id) throws Exception {
+        try {
+            jasperReportService.generateFichaInscripccion(response, id);
+        }catch (Exception e){
+            System.out.println("Err-> "+e.getMessage());
+        }
+    }
+
 }
