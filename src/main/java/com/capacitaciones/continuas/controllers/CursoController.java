@@ -38,6 +38,19 @@ public class CursoController {
         }
     }
 
+    @GetMapping("/curso/findAllIdCapacitador/{id}")
+    public ResponseEntity<?> obtenerTodoslosCursosPorIdCapacitador(@PathVariable("id") Integer id){
+        try {
+            List<Curso> cursoList= cursoService.findByCapacitadorIdCapacitador(id);
+            if(cursoList != null){
+                return new ResponseEntity<>(cursoList, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("MIS CURSOS NO ENCONTRADOS", HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @PostMapping("/curso/save")
     public ResponseEntity<Curso> saveCurso(@RequestBody Curso curso){
         try {

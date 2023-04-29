@@ -54,7 +54,15 @@ public class DetalleFichaController {
             if (detalleFichaService.findById(id) == null) {
                 return ResponseEntity.notFound().build();
             }
-            dfm.setPreguntaDetalle(dfm.getPreguntaDetalle());
+            dfm.setPregunta1(dfm.getPregunta1());
+            dfm.setPregunta2(dfm.getPregunta2());
+            dfm.setPregunta3(dfm.getPregunta3());
+            dfm.setPregunta4(dfm.getPregunta4());
+            dfm.setPregunta5(dfm.getPregunta5());
+            dfm.setPregunta6(dfm.getPregunta6());
+            dfm.setPregunta7(dfm.getPregunta7());
+            dfm.setPregunta8(dfm.getPregunta8());
+            dfm.setPregunta9(dfm.getPregunta9());
             dfm.setFichaMatricula(dfm.getFichaMatricula());
             DetalleFichaMatricula newObject = detalleFichaService.save(dfm);
             return new ResponseEntity<>(newObject, HttpStatus.CREATED);

@@ -14,4 +14,9 @@ public class CapacitadorServiceImpl extends GenericServiceImpl<Capacitador, Inte
     public CrudRepository<Capacitador, Integer> getDao() {
         return capacitadorRepository;
     }
+
+    @Override
+    public Capacitador findByUsuarioIdUsuario(Integer idUsuario) {
+        return capacitadorRepository.findByUsuarioIdUsuario(idUsuario);
+    }
 }

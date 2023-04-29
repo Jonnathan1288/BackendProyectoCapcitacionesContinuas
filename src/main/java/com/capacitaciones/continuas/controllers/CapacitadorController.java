@@ -39,6 +39,20 @@ public class CapacitadorController {
         }
     }
 
+    @GetMapping("/capacitador/findbyIdUsuario/{id}")
+    public ResponseEntity<?> findByUsuarioIdUsuario(@PathVariable("id") Integer id){
+        try {
+            Capacitador capacitador = capacitadorService.findByUsuarioIdUsuario(id);
+            if(capacitador != null){
+                return new ResponseEntity<>(capacitador, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("CAPACITADOR NO ENCONTRADO", HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
     @PostMapping("/capacitador/save")
     public ResponseEntity<Capacitador> saveCapacitador(@RequestBody Capacitador capacitador){
         try {
