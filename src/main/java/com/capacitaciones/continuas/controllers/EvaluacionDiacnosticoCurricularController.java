@@ -39,11 +39,11 @@ public class EvaluacionDiacnosticoCurricularController {
         }
     }
     @PostMapping("/evaluacionDiacnosticaCurricular/save")
-    public ResponseEntity<EvaluacionDiagnosticaCurricular> saveEvaluacionDiacnosticoCurricular(@RequestBody EvaluacionDiagnosticaCurricular ev){
+    public ResponseEntity<?> saveEvaluacionDiacnosticoCurricular(@RequestBody EvaluacionDiagnosticaCurricular ev){
         try {
             return new ResponseEntity<>(evaluacionDiacnosticaCurricularService.save(ev), HttpStatus.CREATED);
         }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("-> "+e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CursoServiceImpl extends GenericServiceImpl<Curso, Integer> implements CursoService{
     @Autowired
@@ -13,5 +15,10 @@ public class CursoServiceImpl extends GenericServiceImpl<Curso, Integer> impleme
     @Override
     public CrudRepository<Curso, Integer> getDao() {
         return cursoRepositry;
+    }
+
+    @Override
+    public List<Curso> findByCapacitadorIdCapacitador(Integer idCapacitador) {
+        return cursoRepositry.findByCapacitadorIdCapacitador(idCapacitador);
     }
 }
