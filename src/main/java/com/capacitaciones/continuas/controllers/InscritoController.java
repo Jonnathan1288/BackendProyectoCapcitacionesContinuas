@@ -1,5 +1,6 @@
 package com.capacitaciones.continuas.controllers;
 
+import com.capacitaciones.continuas.models.Curso;
 import com.capacitaciones.continuas.models.Inscrito;
 import com.capacitaciones.continuas.services.InscritoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,20 @@ public class InscritoController {
     public ResponseEntity<?> getInformeFinalCursoById(@PathVariable("id") Integer id){
         try {
             Inscrito dc = inscritoService.findById(id);
+            if(dc != null){
+                return new ResponseEntity<>(dc, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("inscritocurso NO ENCONTRADA",HttpStatus.NOT_FOUND);
+
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/inscritocursoPorCurso/findbyIdCurso/{id}")
+    public ResponseEntity<?> getInformeFinalCursoByIdCurso(@PathVariable("id") Integer id){
+        try {
+            List<Inscrito> dc = inscritoService.findByCursoIdCurso(id);
             if(dc != null){
                 return new ResponseEntity<>(dc, HttpStatus.OK);
             }
