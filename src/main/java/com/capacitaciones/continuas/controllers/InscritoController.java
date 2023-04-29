@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -44,6 +46,7 @@ public class InscritoController {
     @PostMapping("/inscritocurso/crear")
     public ResponseEntity<Inscrito> crear(@RequestBody Inscrito c) {
         try {
+            c.setFechaInscrito(LocalDate.now());
             return new ResponseEntity<>(inscritoService.save(c), HttpStatus.CREATED);
 
         }catch (Exception e){
