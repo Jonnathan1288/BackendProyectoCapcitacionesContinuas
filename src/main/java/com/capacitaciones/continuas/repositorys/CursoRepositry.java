@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface CursoRepositry extends JpaRepository<Curso, Integer> {
-    public List<Curso> findByCapacitadorIdCapacitador(Integer idCapacitador);
+    public List<Curso> findByCapacitadorUsuarioIdUsuario(Integer idCapacitador);
 }
