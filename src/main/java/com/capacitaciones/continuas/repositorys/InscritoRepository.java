@@ -8,7 +8,6 @@ import java.util.List;
 
 @Repository
 public interface InscritoRepository extends JpaRepository<Inscrito, Integer> {
-
     List<Inscrito> findByCursoIdCurso(Integer idCurso);
 
 }
