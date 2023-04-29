@@ -1,7 +1,9 @@
 package com.capacitaciones.continuas.controllers;
 
+import com.capacitaciones.continuas.models.Inscrito;
 import com.capacitaciones.continuas.models.ParticipantesAprobados;
 import com.capacitaciones.continuas.models.PartipantesMatriculados;
+import com.capacitaciones.continuas.services.InscritoService;
 import com.capacitaciones.continuas.services.ParticipantesMatriculadosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +18,10 @@ import java.util.List;
 public class ParticipanteMatriculadosController {
 
     @Autowired
-    ParticipantesMatriculadosService participantesMatriculadosService;
+    private ParticipantesMatriculadosService participantesMatriculadosService;
+
+    @Autowired
+    private InscritoService inscritoService;
 
     @GetMapping("/participantesMatriculados/listar")
     public ResponseEntity<List<PartipantesMatriculados>> obtenerLista() {
@@ -34,6 +39,27 @@ public class ParticipanteMatriculadosController {
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    //Implementacion del metodo para trar a los usuarios que fueron aprovados.
+    @GetMapping("/participantesMatriculados/aceptarInicioCurso/{idCurso}")
+    public ResponseEntity<?> agregarAlCursoLosParticipantesMatriculadosCapacitador(@PathVariable("idCurso") Integer idCurso){
+        try {
+            List<Inscrito> inscritoList = inscritoService.findByCursoIdCurso(idCurso);
+            for (Inscrito inscrito : inscritoList){
+                if(inscrito.getEstadoInscrito() == true){
+                    PartipantesMatriculados partipantesMatriculados = new PartipantesMatriculados();
+                    partipantesMatriculados.setInscrito(inscrito);
+                    partipantesMatriculados.setEstadoParticipanteActivo(true);
+                    partipantesMatriculados.setEstadoParticipanteAprobacion("D");
+                    participantesMatriculadosService.save(partipantesMatriculados);
+                }
+            }
+            return new ResponseEntity<>("CORRECTO EN MATRICULAR A SUS ESTUDIANTES", HttpStatus.OK);
+        }catch (Exception e){
+           return new ResponseEntity<>("Err"+e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 
     @GetMapping("/participantesMatriculados/findbyId/{id}")
