@@ -55,7 +55,7 @@ public class ParticipanteMatriculadosController {
                     participantesMatriculadosService.save(partipantesMatriculados);
                 }
             }
-            return new ResponseEntity<>("CORRECTO EN MATRICULAR A SUS ESTUDIANTES", HttpStatus.OK);
+            return new ResponseEntity<>(inscritoList, HttpStatus.OK);
         }catch (Exception e){
            return new ResponseEntity<>("Err"+e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -70,6 +70,19 @@ public class ParticipanteMatriculadosController {
                 return new ResponseEntity<>(nc, HttpStatus.OK);
             }
             return new ResponseEntity<>("PARTICIPANTE APROBADOS NO ENCONTRADA",HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/participantesMatriculados/findbyIdCursoMatriculados/{idCurso}")
+    public ResponseEntity<List<PartipantesMatriculados>> getPartipantesMatriculadosByIdCurso(@PathVariable("idCurso") Integer idCurso){
+        try {
+            List<PartipantesMatriculados> nc = participantesMatriculadosService.findByInscritoCursoIdCurso(idCurso);
+            if(nc != null){
+                return new ResponseEntity<>(nc, HttpStatus.OK);
+            }
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
