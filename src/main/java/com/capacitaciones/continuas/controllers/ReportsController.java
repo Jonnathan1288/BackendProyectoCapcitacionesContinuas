@@ -52,4 +52,13 @@ public class ReportsController {
         }
     }
 
+    @GetMapping("/generarInformeFinal/downloadInforme/{id_curso}")
+    public void downloadInformeFinal(HttpServletResponse response, @PathVariable("id_curso") Integer id_curso) throws Exception {
+        try {
+            jasperReportService.generateInformeFinal(response, id_curso);
+        }catch (Exception e){
+            System.out.println("Err-> "+e.getMessage());
+        }
+    }
+
 }
