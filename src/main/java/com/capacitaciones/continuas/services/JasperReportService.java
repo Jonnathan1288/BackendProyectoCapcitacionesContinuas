@@ -11,4 +11,7 @@ public interface JasperReportService {
 
     public void generateFichaInscripccion(HttpServletResponse response, Integer ids);
 
+    public void generateInformeFinal(HttpServletResponse response, Integer idCurso);
+
+
 }
