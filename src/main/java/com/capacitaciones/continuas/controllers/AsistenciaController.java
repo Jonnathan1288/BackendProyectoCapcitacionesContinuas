@@ -70,69 +70,48 @@ public class AsistenciaController {
         }
     }
 
-    @GetMapping("/asistencia/GenerarAsistencia/pordia/curso/{idCurso}")
-    public ResponseEntity<List<Asistencia>> generarAsistenciaPorFechaTranscurso(@PathVariable("idCurso") Integer idCurso){
-        LocalDate fechaValidacion = LocalDate.now();
-        //LocalDate fechaPrueba = LocalDate.parse("2023-04-30");
-        try {
-            List<Asistencia> list = asistenciaService.findByPartipantesMatriculadosInscritoCursoIdCursoAndFechaAsistencia(idCurso,fechaValidacion);
-            if(list == null){
-                List<PartipantesMatriculados> partipantesMatriculadosList = participantesMatriculadosService.findByInscritoCursoIdCurso(idCurso);
-                for (PartipantesMatriculados partipantesMatriculados: partipantesMatriculadosList){
-                    Asistencia asistencia = new Asistencia();
-                    asistencia.setFechaAsistencia(LocalDate.now());
-                    asistencia.setPartipantesMatriculados(partipantesMatriculados);
-                    asistencia.setEstadoAsistencia(false);
-                    asistencia.setObservacionAsistencia("");
-                    System.out.println(asistencia.getFechaAsistencia());
-                    asistenciaService.save(asistencia);
-                }
-                return new ResponseEntity<>(asistenciaService.findByPartipantesMatriculadosInscritoCursoIdCursoAndFechaAsistencia(idCurso,fechaValidacion), HttpStatus.NOT_FOUND);
-
-
-            }else{
-                return new ResponseEntity<>(list, HttpStatus.OK);
-            }
-
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-
-
     @GetMapping("/asistencia/GenerarAsistencia/{idCurso}")
     public ResponseEntity<?> generarAsistenciaPorFecha(@PathVariable("idCurso") Integer idCurso){
         LocalDate fecha = LocalDate.now();
+        //LocalDate fechaPrueba = LocalDate.parse("2023-04-30");
         try {
-            List<PartipantesMatriculados> partipantesMatriculadosList = participantesMatriculadosService.findByInscritoCursoIdCurso(idCurso);
-            if(partipantesMatriculadosList != null){
-                for (PartipantesMatriculados partipantesMatriculados: partipantesMatriculadosList){
-                    if(asistenciaService.findByFechaAsistencia(fecha)){
+            if(asistenciaService.findByFechaAsistencia(fecha) ){
+                return new ResponseEntity<>(asistenciaService.findByPartipantesMatriculadosInscritoCursoIdCursoAndFechaAsistencia(idCurso,fecha), HttpStatus.OK);
+            }else{
+                List<PartipantesMatriculados> partipantesMatriculadosList = participantesMatriculadosService.findByInscritoCursoIdCurso(idCurso);
 
-                        return new ResponseEntity<>("encuentro"+fecha, HttpStatus.OK);
-
+                if(partipantesMatriculadosList != null){
+                    for (PartipantesMatriculados partipantesMatriculados: partipantesMatriculadosList){
+                        Asistencia asistencia = new Asistencia();
+                        asistencia.setFechaAsistencia(LocalDate.now());
+                        asistencia.setPartipantesMatriculados(partipantesMatriculados);
+                        asistencia.setEstadoAsistencia(false);
+                        asistencia.setObservacionAsistencia("");
+                        System.out.println(asistencia.getFechaAsistencia());
+                        asistenciaService.save(asistencia);
                     }
                 }
-                return new ResponseEntity<>(partipantesMatriculadosList, HttpStatus.OK);
+                return new ResponseEntity<>(participantesMatriculadosService.findByInscritoCursoIdCurso(idCurso),HttpStatus.OK);
             }
-            return new ResponseEntity<>("ASISTENCIA NO ENCONTRADA",HttpStatus.NOT_FOUND);
-
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @PutMapping("/asistencia/actualizar/{id}")
-    public ResponseEntity<Asistencia> actualizarAsistencia(@PathVariable Integer id, @RequestBody Asistencia asistencia) {
+    public ResponseEntity<Asistencia> actualizarAsistencia(@PathVariable("id") Integer id, @RequestBody Asistencia asistencia) {
         try {
-            if (asistenciaService.findById(id) == null) {
-                return ResponseEntity.notFound().build();
+
+            Asistencia asistencia1 = asistenciaService.findById(id);
+            if(asistencia1 != null){
+                asistencia1.setObservacionAsistencia(asistencia.getObservacionAsistencia());
+                asistencia1.setEstadoAsistencia(asistencia.getEstadoAsistencia());
+                asistencia1.setPartipantesMatriculados(asistencia.getPartipantesMatriculados());
+                return new ResponseEntity<>(asistenciaService.save(asistencia1), HttpStatus.OK);
+            }else{
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
-            asistencia.setObservacionAsistencia(asistencia.getObservacionAsistencia());
-            asistencia.setEstadoAsistencia(asistencia.getEstadoAsistencia());
-            Asistencia newObject = asistenciaService.save(asistencia);
-            return new ResponseEntity<>(newObject, HttpStatus.CREATED);
+
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
