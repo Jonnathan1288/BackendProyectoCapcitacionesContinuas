@@ -13,5 +13,6 @@ public interface JasperReportService {
 
     public void generateInformeFinal(HttpServletResponse response, Integer idCurso);
 
+    public void generateRegistroParticipantes(HttpServletResponse response, Integer idCurso);
 
 }
