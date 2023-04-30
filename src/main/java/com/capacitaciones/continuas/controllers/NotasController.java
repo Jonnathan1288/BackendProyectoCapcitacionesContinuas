@@ -39,6 +39,32 @@ public class NotasController {
         }
     }
 
+    @GetMapping("/notas/findbyIdMatriculado/{idCurso}")
+    public ResponseEntity<?> getNotasfindbyIdMatriculado(@PathVariable("idCurso") Integer idCurso){
+        try {
+            List<Notas> nc = notasSevice.findByPartipantesMatriculadosInscritoCursoIdCurso(idCurso);
+            if(nc != null){
+                return new ResponseEntity<>(nc, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("NOTAS NO ENCONTRADA",HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/notas/findbyIdParticipantesFinales/{idParticipantesFinales}")
+    public ResponseEntity<?> getNotasParticipantesFinales(@PathVariable("idParticipantesFinales") Integer idParticipantesFinales){
+        try {
+            List<Notas> nc = notasSevice.findByPartipantesMatriculadosIdParticipanteMatriculado(idParticipantesFinales);
+            if(nc != null){
+                return new ResponseEntity<>(nc, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("NOTAS NO ENCONTRADA",HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @PostMapping("/notas/crear")
     public ResponseEntity<Notas> crear(@RequestBody Notas c) {
         try {
