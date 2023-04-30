@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ParticipantesMatriculadosServiceImpl extends GenericServiceImpl<PartipantesMatriculados, Integer> implements ParticipantesMatriculadosService {
 
@@ -15,5 +17,10 @@ public class ParticipantesMatriculadosServiceImpl extends GenericServiceImpl<Par
     @Override
     public CrudRepository<PartipantesMatriculados, Integer> getDao() {
         return participantesMatriculadosRepository;
+    }
+
+    @Override
+    public List<PartipantesMatriculados> findByInscritoCursoIdCurso(Integer idCurso) {
+        return participantesMatriculadosRepository.findByInscritoCursoIdCurso(idCurso);
     }
 }

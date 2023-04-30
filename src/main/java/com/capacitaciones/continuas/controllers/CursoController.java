@@ -38,7 +38,7 @@ public class CursoController {
         }
     }
 
-    @GetMapping("/curso/findAllIdCapacitador/{id}")
+    @GetMapping("/curso/findAllIdUsuario/{id}")
     public ResponseEntity<?> obtenerTodoslosCursosPorIdCapacitador(@PathVariable("id") Integer id){
         try {
             List<Curso> cursoList= cursoService.findByCapacitadorIdCapacitador(id);
