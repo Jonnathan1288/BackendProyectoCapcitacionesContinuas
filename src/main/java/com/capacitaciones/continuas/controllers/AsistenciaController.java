@@ -99,15 +99,19 @@ public class AsistenciaController {
     }
 
     @PutMapping("/asistencia/actualizar/{id}")
-    public ResponseEntity<Asistencia> actualizarAsistencia(@PathVariable Integer id, @RequestBody Asistencia asistencia) {
+    public ResponseEntity<Asistencia> actualizarAsistencia(@PathVariable("id") Integer id, @RequestBody Asistencia asistencia) {
         try {
-            if (asistenciaService.findById(id) == null) {
-                return ResponseEntity.notFound().build();
+
+            Asistencia asistencia1 = asistenciaService.findById(id);
+            if(asistencia1 != null){
+                asistencia1.setObservacionAsistencia(asistencia.getObservacionAsistencia());
+                asistencia1.setEstadoAsistencia(asistencia.getEstadoAsistencia());
+                asistencia1.setPartipantesMatriculados(asistencia.getPartipantesMatriculados());
+                return new ResponseEntity<>(asistenciaService.save(asistencia1), HttpStatus.OK);
+            }else{
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
-            asistencia.setObservacionAsistencia(asistencia.getObservacionAsistencia());
-            asistencia.setEstadoAsistencia(asistencia.getEstadoAsistencia());
-            Asistencia newObject = asistenciaService.save(asistencia);
-            return new ResponseEntity<>(newObject, HttpStatus.CREATED);
+
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
