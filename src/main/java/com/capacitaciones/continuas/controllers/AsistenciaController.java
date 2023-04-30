@@ -1,12 +1,16 @@
 package com.capacitaciones.continuas.controllers;
 
 import com.capacitaciones.continuas.models.Asistencia;
+import com.capacitaciones.continuas.models.ParticipantesAprobados;
+import com.capacitaciones.continuas.models.PartipantesMatriculados;
 import com.capacitaciones.continuas.services.AsistenciaService;
+import com.capacitaciones.continuas.services.ParticipantesMatriculadosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -15,6 +19,9 @@ import java.util.List;
 public class AsistenciaController {
     @Autowired
     private AsistenciaService asistenciaService;
+
+    @Autowired
+    private ParticipantesMatriculadosService participantesMatriculadosService;
 
     @GetMapping("/asistencia/list")
     public ResponseEntity<List<Asistencia>> listAsistencia(){
@@ -40,6 +47,74 @@ public class AsistenciaController {
             Asistencia asistencia = asistenciaService.findById(id);
             if(asistencia != null){
                 return new ResponseEntity<>(asistencia, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("ASISTENCIA NO ENCONTRADA",HttpStatus.NOT_FOUND);
+
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/asistencia/fecha/")
+    public ResponseEntity<?> getfechaById(){
+        LocalDate fecha = LocalDate.now();
+        try {
+
+            if(asistenciaService.findByFechaAsistencia(fecha) ){
+                return new ResponseEntity<>("encuentro"+fecha, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("no fecha"+fecha,HttpStatus.NOT_FOUND);
+
+        }catch (Exception e){
+            return new ResponseEntity<>("err-> "+fecha,HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/asistencia/GenerarAsistencia/pordia/curso/{idCurso}")
+    public ResponseEntity<List<Asistencia>> generarAsistenciaPorFechaTranscurso(@PathVariable("idCurso") Integer idCurso){
+        LocalDate fechaValidacion = LocalDate.now();
+        //LocalDate fechaPrueba = LocalDate.parse("2023-04-30");
+        try {
+            List<Asistencia> list = asistenciaService.findByPartipantesMatriculadosInscritoCursoIdCursoAndFechaAsistencia(idCurso,fechaValidacion);
+            if(list == null){
+                List<PartipantesMatriculados> partipantesMatriculadosList = participantesMatriculadosService.findByInscritoCursoIdCurso(idCurso);
+                for (PartipantesMatriculados partipantesMatriculados: partipantesMatriculadosList){
+                    Asistencia asistencia = new Asistencia();
+                    asistencia.setFechaAsistencia(LocalDate.now());
+                    asistencia.setPartipantesMatriculados(partipantesMatriculados);
+                    asistencia.setEstadoAsistencia(false);
+                    asistencia.setObservacionAsistencia("");
+                    System.out.println(asistencia.getFechaAsistencia());
+                    asistenciaService.save(asistencia);
+                }
+                return new ResponseEntity<>(asistenciaService.findByPartipantesMatriculadosInscritoCursoIdCursoAndFechaAsistencia(idCurso,fechaValidacion), HttpStatus.NOT_FOUND);
+
+
+            }else{
+                return new ResponseEntity<>(list, HttpStatus.OK);
+            }
+
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+
+    @GetMapping("/asistencia/GenerarAsistencia/{idCurso}")
+    public ResponseEntity<?> generarAsistenciaPorFecha(@PathVariable("idCurso") Integer idCurso){
+        LocalDate fecha = LocalDate.now();
+        try {
+            List<PartipantesMatriculados> partipantesMatriculadosList = participantesMatriculadosService.findByInscritoCursoIdCurso(idCurso);
+            if(partipantesMatriculadosList != null){
+                for (PartipantesMatriculados partipantesMatriculados: partipantesMatriculadosList){
+                    if(asistenciaService.findByFechaAsistencia(fecha)){
+
+                        return new ResponseEntity<>("encuentro"+fecha, HttpStatus.OK);
+
+                    }
+                }
+                return new ResponseEntity<>(partipantesMatriculadosList, HttpStatus.OK);
             }
             return new ResponseEntity<>("ASISTENCIA NO ENCONTRADA",HttpStatus.NOT_FOUND);
 
