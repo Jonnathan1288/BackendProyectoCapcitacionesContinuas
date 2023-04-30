@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class NotasSeviceImpl extends GenericServiceImpl<Notas, Integer> implements NotasSevice {
 
@@ -16,5 +18,15 @@ public class NotasSeviceImpl extends GenericServiceImpl<Notas, Integer> implemen
     @Override
     public CrudRepository<Notas, Integer> getDao() {
         return notasRepository;
+    }
+
+    @Override
+    public List<Notas> findByPartipantesMatriculadosInscritoCursoIdCurso(Integer idCurso) {
+        return notasRepository.findByPartipantesMatriculadosInscritoCursoIdCurso(idCurso);
+    }
+
+    @Override
+    public List<Notas> findByPartipantesMatriculadosIdParticipanteMatriculado(Integer idParticipantesFinales) {
+        return notasRepository.findByPartipantesMatriculadosIdParticipanteMatriculado(idParticipantesFinales);
     }
 }
