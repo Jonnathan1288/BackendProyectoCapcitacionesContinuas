@@ -61,4 +61,13 @@ public class ReportsController {
         }
     }
 
+    @GetMapping("/generarRegistroParticipantes/downloadRegistro/{id_curso}")
+    public void downloadRegistroParticipantes(HttpServletResponse response, @PathVariable("id_curso") Integer id_curso) throws Exception {
+        try {
+            jasperReportService.generateRegistroParticipantes(response, id_curso);
+        }catch (Exception e){
+            System.out.println("Err-> "+e.getMessage());
+        }
+    }
+
 }
