@@ -1,5 +1,6 @@
 package com.capacitaciones.continuas.controllers;
 
+import com.capacitaciones.continuas.models.EntornoAprendizajeCurricular;
 import com.capacitaciones.continuas.models.EvaluacionFinalCurricular;
 import com.capacitaciones.continuas.services.EvaluacionFinalCurricularService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,19 @@ public class EvaluacionFinalCurricularController {
         }
     }
 
+
+    @GetMapping("/evaluacionFinalporDisenioCurricular/findbyId/{idDisenioCurricular}")
+    public ResponseEntity<?> getEvaluacionFinalPorDisenioCurricular(@PathVariable("idDisenioCurricular") Integer idDisenioCurricular){
+        try {
+            List<EvaluacionFinalCurricular> nc = evaluacionFinalCurricularService.findByDisenioCurricularbyDisenio(idDisenioCurricular);
+            if(nc != null){
+                return new ResponseEntity<>(nc, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("NO ENCONTRADA",HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
     @PostMapping("/evaluacionFinalCurricular/save")
     public ResponseEntity<EvaluacionFinalCurricular> saveEvaluacionFinalCurricular(@RequestBody EvaluacionFinalCurricular ef){
         try {

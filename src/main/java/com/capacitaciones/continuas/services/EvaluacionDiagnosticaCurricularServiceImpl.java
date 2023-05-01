@@ -1,10 +1,13 @@
 package com.capacitaciones.continuas.services;
 
+import com.capacitaciones.continuas.models.EntornoAprendizajeCurricular;
 import com.capacitaciones.continuas.models.EvaluacionDiagnosticaCurricular;
 import com.capacitaciones.continuas.repositorys.EvaluacionDiagnosticoCurricularRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class EvaluacionDiagnosticaCurricularServiceImpl extends GenericServiceImpl<EvaluacionDiagnosticaCurricular, Integer> implements EvaluacionDiacnosticaCurricularService {
@@ -14,4 +17,10 @@ public class EvaluacionDiagnosticaCurricularServiceImpl extends GenericServiceIm
     public CrudRepository<EvaluacionDiagnosticaCurricular, Integer> getDao() {
         return evaluacionDiagnosticoCurricularRepository;
     }
+
+    @Override
+    public List<EvaluacionDiagnosticaCurricular> findByDisenioCurricularbyDisenio(Integer idDisenioCurricular) {
+        return evaluacionDiagnosticoCurricularRepository.findByDisenioCurricularbyDisenio(idDisenioCurricular);
+    }
+
 }

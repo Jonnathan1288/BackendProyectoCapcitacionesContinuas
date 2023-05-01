@@ -1,5 +1,6 @@
 package com.capacitaciones.continuas.controllers;
 
+import com.capacitaciones.continuas.models.EntornoAprendizajeCurricular;
 import com.capacitaciones.continuas.models.EvaluacionDiagnosticaCurricular;
 import com.capacitaciones.continuas.services.EvaluacionDiacnosticaCurricularService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,18 @@ public class EvaluacionDiacnosticoCurricularController {
     public ResponseEntity<EvaluacionDiagnosticaCurricular> saveEvaluacionDiacnosticoCurricular(@RequestBody EvaluacionDiagnosticaCurricular ev){
         try {
             return new ResponseEntity<>(evaluacionDiacnosticaCurricularService.save(ev), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @GetMapping("/evaluacionDiagnosticaporDisenioCurricular/findbyId/{idDisenioCurricular}")
+    public ResponseEntity<?> getEvaluacionDiagnosticaPorDisenioCurricular(@PathVariable("idDisenioCurricular") Integer idDisenioCurricular){
+        try {
+            List<EvaluacionDiagnosticaCurricular> nc = evaluacionDiacnosticaCurricularService.findByDisenioCurricularbyDisenio(idDisenioCurricular);
+            if(nc != null){
+                return new ResponseEntity<>(nc, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("NO ENCONTRADA",HttpStatus.NOT_FOUND);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
