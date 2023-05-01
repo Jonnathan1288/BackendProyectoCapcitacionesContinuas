@@ -19,8 +19,8 @@ public class EvaluacionDiagnosticaCurricularServiceImpl extends GenericServiceIm
     }
 
     @Override
-    public List<EvaluacionDiagnosticaCurricular> findByDisenioCurricularbyDisenio(Integer idDisenioCurricular) {
-        return evaluacionDiagnosticoCurricularRepository.findByDisenioCurricularbyDisenio(idDisenioCurricular);
+    public List<EvaluacionDiagnosticaCurricular> findByDisenioCurricularIdDisenioCurricular(Integer idCDisenioCurricular) {
+        return evaluacionDiagnosticoCurricularRepository.findByDisenioCurricularIdDisenioCurricular(idCDisenioCurricular);
     }
 
 }

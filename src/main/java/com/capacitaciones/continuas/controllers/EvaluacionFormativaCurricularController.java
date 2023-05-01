@@ -47,10 +47,10 @@ public class EvaluacionFormativaCurricularController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @GetMapping("/evaluacionFormativaCurricular/findbyId/{idDisenioCurricular}")
-    public ResponseEntity<?> getEvaluacionFormativaPorDisenioCurricular(@PathVariable("idDisenioCurricular") Integer idDisenioCurricular){
+    @GetMapping("/evaluacionFormativaCurricular/findbyId/{idCDisenioCurricular}")
+    public ResponseEntity<?> getEvaluacionFormativaPorDisenioCurricular(@PathVariable("idCDisenioCurricular") Integer idCDisenioCurricular){
         try {
-            List<EvalucionFormativaCurricular> nc = evaluacionFormativaCurricularService.findByDisenioCurricularbyDisenio(idDisenioCurricular);
+            List<EvalucionFormativaCurricular> nc = evaluacionFormativaCurricularService.findByDisenioCurricularIdDisenioCurricular(idCDisenioCurricular);
             if(nc != null){
                 return new ResponseEntity<>(nc, HttpStatus.OK);
             }

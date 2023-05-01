@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface EvaluacionFormativaCurricularService extends  GenericService<EvalucionFormativaCurricular, Integer>{
 
-    List<EvalucionFormativaCurricular> findByDisenioCurricularbyDisenio(Integer idDisenioCurricular);
+    List<EvalucionFormativaCurricular> findByDisenioCurricularIdDisenioCurricular(Integer idCDisenioCurricular);
 }

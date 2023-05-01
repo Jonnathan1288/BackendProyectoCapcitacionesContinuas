@@ -7,7 +7,7 @@ import com.capacitaciones.continuas.models.EntornoAprendizajeCurricular;
 import java.util.List;
 
 public interface EntornoAprendizajeCurricularService extends  GenericService<EntornoAprendizajeCurricular, Integer>{
-    List<EntornoAprendizajeCurricular> findByDisenioCurricularbyDisenio(Integer idDisenioCurricular);
+    List<EntornoAprendizajeCurricular> findByDisenioCurricularIdDisenioCurricular(Integer idCDisenioCurricular);
 }
 
 

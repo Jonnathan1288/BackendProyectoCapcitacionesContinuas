@@ -18,8 +18,8 @@ public class EntornoAprendizajeCurricularServiceImpl extends GenericServiceImpl<
         return entornoAprendizajeCurricularRepository;
     }
     @Override
-    public List<EntornoAprendizajeCurricular> findByDisenioCurricularbyDisenio(Integer idDisenioCurricular) {
-        return entornoAprendizajeCurricularRepository.findByDisenioCurricularbyDisenio(idDisenioCurricular);
+    public List<EntornoAprendizajeCurricular> findByDisenioCurricularIdDisenioCurricular(Integer idCDisenioCurricular) {
+        return entornoAprendizajeCurricularRepository.findByDisenioCurricularIdDisenioCurricular(idCDisenioCurricular);
     }
 
 }

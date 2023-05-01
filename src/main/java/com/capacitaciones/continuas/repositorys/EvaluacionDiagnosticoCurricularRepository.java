@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface EvaluacionDiagnosticoCurricularRepository extends JpaRepository<EvaluacionDiagnosticaCurricular, Integer> {
-    List<EvaluacionDiagnosticaCurricular> findByDisenioCurricularbyDisenio(Integer idDisenioCurricular);
+    List<EvaluacionDiagnosticaCurricular> findByDisenioCurricularIdDisenioCurricular(Integer idCDisenioCurricular);
 }
 

@@ -9,6 +9,7 @@ import java.util.List;
 
 @Repository
 public interface EntornoAprendizajeCurricularRepository extends JpaRepository<EntornoAprendizajeCurricular, Integer> {
-    List<EntornoAprendizajeCurricular> findByDisenioCurricularbyDisenio(Integer idDisenioCurricular);
+
+    List<EntornoAprendizajeCurricular> findByDisenioCurricularIdDisenioCurricular(Integer idCDisenioCurricular);
 
 }

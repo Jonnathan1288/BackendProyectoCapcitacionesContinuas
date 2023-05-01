@@ -7,5 +7,5 @@ import com.capacitaciones.continuas.models.EvaluacionFinalCurricular;
 import java.util.List;
 
 public interface EvaluacionFinalCurricularService extends  GenericService<EvaluacionFinalCurricular, Integer>{
-    List<EvaluacionFinalCurricular> findByDisenioCurricularbyDisenio(Integer idDisenioCurricular);
+    List<EvaluacionFinalCurricular> findByDisenioCurricularIdDisenioCurricular(Integer idCDisenioCurricular);
 }

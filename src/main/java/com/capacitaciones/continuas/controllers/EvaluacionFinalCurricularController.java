@@ -41,10 +41,10 @@ public class EvaluacionFinalCurricularController {
     }
 
 
-    @GetMapping("/evaluacionFinalporDisenioCurricular/findbyId/{idDisenioCurricular}")
-    public ResponseEntity<?> getEvaluacionFinalPorDisenioCurricular(@PathVariable("idDisenioCurricular") Integer idDisenioCurricular){
+    @GetMapping("/evaluacionFinalporDisenioCurricular/findbyId/{idCDisenioCurricular}")
+    public ResponseEntity<?> getEvaluacionFinalPorDisenioCurricular(@PathVariable("idCDisenioCurricular") Integer idCDisenioCurricular){
         try {
-            List<EvaluacionFinalCurricular> nc = evaluacionFinalCurricularService.findByDisenioCurricularbyDisenio(idDisenioCurricular);
+            List<EvaluacionFinalCurricular> nc = evaluacionFinalCurricularService.findByDisenioCurricularIdDisenioCurricular(idCDisenioCurricular);
             if(nc != null){
                 return new ResponseEntity<>(nc, HttpStatus.OK);
             }

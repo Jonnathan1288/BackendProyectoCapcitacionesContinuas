@@ -39,10 +39,10 @@ public class EntornoAprendizajeController {
         }
     }
 
-    @GetMapping("/entornoAprendizajeporDisenioCurricular/findbyId/{id}")
-    public ResponseEntity<?> getEntornoAprendizajePorDisenioCurricular(@PathVariable("idDisenioCurricular") Integer idDisenioCurricular){
+    @GetMapping("/entornoAprendizajeporDisenioCurricular/findbyId/{idCDisenioCurricular}")
+    public ResponseEntity<?> getEntornoAprendizajePorDisenioCurricular(@PathVariable("idCDisenioCurricular") Integer idCDisenioCurricular){
         try {
-            List<EntornoAprendizajeCurricular> nc = entornoAprendizajeCurricularService.findByDisenioCurricularbyDisenio(idDisenioCurricular);
+            List<EntornoAprendizajeCurricular> nc = entornoAprendizajeCurricularService.findByDisenioCurricularIdDisenioCurricular(idCDisenioCurricular);
             if(nc != null){
                 return new ResponseEntity<>(nc, HttpStatus.OK);
             }
