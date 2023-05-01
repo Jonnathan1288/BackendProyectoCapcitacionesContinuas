@@ -122,7 +122,8 @@ public class JasperReportServiceImpl implements JasperReportService{
         }
     }
 
-    @Override
+
+@Override
     public void generateRegisterFotografico(HttpServletResponse response, Integer idCurso) {
         try {
             InputStream reportStream = this.getClass().getResourceAsStream("/Reports/RegistroFotografico.jasper");
@@ -149,7 +150,7 @@ public class JasperReportServiceImpl implements JasperReportService{
         }
     }
 
-    @Override
+@Override
     public void generateRegisterAsistenciaEvaluacion(HttpServletResponse response, Integer idCurso) {
         try {
             InputStream reportStream = this.getClass().getResourceAsStream("/Reports/RegistroAsistenciEvaluacion.jasper");
@@ -175,4 +176,59 @@ public class JasperReportServiceImpl implements JasperReportService{
             System.out.println( "eService " + e.getMessage());
         }
     }
+
+@Override
+    public void generateInformeFinal(HttpServletResponse response, Integer idCurso) {
+        try {
+            InputStream reportStream = this.getClass().getResourceAsStream("/Reports/ReporteFinalCurso.jasper");
+            Map<String, Object> params = new HashMap<>();
+            params.put("cene", "cene.png");
+            params.put("ista", "ista.jpeg");
+            params.put("id_Curso", idCurso);
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(reportStream, params, jdbcTemplate.getDataSource().getConnection());
+            byte[] reportContent = JasperExportManager.exportReportToPdf(jasperPrint);
+
+            response.setContentType("application/pdf");
+
+            response.setHeader("Content-Disposition", "attachment; filename=ReporteFinalCurso.pdf");
+
+            response.setContentLength(reportContent.length);
+
+            OutputStream outStream = response.getOutputStream();
+            outStream.write(reportContent);
+            outStream.flush();
+            outStream.close();
+        }catch (Exception e){
+            System.out.println( "eService " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void generateRegistroParticipantes(HttpServletResponse response, Integer idCurso) {
+        try {
+            InputStream reportStream = this.getClass().getResourceAsStream("/Reports/ReporteRegistroParticipantes.jasper");
+            Map<String, Object> params = new HashMap<>();
+            params.put("cene", "cene.png");
+            params.put("ista", "ista.jpeg");
+            params.put("idCursoPrincipal", idCurso);
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(reportStream, params, jdbcTemplate.getDataSource().getConnection());
+            byte[] reportContent = JasperExportManager.exportReportToPdf(jasperPrint);
+
+            response.setContentType("application/pdf");
+
+            response.setHeader("Content-Disposition", "attachment; filename=registroParticipantes.pdf");
+
+            response.setContentLength(reportContent.length);
+
+            OutputStream outStream = response.getOutputStream();
+            outStream.write(reportContent);
+            outStream.flush();
+            outStream.close();
+        }catch (Exception e){
+            System.out.println( "eService " + e.getMessage());
+        }
+    }
+
 }
