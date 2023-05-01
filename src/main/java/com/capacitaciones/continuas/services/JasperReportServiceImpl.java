@@ -17,29 +17,7 @@ import java.util.Map;
 public class JasperReportServiceImpl implements JasperReportService{
     @Autowired
     private JdbcTemplate jdbcTemplate;
-    @Override
-    public void generateReport(HttpServletResponse response, Integer ids) {
-        try {
-            InputStream reportStream = this.getClass().getResourceAsStream("/Reports/js.jasper");
 
-            Map<String, Object> params = new HashMap<>();
-            params.put("idSilabo", ids);
-
-            JasperPrint jasperPrint = JasperFillManager.fillReport(reportStream, params, jdbcTemplate.getDataSource().getConnection());
-            byte[] reportContent = JasperExportManager.exportReportToPdf(jasperPrint);
-
-            response.setContentType("application/pdf");
-            response.setHeader("Content-Disposition", "attachment; filename=report.pdf");
-            response.setContentLength(reportContent.length);
-
-            OutputStream outStream = response.getOutputStream();
-            outStream.write(reportContent);
-            outStream.flush();
-            outStream.close();
-        }catch (Exception e){
-            System.out.println( "eService " + e.getMessage());
-        }
-    }
 
 @Override
     public void generateReportInformeNecesidadCurso(HttpServletResponse response, Integer idCursoNecesidadC) {
