@@ -52,10 +52,30 @@ public class ReportsController {
         }
     }
 
+
+@GetMapping("/generarRegisroFotografico/downloadRegistroFotografico/{idCurso}")
+    public void downloadRegistroFotografico(HttpServletResponse response, @PathVariable("idCurso") Integer idCurso) throws Exception {
+        try {
+            jasperReportService.generateRegisterFotografico(response, idCurso);
+        }catch (Exception e){
+            System.out.println("Err-> "+e.getMessage());
+        }
+    }
+
     @GetMapping("/generarInformeFinal/downloadInforme/{id_curso}")
     public void downloadInformeFinal(HttpServletResponse response, @PathVariable("id_curso") Integer id_curso) throws Exception {
         try {
             jasperReportService.generateInformeFinal(response, id_curso);
+
+        }catch (Exception e){
+            System.out.println("Err-> "+e.getMessage());
+        }
+    }
+
+@GetMapping("/generarRegistroAsistenciaEvaluacion/download/{idCurso}")
+    public void downloadRegistroAsistenciaEvaluacion(HttpServletResponse response, @PathVariable("idCurso") Integer idCurso) throws Exception {
+        try {
+            jasperReportService.generateRegisterAsistenciaEvaluacion(response, idCurso);
         }catch (Exception e){
             System.out.println("Err-> "+e.getMessage());
         }
@@ -65,6 +85,7 @@ public class ReportsController {
     public void downloadRegistroParticipantes(HttpServletResponse response, @PathVariable("id_curso") Integer id_curso) throws Exception {
         try {
             jasperReportService.generateRegistroParticipantes(response, id_curso);
+
         }catch (Exception e){
             System.out.println("Err-> "+e.getMessage());
         }

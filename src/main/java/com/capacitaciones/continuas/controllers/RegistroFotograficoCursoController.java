@@ -49,6 +49,19 @@ public class RegistroFotograficoCursoController {
         }
     }
 
+    @GetMapping("/registroFotograficoCurso/traerTodosfindbyIdCurso/{idCurso}")
+    public ResponseEntity<?> getRegistroFotograficoCursoAllByIdCurso(@PathVariable("idCurso") Integer idCurso){
+        try {
+            List<RegistroFotograficoCurso> registroFotograficoCursoList = registroFotograficoCursoService.findByCursoIdCurso(idCurso);
+            if(registroFotograficoCursoList != null){
+                return new ResponseEntity<>(registroFotograficoCursoList, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("FOTOGRAFIAS NO ENCONTRADAS",HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @PutMapping("/registroFotograficoCurso/actualizar/{id}")
     public ResponseEntity<RegistroFotograficoCurso> actualizarRegistroFotograficoCurso(@PathVariable Integer id, @RequestBody RegistroFotograficoCurso registroFotograficoCurso) {
         try {
