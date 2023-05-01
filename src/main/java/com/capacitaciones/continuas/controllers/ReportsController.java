@@ -15,15 +15,6 @@ public class ReportsController {
     @Autowired
     private JasperReportService jasperReportService;
 
-    @GetMapping("/reports/download-report/{id}")
-    public void downloadReport(HttpServletResponse response, @PathVariable("id") Integer id) throws Exception {
-        try {
-            jasperReportService.generateReport(response, id);
-        }catch (Exception e){
-            System.out.println("Err-> "+e.getMessage());
-        }
-    }
-
     @GetMapping("/reports/download-report/necesidad-curso/{id}")
     public void downloadReportNecesidadCurso(HttpServletResponse response, @PathVariable("id") Integer id) throws Exception {
         try {
