@@ -15,21 +15,21 @@ public class Especialidad {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idEspecialidad")
+    @Column(name = "id_especialidad")
     private Integer idEspecialidad;
 
-    @Column(name = "codigoEspecialidad")
+    @Column(name = "codigo_especialidad")
     private String codigoEspecialidad;
 
-    @Column(name = "nombreEspecialidad")
+    @Column(name = "nombre_especialidad")
     private String nombreEspecialidad;
 
-    @Column(name = "estadoEspecialidadActivo")
+    @Column(name = "estado_especialidad_activo")
     private Boolean estadoEspecialidadActivo;
 
     // RELACION
     @ManyToOne
-    @JoinColumn(name="idArea",referencedColumnName ="idArea")
+    @JoinColumn(name="id_area",referencedColumnName ="id_area")
     private Area area;
 
 }

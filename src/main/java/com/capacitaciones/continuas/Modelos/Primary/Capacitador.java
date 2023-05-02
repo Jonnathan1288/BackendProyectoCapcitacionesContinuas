@@ -14,16 +14,16 @@ public class Capacitador {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idCapacitador")
+    @Column(name = "id_capacitador")
     private Integer idCapacitador;
 
-    @Column(name = "tituloCapacitador")
+    @Column(name = "titulo_capacitador")
     private String tituloCapacitador;
 
-    @Column(name = "estadoActivoCapacitador")
+    @Column(name = "estado_activo_capacitador")
     private Boolean estadoActivoCapacitador;
 
-    @Column(name = "tipoAbreviaturaTitulo")
+    @Column(name = "tipo_abreviatura_titulo")
     private String tipoAbreviaturaTitulo;
 
     // Referencia con su hoja de vida
@@ -32,7 +32,7 @@ public class Capacitador {
     private HojaVidaCapacitador hojaVidaCapacitador;
 
     @ManyToOne
-    @JoinColumn(name="idUsuario",referencedColumnName ="idUsuario")
+    @JoinColumn(name="id_usuario",referencedColumnName ="id_usuario")
     private Usuario usuario;
 
 }

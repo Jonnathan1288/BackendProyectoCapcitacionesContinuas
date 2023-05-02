@@ -8,26 +8,26 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Entity
-@Table(name = "diseniocurriculares")
+@Table(name = "disenio_curriculares")
 public class DisenioCurricular {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idDisenioCurricular")
+    @Column(name = "id_disenio_curricular")
     private Integer idCDisenioCurricular;
 
-    @Column(name = "temasTransversales")
+    @Column(name = "temas_transversales")
     private String temasTransversales;
 
-    @Column(name = "estrategiasAprendizaje")
+    @Column(name = "estrategias_aprendizaje")
     private String estrategiasAprendizaje;
 
-    @Column(name = "estadoDisenioCurricular")
+    @Column(name = "estadoDisenio_curricular")
     private Boolean estadoDisenioCurricular;
 
     // RELACIONAR CON EL SILABO
     @ManyToOne
-    @JoinColumn(name="idSilabo",referencedColumnName ="idSilabo")
+    @JoinColumn(name="id_silabo",referencedColumnName ="id_silabo")
     private Silabo silabo;
 
     //Falta refe -> EntornoAprendizajeCurricular, MecanismosEvaluacionCurricular

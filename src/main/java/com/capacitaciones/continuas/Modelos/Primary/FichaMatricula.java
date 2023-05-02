@@ -11,22 +11,22 @@ import java.util.List;
 @Setter
 @Getter
 @Entity
-@Table(name = "fichamatriculas")
+@Table(name = "ficha_matriculas")
 public class FichaMatricula { // esta entidad esta en vigencia.
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idFichaMatricula")
+    @Column(name = "id_ficha_matricula")
     private Integer idFichaMatricula;
 
     // Se relaciona con la matricula
     //viene la llave de id curso
 
     @ManyToOne
-    @JoinColumn(name="idInscrito",referencedColumnName ="idInscrito")
+    @JoinColumn(name="id_inscrito",referencedColumnName ="id_inscrito")
     private Inscrito inscrito;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "fichaMatricula")
+    @OneToMany(mappedBy = "ficha_matricula")
     private List<DetalleFichaMatricula> detalleFichaMatricula;
 }

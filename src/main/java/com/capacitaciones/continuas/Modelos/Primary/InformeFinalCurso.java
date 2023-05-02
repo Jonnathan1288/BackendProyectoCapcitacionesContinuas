@@ -8,25 +8,25 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Entity
-@Table(name = "informefinalcursos")
+@Table(name = "informe_final_cursos")
 public class InformeFinalCurso { //entidad en vigencia
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idInformeFinalCurso")
+    @Column(name = "id_informe_final_curso")
     private Integer idInformeFinalCurso;
 
-    @Column(name = "observacionesInformeFinalCurso")
+    @Column(name = "observaciones_informe_final_curso")
     private String observacionesInformeFinalCurso;
 
-    @Column(name = "lugarInformeFinalCurso")
+    @Column(name = "lugar_informe_final_curso")
     private String lugarInformeFinalCurso;
 
-    @Column(name = "cantonInformeFinalCurso")
+    @Column(name = "canton_informe_final_curso")
     private String nombreCantonInformeFinalCurso;
 
     //viene la llave de id curso
     @ManyToOne
-    @JoinColumn(name="idCurso",referencedColumnName ="idCurso")
+    @JoinColumn(name="id_curso",referencedColumnName ="id_curso")
     private Curso curso;
     //Falta la referencai -> detalle final.
 

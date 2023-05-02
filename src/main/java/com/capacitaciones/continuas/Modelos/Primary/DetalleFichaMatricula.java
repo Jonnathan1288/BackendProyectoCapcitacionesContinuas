@@ -9,12 +9,12 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Entity
-@Table(name = "detallefichamatriculas")
+@Table(name = "detalle_ficha_matriculas")
 public class DetalleFichaMatricula { // esta entidad esta en vigencia.
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idDetalleFichaMatricula")
+    @Column(name = "id_detalle_ficha_matricula")
     private Integer idDetalleFichaMatricula;
 
     @Column(name = "pregunta1")
@@ -48,6 +48,6 @@ public class DetalleFichaMatricula { // esta entidad esta en vigencia.
     // Se relaciona con la matricula
     //viene la llave de id curso
     @ManyToOne
-    @JoinColumn(name="idFichaMatricula",referencedColumnName ="idFichaMatricula")
+    @JoinColumn(name="id_fichaMatricula",referencedColumnName ="id_fichaMatricula")
     private FichaMatricula fichaMatricula;
 }

@@ -8,42 +8,42 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Entity
-@Table(name = "contenidosilabos")
+@Table(name = "contenido_silabos")
 public class ContenidoSilabo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idContenidoSilabo")
+    @Column(name = "id_contenido_silabo")
     private Integer idContenidoSilabo;
 
-    @Column(name = "temaContenido")
+    @Column(name = "tema_contenido")
     private String temaContenido;
 
-    @Column(name = "diaContenido")
+    @Column(name = "dia_contenido")
     private Integer diaContenido;
 
-    @Column(name = "horasClaseContenido")
+    @Column(name = "horas_clase_contenido")
     private Integer horasClaseContenido;
 
-    @Column(name = "actividadesDocencia")
+    @Column(name = "actividades_docencia")
     private String actividadesDocencia;
 
-    @Column(name = "horasPracticas")
+    @Column(name = "horas_practicas")
     private Integer horasPracticas;
 
-    @Column(name = "actividadesPracticas")
+    @Column(name = "actividades_practicas")
     private String actividadesPracticas;
 
-    @Column(name = "horasAutonomas")
+    @Column(name = "horas_autonomas")
     private Integer horasAutonomas;
 
-    @Column(name = "actividadesAutonomas")
+    @Column(name = "actividades_autonomas")
     private String actividadesAutonomas;
 
     @Column(name = "observaciones")
     private String observaciones;
 
-    @Column(name = "estadoContenido")
+    @Column(name = "estado_contenido")
     private Boolean estadoContenido;
 
     // Se relaciona con Silabo

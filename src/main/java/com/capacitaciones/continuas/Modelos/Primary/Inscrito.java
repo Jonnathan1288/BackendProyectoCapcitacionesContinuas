@@ -16,27 +16,27 @@ public class Inscrito {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idInscrito")
+    @Column(name = "id_inscrito")
     private Integer idInscrito;
 
-    @Column(name = "fechaInscrito")
+    @Column(name = "fecha_inscrito")
     private LocalDate fechaInscrito;
 
-    @Column(name = "estadoInscrito")
+    @Column(name = "estado_inscrito")
     private Boolean estadoInscrito;
 
-    @Column(name = "estadoInscritoActivo")
+    @Column(name = "estado_inscrito_activo")
     private Boolean estadoInscritoActivo;
 
     // SE RELACIONA CON USER Y CURSO
 
     // RELACIONES
     @ManyToOne
-    @JoinColumn(name="idUsuario",referencedColumnName ="idUsuario")
+    @JoinColumn(name="id_usuario",referencedColumnName ="id_usuario")
     private Usuario usuario;
 
     @ManyToOne
-    @JoinColumn(name="idCurso",referencedColumnName ="idCurso")
+    @JoinColumn(name="id_curso",referencedColumnName ="id_curso")
     private Curso curso;
 
     //Falta referenciar, FichaMatricula, ParticipantesAprobados

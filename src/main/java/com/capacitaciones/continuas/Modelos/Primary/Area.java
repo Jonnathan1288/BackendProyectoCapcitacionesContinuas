@@ -15,21 +15,21 @@ public class Area {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idArea")
+    @Column(name = "id_area")
     private Integer idArea;
 
-    @Column(name = "codigoArea")
+    @Column(name = "codigo_area")
     private String codigoArea;
 
-    @Column(name = "nombreArea")
+    @Column(name = "nombre_area")
     private String nombreArea;
 
-    @Column(name = "estadoAreaActivo")
+    @Column(name = "estado_area_activo")
     private Boolean estadoAreaActivo;
 
     // REFERENCIA DE LAS RELACIONES
     @JsonIgnore
     @OneToMany(mappedBy = "area")
-    private List<com.capacitaciones.continuas.Modelos.Primary.Especialidad> Especialidad;
+    private List<Especialidad> Especialidad;
 
 }

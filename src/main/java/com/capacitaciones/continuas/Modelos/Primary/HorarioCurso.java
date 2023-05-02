@@ -9,23 +9,23 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Entity
-@Table(name = "horarioscursos")
+@Table(name = "horarios_cursos")
 public class HorarioCurso { //entidad en vigencia.
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idHorarioCurso")
+    @Column(name = "id_horario_curso")
     private Integer idHorarioCurso;
 
-    @Column(name = "estadoHorarioCurso")
+    @Column(name = "estado_horario_curso")
     private Boolean estadoHorarioCurso;
 
     @Column(name = "dias")
     private String dias;
 
-    @Column(name = "horaInicio")
+    @Column(name = "hora_dnicio")
     private String horaInicio;
 
-    @Column(name = "horaFin")
+    @Column(name = "hora_fin")
     private String horaFin;
 
 }

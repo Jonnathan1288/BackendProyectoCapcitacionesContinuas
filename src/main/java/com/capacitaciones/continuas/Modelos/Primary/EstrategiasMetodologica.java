@@ -8,24 +8,24 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Entity
-@Table(name = "estrategiasMetodologicas")
+@Table(name = "estrategias_metodologicas")
 public class EstrategiasMetodologica {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idEstrategiaMetodologica")
+    @Column(name = "id_estrategia_metodologica")
     private Integer idEstrategiaMetodologica;
 
-    @Column(name = "nombreEstrategiaMetodologica")
+    @Column(name = "nombre_estrategia_metodologica")
     private String nombreEstrategiaMetodologica;
 
-    @Column(name = "finalidadEstrategiaMetodologica")
+    @Column(name = "finalidad_estrategia_metodologica")
     private String finalidadEstrategiaMetodologica;
 
-    @Column(name = "estadoEstrategiaMetodologicaActivo")
+    @Column(name = "estado_estrategia_metodologicaActivo")
     private Boolean estadoEstrategiaMetodologicaActivo;
 
     @ManyToOne
-    @JoinColumn(name="idSilabo",referencedColumnName ="idSilabo")
+    @JoinColumn(name="id_silabo",referencedColumnName ="id_silabo")
     private Silabo silabo;
 
 }

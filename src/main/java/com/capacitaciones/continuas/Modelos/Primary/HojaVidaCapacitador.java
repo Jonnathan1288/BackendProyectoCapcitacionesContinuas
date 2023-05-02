@@ -8,21 +8,21 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Entity
-@Table(name = "hojavidacapacitadores")
+@Table(name = "hoja_vida_capacitadores")
 public class HojaVidaCapacitador {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idHojaVida")
+    @Column(name = "id_hoja_vida")
     private Integer idHojaVida;
 
-    @Column(name = "experiencialLaboral")
+    @Column(name = "experiencial_laboral")
     private String  experiencialLaboral;
 
-    @Column(name = "sobreMi")
+    @Column(name = "sobre_mi")
     private String sobreMi;
 
-    @Column(name = "experienciaEscolar")
+    @Column(name = "experiencia_escolar")
     private String  experienciaEscolar;
 
     @Column(name = "destrezas")
@@ -34,7 +34,7 @@ public class HojaVidaCapacitador {
 
     // Relacion con capacitador
     @OneToOne
-    @JoinColumn(name = "idCapacitador", referencedColumnName = "idCapacitador")
+    @JoinColumn(name = "id_capacitador", referencedColumnName = "id_capacitador")
     private Capacitador capacitador;
 
 }

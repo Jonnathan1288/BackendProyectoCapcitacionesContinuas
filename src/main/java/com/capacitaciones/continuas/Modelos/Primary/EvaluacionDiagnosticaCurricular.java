@@ -8,22 +8,22 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Entity
-@Table(name = "evaluaciondiagnosticacurriculares")
+@Table(name = "evaluacion_diagnostica_curriculares")
 public class EvaluacionDiagnosticaCurricular {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idEvaluacionDiagnosticaCurricular")
+    @Column(name = "id_evaluacionDiagnostica_curricular")
     private Integer idEvaluacionDiagnosticaCurricular;
 
-    @Column(name = "tecnicaEvaluar")
+    @Column(name = "tecnica_evaluar")
     private String tecnicaEvaluar;
 
-    @Column(name = "instrumnetoEvaluar")
+    @Column(name = "instrumneto_evaluar")
     private String instrumnetoEvaluar;
 
     // se relaciona con mecanismo
     @ManyToOne
-    @JoinColumn(name="idDisenioCurricular",referencedColumnName ="idDisenioCurricular")
+    @JoinColumn(name="id_disenio_curricular",referencedColumnName ="id_disenio_curricular")
     private DisenioCurricular disenioCurricular;
 }
