@@ -18,7 +18,7 @@ public class MaterialAudiovisual {
     @Column(name = "descripcion_material_audiovisual")
     private String descripcionMaterialAudiovisual;
 
-    @Column(name = "estado_aaterial_audiovisual")
+    @Column(name = "estado_material_audiovisual")
     private Boolean estadoMaterialAudiovisual;
 
     @ManyToOne
