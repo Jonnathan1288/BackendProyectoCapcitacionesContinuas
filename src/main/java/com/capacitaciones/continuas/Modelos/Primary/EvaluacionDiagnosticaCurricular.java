@@ -13,7 +13,7 @@ public class EvaluacionDiagnosticaCurricular {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_evaluacionDiagnostica_curricular")
+    @Column(name = "id_evaluacion_diagnostica_curricular")
     private Integer idEvaluacionDiagnosticaCurricular;
 
     @Column(name = "tecnica_evaluar")

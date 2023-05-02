@@ -21,7 +21,7 @@ public class EstrategiasMetodologica {
     @Column(name = "finalidad_estrategia_metodologica")
     private String finalidadEstrategiaMetodologica;
 
-    @Column(name = "estado_estrategia_metodologicaActivo")
+    @Column(name = "estado_estrategia_metodologica_activo")
     private Boolean estadoEstrategiaMetodologicaActivo;
 
     @ManyToOne

@@ -22,7 +22,7 @@ public class HorarioCurso { //entidad en vigencia.
     @Column(name = "dias")
     private String dias;
 
-    @Column(name = "hora_dnicio")
+    @Column(name = "hora_inicio")
     private String horaInicio;
 
     @Column(name = "hora_fin")

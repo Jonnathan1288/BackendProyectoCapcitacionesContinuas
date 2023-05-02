@@ -49,7 +49,7 @@ public class Curso {
     @Column(name = "numero_cupos_curso")
     private Integer numeroCuposCurso;
 
-    @Column(name = "fecha_inicioCurso")
+    @Column(name = "fecha_inicio_curso")
     private LocalDate fechaInicioCurso;
 
     @Column(name = "fecha_finalizacion_curso")

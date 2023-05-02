@@ -16,7 +16,7 @@ public class ListaNecesidadCurso {
     @Column(name = "id_lista_necesidad_cursos")
     private Integer idListaNecesidadCursos;
 
-    @Column(name = "detalle_nececidadCurso")
+    @Column(name = "detalle_nececidad_curso")
     private String detalleNececidadCurso;
 
     @Column(name = "estado_detalle_necesidad")

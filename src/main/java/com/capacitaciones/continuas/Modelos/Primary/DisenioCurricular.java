@@ -22,7 +22,7 @@ public class DisenioCurricular {
     @Column(name = "estrategias_aprendizaje")
     private String estrategiasAprendizaje;
 
-    @Column(name = "estadoDisenio_curricular")
+    @Column(name = "estado_disenio_curricular")
     private Boolean estadoDisenioCurricular;
 
     // RELACIONAR CON EL SILABO
