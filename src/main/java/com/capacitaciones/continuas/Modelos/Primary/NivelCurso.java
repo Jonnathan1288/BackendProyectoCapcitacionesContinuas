@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Entity
-@Table(name = "niveles_cursos")
+@Table(name = "nivelescursos")
 public class NivelCurso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

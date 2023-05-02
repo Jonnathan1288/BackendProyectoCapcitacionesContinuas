@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Entity
-@Table(name = "horarios_cursos")
+@Table(name = "horarioscursos")
 public class HorarioCurso { //entidad en vigencia.
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

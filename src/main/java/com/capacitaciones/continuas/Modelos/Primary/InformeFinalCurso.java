@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Entity
-@Table(name = "informe_final_cursos")
+@Table(name = "informefinalcursos")
 public class InformeFinalCurso { //entidad en vigencia
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

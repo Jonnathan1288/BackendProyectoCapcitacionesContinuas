@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Entity
-@Table(name = "evalucion_formativa_curriculares")
+@Table(name = "evalucionformativacurriculares")
 public class EvalucionFormativaCurricular {
 
     @Id

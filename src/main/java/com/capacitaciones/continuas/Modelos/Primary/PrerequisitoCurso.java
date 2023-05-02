@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Entity
-@Table(name = "prerequisitos_cursos")
+@Table(name = "prerequisitoscursos")
 public class PrerequisitoCurso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

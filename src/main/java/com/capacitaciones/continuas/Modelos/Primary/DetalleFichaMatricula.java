@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Entity
-@Table(name = "detalle_ficha_matriculas")
+@Table(name = "detallefichamatriculas")
 public class DetalleFichaMatricula { // esta entidad esta en vigencia.
 
     @Id

@@ -11,7 +11,7 @@ import java.util.List;
 @Setter
 @Getter
 @Entity
-@Table(name = "ficha_matriculas")
+@Table(name = "fichamatriculas")
 public class FichaMatricula { // esta entidad esta en vigencia.
 
     @Id
