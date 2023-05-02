@@ -24,4 +24,13 @@ public class InscritoServiceImpl extends GenericServiceImpl<Inscrito, Integer> i
     public List<Inscrito> findByCursoIdCurso(Integer idCurso) {
         return matriculaRepository.findByCursoIdCurso(idCurso);
     }
+
+    @Override
+    public boolean findByCursoIdCursoAndUsuarioIdUsuario(Integer idCurso, Integer idUsuario) {
+        if (matriculaRepository.findByCursoIdCursoAndUsuarioIdUsuario(idCurso,idUsuario)!=null) {
+            return true;
+        }else {
+            return false;
+        }
+    }
 }

@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DetalleFichaRepository extends JpaRepository<DetalleFichaMatricula, Integer> {
+
+    public DetalleFichaMatricula findByFichaMatriculaInscritoUsuarioIdUsuario(Integer idUsuario);
 }

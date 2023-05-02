@@ -25,6 +25,25 @@ public class CursoController {
         }
     }
 
+
+    @GetMapping("/cursoDisponibles/list")
+    public ResponseEntity<List<Curso>> listCursoDisponibles(){
+        try {
+            return new ResponseEntity<>(cursoService.findByEstadoCursoAndEstadoPublicasionCurso(true), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/cursosDelParticipante/list/{idParticipante}")
+    public ResponseEntity<List<Curso>> listCursoDelParticipante(@PathVariable("idParticipante") Integer idParticipante){
+        try {
+            return new ResponseEntity<>(cursoService.findCursosDelParticipante(idParticipante), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @GetMapping("/curso/findbyId/{id}")
     public ResponseEntity<?> getCursoById(@PathVariable("id") Integer id){
         try {
@@ -56,7 +75,7 @@ public class CursoController {
         try {
             //Aprovacion del curso // N = NO NO APROVADO, A = APROVADO, P = PENDIENTE
             curso.setEstadoAprovacionCurso("P");
-            curso.setEstadoPublicasionCurso(false);
+            curso.setEstadoPublicasionCurso("O");
             curso.setEstadoCurso(true);
             return new ResponseEntity<>(cursoService.save(curso), HttpStatus.CREATED);
         }catch (Exception e){

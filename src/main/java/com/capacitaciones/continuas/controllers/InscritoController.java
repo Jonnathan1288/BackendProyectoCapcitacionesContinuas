@@ -58,6 +58,11 @@ public class InscritoController {
         }
     }
 
+    @GetMapping("/validarCursoAplicadoUsuario/findbyIdCursoAndIdUsuario/{idCurso}/{idUsuario}")
+    public boolean validarCursoAplicadoUsuario(@PathVariable Integer idCurso,@PathVariable Integer idUsuario){
+        return inscritoService.findByCursoIdCursoAndUsuarioIdUsuario(idCurso,idUsuario);
+    }
+
     @PostMapping("/inscritocurso/crear")
     public ResponseEntity<Inscrito> crear(@RequestBody Inscrito c) {
         try {

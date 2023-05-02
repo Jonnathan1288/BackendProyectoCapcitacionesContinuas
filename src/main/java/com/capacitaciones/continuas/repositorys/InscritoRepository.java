@@ -10,4 +10,6 @@ import java.util.List;
 public interface InscritoRepository extends JpaRepository<Inscrito, Integer> {
     List<Inscrito> findByCursoIdCurso(Integer idCurso);
 
+    Inscrito findByCursoIdCursoAndUsuarioIdUsuario(Integer idCurso, Integer idUsuario);
+
 }

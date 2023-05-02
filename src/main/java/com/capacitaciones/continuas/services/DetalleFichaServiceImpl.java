@@ -14,4 +14,9 @@ public class DetalleFichaServiceImpl extends GenericServiceImpl<DetalleFichaMatr
     public CrudRepository<DetalleFichaMatricula, Integer> getDao() {
         return detalleFichaRepository;
     }
+
+    @Override
+    public DetalleFichaMatricula findByFichaMatriculaInscritoUsuario(Integer idUsuario) {
+        return detalleFichaRepository.findByFichaMatriculaInscritoUsuarioIdUsuario(idUsuario);
+    }
 }

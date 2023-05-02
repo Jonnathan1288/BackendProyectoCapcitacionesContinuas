@@ -38,7 +38,7 @@ public class Curso {
     private String estadoAprovacionCurso; //aprovacion del curso // N = NO NO APROVADO, A = APROVADO, P = PENDIENTE
 
     @Column(name = "estadoPublicasionCurso")
-    private Boolean estadoPublicasionCurso; // para el usuario
+    private String estadoPublicasionCurso; // para el usuario V visible, O oculto, I inicio, F finalizo
 
     @Column(name = "descripcionCurso")
     private String descripcionCurso;
