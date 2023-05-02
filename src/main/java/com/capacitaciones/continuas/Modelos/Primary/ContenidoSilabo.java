@@ -50,7 +50,7 @@ public class ContenidoSilabo {
 
 
     @ManyToOne
-    @JoinColumn(name="idSilabo",referencedColumnName ="idSilabo")
+    @JoinColumn(name="id_silabo",referencedColumnName ="id_silabo")
     private Silabo silabo;
 
 }

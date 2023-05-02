@@ -27,6 +27,6 @@ public class FichaMatricula { // esta entidad esta en vigencia.
     private Inscrito inscrito;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "ficha_matricula")
+    @OneToMany(mappedBy = "fichaMatricula")
     private List<DetalleFichaMatricula> detalleFichaMatricula;
 }

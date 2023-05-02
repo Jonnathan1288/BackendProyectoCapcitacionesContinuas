@@ -36,6 +36,6 @@ public class NecesidadCurso {
 
     // REFERENCIA DE LAS RELACIONES
     @JsonIgnore
-    @OneToMany(mappedBy = "necesidad_curso")
+    @OneToMany(mappedBy = "necesidadCurso")
     private List<ListaNecesidadCurso> listaNecesidadCursos;
 }

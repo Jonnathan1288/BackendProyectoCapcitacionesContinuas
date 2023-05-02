@@ -73,19 +73,19 @@ public class Curso {
 
     //Falta todas las referencias..
     @ManyToOne
-    @JoinColumn(name = "idModalidadCurso", referencedColumnName = "idModalidadCurso")
+    @JoinColumn(name = "id_modalidad_curso", referencedColumnName = "id_modalidad_curso")
     private ModalidadCurso modalidadCurso;
 
     @ManyToOne
-    @JoinColumn(name = "idTipoCurso", referencedColumnName = "idTipoCurso")
+    @JoinColumn(name = "id_tipo_curso", referencedColumnName = "id_tipo_curso")
     private TipoCurso tipoCurso;
 
     @ManyToOne
-    @JoinColumn(name = "idNivelCurso", referencedColumnName = "idNivelCurso")
+    @JoinColumn(name = "id_nivel_curso", referencedColumnName = "id_nivel_curso")
     private NivelCurso nivelCurso;
 
     @ManyToOne
-    @JoinColumn(name = "idHorarioCurso", referencedColumnName = "idHorarioCurso")
+    @JoinColumn(name = "id_horario_curso", referencedColumnName = "id_horario_curso")
     private HorarioCurso horarioCurso;
 
     @JsonIgnore
