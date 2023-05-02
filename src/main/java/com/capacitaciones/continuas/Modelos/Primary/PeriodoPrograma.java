@@ -10,27 +10,27 @@ import java.time.LocalDate;
 @Setter
 @Getter
 @Entity
-@Table(name = "periodosProgramas")
+@Table(name = "periodos_programas")
 public class PeriodoPrograma {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idPeriodoPrograma")
+    @Column(name = "id_periodo_programa")
     private Integer idPeriodoPrograma;
 
-    @Column(name = "estadoPeriodoPrograma")
+    @Column(name = "estado_periodo_programa")
     private Boolean estadoPeriodoPrograma;
 
-    @Column(name = "fechaInicioPeriodoPrograma")
+    @Column(name = "fecha_inicio_periodo_programa")
     private LocalDate fechaInicioPeriodoPrograma;
 
-    @Column(name = "fechaFinPeriodoPrograma")
+    @Column(name = "fecha_fin_periodo_programa")
     private LocalDate fechaFinPeriodoPrograma;
 
-    @Column(name = "nombrePeriodoPrograma")
+    @Column(name = "nombre_periodo_programa")
     private String nombrePeriodoPrograma;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "periodoPrograma")
+    @OneToOne(mappedBy = "periodo_programa")
     private Programas programas;
     
 }

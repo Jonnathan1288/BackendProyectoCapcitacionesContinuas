@@ -8,21 +8,22 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Entity
-@Table(name = "prerequisitosCursos")
+@Table(name = "prerequisitos_cursos")
 public class PrerequisitoCurso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idPrerequisitoCurso")
+    @Column(name = "id_prerequisito_curso")
     private Integer idPrerequisitoCurso;
 
-    @Column(name = "estadoPrerequisitoCurso")
+    @Column(name = "estado_prerequisito_curso")
     private Boolean estadoPrerequisitoCurso;
 
-    @Column(name = "nombrePrerequisitoCurso")
+    @Column(name = "nombre_prerequisito_curso")
     private String nombrePrerequisitoCurso;
 
     @ManyToOne
-    @JoinColumn(name = "idCurso", referencedColumnName = "idCurso")
+    @JoinColumn(name = "id_curso", referencedColumnName = "id_curso")
     private Curso curso;
 
 }
+

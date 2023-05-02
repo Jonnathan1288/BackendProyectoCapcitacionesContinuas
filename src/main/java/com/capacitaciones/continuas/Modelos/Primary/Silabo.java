@@ -15,25 +15,25 @@ public class Silabo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idSilabo")
+    @Column(name = "id_silabo")
     private Integer idSilabo;
 
     @Column(name = "bibliografia")
     private String bibliografia;
 
-    @Column(name = "campoFormacion")
+    @Column(name = "campo_formacion")
     private String campoFormacion;
 
-    @Column(name = "campoRevisadoPor")
+    @Column(name = "campo_revisado_por")
     private String campoRevisadoPor;
 
-    @Column(name = "campoAprovadoPor")
+    @Column(name = "campo_aprovado_por")
     private String campoAprovadoPor;
 
     // Se relaciona con curso
 
     @ManyToOne
-    @JoinColumn(name="idCurso",referencedColumnName ="idCurso")
+    @JoinColumn(name="id_curso",referencedColumnName ="id_curso")
     private Curso curso;
 
     //Falara referencir  con resultado aperesi, contenidosilabos, DisenioCurricular

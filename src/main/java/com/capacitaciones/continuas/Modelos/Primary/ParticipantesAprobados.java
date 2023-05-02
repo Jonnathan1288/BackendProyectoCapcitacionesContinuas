@@ -13,16 +13,15 @@ public class ParticipantesAprobados { //estado en  vigencia
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "iParticipantesAprobados")
+    @Column(name = "id_participantes_aprobados")
     private Integer idParticipantesAprobados;
 
-    @Column(name = "codigoSenecyt")
+    @Column(name = "codigo_senecyt")
     private String codigoSenecyt;
 
     // Se relaciona con participantes matriculado
-    //viene la llave de id curso
+//viene la llave de id curso
     @ManyToOne
-    @JoinColumn(name="idParticipanteMatriculado",referencedColumnName ="idParticipanteMatriculado")
+    @JoinColumn(name="id_participante_matriculado", referencedColumnName ="id_participante_matriculado")
     private PartipantesMatriculados partipantesMatriculados;
-
 }

@@ -13,10 +13,10 @@ import java.time.LocalDate;
 public class RegistroFotograficoCurso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idRegistroFotograficoCurso")
+    @Column(name = "id_registro_fotografico_curso")
     private Integer idRegistroFotograficoCurso;
 
-    @Column(name = "descripcionFoto")
+    @Column(name = "descripcion_foto")
     private String descripcionFoto;
 
     @Column(name = "foto",  columnDefinition = "LONGBLOB")
@@ -28,7 +28,7 @@ public class RegistroFotograficoCurso {
     //viene la llave de id curso
 
     @ManyToOne
-    @JoinColumn(name="idCurso",referencedColumnName ="idCurso")
+    @JoinColumn(name="id_curso",referencedColumnName ="id_curso")
     private Curso curso;
 
 }

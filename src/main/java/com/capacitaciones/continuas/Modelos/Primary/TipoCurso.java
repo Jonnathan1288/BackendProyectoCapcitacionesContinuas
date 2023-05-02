@@ -10,17 +10,17 @@ import java.util.List;
 @Setter
 @Getter
 @Entity
-@Table(name = "tiposCursos")
+@Table(name = "tipos_cursos")
 public class TipoCurso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idTipoCurso")
+    @Column(name = "id_tipo_curso")
     private Integer idTipoCurso;
 
-    @Column(name = "estadoTipoCurso")
+    @Column(name = "estado_tipo_curso")
     private Boolean estadoTipoCurso;
 
-    @Column(name = "nombreTipoCurso")
+    @Column(name = "nombre_tipo_curso")
     private String nombreTipoCurso;
 
 }

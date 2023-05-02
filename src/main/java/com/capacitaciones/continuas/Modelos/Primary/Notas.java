@@ -14,16 +14,16 @@ public class Notas {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idNota")
+    @Column(name = "id_nota")
     private Integer idNota;
 
     @Column(name = "parcial")
     private Integer parcial;
 
-    @Column(name = "examenFinal")
+    @Column(name = "examen_final")
     private Integer examenFinal;
 
-    @Column(name = "fechaNota")
+    @Column(name = "fecha_nota")
     private LocalDate fechaNota;
 
     @Column(name = "observacion")
@@ -31,7 +31,7 @@ public class Notas {
 
     // se relacioina con el estudiante matriculado
     @ManyToOne
-    @JoinColumn(name="idParticipanteMatriculado",referencedColumnName ="idParticipanteMatriculado")
+    @JoinColumn(name="id_participante_matriculado",referencedColumnName ="id_participante_matriculado")
     private PartipantesMatriculados partipantesMatriculados;
 
 

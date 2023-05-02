@@ -14,20 +14,21 @@ public class Programas {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idPrograma")
+    @Column(name = "id_programa")
     private Integer idPrograma;
 
-    @Column(name = "nombrePrograma")
+    @Column(name = "nombre_programa")
     private String nombrePrograma;
 
-    @Column(name = "descripcionPrograma")
+    @Column(name = "descripcion_programa")
     private String descripcionPrograma;
 
-    @Column(name = "estadoProgramaActivo")
+    @Column(name = "estado_programa_activo")
     private Boolean estadoProgramaActivo;
 
-    //Relacion de uno a uno
+    // Relación de uno a uno
     @OneToOne
-    @JoinColumn(name = "idPeriodoPrograma", referencedColumnName = "idPeriodoPrograma")
+    @JoinColumn(name = "id_periodo_programa", referencedColumnName = "id_periodo_programa")
     private PeriodoPrograma periodoPrograma;
 }
+

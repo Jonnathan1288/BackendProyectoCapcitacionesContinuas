@@ -13,7 +13,7 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idUsuario")
+    @Column(name = "id_usuario")
     private Integer idUsuario;
 
     @Column(name = "username")
@@ -22,18 +22,18 @@ public class Usuario {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "fotoPerfil", columnDefinition = "LONGBLOB")
+    @Column(name = "foto_perfil", columnDefinition = "LONGBLOB")
     private String fotoPerfil;  // igamen para la base de datos
 
-    @Column(name = "estadoUsuarioActivo")
+    @Column(name = "estado_usuario_activo")
     private boolean estadoUsuarioActivo;
 
     // RELACIONES
     @ManyToOne
-    @JoinColumn(name="idPersona",referencedColumnName ="idPersona")
+    @JoinColumn(name="id_persona",referencedColumnName ="id_persona")
     private Persona persona;
 
     @ManyToOne
-    @JoinColumn(name="idRol",referencedColumnName ="idRol")
+    @JoinColumn(name="id_rol",referencedColumnName ="id_rol")
     private Rol rol;
 }

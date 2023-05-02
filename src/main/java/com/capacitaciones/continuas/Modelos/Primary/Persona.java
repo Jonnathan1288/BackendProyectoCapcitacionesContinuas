@@ -16,7 +16,7 @@ public class Persona {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idPersona")
+    @Column(name = "id_persona")
     private Integer idPersona;
 
     @Column(name = "identificacion")
@@ -34,7 +34,7 @@ public class Persona {
     @Column(name = "apellido2")
     private String apellido2;
 
-    @Column(name = "fechaNacimiento")
+    @Column(name = "fecha_nacimiento")
     private LocalDate fechaNacimiento;
 
     @Column(name = "direccion")
@@ -55,7 +55,7 @@ public class Persona {
     @Column(name = "etnia")
     private String etnia;
 
-    @Column(name = "nivelInstruccion")
+    @Column(name = "nivel_instruccion")
     private String nivelInstruccion;
 
     // REFERENCIA DE LAS RELACIONES
