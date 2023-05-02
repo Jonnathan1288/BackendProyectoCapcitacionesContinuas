@@ -15,13 +15,13 @@ public class Rol {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idRol")
+    @Column(name = "id_rol")
     private Integer idRol;
 
-    @Column(name = "nombreRol")
+    @Column(name = "nombre_rol")
     private String nombreRol;
 
-    @Column(name = "estadoRolActivo")
+    @Column(name = "estado_rol_activo")
     private Boolean estadoRolActivo;
 
     // REFERENCIA DE LAS RELACIONES

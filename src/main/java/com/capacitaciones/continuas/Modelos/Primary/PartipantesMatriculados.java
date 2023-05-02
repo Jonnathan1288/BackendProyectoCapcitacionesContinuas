@@ -13,19 +13,18 @@ public class PartipantesMatriculados { //estado en  vigencia
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idParticipanteMatriculado")
+    @Column(name = "id_participante_matriculado")
     private Integer idParticipanteMatriculado;
 
-    @Column(name = "estadoParticipanteAprobacion")
+    @Column(name = "estado_participante_aprobacion")
     private String estadoParticipanteAprobacion;
 
-    @Column(name = "estadoParticipanteActivo")
+    @Column(name = "estado_participante_activo")
     private Boolean estadoParticipanteActivo;
 
     // se referencia con matricula
-
     @ManyToOne
-    @JoinColumn(name="idInscrito",referencedColumnName ="idInscrito")
+    @JoinColumn(name="id_inscrito", referencedColumnName ="id_inscrito")
     private Inscrito inscrito;
 
     //Flata ref with participantes.. ParticipantesAprobados, Notas, asistencias

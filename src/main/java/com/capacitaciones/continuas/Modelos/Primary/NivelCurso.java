@@ -9,19 +9,17 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Entity
-@Table(name = "nivelesCursos")
+@Table(name = "niveles_cursos")
 public class NivelCurso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idNivelCurso")
+    @Column(name = "id_nivel_curso")
     private Integer idNivelCurso;
 
-    @Column(name = "estadoNivelCurso")
+    @Column(name = "estado_nivel_curso")
     private Boolean estadoNivelCurso;
 
-    @Column(name = "nombreNivelCurso")
+    @Column(name = "nombre_nivel_curso")
     private String nombreNivelCurso;
-
-
 
 }

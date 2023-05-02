@@ -8,36 +8,35 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Entity
-@Table(name = "ResultadoAprendizajeSilabo")
+@Table(name = "resultado_aprendizaje_silabo")
 public class ResultadoAprendizajeSilabo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idResultadoAprendizajeSilabo")
+    @Column(name = "id_resultado_aprendizaje_silabo")
     private Integer idResultadoAprendizajeSilabo;
 
-    @Column(name = "temaUnidadSilabo")
+    @Column(name = "tema_unidad_silabo")
     private String temaUnidadSilabo;
 
-    @Column(name = "descripcionUnidadSilabo")
+    @Column(name = "descripcion_unidad_silabo")
     private String descripcionUnidadSilabo;
 
-    @Column(name = "elementosCompetenciaSilabo")
+    @Column(name = "elementos_competencia_silabo")
     private String elementosCompetenciaSilabo;
 
-    @Column(name = "activadesResultadoAprendizaje")
+    @Column(name = "activades_resultado_aprendizaje")
     private String activadesResultadoAprendizaje;
 
-    @Column(name = "formaEvidenciar")
+    @Column(name = "forma_evidenciar")
     private String formaEvidenciar;
 
-    @Column(name = "estadoUnidadActivo")
+    @Column(name = "estado_unidad_activo")
     private Boolean estadoUnidadActivo;
 
     // RELACIONAR CON SILABO
     @ManyToOne
-    @JoinColumn(name="idSilabo",referencedColumnName ="idSilabo")
+    @JoinColumn(name = "id_silabo", referencedColumnName = "id_silabo")
     private Silabo silabo;
-
-
 }
+

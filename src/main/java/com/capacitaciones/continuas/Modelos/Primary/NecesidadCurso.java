@@ -15,28 +15,27 @@ public class NecesidadCurso {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idNecesidadCurso")
+    @Column(name = "id_necesidad_curso")
     private Integer idNecesidadCurso;
 
-    @Column(name = "estadoImpartirNecesidadCurso")
+    @Column(name = "estado_impartir_necesidad_curso")
     private String espacioImpartirNecesidadCurso;
 
-    @Column(name = "resumenCurso")
+    @Column(name = "resumen_curso")
     private String resumenCurso;
 
-    @Column(name = "poblacionDirijida")
+    @Column(name = "poblacion_dirijida")
     private String poblacionDirijida;
 
-    //Viene la llave de id curso
+//Viene la llave de id curso
 
     @ManyToOne
-    @JoinColumn(name="idCurso",referencedColumnName ="idCurso")
+    @JoinColumn(name="id_curso",referencedColumnName ="id_curso")
     private Curso curso;
-    //
+//
 
     // REFERENCIA DE LAS RELACIONES
     @JsonIgnore
-    @OneToMany(mappedBy = "necesidadCurso")
+    @OneToMany(mappedBy = "necesidad_curso")
     private List<ListaNecesidadCurso> listaNecesidadCursos;
-
 }
