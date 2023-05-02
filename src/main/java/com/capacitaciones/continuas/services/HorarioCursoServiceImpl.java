@@ -1,8 +1,8 @@
 package com.capacitaciones.continuas.services;
 
 
-import com.capacitaciones.continuas.models.HorarioCurso;
-import com.capacitaciones.continuas.repositorys.HorarioCursoRepository;
+import com.capacitaciones.continuas.Modelos.Primary.HorarioCurso;
+import com.capacitaciones.continuas.repositorys.Primarys.HorarioCursoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;

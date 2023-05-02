@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.services;
 
-import com.capacitaciones.continuas.models.InformeFinalCurso;
+import com.capacitaciones.continuas.Modelos.Primary.InformeFinalCurso;
 
 public interface InformeFinalCursoService  extends GenericService<InformeFinalCurso, Integer>{
 }

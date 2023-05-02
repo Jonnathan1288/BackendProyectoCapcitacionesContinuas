@@ -1,7 +1,7 @@
 package com.capacitaciones.continuas.services;
 
-import com.capacitaciones.continuas.models.EntornoAprendizajeCurricular;
-import com.capacitaciones.continuas.repositorys.EntornoAprendizajeCurricularRepository;
+import com.capacitaciones.continuas.Modelos.Primary.EntornoAprendizajeCurricular;
+import com.capacitaciones.continuas.repositorys.Primarys.EntornoAprendizajeCurricularRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;

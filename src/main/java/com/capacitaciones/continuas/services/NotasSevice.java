@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.services;
 
-import com.capacitaciones.continuas.models.Notas;
+import com.capacitaciones.continuas.Modelos.Primary.Notas;
 
 import java.util.List;
 

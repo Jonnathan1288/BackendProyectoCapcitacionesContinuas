@@ -1,0 +1,94 @@
+package com.capacitaciones.continuas.Modelos.Primary;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.List;
+
+@Setter
+@Getter
+@Entity
+@Table(name = "cursos")
+public class Curso {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idCurso")
+    private Integer idCurso;
+
+    @Column(name = "nombreCurso")
+    private String nombreCurso;
+
+    @Column(name = "fotoCurso",  columnDefinition = "LONGBLOB") //Foto al directorio
+    private String fotoCurso;
+
+    @Column(name = "duracionCurso")
+    private Integer duracionCurso;
+
+    @Column(name = "observacionCurso")
+    private String observacionCurso;
+
+    @Column(name = "estadoCurso")
+    private Boolean estadoCurso; // Elimina curso logico
+
+    @Column(name = "estadoAprovacionCurso")
+    private String estadoAprovacionCurso; //aprovacion del curso // N = NO NO APROVADO, A = APROVADO, P = PENDIENTE
+
+    @Column(name = "estadoPublicasionCurso")
+    private String estadoPublicasionCurso; // para el usuario V visible, O oculto, I inicio, F finalizo
+
+    @Column(name = "descripcionCurso")
+    private String descripcionCurso;
+
+    @Column(name = "objetivoGeneralesCurso")
+    private String objetivoGeneralesCurso;
+
+    @Column(name = "numeroCuposCurso")
+    private Integer numeroCuposCurso;
+
+    @Column(name = "fechaInicioCurso")
+    private LocalDate fechaInicioCurso;
+
+    @Column(name = "fechaFinalizacionCurso")
+    private LocalDate fechaFinalizacionCurso;
+
+    //Viene la lave de idprograma
+    @ManyToOne
+    @JoinColumn(name="idPrograma",referencedColumnName ="idPrograma")
+    private Programas programas;
+
+    //Viene la lave de idEspecialida
+    @ManyToOne
+    @JoinColumn(name="idEspecialidad",referencedColumnName ="idEspecialidad")
+    private Especialidad especialidad;
+
+    //Viene la lave de idCapacitador
+    @ManyToOne
+    @JoinColumn(name="idCapacitador",referencedColumnName ="idCapacitador")
+    private Capacitador capacitador;
+
+
+    //Falta todas las referencias..
+    @ManyToOne
+    @JoinColumn(name = "idModalidadCurso", referencedColumnName = "idModalidadCurso")
+    private ModalidadCurso modalidadCurso;
+
+    @ManyToOne
+    @JoinColumn(name = "idTipoCurso", referencedColumnName = "idTipoCurso")
+    private TipoCurso tipoCurso;
+
+    @ManyToOne
+    @JoinColumn(name = "idNivelCurso", referencedColumnName = "idNivelCurso")
+    private NivelCurso nivelCurso;
+
+    @ManyToOne
+    @JoinColumn(name = "idHorarioCurso", referencedColumnName = "idHorarioCurso")
+    private HorarioCurso horarioCurso;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "curso")
+    private List<PrerequisitoCurso> prerequisitoCursos;
+}

@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.services;
 
-import com.capacitaciones.continuas.models.PartipantesMatriculados;
+import com.capacitaciones.continuas.Modelos.Primary.PartipantesMatriculados;
 
 import java.util.List;
 

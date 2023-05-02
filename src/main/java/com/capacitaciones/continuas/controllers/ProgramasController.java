@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.controllers;
 
-import com.capacitaciones.continuas.models.Programas;
+import com.capacitaciones.continuas.Modelos.Primary.Programas;
 import com.capacitaciones.continuas.services.ProgramaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

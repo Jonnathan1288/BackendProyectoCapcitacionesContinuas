@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.services;
 
-import com.capacitaciones.continuas.models.MaterialAudiovisual;
+import com.capacitaciones.continuas.Modelos.Primary.MaterialAudiovisual;
 
 import java.util.List;
 

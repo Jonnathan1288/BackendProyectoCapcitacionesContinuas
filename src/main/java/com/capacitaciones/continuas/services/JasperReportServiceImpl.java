@@ -1,5 +1,6 @@
 package com.capacitaciones.continuas.services;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +17,7 @@ import java.util.Map;
 @Service
 public class JasperReportServiceImpl implements JasperReportService{
     @Autowired
+    @Qualifier("mysqlJdbcTemplate")
     private JdbcTemplate jdbcTemplate;
 
 

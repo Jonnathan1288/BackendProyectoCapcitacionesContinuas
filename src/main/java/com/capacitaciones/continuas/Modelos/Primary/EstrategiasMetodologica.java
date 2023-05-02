@@ -1,0 +1,31 @@
+package com.capacitaciones.continuas.Modelos.Primary;
+
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
+
+@Setter
+@Getter
+@Entity
+@Table(name = "estrategiasMetodologicas")
+public class EstrategiasMetodologica {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idEstrategiaMetodologica")
+    private Integer idEstrategiaMetodologica;
+
+    @Column(name = "nombreEstrategiaMetodologica")
+    private String nombreEstrategiaMetodologica;
+
+    @Column(name = "finalidadEstrategiaMetodologica")
+    private String finalidadEstrategiaMetodologica;
+
+    @Column(name = "estadoEstrategiaMetodologicaActivo")
+    private Boolean estadoEstrategiaMetodologicaActivo;
+
+    @ManyToOne
+    @JoinColumn(name="idSilabo",referencedColumnName ="idSilabo")
+    private Silabo silabo;
+
+}

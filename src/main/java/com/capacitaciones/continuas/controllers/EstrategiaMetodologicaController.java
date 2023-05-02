@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.controllers;
 
-import com.capacitaciones.continuas.models.EstrategiasMetodologica;
+import com.capacitaciones.continuas.Modelos.Primary.EstrategiasMetodologica;
 import com.capacitaciones.continuas.services.EstrategiaMetodologicaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

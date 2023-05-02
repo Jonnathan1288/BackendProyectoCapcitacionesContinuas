@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.services;
 
-import com.capacitaciones.continuas.models.ContenidoSilabo;
+import com.capacitaciones.continuas.Modelos.Primary.ContenidoSilabo;
 
 import java.util.List;
 

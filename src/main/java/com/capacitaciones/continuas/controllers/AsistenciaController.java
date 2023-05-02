@@ -1,8 +1,7 @@
 package com.capacitaciones.continuas.controllers;
 
-import com.capacitaciones.continuas.models.Asistencia;
-import com.capacitaciones.continuas.models.ParticipantesAprobados;
-import com.capacitaciones.continuas.models.PartipantesMatriculados;
+import com.capacitaciones.continuas.Modelos.Primary.Asistencia;
+import com.capacitaciones.continuas.Modelos.Primary.PartipantesMatriculados;
 import com.capacitaciones.continuas.services.AsistenciaService;
 import com.capacitaciones.continuas.services.ParticipantesMatriculadosService;
 import org.springframework.beans.factory.annotation.Autowired;

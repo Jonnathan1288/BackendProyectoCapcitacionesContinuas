@@ -1,7 +1,7 @@
 package com.capacitaciones.continuas.services;
 
 
-import com.capacitaciones.continuas.models.Especialidad;
+import com.capacitaciones.continuas.Modelos.Primary.Especialidad;
 
 import java.util.List;
 
