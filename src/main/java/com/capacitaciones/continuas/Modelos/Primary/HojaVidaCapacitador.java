@@ -31,6 +31,11 @@ public class HojaVidaCapacitador {
     @Column(name = "idiomas")
     private String idiomas;
 
+    @Column(name = "estadoAprobacion")
+    private String estadoAprobacion;
+
+    @Column(name = "documento", columnDefinition = "LONGBLOB")
+    private byte[] documento;
 
     // Relacion con capacitador
     @OneToOne
