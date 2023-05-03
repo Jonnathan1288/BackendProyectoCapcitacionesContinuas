@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.services;
 
-import com.capacitaciones.continuas.models.RegistroFotograficoCurso;
+import com.capacitaciones.continuas.Modelos.Primary.RegistroFotograficoCurso;
 
 import java.util.List;
 

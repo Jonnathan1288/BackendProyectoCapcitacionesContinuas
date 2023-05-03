@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.controllers;
 
-import com.capacitaciones.continuas.models.Persona;
+import com.capacitaciones.continuas.Modelos.Primary.Persona;
 import com.capacitaciones.continuas.services.PersonaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -56,7 +56,7 @@ public class PersonaController {
             }
             persona.setNombre1(persona.getNombre1());
             persona.setNombre2(persona.getNombre2());
-            persona.setApellido1(persona.getNombre1());
+            persona.setApellido1(persona.getApellido1());
             persona.setApellido2(persona.getApellido2());
             persona.setFechaNacimiento(persona.getFechaNacimiento());
             persona.setTelefono(persona.getTelefono());

@@ -1,7 +1,6 @@
 package com.capacitaciones.continuas.controllers;
 
-import com.capacitaciones.continuas.models.Curso;
-import com.capacitaciones.continuas.models.Inscrito;
+import com.capacitaciones.continuas.Modelos.Primary.Inscrito;
 import com.capacitaciones.continuas.services.InscritoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -56,6 +54,11 @@ public class InscritoController {
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping("/validarCursoAplicadoUsuario/findbyIdCursoAndIdUsuario/{idCurso}/{idUsuario}")
+    public boolean validarCursoAplicadoUsuario(@PathVariable Integer idCurso,@PathVariable Integer idUsuario){
+        return inscritoService.findByCursoIdCursoAndUsuarioIdUsuario(idCurso,idUsuario);
     }
 
     @PostMapping("/inscritocurso/crear")

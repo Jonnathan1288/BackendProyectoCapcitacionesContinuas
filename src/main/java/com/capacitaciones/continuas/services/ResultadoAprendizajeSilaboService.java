@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.services;
 
-import com.capacitaciones.continuas.models.ResultadoAprendizajeSilabo;
+import com.capacitaciones.continuas.Modelos.Primary.ResultadoAprendizajeSilabo;
 
 import java.util.List;
 

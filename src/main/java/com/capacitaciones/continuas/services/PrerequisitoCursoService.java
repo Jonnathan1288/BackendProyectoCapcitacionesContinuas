@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.services;
 
-import com.capacitaciones.continuas.models.PrerequisitoCurso;
+import com.capacitaciones.continuas.Modelos.Primary.PrerequisitoCurso;
 
 import java.util.List;
 

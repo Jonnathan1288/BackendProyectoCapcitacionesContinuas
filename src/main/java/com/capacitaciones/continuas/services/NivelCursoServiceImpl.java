@@ -1,8 +1,8 @@
 package com.capacitaciones.continuas.services;
 
 
-import com.capacitaciones.continuas.models.NivelCurso;
-import com.capacitaciones.continuas.repositorys.NivelCursoRepositry;
+import com.capacitaciones.continuas.Modelos.Primary.NivelCurso;
+import com.capacitaciones.continuas.repositorys.Primarys.NivelCursoRepositry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;

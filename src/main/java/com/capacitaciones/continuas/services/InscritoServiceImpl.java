@@ -1,8 +1,8 @@
 package com.capacitaciones.continuas.services;
 
 
-import com.capacitaciones.continuas.models.Inscrito;
-import com.capacitaciones.continuas.repositorys.InscritoRepository;
+import com.capacitaciones.continuas.Modelos.Primary.Inscrito;
+import com.capacitaciones.continuas.repositorys.Primarys.InscritoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
@@ -23,5 +23,14 @@ public class InscritoServiceImpl extends GenericServiceImpl<Inscrito, Integer> i
     @Override
     public List<Inscrito> findByCursoIdCurso(Integer idCurso) {
         return matriculaRepository.findByCursoIdCurso(idCurso);
+    }
+
+    @Override
+    public boolean findByCursoIdCursoAndUsuarioIdUsuario(Integer idCurso, Integer idUsuario) {
+        if (matriculaRepository.findByCursoIdCursoAndUsuarioIdUsuario(idCurso,idUsuario)!=null) {
+            return true;
+        }else {
+            return false;
+        }
     }
 }

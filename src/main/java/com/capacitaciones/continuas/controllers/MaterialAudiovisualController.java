@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.controllers;
 
-import com.capacitaciones.continuas.models.MaterialAudiovisual;
+import com.capacitaciones.continuas.Modelos.Primary.MaterialAudiovisual;
 import com.capacitaciones.continuas.services.MaterialAudiovisualService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

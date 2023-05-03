@@ -1,7 +1,7 @@
 package com.capacitaciones.continuas.services;
 
-import com.capacitaciones.continuas.models.DetalleFichaMatricula;
-import com.capacitaciones.continuas.repositorys.DetalleFichaRepository;
+import com.capacitaciones.continuas.Modelos.Primary.DetalleFichaMatricula;
+import com.capacitaciones.continuas.repositorys.Primarys.DetalleFichaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
@@ -13,5 +13,10 @@ public class DetalleFichaServiceImpl extends GenericServiceImpl<DetalleFichaMatr
     @Override
     public CrudRepository<DetalleFichaMatricula, Integer> getDao() {
         return detalleFichaRepository;
+    }
+
+    @Override
+    public DetalleFichaMatricula findByFichaMatriculaInscritoUsuario(Integer idUsuario) {
+        return detalleFichaRepository.findByFichaMatriculaInscritoUsuarioIdUsuario(idUsuario);
     }
 }

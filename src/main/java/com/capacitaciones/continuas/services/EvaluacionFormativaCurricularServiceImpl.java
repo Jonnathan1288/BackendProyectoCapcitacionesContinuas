@@ -1,7 +1,7 @@
 package com.capacitaciones.continuas.services;
 
-import com.capacitaciones.continuas.models.EvalucionFormativaCurricular;
-import com.capacitaciones.continuas.repositorys.EvaluacionFormativaCurricularRepository;
+import com.capacitaciones.continuas.Modelos.Primary.EvalucionFormativaCurricular;
+import com.capacitaciones.continuas.repositorys.Primarys.EvaluacionFormativaCurricularRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;

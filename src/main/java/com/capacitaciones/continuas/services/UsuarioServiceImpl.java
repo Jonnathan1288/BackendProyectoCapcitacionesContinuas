@@ -1,7 +1,7 @@
 package com.capacitaciones.continuas.services;
 
-import com.capacitaciones.continuas.models.Usuario;
-import com.capacitaciones.continuas.repositorys.UsuarioRepository;
+import com.capacitaciones.continuas.Modelos.Primary.Usuario;
+import com.capacitaciones.continuas.repositorys.Primarys.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;

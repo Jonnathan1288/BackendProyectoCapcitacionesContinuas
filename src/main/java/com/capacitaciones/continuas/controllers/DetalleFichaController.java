@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.controllers;
 
-import com.capacitaciones.continuas.models.DetalleFichaMatricula;
+import com.capacitaciones.continuas.Modelos.Primary.DetalleFichaMatricula;
 import com.capacitaciones.continuas.services.DetalleFichaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,6 +38,23 @@ public class DetalleFichaController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
+    @GetMapping("/detalleFichaService/findbyIdUsuario/{id}")
+    public ResponseEntity<?> getDetalleFichaServiceByIdUsuario(@PathVariable("id") Integer id){
+        try {
+            DetalleFichaMatricula df = detalleFichaService.findByFichaMatriculaInscritoUsuario(id);
+            if (df == null) {
+                return new ResponseEntity<>(false, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(df, HttpStatus.OK);
+            }
+
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
     @PostMapping("/detalleFichaService/save")
     public ResponseEntity<DetalleFichaMatricula> saveDetalleFichaService(@RequestBody DetalleFichaMatricula df){

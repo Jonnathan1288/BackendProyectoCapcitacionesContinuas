@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.controllers;
 
-import com.capacitaciones.continuas.models.Usuario;
+import com.capacitaciones.continuas.Modelos.Primary.Usuario;
 import com.capacitaciones.continuas.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

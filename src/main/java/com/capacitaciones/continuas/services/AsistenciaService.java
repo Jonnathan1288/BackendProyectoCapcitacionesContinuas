@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.services;
 
-import com.capacitaciones.continuas.models.Asistencia;
+import com.capacitaciones.continuas.Modelos.Primary.Asistencia;
 
 import java.time.LocalDate;
 import java.util.List;
