@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class EntornoAprendizajeCurricularServiceImpl extends GenericServiceImpl<EntornoAprendizajeCurricular, Integer> implements EntornoAprendizajeCurricularService {
     @Autowired
@@ -13,5 +15,10 @@ public class EntornoAprendizajeCurricularServiceImpl extends GenericServiceImpl<
     @Override
     public CrudRepository<EntornoAprendizajeCurricular, Integer> getDao() {
         return entornoAprendizajeCurricularRepository;
+    }
+
+    @Override
+    public List<EntornoAprendizajeCurricular> findByDisenioCurricularIdDisenioCurricular(Integer idCDisenioCurricular) {
+        return entornoAprendizajeCurricularRepository.findByDisenioCurricularIdDisenioCurricular(idCDisenioCurricular);
     }
 }

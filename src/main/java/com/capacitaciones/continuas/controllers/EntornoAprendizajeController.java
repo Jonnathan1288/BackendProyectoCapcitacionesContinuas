@@ -64,4 +64,20 @@ public class EntornoAprendizajeController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
+    //Metodo
+
+    @GetMapping("/entornoAprendizajeporDisenioCurricular/findbyId/{idDisenioCurricular}")
+    public ResponseEntity<?> getEntornoAprendizajePorDisenioCurricular(@PathVariable("idDisenioCurricular") Integer idDisenioCurricular){
+        try {
+            List<EntornoAprendizajeCurricular> nc = entornoAprendizajeCurricularService.findByDisenioCurricularIdDisenioCurricular(idDisenioCurricular);
+            if(nc != null){
+                return new ResponseEntity<>(nc, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("NO ENCONTRADA",HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
