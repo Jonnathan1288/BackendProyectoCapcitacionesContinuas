@@ -17,4 +17,13 @@ public class HojaVidaCapacitadorServiceImpl extends GenericServiceImpl<HojaVidaC
         return hojaVidaCapacitadorRespository;
     }
 
+    @Override
+    public HojaVidaCapacitador findHojaVidaCapacitadorByCapacitador_IdCapacitador(Integer idCapacitador) {
+        return hojaVidaCapacitadorRespository.findHojaVidaCapacitadorByCapacitador_IdCapacitador(idCapacitador);
+    }
+
+    @Override
+    public HojaVidaCapacitador findHojaVidaCapacitadorByCapacitadorUsuarioIdUsuario(Integer iDUsuario) {
+        return hojaVidaCapacitadorRespository.findHojaVidaCapacitadorByCapacitadorUsuarioIdUsuario(iDUsuario);
+    }
 }
