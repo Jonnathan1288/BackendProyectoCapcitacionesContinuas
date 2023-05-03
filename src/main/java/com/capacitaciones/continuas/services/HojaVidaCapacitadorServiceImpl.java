@@ -19,7 +19,17 @@ public class HojaVidaCapacitadorServiceImpl extends GenericServiceImpl<HojaVidaC
     }
 
 
-    public HojaVidaCapacitador guardarCV(byte[] documento, Capacitador capacitador) {
+    @Override
+    public HojaVidaCapacitador findHojaVidaCapacitadorByCapacitador_IdCapacitador(Integer idCapacitador) {
+        return hojaVidaCapacitadorRespository.findHojaVidaCapacitadorByCapacitador_IdCapacitador(idCapacitador);
+    }
+
+    @Override
+    public HojaVidaCapacitador findHojaVidaCapacitadorByCapacitadorUsuarioIdUsuario(Integer iDUsuario) {
+        return hojaVidaCapacitadorRespository.findHojaVidaCapacitadorByCapacitadorUsuarioIdUsuario(iDUsuario);
+    }
+
+  public HojaVidaCapacitador guardarCV(byte[] documento, Capacitador capacitador) {
         HojaVidaCapacitador cv = new HojaVidaCapacitador();
         cv.setCapacitador(capacitador);
         cv.setDocumento(documento);
