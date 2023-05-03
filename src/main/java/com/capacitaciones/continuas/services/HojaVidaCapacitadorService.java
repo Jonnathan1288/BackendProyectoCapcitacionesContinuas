@@ -12,6 +12,6 @@ public interface HojaVidaCapacitadorService extends GenericService<HojaVidaCapac
     public HojaVidaCapacitador guardarCV(byte[] documento, Capacitador capacitador);
 
     public boolean findByCapacitadorUsuarioIdUsuario(Integer idUsuario);
-n
+
 
 }
