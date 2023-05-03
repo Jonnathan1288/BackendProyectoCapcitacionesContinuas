@@ -14,7 +14,7 @@ public class DisenioCurricular {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idDisenioCurricular")
-    private Integer idCDisenioCurricular;
+    private Integer idDisenioCurricular;
 
     @Column(name = "temasTransversales")
     private String temasTransversales;

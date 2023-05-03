@@ -1,6 +1,7 @@
 package com.capacitaciones.continuas.controllers;
 
 import com.capacitaciones.continuas.models.EntornoAprendizajeCurricular;
+import com.capacitaciones.continuas.models.EvaluacionFinalCurricular;
 import com.capacitaciones.continuas.models.EvalucionFormativaCurricular;
 import com.capacitaciones.continuas.services.EvaluacionFormativaCurricularService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,10 +48,10 @@ public class EvaluacionFormativaCurricularController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @GetMapping("/evaluacionFormativaCurricular/findbyId/{idCDisenioCurricular}")
-    public ResponseEntity<?> getEvaluacionFormativaPorDisenioCurricular(@PathVariable("idCDisenioCurricular") Integer idCDisenioCurricular){
+    @GetMapping("/evaluacionFormativaporDisenioCurricular/findbyId/{idDisenioCurricular}")
+    public ResponseEntity<?> getEvaluacionFormativaPorDisenioCurricular(@PathVariable("idDisenioCurricular") Integer idDisenioCurricular){
         try {
-            List<EvalucionFormativaCurricular> nc = evaluacionFormativaCurricularService.findByDisenioCurricularIdDisenioCurricular(idCDisenioCurricular);
+            List<EvalucionFormativaCurricular> nc = evaluacionFormativaCurricularService.findByDisenioCurricularIdDisenioCurricular(idDisenioCurricular);
             if(nc != null){
                 return new ResponseEntity<>(nc, HttpStatus.OK);
             }
