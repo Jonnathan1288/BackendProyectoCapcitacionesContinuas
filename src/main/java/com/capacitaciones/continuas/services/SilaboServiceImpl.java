@@ -17,4 +17,18 @@ public class SilaboServiceImpl extends GenericServiceImpl<Silabo, Integer> imple
     public CrudRepository<Silabo, Integer> getDao() {
         return silaboRepository;
     }
+
+    @Override
+    public Boolean findByCursoIdCurso(Integer idCurso) {
+        if (silaboRepository.findByCursoIdCurso(idCurso)!=null) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    @Override
+    public Silabo SilabofindByCursoIdCurso(Integer idCurso) {
+        return silaboRepository.findByCursoIdCurso(idCurso);
+    }
 }

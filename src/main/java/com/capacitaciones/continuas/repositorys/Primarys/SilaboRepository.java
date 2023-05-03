@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SilaboRepository extends JpaRepository<Silabo, Integer> {
+    Silabo findByCursoIdCurso(Integer idCurso);
 }

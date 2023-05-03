@@ -40,6 +40,24 @@ public class SilaboController {
         }
     }
 
+    @GetMapping("/silabo/findbyIdCursoPorSilabo/{id}")
+    public ResponseEntity<?> SilaboFindByIdPorCurso(@PathVariable("id") Integer id){
+        try {
+            Silabo nc = silaboService.SilabofindByCursoIdCurso(id);
+            if(nc != null){
+                return new ResponseEntity<>(nc, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("SILABO NO ENCONTRADA",HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/silabo/findbyIdCurso/{idCurso}")
+    public boolean SilabofindbyIdCurso(@PathVariable("idCurso") Integer idCurso){
+        return silaboService.findByCursoIdCurso(idCurso);
+    }
+
     @PutMapping("/silabo/actualizar/{id}")
     public ResponseEntity<Silabo> actualizarSilabo(@PathVariable Integer id, @RequestBody Silabo silabo) {
         try {
