@@ -62,4 +62,18 @@ public class EvaluacionDiacnosticoCurricularController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    //Impl
+    @GetMapping("/evaluacionDiagnosticaporDisenioCurricular/findbyId/{idDisenioCurricular}")
+    public ResponseEntity<?> getEvaluacionDiagnosticaPorDisenioCurricular(@PathVariable("idDisenioCurricular") Integer idDisenioCurricular){
+        try {
+            List<EvaluacionDiagnosticaCurricular> nc = evaluacionDiacnosticaCurricularService.findByDisenioCurricularIdDisenioCurricular(idDisenioCurricular);
+            if(nc != null){
+                return new ResponseEntity<>(nc, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("NO ENCONTRADA",HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
