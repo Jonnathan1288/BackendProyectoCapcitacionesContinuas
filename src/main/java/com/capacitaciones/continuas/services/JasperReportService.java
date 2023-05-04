@@ -21,4 +21,6 @@ public interface JasperReportService {
     public void generateHojaVida(HttpServletResponse response, Integer idCapacitador);
 
 
+    public void generateCodigoAsignarCenecyt(HttpServletResponse response, Integer idCurso);
+
 }

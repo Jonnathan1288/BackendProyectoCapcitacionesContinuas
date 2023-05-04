@@ -92,4 +92,14 @@ public class ReportsController {
         }
     }
 
+    @GetMapping("/generarCodigosAsignarSenecyt/Docente/download/{idCurso}")
+    public void generarCodigosAsignarSenecyt(HttpServletResponse response, @PathVariable("idCurso") Integer idCurso) throws Exception {
+        try {
+            jasperReportService.generateCodigoAsignarCenecyt(response, idCurso);
+
+        }catch (Exception e){
+            System.out.println("Err-> "+e.getMessage());
+        }
+    }
+
 }

@@ -238,4 +238,31 @@ public class JasperReportServiceImpl implements JasperReportService{
         }
     }
 
+    @Override
+    public void generateCodigoAsignarCenecyt(HttpServletResponse response, Integer idCurso) {
+        try {
+            InputStream reportStream = this.getClass().getResourceAsStream("/Reports/ListaCodigosAsiganar.jasper");
+            Map<String, Object> params = new HashMap<>();
+            params.put("cene", "cene.png");
+            params.put("ista", "ista.jpeg");
+            params.put("idCurso", idCurso);
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(reportStream, params, jdbcTemplate.getDataSource().getConnection());
+            byte[] reportContent = JasperExportManager.exportReportToPdf(jasperPrint);
+
+            response.setContentType("application/pdf");
+
+            response.setHeader("Content-Disposition", "attachment; filename=codigoAsignarSnecyt.pdf");
+
+            response.setContentLength(reportContent.length);
+
+            OutputStream outStream = response.getOutputStream();
+            outStream.write(reportContent);
+            outStream.flush();
+            outStream.close();
+        }catch (Exception e){
+            System.out.println( "eService " + e.getMessage());
+        }
+    }
+
 }
