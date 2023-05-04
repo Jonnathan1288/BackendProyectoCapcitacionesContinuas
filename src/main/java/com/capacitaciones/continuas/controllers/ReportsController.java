@@ -44,7 +44,7 @@ public class ReportsController {
     }
 
 
-@GetMapping("/generarRegisroFotografico/downloadRegistroFotografico/{idCurso}")
+    @GetMapping("/generarRegisroFotografico/downloadRegistroFotografico/{idCurso}")
     public void downloadRegistroFotografico(HttpServletResponse response, @PathVariable("idCurso") Integer idCurso) throws Exception {
         try {
             jasperReportService.generateRegisterFotografico(response, idCurso);
@@ -63,7 +63,7 @@ public class ReportsController {
         }
     }
 
-@GetMapping("/generarRegistroAsistenciaEvaluacion/download/{idCurso}")
+    @GetMapping("/generarRegistroAsistenciaEvaluacion/download/{idCurso}")
     public void downloadRegistroAsistenciaEvaluacion(HttpServletResponse response, @PathVariable("idCurso") Integer idCurso) throws Exception {
         try {
             jasperReportService.generateRegisterAsistenciaEvaluacion(response, idCurso);
@@ -76,6 +76,16 @@ public class ReportsController {
     public void downloadRegistroParticipantes(HttpServletResponse response, @PathVariable("id_curso") Integer id_curso) throws Exception {
         try {
             jasperReportService.generateRegistroParticipantes(response, id_curso);
+
+        }catch (Exception e){
+            System.out.println("Err-> "+e.getMessage());
+        }
+    }
+
+    @GetMapping("/generarHojaVida/Docente/download/{idCapacitador}")
+    public void downloadHojaVida(HttpServletResponse response, @PathVariable("idCapacitador") Integer idCapacitador) throws Exception {
+        try {
+            jasperReportService.generateHojaVida(response, idCapacitador);
 
         }catch (Exception e){
             System.out.println("Err-> "+e.getMessage());

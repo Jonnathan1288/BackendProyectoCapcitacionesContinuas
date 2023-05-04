@@ -1,10 +1,12 @@
 package com.capacitaciones.continuas.services;
 
-import com.capacitaciones.continuas.models.EvaluacionFinalCurricular;
-import com.capacitaciones.continuas.repositorys.EvaluacionFinalCurricularRepository;
+import com.capacitaciones.continuas.Modelos.Primary.EvaluacionFinalCurricular;
+import com.capacitaciones.continuas.repositorys.Primarys.EvaluacionFinalCurricularRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class EvaluacionFinalCurricularServiceImpl extends GenericServiceImpl<EvaluacionFinalCurricular, Integer> implements EvaluacionFinalCurricularService {
@@ -13,5 +15,10 @@ public class EvaluacionFinalCurricularServiceImpl extends GenericServiceImpl<Eva
     @Override
     public CrudRepository<EvaluacionFinalCurricular, Integer> getDao() {
         return evaluacionFinalCurricularRepository;
+    }
+
+    @Override
+    public List<EvaluacionFinalCurricular> findByDisenioCurricularIdDisenioCurricular(Integer idCDisenioCurricular) {
+        return evaluacionFinalCurricularRepository.findByDisenioCurricularIdDisenioCurricular(idCDisenioCurricular);
     }
 }

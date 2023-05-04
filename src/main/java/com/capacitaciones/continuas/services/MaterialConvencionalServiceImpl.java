@@ -1,7 +1,7 @@
 package com.capacitaciones.continuas.services;
 
-import com.capacitaciones.continuas.models.MaterialConvencional;
-import com.capacitaciones.continuas.repositorys.MaterialConvencionalRepository;
+import com.capacitaciones.continuas.Modelos.Primary.MaterialConvencional;
+import com.capacitaciones.continuas.repositorys.Primarys.MaterialConvencionalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;

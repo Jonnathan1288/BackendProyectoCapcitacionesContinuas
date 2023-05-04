@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.services;
 
-import com.capacitaciones.continuas.models.EstrategiasMetodologica;
+import com.capacitaciones.continuas.Modelos.Primary.EstrategiasMetodologica;
 
 import java.util.List;
 

@@ -1,5 +1,6 @@
 package com.capacitaciones.continuas.services;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +17,7 @@ import java.util.Map;
 @Service
 public class JasperReportServiceImpl implements JasperReportService{
     @Autowired
+    @Qualifier("mysqlJdbcTemplate")
     private JdbcTemplate jdbcTemplate;
 
 
@@ -197,6 +199,33 @@ public class JasperReportServiceImpl implements JasperReportService{
             response.setContentType("application/pdf");
 
             response.setHeader("Content-Disposition", "attachment; filename=registroParticipantes.pdf");
+
+            response.setContentLength(reportContent.length);
+
+            OutputStream outStream = response.getOutputStream();
+            outStream.write(reportContent);
+            outStream.flush();
+            outStream.close();
+        }catch (Exception e){
+            System.out.println( "eService " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void generateHojaVida(HttpServletResponse response, Integer idCapacitador) {
+        try {
+            InputStream reportStream = this.getClass().getResourceAsStream("/Reports/reportHojadeVida.jasper");
+            Map<String, Object> params = new HashMap<>();
+            params.put("cene", "cene.png");
+            params.put("ista", "ista.jpeg");
+            params.put("idCapacitador", idCapacitador);
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(reportStream, params, jdbcTemplate.getDataSource().getConnection());
+            byte[] reportContent = JasperExportManager.exportReportToPdf(jasperPrint);
+
+            response.setContentType("application/pdf");
+
+            response.setHeader("Content-Disposition", "attachment; filename=HojadeVida.pdf");
 
             response.setContentLength(reportContent.length);
 

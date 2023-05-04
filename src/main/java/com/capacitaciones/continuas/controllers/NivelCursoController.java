@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.controllers;
 
-import com.capacitaciones.continuas.models.NivelCurso;
+import com.capacitaciones.continuas.Modelos.Primary.NivelCurso;
 import com.capacitaciones.continuas.services.NivelCursoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

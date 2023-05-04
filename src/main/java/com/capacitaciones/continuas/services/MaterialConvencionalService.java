@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.services;
 
-import com.capacitaciones.continuas.models.MaterialConvencional;
+import com.capacitaciones.continuas.Modelos.Primary.MaterialConvencional;
 
 import java.util.List;
 

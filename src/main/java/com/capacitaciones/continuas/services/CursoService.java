@@ -1,8 +1,7 @@
 package com.capacitaciones.continuas.services;
 
 
-import com.capacitaciones.continuas.models.Curso;
-import org.springframework.data.repository.query.Param;
+import com.capacitaciones.continuas.Modelos.Primary.Curso;
 
 import java.util.List;
 

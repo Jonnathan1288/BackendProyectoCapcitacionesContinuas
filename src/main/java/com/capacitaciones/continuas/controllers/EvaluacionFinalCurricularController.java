@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.controllers;
 
-import com.capacitaciones.continuas.models.EvaluacionFinalCurricular;
+import com.capacitaciones.continuas.Modelos.Primary.EvaluacionFinalCurricular;
 import com.capacitaciones.continuas.services.EvaluacionFinalCurricularService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -59,6 +59,20 @@ public class EvaluacionFinalCurricularController {
             evadiag.setDisenioCurricular(evadiag.getDisenioCurricular());
             EvaluacionFinalCurricular newObject = evaluacionFinalCurricularService.save(evadiag);
             return new ResponseEntity<>(newObject, HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    //Impl
+    @GetMapping("/evaluacionFinalporDisenioCurricular/findbyId/{idDisenioCurricular}")
+    public ResponseEntity<?> getEvaluacionFinalPorDisenioCurricular(@PathVariable("idDisenioCurricular") Integer idDisenioCurricular){
+        try {
+            List<EvaluacionFinalCurricular> nc = evaluacionFinalCurricularService.findByDisenioCurricularIdDisenioCurricular(idDisenioCurricular);
+            if(nc != null){
+                return new ResponseEntity<>(nc, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("NO ENCONTRADA",HttpStatus.NOT_FOUND);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

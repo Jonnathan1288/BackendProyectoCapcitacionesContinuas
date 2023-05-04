@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.services;
 
-import com.capacitaciones.continuas.models.Inscrito;
+import com.capacitaciones.continuas.Modelos.Primary.Inscrito;
 
 import java.util.List;
 
