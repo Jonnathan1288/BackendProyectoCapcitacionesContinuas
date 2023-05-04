@@ -18,5 +18,7 @@ public interface JasperReportService {
 
     public void generateRegistroParticipantes(HttpServletResponse response, Integer idCurso);
 
+    public void generateHojaVida(HttpServletResponse response, Integer idCapacitador);
+
 
 }
