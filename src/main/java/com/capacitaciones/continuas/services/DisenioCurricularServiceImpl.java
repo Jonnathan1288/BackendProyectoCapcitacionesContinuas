@@ -14,4 +14,18 @@ public class DisenioCurricularServiceImpl extends GenericServiceImpl<DisenioCurr
     public CrudRepository<DisenioCurricular, Integer> getDao() {
         return disenioCurricularRepository;
     }
+
+    @Override
+    public Boolean findBySilaboIdSilabo(Integer idSilabo) {
+        if (disenioCurricularRepository.findBySilaboIdSilabo(idSilabo)!=null) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    @Override
+    public DisenioCurricular DisenioCurricularfindBySilaboIdSilabo(Integer idSilabo) {
+        return disenioCurricularRepository.findBySilaboIdSilabo(idSilabo);
+    }
 }
