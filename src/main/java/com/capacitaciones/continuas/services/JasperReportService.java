@@ -24,4 +24,6 @@ public interface JasperReportService {
     public void generatepRrogramacionMensual(HttpServletResponse response, Integer mes, Integer anio);
 
 
+    public void generateCodigoAsignarCenecyt(HttpServletResponse response, Integer idCurso);
+
 }

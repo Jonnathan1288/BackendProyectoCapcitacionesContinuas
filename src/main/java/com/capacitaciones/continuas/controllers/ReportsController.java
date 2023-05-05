@@ -92,7 +92,7 @@ public class ReportsController {
         }
     }
 
-    @GetMapping("/entregaCertificadosCursoCapacitacion/download/{idCurso}")
+@GetMapping("/entregaCertificadosCursoCapacitacion/download/{idCurso}")
     public void downloadEntregaCertificadosCursoCpacitacion(HttpServletResponse response, @PathVariable("idCurso") Integer idCurso) throws Exception {
         try {
             jasperReportService.generateEntregaCertificadoCursoCapacitacion(response, idCurso);
@@ -111,5 +111,16 @@ public class ReportsController {
             System.out.println("Err-> "+e.getMessage());
         }
     }
+
+    @GetMapping("/generarCodigosAsignarSenecyt/Docente/download/{idCurso}")
+    public void generarCodigosAsignarSenecyt(HttpServletResponse response, @PathVariable("idCurso") Integer idCurso) throws Exception {
+        try {
+            jasperReportService.generateCodigoAsignarCenecyt(response, idCurso);
+
+        }catch (Exception e){
+            System.out.println("Err-> "+e.getMessage());
+        }
+    }
+
 
 }
