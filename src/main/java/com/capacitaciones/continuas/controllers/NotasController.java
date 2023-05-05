@@ -39,6 +39,11 @@ public class NotasController {
         }
     }
 
+    @GetMapping("/validarExistenciNotas/findbyIdCurso/{id}")
+    public boolean validarExistenciNotas(@PathVariable("id") Integer id){
+        return notasSevice.validarExistenciaDeRegistroNotas(id);
+    }
+
     @GetMapping("/notas/findbyIdMatriculado/{idCurso}")
     public ResponseEntity<?> getNotasfindbyIdMatriculado(@PathVariable("idCurso") Integer idCurso){
         try {

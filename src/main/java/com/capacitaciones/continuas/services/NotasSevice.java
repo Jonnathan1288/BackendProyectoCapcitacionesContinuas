@@ -10,4 +10,6 @@ public interface NotasSevice extends GenericService<Notas, Integer>{
 
     List<Notas> findByPartipantesMatriculadosIdParticipanteMatriculado(Integer idParticipantesFinales);
 
+    Boolean validarExistenciaDeRegistroNotas(Integer idCurso);
+
 }
