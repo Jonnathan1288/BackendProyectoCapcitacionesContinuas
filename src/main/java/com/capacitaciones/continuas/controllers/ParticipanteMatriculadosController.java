@@ -67,6 +67,7 @@ public class ParticipanteMatriculadosController {
                 try {
                     Curso curso = cursoService.findById(idCurso);
                     curso.setIniciocurso(true);
+                    curso.setEstadoPublicasionCurso("I");
                     cursoService.save(curso);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
