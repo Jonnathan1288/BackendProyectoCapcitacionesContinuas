@@ -59,7 +59,7 @@ public class AsistenciaController {
         LocalDate fecha = LocalDate.now();
         try {
 
-            if(asistenciaService.findByFechaAsistencia(fecha) ){
+            if(asistenciaService.existsByPartipantesMatriculadosInscritoCursoIdCursoAndFechaAsistencia(1,fecha) ){
                 return new ResponseEntity<>("encuentro"+fecha, HttpStatus.OK);
             }
             return new ResponseEntity<>("no fecha"+fecha,HttpStatus.NOT_FOUND);
@@ -74,7 +74,8 @@ public class AsistenciaController {
         LocalDate fecha = LocalDate.now();
         //LocalDate fechaPrueba = LocalDate.parse("2023-04-30");
         try {
-            if(asistenciaService.findByFechaAsistencia(fecha) ){
+            //if(asistenciaService.findByFechaAsistencia(fecha) ){
+            if(asistenciaService.existsByPartipantesMatriculadosInscritoCursoIdCursoAndFechaAsistencia(idCurso, fecha)){
                 return new ResponseEntity<>(asistenciaService.findByPartipantesMatriculadosInscritoCursoIdCursoAndFechaAsistencia(idCurso,fecha), HttpStatus.OK);
             }else{
                 List<PartipantesMatriculados> partipantesMatriculadosList = participantesMatriculadosService.findByInscritoCursoIdCurso(idCurso);

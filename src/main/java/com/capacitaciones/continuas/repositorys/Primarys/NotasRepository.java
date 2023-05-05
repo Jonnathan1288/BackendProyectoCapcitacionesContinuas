@@ -12,4 +12,6 @@ public interface NotasRepository extends JpaRepository<Notas, Integer> {
 
     List<Notas> findByPartipantesMatriculadosIdParticipanteMatriculado(Integer idParticipantesFinales);
 
+    //public boolean
+
 }
