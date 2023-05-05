@@ -18,9 +18,14 @@ public class AsistenciaServiceImpl extends GenericServiceImpl<Asistencia, Intege
         return asistenciaRepository;
     }
 
-    @Override
+    /*@Override
     public Boolean findByFechaAsistencia(LocalDate fecha) {
         return asistenciaRepository.existsByFechaAsistencia(fecha);
+    }*/
+
+    @Override
+    public Boolean existsByPartipantesMatriculadosInscritoCursoIdCursoAndFechaAsistencia(Integer idCurso, LocalDate fecha) {
+        return asistenciaRepository.existsByPartipantesMatriculadosInscritoCursoIdCursoAndFechaAsistencia(idCurso, fecha);
     }
 
     @Override

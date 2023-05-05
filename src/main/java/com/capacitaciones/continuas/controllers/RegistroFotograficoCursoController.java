@@ -30,7 +30,8 @@ public class RegistroFotograficoCursoController {
     @PostMapping("/registroFotograficoCurso/crear")
     public ResponseEntity<RegistroFotograficoCurso> crear(@RequestBody RegistroFotograficoCurso c) {
         try {
-        return new ResponseEntity<>(registroFotograficoCursoService.save(c), HttpStatus.CREATED);
+            c.setEstado(true);
+            return new ResponseEntity<>(registroFotograficoCursoService.save(c), HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -71,6 +72,7 @@ public class RegistroFotograficoCursoController {
             registroFotograficoCurso.setFoto(registroFotograficoCurso.getFoto());
             registroFotograficoCurso.setDescripcionFoto(registroFotograficoCurso.getDescripcionFoto());
             registroFotograficoCurso.setFecha(registroFotograficoCurso.getFecha());
+            registroFotograficoCurso.setEstado(registroFotograficoCurso.getEstado());
             return new ResponseEntity<>(registroFotograficoCursoService.save(registroFotograficoCurso), HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

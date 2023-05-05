@@ -25,6 +25,9 @@ public class RegistroFotograficoCurso {
     @Column(name = "fecha")
     private LocalDate fecha;
 
+    @Column(name = "estado")
+    private Boolean estado;
+
     //viene la llave de id curso
 
     @ManyToOne
