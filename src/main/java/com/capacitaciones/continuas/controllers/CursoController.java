@@ -77,6 +77,7 @@ public class CursoController {
             curso.setEstadoAprovacionCurso("P");
             curso.setEstadoPublicasionCurso("O");
             curso.setEstadoCurso(true);
+            curso.setIniciocurso(false);
             return new ResponseEntity<>(cursoService.save(curso), HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -106,6 +107,7 @@ public class CursoController {
             curso.setTipoCurso(curso.getTipoCurso());
             curso.setNivelCurso(curso.getNivelCurso());
             curso.setHorarioCurso(curso.getHorarioCurso());
+            curso.setIniciocurso(curso.getIniciocurso());
 
             Curso c = cursoService.save(curso);
             return new ResponseEntity<>(c, HttpStatus.CREATED);

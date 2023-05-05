@@ -58,6 +58,7 @@ public class EntornoAprendizajeController {
             enapc.setFaseTeorica(enapc.getFaseTeorica());
             enapc.setFasePractica(enapc.getFasePractica());
             enapc.setDisenioCurricular(enapc.getDisenioCurricular());
+            enapc.setEstadoEntornoAprendizaje(enapc.getEstadoEntornoAprendizaje());
             EntornoAprendizajeCurricular newObject = entornoAprendizajeCurricularService.save(enapc);
             return new ResponseEntity<>(newObject, HttpStatus.CREATED);
         }catch (Exception e){

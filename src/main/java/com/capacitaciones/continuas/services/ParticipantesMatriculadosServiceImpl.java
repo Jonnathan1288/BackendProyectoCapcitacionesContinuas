@@ -23,4 +23,9 @@ public class ParticipantesMatriculadosServiceImpl extends GenericServiceImpl<Par
     public List<PartipantesMatriculados> findByInscritoCursoIdCurso(Integer idCurso) {
         return participantesMatriculadosRepository.findByInscritoCursoIdCurso(idCurso);
     }
+
+    @Override
+    public boolean existsByInscritoCursoIdCurso(Integer idCurso) {
+        return participantesMatriculadosRepository.existsByInscritoCursoIdCurso(idCurso);
+    }
 }

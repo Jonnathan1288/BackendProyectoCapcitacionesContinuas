@@ -237,8 +237,63 @@ public class JasperReportServiceImpl implements JasperReportService{
             System.out.println( "eService " + e.getMessage());
         }
     }
+    
+    @Override
+    public void generateEntregaCertificadoCursoCapacitacion(HttpServletResponse response, Integer idcurso) {
+        try {
+            InputStream reportStream = this.getClass().getResourceAsStream("/Reports/registroentregaCertificado.jasper");
+            Map<String, Object> params = new HashMap<>();
+            params.put("cene", "cene.png");
+            params.put("istaf", "ista.jpeg");
+            params.put("idCurso", idcurso);
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(reportStream, params, jdbcTemplate.getDataSource().getConnection());
+            byte[] reportContent = JasperExportManager.exportReportToPdf(jasperPrint);
+
+            response.setContentType("application/pdf");
+
+            response.setHeader("Content-Disposition", "attachment; filename=EntregaCertificadoCurso.pdf");
+
+            response.setContentLength(reportContent.length);
+
+            OutputStream outStream = response.getOutputStream();
+            outStream.write(reportContent);
+            outStream.flush();
+            outStream.close();
+        }catch (Exception e){
+            System.out.println( "eService " + e.getMessage());
+        }
+    }
 
     @Override
+    public void generatepRrogramacionMensual(HttpServletResponse response, Integer mes, Integer anio) {
+        try {
+            InputStream reportStream = this.getClass().getResourceAsStream("/Reports/ProgramacionMensual.jasper");
+            Map<String, Object> params = new HashMap<>();
+            params.put("cene", "cenep.png");
+            params.put("ista", "ista.jpeg");
+            params.put("mes", mes);
+            params.put("year", anio);
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(reportStream, params, jdbcTemplate.getDataSource().getConnection());
+            byte[] reportContent = JasperExportManager.exportReportToPdf(jasperPrint);
+
+            response.setContentType("application/pdf");
+
+            response.setHeader("Content-Disposition", "attachment; filename=ProgramacionMensual.pdf");
+
+            response.setContentLength(reportContent.length);
+
+            OutputStream outStream = response.getOutputStream();
+            outStream.write(reportContent);
+            outStream.flush();
+            outStream.close();
+        }catch (Exception e){
+            System.out.println( "eService " + e.getMessage());
+        }
+    }
+  
+      @Override
     public void generateCodigoAsignarCenecyt(HttpServletResponse response, Integer idCurso) {
         try {
             InputStream reportStream = this.getClass().getResourceAsStream("/Reports/ListaCodigosAsiganar.jasper");

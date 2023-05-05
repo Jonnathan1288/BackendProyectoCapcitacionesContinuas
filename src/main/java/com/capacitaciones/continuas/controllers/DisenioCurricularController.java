@@ -63,4 +63,24 @@ public class DisenioCurricularController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
+    //Implementacion de nuevos metodos
+    @GetMapping("/disenioCurricular/findbyIdSilaboPorDisenioCurricular/{id}")
+    public ResponseEntity<?> DisenioCurricularFindByIdPorSilabo(@PathVariable("id") Integer id){
+        try {
+            DisenioCurricular nc = disenioCurricularService.DisenioCurricularfindBySilaboIdSilabo(id);
+            if(nc != null){
+                return new ResponseEntity<>(nc, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("DISEÑO CURRICULAR NO ENCONTRADA",HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/disenioCurricular/findbyIdSilabo/{idSilabo}")
+    public boolean DisenioCurricularfindbyIdSilabo(@PathVariable("idSilabo") Integer idSilabo){
+        return disenioCurricularService.findBySilaboIdSilabo(idSilabo);
+    }
 }
