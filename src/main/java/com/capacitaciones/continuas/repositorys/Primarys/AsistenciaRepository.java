@@ -9,7 +9,9 @@ import java.util.List;
 
 @Repository
 public interface AsistenciaRepository extends JpaRepository<Asistencia, Integer> {
-    public Boolean existsByFechaAsistencia(LocalDate fecha);
+    //public Boolean existsByFechaAsistencia(LocalDate fecha); //
+
+    public Boolean existsByPartipantesMatriculadosInscritoCursoIdCursoAndFechaAsistencia(Integer idCurso,LocalDate fecha);
 
     public List<Asistencia> findByPartipantesMatriculadosInscritoCursoIdCursoAndFechaAsistencia(Integer idCurso, LocalDate fecha);
 

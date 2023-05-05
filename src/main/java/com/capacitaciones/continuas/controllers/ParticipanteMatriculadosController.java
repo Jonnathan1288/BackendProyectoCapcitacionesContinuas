@@ -1,10 +1,14 @@
 package com.capacitaciones.continuas.controllers;
 
+import com.capacitaciones.continuas.Modelos.Primary.Curso;
 import com.capacitaciones.continuas.Modelos.Primary.Inscrito;
 import com.capacitaciones.continuas.Modelos.Primary.PartipantesMatriculados;
+import com.capacitaciones.continuas.services.CursoService;
 import com.capacitaciones.continuas.services.InscritoService;
 import com.capacitaciones.continuas.services.ParticipantesMatriculadosService;
+import org.apache.tools.ant.taskdefs.condition.Http;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +25,9 @@ public class ParticipanteMatriculadosController {
 
     @Autowired
     private InscritoService inscritoService;
+
+    @Autowired
+    private CursoService cursoService;
 
     @GetMapping("/participantesMatriculados/listar")
     public ResponseEntity<List<PartipantesMatriculados>> obtenerLista() {
@@ -44,17 +51,28 @@ public class ParticipanteMatriculadosController {
     @GetMapping("/participantesMatriculados/aceptarInicioCurso/{idCurso}")
     public ResponseEntity<?> agregarAlCursoLosParticipantesMatriculadosCapacitador(@PathVariable("idCurso") Integer idCurso){
         try {
-            List<Inscrito> inscritoList = inscritoService.findByCursoIdCurso(idCurso);
-            for (Inscrito inscrito : inscritoList){
-                if(inscrito.getEstadoInscrito() == true){
-                    PartipantesMatriculados partipantesMatriculados = new PartipantesMatriculados();
-                    partipantesMatriculados.setInscrito(inscrito);
-                    partipantesMatriculados.setEstadoParticipanteActivo(true);
-                    partipantesMatriculados.setEstadoParticipanteAprobacion("D");
-                    participantesMatriculadosService.save(partipantesMatriculados);
+            if(participantesMatriculadosService.existsByInscritoCursoIdCurso(idCurso)){
+                return new ResponseEntity<>(HttpStatus.CONFLICT);
+            }else {
+                List<Inscrito> inscritoList = inscritoService.findByCursoIdCurso(idCurso);
+                for (Inscrito inscrito : inscritoList) {
+                    if (inscrito.getEstadoInscrito() == true) {
+                        PartipantesMatriculados partipantesMatriculados = new PartipantesMatriculados();
+                        partipantesMatriculados.setInscrito(inscrito);
+                        partipantesMatriculados.setEstadoParticipanteActivo(true);
+                        partipantesMatriculados.setEstadoParticipanteAprobacion("D");
+                        participantesMatriculadosService.save(partipantesMatriculados);
+                    }
                 }
+                try {
+                    Curso curso = cursoService.findById(idCurso);
+                    curso.setIniciocurso(true);
+                    cursoService.save(curso);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+                return new ResponseEntity<>(inscritoList, HttpStatus.OK);
             }
-            return new ResponseEntity<>(inscritoList, HttpStatus.OK);
         }catch (Exception e){
            return new ResponseEntity<>("Err"+e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
