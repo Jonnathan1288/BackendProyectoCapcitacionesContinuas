@@ -34,8 +34,8 @@ public class Curso {
     @Column(name = "estado_curso")
     private Boolean estadoCurso; // Elimina curso logico
 
-    @Column(name = "iniciocurso")
-    private Boolean iniciocurso; // Cuando el curos ya inicia, hacer que se valide
+    //@Column(name = "iniciocurso")
+   // private Boolean iniciocurso; // Cuando el curos ya inicia, hacer que se valide
 
     @Column(name = "estado_aprovacion_curso")
     private String estadoAprovacionCurso; //aprovacion del curso // N = NO NO APROVADO, A = APROVADO, P = PENDIENTE
@@ -57,6 +57,9 @@ public class Curso {
 
     @Column(name = "fecha_finalizacion_curso")
     private LocalDate fechaFinalizacionCurso;
+
+    @Column(name = "curso_occ")
+    private String cursoocc;
 
     //Viene la lave de idprograma
     @ManyToOne
@@ -94,4 +97,11 @@ public class Curso {
     @JsonIgnore
     @OneToMany(mappedBy = "curso")
     private List<PrerequisitoCurso> prerequisitoCursos;
+
+
+    //Id de la parroquia
+    @ManyToOne
+    @JoinColumn(name = "id_provincia", referencedColumnName = "id_provincia")
+    private Parroquia parroquia;
+
 }
