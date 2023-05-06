@@ -67,4 +67,18 @@ public class InformeFinalCursoController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/informeFinalCurso/findbyIdCurso/{id}")
+    public ResponseEntity<?> getInformeFinalCursoByIdCurso(@PathVariable("id") Integer id){
+        try {
+            InformeFinalCurso info = informeFinalCursoService.findByCursoIdCurso(id);
+            if(info != null){
+                return new ResponseEntity<>(info, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("INFORM NOT FOUND",HttpStatus.NOT_FOUND);
+
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
