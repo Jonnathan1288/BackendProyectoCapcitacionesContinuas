@@ -101,7 +101,7 @@ public class Curso {
 
     //Id de la parroquia
     @ManyToOne
-    @JoinColumn(name = "id_provincia", referencedColumnName = "id_provincia")
+    @JoinColumn(name = "id_parroquia", referencedColumnName = "id_parroquia")
     private Parroquia parroquia;
 
 }
