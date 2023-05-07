@@ -39,6 +39,12 @@ public class HojaVidaCapacitadorServiceImpl extends GenericServiceImpl<HojaVidaC
     }
 
     @Override
+    public HojaVidaCapacitador updateCVCapacitador(byte[] documento, HojaVidaCapacitador hojaVidaCapacitador) {
+        hojaVidaCapacitador.setDocumento(documento);
+        return hojaVidaCapacitadorRespository.save(hojaVidaCapacitador);
+    }
+
+    @Override
     public boolean findByCapacitadorUsuarioIdUsuario(Integer idUsuario) {
         if (hojaVidaCapacitadorRespository.findByCapacitadorUsuarioIdUsuario(idUsuario) == null) {
             return false;
