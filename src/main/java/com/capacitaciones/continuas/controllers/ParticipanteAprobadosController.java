@@ -1,12 +1,15 @@
 package com.capacitaciones.continuas.controllers;
 
 import com.capacitaciones.continuas.Modelos.Primary.ParticipantesAprobados;
+import com.capacitaciones.continuas.Modelos.Primary.PartipantesMatriculados;
 import com.capacitaciones.continuas.services.ParticipantesAprobadosService;
+import com.capacitaciones.continuas.services.ParticipantesMatriculadosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -15,7 +18,10 @@ import java.util.List;
 public class ParticipanteAprobadosController {
 
     @Autowired
-    ParticipantesAprobadosService participantesAprobadosService;
+    private ParticipantesAprobadosService participantesAprobadosService;
+
+    @Autowired
+    private ParticipantesMatriculadosService participantesMatriculadosService;
 
     @GetMapping("/participantesAprobados/listar")
     public ResponseEntity<List<ParticipantesAprobados>> obtenerLista() {
@@ -29,7 +35,7 @@ public class ParticipanteAprobadosController {
     @PostMapping("/participantesAprobados/crear")
     public ResponseEntity<ParticipantesAprobados> crear(@RequestBody ParticipantesAprobados c) {
         try {
-        return new ResponseEntity<>(participantesAprobadosService.save(c), HttpStatus.CREATED);
+            return new ResponseEntity<>(participantesAprobadosService.save(c), HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -60,4 +66,76 @@ public class ParticipanteAprobadosController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/participantesAprobados/findbyIdCurso/{id}")
+    public ResponseEntity<List<ParticipantesAprobados>> getParticipantesAprobadosByIdCurso(@PathVariable("id") Integer id){
+        try {
+            List<ParticipantesAprobados> nc = participantesAprobadosService.findByPartipantesMatriculadosInscritoCursoIdCurso(id);
+            if(nc != null){
+                return new ResponseEntity<>(nc, HttpStatus.OK);
+            }
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/existparticipantesAprobados/findbyIdCurso/{id}")
+    public Boolean getParticipan(@PathVariable("id") Integer id){
+       return participantesAprobadosService.existsByPartipantesMatriculadosInscritoCursoIdCurso(id);
+    }
+
+    //Metodo de guardadoFinal
+
+    @GetMapping("/participantesAprobados/save/findbyIdCurso/{id}")
+    public ResponseEntity<List<ParticipantesAprobados>> getParticipantesAprobadosByIdCursoSave(@PathVariable("id") Integer id){
+        try {
+           if(participantesAprobadosService.existsByPartipantesMatriculadosInscritoCursoIdCurso(id)){
+               try {
+                   List<ParticipantesAprobados> participantesAprobadosList = participantesAprobadosService.findByPartipantesMatriculadosInscritoCursoIdCurso(id);
+                   return new ResponseEntity<>(participantesAprobadosList, HttpStatus.OK);
+               }catch (Exception e){
+                   return  new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+               }
+           }else{
+               List<PartipantesMatriculados> matriculadosList = participantesMatriculadosService.findByInscritoCursoIdCurso(id);
+               matriculadosList.stream().forEach(pm ->{
+                   if(pm.getEstadoParticipanteAprobacion().equals("A")){
+                       ParticipantesAprobados participantesAprobados = new ParticipantesAprobados();
+                       participantesAprobados.setPartipantesMatriculados(pm);
+                       participantesAprobados.setCodigoSenecyt("");
+                       participantesAprobadosService.save(participantesAprobados);
+                   }
+               });
+               return new ResponseEntity<>(HttpStatus.OK);
+           }
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+
+    //UPDATE UNA CARAGA
+    @PutMapping("/participantesAprobados/actualizar/lista")
+    public ResponseEntity<List<ParticipantesAprobados>> actualizarParticipantesAprobadosLista(@RequestBody List<ParticipantesAprobados> participantesAprobados) {
+        try {
+            List<ParticipantesAprobados> participantesActualizados = new ArrayList<>();
+
+            for (ParticipantesAprobados participante : participantesAprobados) {
+                ParticipantesAprobados participanteExistente = participantesAprobadosService.findById(participante.getIdParticipantesAprobados());
+
+                if (participanteExistente == null) {
+                    return ResponseEntity.notFound().build();
+                }
+                participanteExistente.setCodigoSenecyt(participante.getCodigoSenecyt());
+                participantesActualizados.add(participantesAprobadosService.save(participanteExistente));
+            }
+
+            return ResponseEntity.ok(participantesActualizados);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }
