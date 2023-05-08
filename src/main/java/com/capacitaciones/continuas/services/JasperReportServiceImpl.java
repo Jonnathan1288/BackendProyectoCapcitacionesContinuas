@@ -320,4 +320,38 @@ public class JasperReportServiceImpl implements JasperReportService{
         }
     }
 
+    @Override
+    public void generateCertificadoEstudiante(HttpServletResponse response, Integer idCurso, String identificasion) {
+        try {
+            InputStream reportStream = this.getClass().getResourceAsStream("/Reports/Certificado.jasper");
+            Map<String, Object> params = new HashMap<>();
+            params.put("g", "g.png");
+            params.put("is", "is.jpg");
+            params.put("l", "l.png");
+            params.put("r", "r.png");
+            params.put("s", "s.png");
+            params.put("ti", "ti.png");
+            params.put("ts", "ts.png");
+            params.put("idCurso", idCurso);
+            params.put("ci", identificasion);
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(reportStream, params, jdbcTemplate.getDataSource().getConnection());
+            byte[] reportContent = JasperExportManager.exportReportToPdf(jasperPrint);
+
+            response.setContentType("application/pdf");
+
+            response.setHeader("Content-Disposition", "attachment; filename=" + "Certificado"+identificasion + ".pdf");
+            //response.setHeader("Content-Disposition", "attachment; filename=Certificado.pdf");
+
+            response.setContentLength(reportContent.length);
+
+            OutputStream outStream = response.getOutputStream();
+            outStream.write(reportContent);
+            outStream.flush();
+            outStream.close();
+        }catch (Exception e){
+            System.out.println( "eService " + e.getMessage());
+        }
+    }
+
 }
