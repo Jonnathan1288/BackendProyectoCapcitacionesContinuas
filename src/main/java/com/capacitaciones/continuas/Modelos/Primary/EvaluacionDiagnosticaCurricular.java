@@ -22,6 +22,10 @@ public class EvaluacionDiagnosticaCurricular {
     @Column(name = "instrumneto_evaluar")
     private String instrumnetoEvaluar;
 
+    //NUEVO ATRIBUTO
+    @Column(name = "estadoEvaluacionDiagnostica")
+    private Boolean estadoEvaluacionDiagnostica;
+
     // se relaciona con mecanismo
     @ManyToOne
     @JoinColumn(name="id_disenio_curricular",referencedColumnName ="id_disenio_curricular")

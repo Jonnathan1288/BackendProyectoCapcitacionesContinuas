@@ -23,6 +23,10 @@ public class EvalucionFormativaCurricular {
     @Column(name = "instrumneto_formativa")
     private String instrumnetoFormativa;
 
+    @Column(name = "estadoEvaluacionFormativa")
+    private Boolean estadoEvaluacionFormativa;
+
+
     // se relaciona con mecanismo
     @ManyToOne
     @JoinColumn(name="id_disenio_curricular",referencedColumnName ="id_disenio_curricular")
