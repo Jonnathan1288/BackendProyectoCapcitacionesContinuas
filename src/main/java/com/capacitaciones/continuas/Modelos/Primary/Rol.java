@@ -25,7 +25,7 @@ public class Rol {
     private Boolean estadoRolActivo;
 
     // REFERENCIA DE LAS RELACIONES
-    @JsonIgnore
+   /* @JsonIgnore
     @OneToMany(mappedBy = "rol")
-    private List<Usuario> usuario;
+    private List<Usuario> usuario;*/
 }

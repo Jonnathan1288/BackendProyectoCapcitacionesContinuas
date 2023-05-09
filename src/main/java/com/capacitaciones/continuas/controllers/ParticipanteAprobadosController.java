@@ -128,7 +128,18 @@ public class ParticipanteAprobadosController {
                 if (participanteExistente == null) {
                     return ResponseEntity.notFound().build();
                 }
+                try {
+                    if(participante.getCertificadoParticipante() == null){
+                        participante.setCertificadoFirmado(false);
+                    }else{
+                        participante.setCertificadoFirmado(true);
+                    }
+                }catch (Exception e){
+                    System.out.println("Exeption status"+e.getMessage());
+                }
                 participanteExistente.setCodigoSenecyt(participante.getCodigoSenecyt());
+                participanteExistente.setCertificadoParticipante(participante.getCertificadoParticipante());
+                participanteExistente.setCertificadoFirmado(participante.getCertificadoFirmado());
                 participantesActualizados.add(participantesAprobadosService.save(participanteExistente));
             }
 
