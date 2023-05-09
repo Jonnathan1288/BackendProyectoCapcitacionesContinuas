@@ -354,4 +354,57 @@ public class JasperReportServiceImpl implements JasperReportService{
         }
     }
 
+
+    @Override
+    public void generateDisenioC(HttpServletResponse response, Integer idDisenioCurricular) {
+        try {
+            InputStream reportStream = this.getClass().getResourceAsStream("/Reports/DiseñoC.jasper");
+            Map<String, Object> params = new HashMap<>();
+            params.put("senescyt", "senescyt.png");
+            params.put("idDisenioCPrimary", idDisenioCurricular);
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(reportStream, params, jdbcTemplate.getDataSource().getConnection());
+            byte[] reportContent = JasperExportManager.exportReportToPdf(jasperPrint);
+
+            response.setContentType("application/pdf");
+
+            response.setHeader("Content-Disposition", "attachment; filename=DiseñoCurricularReport.pdf");
+
+            response.setContentLength(reportContent.length);
+
+            OutputStream outStream = response.getOutputStream();
+            outStream.write(reportContent);
+            outStream.flush();
+            outStream.close();
+        }catch (Exception e){
+            System.out.println( "eService " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void generateFichaEvaluacionFinal(HttpServletResponse response, Integer idCurso) {
+        try {
+            InputStream reportStream = this.getClass().getResourceAsStream("/Reports/fichaevaluacionCurso.jasper");
+            Map<String, Object> params = new HashMap<>();
+            params.put("ista", "is.jpg");
+            params.put("idCurso", idCurso);
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(reportStream, params, jdbcTemplate.getDataSource().getConnection());
+            byte[] reportContent = JasperExportManager.exportReportToPdf(jasperPrint);
+
+            response.setContentType("application/pdf");
+
+            response.setHeader("Content-Disposition", "attachment; filename=FichaEvaluacionFinal.pdf");
+
+            response.setContentLength(reportContent.length);
+
+            OutputStream outStream = response.getOutputStream();
+            outStream.write(reportContent);
+            outStream.flush();
+            outStream.close();
+        }catch (Exception e){
+            System.out.println( "eService " + e.getMessage());
+        }
+    }
+
 }
