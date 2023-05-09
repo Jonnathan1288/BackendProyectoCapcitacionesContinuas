@@ -4,6 +4,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -33,7 +37,19 @@ public class Usuario {
     @JoinColumn(name="id_persona",referencedColumnName ="id_persona")
     private Persona persona;
 
-    @ManyToOne
+    /*@ManyToOne
     @JoinColumn(name="id_rol",referencedColumnName ="id_rol")
-    private Rol rol;
+    private Rol rol;*/
+
+
+
+    //RELACION DE MUCHOS A MUCHOS
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "id_usuario"),
+            inverseJoinColumns = @JoinColumn(name = "id_rol")
+    )
+    private List<Rol> roles;
 }
