@@ -42,6 +42,21 @@ public class InscritoController {
         }
     }
 
+    @GetMapping("/usuarioInscrito/findbyIdUsuario/{id}")
+    public ResponseEntity<?> usuarioInscritoByIdUsuario(@PathVariable("id") Integer id){
+        try {
+            Inscrito dc = inscritoService.findByUsuarioIdUsuario(id);
+            if(dc != null){
+                return new ResponseEntity<>(dc, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("inscritocurso NO ENCONTRADA",HttpStatus.NOT_FOUND);
+
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
     @GetMapping("/inscritocursoPorCurso/findbyIdCurso/{id}")
     public ResponseEntity<?> getInformeFinalCursoByIdCurso(@PathVariable("id") Integer id){
         try {
@@ -55,6 +70,8 @@ public class InscritoController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
 
     @GetMapping("/validarCursoAplicadoUsuario/findbyIdCursoAndIdUsuario/{idCurso}/{idUsuario}")
     public boolean validarCursoAplicadoUsuario(@PathVariable Integer idCurso,@PathVariable Integer idUsuario){
