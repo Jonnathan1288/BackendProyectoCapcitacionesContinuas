@@ -28,4 +28,9 @@ public class DisenioCurricularServiceImpl extends GenericServiceImpl<DisenioCurr
     public DisenioCurricular DisenioCurricularfindBySilaboIdSilabo(Integer idSilabo) {
         return disenioCurricularRepository.findBySilaboIdSilabo(idSilabo);
     }
+
+    @Override
+    public DisenioCurricular findBySilaboCursoIdCurso(Integer idCurso) {
+        return disenioCurricularRepository.findBySilaboCursoIdCurso(idCurso);
+    }
 }

@@ -8,4 +8,7 @@ public interface DisenioCurricularService extends  GenericService<DisenioCurricu
 
 
     DisenioCurricular DisenioCurricularfindBySilaboIdSilabo(Integer idSilabo);
+
+
+    public DisenioCurricular findBySilaboCursoIdCurso(Integer idCurso);
 }
