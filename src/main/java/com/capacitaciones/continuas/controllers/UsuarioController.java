@@ -62,4 +62,17 @@ public class UsuarioController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/usuario/existsbyUsername/{username}")
+    public Boolean existsbyIdentifcasion(@PathVariable("username") String username){
+        try {
+            if(usuarioService.existsByUsername(username)){
+                return true;
+            }
+            return false;
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
 }

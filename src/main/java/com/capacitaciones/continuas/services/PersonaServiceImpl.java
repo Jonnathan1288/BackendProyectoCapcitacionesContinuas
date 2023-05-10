@@ -17,4 +17,9 @@ public class PersonaServiceImpl extends GenericServiceImpl<Persona, Integer> imp
     public CrudRepository<Persona, Integer> getDao() {
         return personaRepository;
     }
+
+    @Override
+    public Boolean existsByIdentificacion(String identificasion) {
+        return personaRepository.existsByIdentificacion(identificasion);
+    }
 }
