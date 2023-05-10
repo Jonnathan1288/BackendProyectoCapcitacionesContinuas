@@ -39,6 +39,20 @@ public class DisenioCurricularController {
         }
     }
 
+    @GetMapping("/disenioCurricular/findbyIdSilaboCurso/{id}")
+    public ResponseEntity<?> getDisenioCurricularBySilaboCursoId(@PathVariable("id") Integer id){
+        try {
+            DisenioCurricular dc = disenioCurricularService.findBySilaboCursoIdCurso(id);
+            if(dc != null){
+                return new ResponseEntity<>(dc, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("NOT_FOUND",HttpStatus.NOT_FOUND);
+
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @PostMapping("/disenioCurricular/save")
     public ResponseEntity<DisenioCurricular> saveDisenioCurricular(@RequestBody DisenioCurricular disenioCurricular){
         try {

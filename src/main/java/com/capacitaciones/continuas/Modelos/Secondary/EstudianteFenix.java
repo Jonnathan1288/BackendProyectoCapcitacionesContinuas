@@ -13,8 +13,8 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "docentesfenix")
-public class DocenteFenix {
+@Table(name = "estudiantesfenix")
+public class EstudianteFenix {
     @Id
     @Column(name = "identificacion", nullable = false,updatable = false)
     private String identificacion;
@@ -52,9 +52,7 @@ public class DocenteFenix {
     @Column(name = "etnia")
     private String etnia;
 
-    @Column(name = "tituloCapacitador")
-    private String tituloCapacitador;
+    @Column(name = "nivelinstruccion")
+    private String nivelinstruccion;
 
-    @Column(name = "tipoAbreviaturaTitulo")
-    private String tipoAbreviaturaTitulo;
 }
