@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -32,7 +34,7 @@ public class EstudianteFenix {
     private String apellido2;
 
     @Column(name = "fechaNacimiento")
-    private String fechaNacimiento;
+    private LocalDate fechaNacimiento;
 
     @Column(name = "direccion")
     private String direccion;

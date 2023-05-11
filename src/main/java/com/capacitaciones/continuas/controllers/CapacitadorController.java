@@ -39,6 +39,19 @@ public class CapacitadorController {
         }
     }
 
+    @GetMapping("/capacitador/exists/findbyIdUsuario/{idUsuario}")
+    public Boolean getCapacitadorExistsByIdUsuario(@PathVariable("idUsuario") Integer idUsuario){
+        try {
+            if(capacitadorService.existsByUsuarioIdUsuario(idUsuario)){
+                return true;
+            }
+            return false;
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
     @GetMapping("/capacitador/findbyIdUsuario/{id}")
     public ResponseEntity<?> findByUsuarioIdUsuario(@PathVariable("id") Integer id){
         try {

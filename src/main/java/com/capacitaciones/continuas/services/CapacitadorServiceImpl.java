@@ -19,4 +19,9 @@ public class CapacitadorServiceImpl extends GenericServiceImpl<Capacitador, Inte
     public Capacitador findByUsuarioIdUsuario(Integer idUsuario) {
         return capacitadorRepository.findByUsuarioIdUsuario(idUsuario);
     }
+
+    @Override
+    public Boolean existsByUsuarioIdUsuario(Integer idUsuario) {
+        return capacitadorRepository.existsByUsuarioIdUsuario(idUsuario);
+    }
 }

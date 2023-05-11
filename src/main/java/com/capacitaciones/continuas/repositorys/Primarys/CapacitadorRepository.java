@@ -7,5 +7,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CapacitadorRepository extends JpaRepository<Capacitador, Integer> {
     public Capacitador findByUsuarioIdUsuario(Integer idUsuario);
+
+    public Boolean existsByUsuarioIdUsuario(Integer idUsuario);
 }
 
