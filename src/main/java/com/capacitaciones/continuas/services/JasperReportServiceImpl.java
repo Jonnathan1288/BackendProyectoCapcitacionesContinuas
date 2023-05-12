@@ -80,9 +80,9 @@ public class JasperReportServiceImpl implements JasperReportService{
         try {
             InputStream reportStream = this.getClass().getResourceAsStream("/Reports/FormularioInscripción.jasper");
             Map<String, Object> params = new HashMap<>();
-            params.put("cene", "cene.png");
+            params.put("cene", "cenep.png");
             params.put("ista", "ista.jpeg");
-            params.put("idMatricula", id);
+            params.put("idDetalle", id);
 
             JasperPrint jasperPrint = JasperFillManager.fillReport(reportStream, params, jdbcTemplate.getDataSource().getConnection());
             byte[] reportContent = JasperExportManager.exportReportToPdf(jasperPrint);
