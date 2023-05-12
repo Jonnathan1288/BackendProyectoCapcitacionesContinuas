@@ -22,7 +22,7 @@ public class ParticipantesAprobados { //estado en  vigencia
     @Column(name = "certificado_participante", columnDefinition = "LONGBLOB")
     private String certificadoParticipante;
 
-    @Column(name = "certificado_firmado")
+    @Column(name = "certificado_firmado", columnDefinition = "BOOLEAN")
     private Boolean certificadoFirmado;
 
     // Se relaciona con participantes matriculado

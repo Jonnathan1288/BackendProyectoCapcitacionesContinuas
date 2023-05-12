@@ -1,7 +1,9 @@
 package com.capacitaciones.continuas.controllers;
 
+import com.capacitaciones.continuas.Modelos.Primary.Curso;
 import com.capacitaciones.continuas.Modelos.Primary.ParticipantesAprobados;
 import com.capacitaciones.continuas.Modelos.Primary.PartipantesMatriculados;
+import com.capacitaciones.continuas.services.CursoService;
 import com.capacitaciones.continuas.services.ParticipantesAprobadosService;
 import com.capacitaciones.continuas.services.ParticipantesMatriculadosService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ public class ParticipanteAprobadosController {
 
     @Autowired
     private ParticipantesMatriculadosService participantesMatriculadosService;
+
+    @Autowired
+    private CursoService cursoService;
 
     @GetMapping("/participantesAprobados/listar")
     public ResponseEntity<List<ParticipantesAprobados>> obtenerLista() {
@@ -98,16 +103,28 @@ public class ParticipanteAprobadosController {
                    return  new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
                }
            }else{
+               List<ParticipantesAprobados> participantesActualizados = new ArrayList<>();
+
                List<PartipantesMatriculados> matriculadosList = participantesMatriculadosService.findByInscritoCursoIdCurso(id);
                matriculadosList.stream().forEach(pm ->{
                    if(pm.getEstadoParticipanteAprobacion().equals("A")){
                        ParticipantesAprobados participantesAprobados = new ParticipantesAprobados();
                        participantesAprobados.setPartipantesMatriculados(pm);
+                       participantesAprobados.setCertificadoFirmado(false);
                        participantesAprobados.setCodigoSenecyt("");
-                       participantesAprobadosService.save(participantesAprobados);
+                       participantesActualizados.add(participantesAprobadosService.save(participantesAprobados));
                    }
                });
-               return new ResponseEntity<>(HttpStatus.OK);
+
+               try {
+                   Curso curso = cursoService.findById(id);
+                   curso.setEstadoPublicasionCurso("F");
+                   cursoService.save(curso);
+               }catch (Exception ex){
+                   System.out.println(ex.getMessage());
+               }
+
+               return new ResponseEntity<>(participantesActualizados, HttpStatus.OK);
            }
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

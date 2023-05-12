@@ -3,6 +3,7 @@ package com.capacitaciones.continuas.services;
 
 import com.capacitaciones.continuas.Modelos.Primary.Curso;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface CursoService extends  GenericService<Curso, Integer>{
@@ -12,5 +13,6 @@ public interface CursoService extends  GenericService<Curso, Integer>{
 
     public List<Curso> findCursosDelParticipante(Integer idParticipante);
 
+    public Boolean existsByIdCursoAndFechaFinalizacionCurso(Integer idCurso, LocalDate fecha);
 
 }
