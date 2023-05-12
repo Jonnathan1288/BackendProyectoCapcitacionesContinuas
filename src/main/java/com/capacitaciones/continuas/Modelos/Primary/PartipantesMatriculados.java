@@ -19,7 +19,7 @@ public class PartipantesMatriculados { //estado en  vigencia
     @Column(name = "estado_participante_aprobacion")
     private String estadoParticipanteAprobacion;
 
-    @Column(name = "estado_participante_activo")
+    @Column(name = "estado_participante_activo", columnDefinition = "BOOLEAN")
     private Boolean estadoParticipanteActivo;
 
     // se referencia con matricula

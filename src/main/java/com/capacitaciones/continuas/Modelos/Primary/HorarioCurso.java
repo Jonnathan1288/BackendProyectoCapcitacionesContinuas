@@ -16,7 +16,7 @@ public class HorarioCurso { //entidad en vigencia.
     @Column(name = "id_horario_curso")
     private Integer idHorarioCurso;
 
-    @Column(name = "estado_horario_curso")
+    @Column(name = "estado_horario_curso", columnDefinition = "BOOLEAN")
     private Boolean estadoHorarioCurso;
 
     @Column(name = "dias")

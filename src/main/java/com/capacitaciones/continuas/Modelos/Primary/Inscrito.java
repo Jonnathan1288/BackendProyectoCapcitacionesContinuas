@@ -22,10 +22,10 @@ public class Inscrito {
     @Column(name = "fecha_inscrito")
     private LocalDate fechaInscrito;
 
-    @Column(name = "estado_inscrito")
+    @Column(name = "estado_inscrito", columnDefinition = "BOOLEAN")
     private Boolean estadoInscrito;
 
-    @Column(name = "estado_inscrito_activo")
+    @Column(name = "estado_inscrito_activo", columnDefinition = "BOOLEAN")
     private Boolean estadoInscritoActivo;
 
     // SE RELACIONA CON USER Y CURSO

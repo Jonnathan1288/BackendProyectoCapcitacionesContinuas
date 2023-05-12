@@ -16,13 +16,13 @@ public class DisenioCurricular {
     @Column(name = "id_disenio_curricular")
     private Integer idDisenioCurricular;
 
-    @Column(name = "temas_transversales")
+    @Column(name = "temas_transversales", length = 1500)
     private String temasTransversales;
 
-    @Column(name = "estrategias_aprendizaje")
+    @Column(name = "estrategias_aprendizaje", length = 1500)
     private String estrategiasAprendizaje;
 
-    @Column(name = "estado_disenio_curricular")
+    @Column(name = "estado_disenio_curricular", columnDefinition = "BOOLEAN")
     private Boolean estadoDisenioCurricular;
 
     // RELACIONAR CON EL SILABO

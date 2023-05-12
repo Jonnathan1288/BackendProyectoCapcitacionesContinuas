@@ -15,10 +15,10 @@ public class MaterialConvencional {
     @Column(name = "id_material_monvencional")
     private Integer idMaterialConvencional;
 
-    @Column(name = "descripcion_material_convencional")
+    @Column(name = "descripcion_material_convencional", length = 1500)
     private String descripcionMaterialConvencional;
 
-    @Column(name = "estado_material_convencional")
+    @Column(name = "estado_material_convencional", columnDefinition = "BOOLEAN")
     private Boolean estadoMaterialConvencional;
 
     @ManyToOne

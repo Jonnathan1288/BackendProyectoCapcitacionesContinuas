@@ -16,7 +16,7 @@ public class ContenidoSilabo {
     @Column(name = "id_contenido_silabo")
     private Integer idContenidoSilabo;
 
-    @Column(name = "tema_contenido")
+    @Column(name = "tema_contenido", length = 1000)
     private String temaContenido;
 
     @Column(name = "dia_contenido")
@@ -31,19 +31,19 @@ public class ContenidoSilabo {
     @Column(name = "horas_practicas")
     private Integer horasPracticas;
 
-    @Column(name = "actividades_practicas")
+    @Column(name = "actividades_practicas", length = 1200)
     private String actividadesPracticas;
 
     @Column(name = "horas_autonomas")
     private Integer horasAutonomas;
 
-    @Column(name = "actividades_autonomas")
+    @Column(name = "actividades_autonomas", length = 1200)
     private String actividadesAutonomas;
 
-    @Column(name = "observaciones")
+    @Column(name = "observaciones", length = 1000)
     private String observaciones;
 
-    @Column(name = "estado_contenido")
+    @Column(name = "estado_contenido", columnDefinition = "BOOLEAN")
     private Boolean estadoContenido;
 
     // Se relaciona con Silabo

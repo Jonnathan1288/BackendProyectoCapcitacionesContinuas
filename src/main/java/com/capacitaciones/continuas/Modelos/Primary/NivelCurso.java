@@ -16,10 +16,10 @@ public class NivelCurso {
     @Column(name = "id_nivel_curso")
     private Integer idNivelCurso;
 
-    @Column(name = "estado_nivel_curso")
+    @Column(name = "estado_nivel_curso", columnDefinition = "BOOLEAN")
     private Boolean estadoNivelCurso;
 
-    @Column(name = "nombre_nivel_curso")
+    @Column(name = "nombre_nivel_curso", length = 300)
     private String nombreNivelCurso;
 
 }

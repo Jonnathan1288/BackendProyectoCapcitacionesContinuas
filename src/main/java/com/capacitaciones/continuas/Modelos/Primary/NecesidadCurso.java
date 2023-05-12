@@ -18,13 +18,13 @@ public class NecesidadCurso {
     @Column(name = "id_necesidad_curso")
     private Integer idNecesidadCurso;
 
-    @Column(name = "estado_impartir_necesidad_curso")
+    @Column(name = "estado_impartir_necesidad_curso" , length = 1500)
     private String espacioImpartirNecesidadCurso;
 
-    @Column(name = "resumen_curso")
+    @Column(name = "resumen_curso", length = 1500)
     private String resumenCurso;
 
-    @Column(name = "poblacion_dirijida")
+    @Column(name = "poblacion_dirijida", length = 500)
     private String poblacionDirijida;
 
 //Viene la llave de id curso
