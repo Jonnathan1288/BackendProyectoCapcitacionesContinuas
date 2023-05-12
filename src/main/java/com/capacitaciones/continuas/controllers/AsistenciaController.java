@@ -4,6 +4,7 @@ import com.capacitaciones.continuas.Modelos.Primary.Asistencia;
 import com.capacitaciones.continuas.Modelos.Primary.ParticipantesAprobados;
 import com.capacitaciones.continuas.Modelos.Primary.PartipantesMatriculados;
 import com.capacitaciones.continuas.services.AsistenciaService;
+import com.capacitaciones.continuas.services.CursoService;
 import com.capacitaciones.continuas.services.ParticipantesMatriculadosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -24,6 +25,9 @@ public class AsistenciaController {
 
     @Autowired
     private ParticipantesMatriculadosService participantesMatriculadosService;
+
+    @Autowired
+    private CursoService cursoService;
 
     @GetMapping("/asistencia/list")
     public ResponseEntity<List<Asistencia>> listAsistencia(){
@@ -77,6 +81,9 @@ public class AsistenciaController {
         LocalDate fecha = LocalDate.now();
         //LocalDate fechaPrueba = LocalDate.parse("2023-04-30");
         try {
+            if(cursoService.existsByIdCursoAndFechaFinalizacionCurso(idCurso, fecha)){
+                System.out.println("RESULTADO: "+fecha);
+            }
             //if(asistenciaService.findByFechaAsistencia(fecha) ){
             if(asistenciaService.existsByPartipantesMatriculadosInscritoCursoIdCursoAndFechaAsistencia(idCurso, fecha)){
                 return new ResponseEntity<>(asistenciaService.findByPartipantesMatriculadosInscritoCursoIdCursoAndFechaAsistencia(idCurso,fecha), HttpStatus.OK);
