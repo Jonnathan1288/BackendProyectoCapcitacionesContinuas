@@ -16,7 +16,7 @@ public class DetalleFichaServiceImpl extends GenericServiceImpl<DetalleFichaMatr
     }
 
     @Override
-    public DetalleFichaMatricula findByFichaMatriculaInscritoUsuario(Integer idUsuario) {
-        return detalleFichaRepository.findByFichaMatriculaInscritoUsuarioIdUsuario(idUsuario);
+    public DetalleFichaMatricula findByUsuarioIdUsuario(Integer idUsuario) {
+        return detalleFichaRepository.findByUsuarioIdUsuario(idUsuario);
     }
 }

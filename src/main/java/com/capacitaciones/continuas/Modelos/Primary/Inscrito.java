@@ -39,13 +39,12 @@ public class Inscrito {
     @JoinColumn(name="id_curso",referencedColumnName ="id_curso")
     private Curso curso;
 
+
     //Falta referenciar, FichaMatricula, ParticipantesAprobados
 
     @JsonIgnore
     @OneToMany(mappedBy = "inscrito")
     private List<PartipantesMatriculados> partipantesMatriculados;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "inscrito")
-    private List<FichaMatricula> fichaMatriculas;
+
 }

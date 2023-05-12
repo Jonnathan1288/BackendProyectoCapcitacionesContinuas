@@ -43,7 +43,7 @@ public class DetalleFichaController {
     @GetMapping("/detalleFichaService/findbyIdUsuario/{id}")
     public ResponseEntity<?> getDetalleFichaServiceByIdUsuario(@PathVariable("id") Integer id){
         try {
-            DetalleFichaMatricula df = detalleFichaService.findByFichaMatriculaInscritoUsuario(id);
+            DetalleFichaMatricula df = detalleFichaService.findByUsuarioIdUsuario(id);
             if (df == null) {
                 return new ResponseEntity<>(false, HttpStatus.OK);
             } else {
@@ -80,7 +80,6 @@ public class DetalleFichaController {
             dfm.setPregunta7(dfm.getPregunta7());
             dfm.setPregunta8(dfm.getPregunta8());
             dfm.setPregunta9(dfm.getPregunta9());
-            dfm.setFichaMatricula(dfm.getFichaMatricula());
             DetalleFichaMatricula newObject = detalleFichaService.save(dfm);
             return new ResponseEntity<>(newObject, HttpStatus.CREATED);
         }catch (Exception e){

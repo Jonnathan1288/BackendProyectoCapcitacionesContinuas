@@ -42,10 +42,10 @@ public class InscritoController {
         }
     }
 
-    @GetMapping("/usuarioInscrito/findbyIdUsuario/{id}")
-    public ResponseEntity<?> usuarioInscritoByIdUsuario(@PathVariable("id") Integer id){
+    @GetMapping("/usuarioInscrito/findbyIdUsuario/{idCurso}/{idUsuario}")
+    public ResponseEntity<?> usuarioInscritoByIdUsuario(@PathVariable Integer idCurso,@PathVariable Integer idUsuario){
         try {
-            Inscrito dc = inscritoService.findByUsuarioIdUsuario(id);
+            Inscrito dc = inscritoService.findByUsuarioIdUsuario(idCurso,idUsuario);
             if(dc != null){
                 return new ResponseEntity<>(dc, HttpStatus.OK);
             }
