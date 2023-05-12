@@ -44,10 +44,8 @@ public class DetalleFichaMatricula { // esta entidad esta en vigencia.
     @Column(name = "pregunta9")
     private String pregunta9;
 
-
-    // Se relaciona con la matricula
-    //viene la llave de id curso
+    // RELACION NUEVA
     @ManyToOne
-    @JoinColumn(name="id_ficha_matricula",referencedColumnName ="id_ficha_matricula")
-    private FichaMatricula fichaMatricula;
+    @JoinColumn(name="id_usuario",referencedColumnName ="id_usuario")
+    private Usuario usuario;
 }

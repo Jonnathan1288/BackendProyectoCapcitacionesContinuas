@@ -9,7 +9,7 @@ public interface InscritoService extends GenericService<Inscrito, Integer>{
 
     boolean findByCursoIdCursoAndUsuarioIdUsuario(Integer idCurso, Integer idUsuario);
 
-    Inscrito findByUsuarioIdUsuario(Integer idUsuario);
+    Inscrito findByUsuarioIdUsuario(Integer idCurso, Integer idUsuario);
 
 
 }

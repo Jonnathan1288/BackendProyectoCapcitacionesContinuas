@@ -12,6 +12,5 @@ public interface InscritoRepository extends JpaRepository<Inscrito, Integer> {
 
     Inscrito findByCursoIdCursoAndUsuarioIdUsuario(Integer idCurso, Integer idUsuario);
 
-    Inscrito findByUsuarioIdUsuario(Integer idUsuario);
 
 }
