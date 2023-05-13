@@ -16,22 +16,22 @@ public class ResultadoAprendizajeSilabo {
     @Column(name = "id_resultado_aprendizaje_silabo")
     private Integer idResultadoAprendizajeSilabo;
 
-    @Column(name = "tema_unidad_silabo")
+    @Column(name = "tema_unidad_silabo", length = 1000)
     private String temaUnidadSilabo;
 
-    @Column(name = "descripcion_unidad_silabo")
+    @Column(name = "descripcion_unidad_silabo", length = 1500)
     private String descripcionUnidadSilabo;
 
-    @Column(name = "elementos_competencia_silabo")
+    @Column(name = "elementos_competencia_silabo", length = 1500)
     private String elementosCompetenciaSilabo;
 
-    @Column(name = "activades_resultado_aprendizaje")
+    @Column(name = "activades_resultado_aprendizaje", length = 1500)
     private String activadesResultadoAprendizaje;
 
-    @Column(name = "forma_evidenciar")
+    @Column(name = "forma_evidenciar", length = 1500)
     private String formaEvidenciar;
 
-    @Column(name = "estado_unidad_activo")
+    @Column(name = "estado_unidad_activo", columnDefinition = "BOOLEAN")
     private Boolean estadoUnidadActivo;
 
     // RELACIONAR CON SILABO

@@ -28,10 +28,10 @@ public class Curso {
     @Column(name = "duracion_curso")
     private Integer duracionCurso;
 
-    @Column(name = "observacion_curso")
+    @Column(name = "observacion_curso", length = 1000)
     private String observacionCurso;
 
-    @Column(name = "estado_curso")
+    @Column(name = "estado_curso", columnDefinition = "BOOLEAN")
     private Boolean estadoCurso; // Elimina curso logico
 
     //@Column(name = "iniciocurso")
@@ -43,10 +43,10 @@ public class Curso {
     @Column(name = "estado_publicasion_curso")
     private String estadoPublicasionCurso; // para el usuario V visible, O oculto, I inicio, F finalizo
 
-    @Column(name = "descripcion_curso")
+    @Column(name = "descripcion_curso", length = 1200)
     private String descripcionCurso;
 
-    @Column(name = "objetivo_generales_curso")
+    @Column(name = "objetivo_generales_curso", length = 1200)
     private String objetivoGeneralesCurso;
 
     @Column(name = "numero_cupos_curso")

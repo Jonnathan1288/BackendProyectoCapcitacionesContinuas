@@ -20,10 +20,10 @@ public class Asistencia {
     @Column(name = "fecha_asistencia")
     private LocalDate fechaAsistencia;
 
-    @Column(name = "estado_asistencia") // Para contavilizar el numero de asistencias por día boolean true: asiste; false:Falta
+    @Column(name = "estado_asistencia", columnDefinition = "BOOLEAN") // Para contavilizar el numero de asistencias por día boolean true: asiste; false:Falta
     private Boolean estadoAsistencia;
 
-    @Column(name = "observacion_asistencia")
+    @Column(name = "observacion_asistencia", length = 1000)
     private String observacionAsistencia;
 
     //Viene la llave idParticipanteMatriculado

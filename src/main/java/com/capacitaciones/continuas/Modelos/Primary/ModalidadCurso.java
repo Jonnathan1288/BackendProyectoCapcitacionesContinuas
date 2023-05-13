@@ -16,7 +16,7 @@ public class ModalidadCurso {
     @Column(name = "id_modalidad_curso")
     private Integer idModalidadCurso;
 
-    @Column(name = "estado_modalidad_curso")
+    @Column(name = "estado_modalidad_curso", columnDefinition = "BOOLEAN")
     private Boolean estadoModalidadCurso;
 
     @Column(name = "nombre_modalidad_curso")

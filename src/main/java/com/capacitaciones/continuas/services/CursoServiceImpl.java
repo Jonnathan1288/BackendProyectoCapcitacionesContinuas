@@ -33,8 +33,4 @@ public class CursoServiceImpl extends GenericServiceImpl<Curso, Integer> impleme
         return cursoRepositry.findCursosDelParticipante(idParticipante);
     }
 
-    @Override
-    public Boolean existsByIdCursoAndFechaFinalizacionCurso(Integer idCurso, LocalDate fecha) {
-        return cursoRepositry.existsByIdCursoAndFechaFinalizacionCurso(idCurso, fecha);
-    }
 }

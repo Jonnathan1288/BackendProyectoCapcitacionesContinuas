@@ -15,10 +15,10 @@ public class MaterialAudiovisual {
     @Column(name = "id_material_audiovisual")
     private Integer idMaterialAudiovisual;
 
-    @Column(name = "descripcion_material_audiovisual")
+    @Column(name = "descripcion_material_audiovisual", length = 1500)
     private String descripcionMaterialAudiovisual;
 
-    @Column(name = "estado_material_audiovisual")
+    @Column(name = "estado_material_audiovisual", columnDefinition = "BOOLEAN")
     private Boolean estadoMaterialAudiovisual;
 
     @ManyToOne

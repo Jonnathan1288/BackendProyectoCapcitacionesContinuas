@@ -17,13 +17,13 @@ public class Programas {
     @Column(name = "id_programa")
     private Integer idPrograma;
 
-    @Column(name = "nombre_programa")
+    @Column(name = "nombre_programa", length = 500)
     private String nombrePrograma;
 
-    @Column(name = "descripcion_programa")
+    @Column(name = "descripcion_programa", length = 1200)
     private String descripcionPrograma;
 
-    @Column(name = "estado_programa_activo")
+    @Column(name = "estado_programa_activo", columnDefinition = "BOOLEAN")
     private Boolean estadoProgramaActivo;
 
     // Relación de uno a uno

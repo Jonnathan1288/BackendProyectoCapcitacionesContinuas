@@ -15,13 +15,13 @@ public class InformeFinalCurso { //entidad en vigencia
     @Column(name = "id_informe_final_curso")
     private Integer idInformeFinalCurso;
 
-    @Column(name = "observaciones_informe_final_curso")
+    @Column(name = "observaciones_informe_final_curso", length = 1200)
     private String observacionesInformeFinalCurso;
 
-    @Column(name = "lugar_informe_final_curso")
+    @Column(name = "lugar_informe_final_curso", length = 500)
     private String lugarInformeFinalCurso;
 
-    @Column(name = "canton_informe_final_curso")
+    @Column(name = "canton_informe_final_curso" , length = 500)
     private String nombreCantonInformeFinalCurso;
 
     //viene la llave de id curso

@@ -1,6 +1,7 @@
 package com.capacitaciones.continuas.controllers;
 
 import com.capacitaciones.continuas.Modelos.Primary.Asistencia;
+import com.capacitaciones.continuas.Modelos.Primary.Curso;
 import com.capacitaciones.continuas.Modelos.Primary.ParticipantesAprobados;
 import com.capacitaciones.continuas.Modelos.Primary.PartipantesMatriculados;
 import com.capacitaciones.continuas.services.AsistenciaService;
@@ -81,28 +82,32 @@ public class AsistenciaController {
         LocalDate fecha = LocalDate.now();
         //LocalDate fechaPrueba = LocalDate.parse("2023-04-30");
         try {
-            if(cursoService.existsByIdCursoAndFechaFinalizacionCurso(idCurso, fecha)){
-                System.out.println("RESULTADO: "+fecha);
-            }
-            //if(asistenciaService.findByFechaAsistencia(fecha) ){
-            if(asistenciaService.existsByPartipantesMatriculadosInscritoCursoIdCursoAndFechaAsistencia(idCurso, fecha)){
-                return new ResponseEntity<>(asistenciaService.findByPartipantesMatriculadosInscritoCursoIdCursoAndFechaAsistencia(idCurso,fecha), HttpStatus.OK);
-            }else{
-                List<PartipantesMatriculados> partipantesMatriculadosList = participantesMatriculadosService.findByInscritoCursoIdCurso(idCurso);
-                List<Asistencia> asistenciaList = new ArrayList<>();
+            Curso curso = cursoService.findById(idCurso);
+            if(fecha.isAfter(curso.getFechaFinalizacionCurso())){
+                return new ResponseEntity<>(asistenciaService.findByPartipantesMatriculadosInscritoCursoIdCursoAndFechaAsistencia(idCurso, curso.getFechaFinalizacionCurso()), HttpStatus.OK);
+                //System.out.println("despues-> ");
+            }else {
+                //if(asistenciaService.findByFechaAsistencia(fecha) ){
+                if(asistenciaService.existsByPartipantesMatriculadosInscritoCursoIdCursoAndFechaAsistencia(idCurso, fecha)){
+                    return new ResponseEntity<>(asistenciaService.findByPartipantesMatriculadosInscritoCursoIdCursoAndFechaAsistencia(idCurso,fecha), HttpStatus.OK);
+                }else{
+                    List<PartipantesMatriculados> partipantesMatriculadosList = participantesMatriculadosService.findByInscritoCursoIdCurso(idCurso);
+                    List<Asistencia> asistenciaList = new ArrayList<>();
 
-                if(partipantesMatriculadosList != null){
-                    for (PartipantesMatriculados partipantesMatriculados: partipantesMatriculadosList){
-                        Asistencia asistencia = new Asistencia();
-                        asistencia.setFechaAsistencia(LocalDate.now());
-                        asistencia.setPartipantesMatriculados(partipantesMatriculados);
-                        asistencia.setEstadoAsistencia(false);
-                        asistencia.setObservacionAsistencia("");
-                        System.out.println(asistencia.getFechaAsistencia());
-                        asistenciaList.add(asistenciaService.save(asistencia));
+                    if(partipantesMatriculadosList != null){
+                        for (PartipantesMatriculados partipantesMatriculados: partipantesMatriculadosList){
+                            Asistencia asistencia = new Asistencia();
+                            asistencia.setFechaAsistencia(LocalDate.now());
+                            asistencia.setPartipantesMatriculados(partipantesMatriculados);
+                            asistencia.setEstadoAsistencia(false);
+                            asistencia.setObservacionAsistencia("");
+                            System.out.println(asistencia.getFechaAsistencia());
+                            asistenciaList.add(asistenciaService.save(asistencia));
+                        }
                     }
+                    return new ResponseEntity<>(asistenciaList,HttpStatus.OK);
                 }
-                return new ResponseEntity<>(asistenciaList,HttpStatus.OK);
+                    //System.out.println("antes-> ");
             }
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

@@ -17,7 +17,7 @@ public class PeriodoPrograma {
     @Column(name = "id_periodo_programa")
     private Integer idPeriodoPrograma;
 
-    @Column(name = "estado_periodo_programa")
+    @Column(name = "estado_periodo_programa", columnDefinition = "BOOLEAN")
     private Boolean estadoPeriodoPrograma;
 
     @Column(name = "fecha_inicio_periodo_programa")
@@ -26,7 +26,7 @@ public class PeriodoPrograma {
     @Column(name = "fecha_fin_periodo_programa")
     private LocalDate fechaFinPeriodoPrograma;
 
-    @Column(name = "nombre_periodo_programa")
+    @Column(name = "nombre_periodo_programa", length = 500)
     private String nombrePeriodoPrograma;
 
     @JsonIgnore

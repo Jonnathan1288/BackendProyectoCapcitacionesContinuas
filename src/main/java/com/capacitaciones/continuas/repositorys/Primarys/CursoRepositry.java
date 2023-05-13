@@ -18,7 +18,4 @@ public interface CursoRepositry extends JpaRepository<Curso, Integer> {
     List<Curso> findCursosDelParticipante(@Param("idParticipante") Integer idParticipante);
 
 
-    public Boolean existsByIdCursoAndFechaFinalizacionCurso(Integer idCurso, LocalDate fecha);
-
-
 }

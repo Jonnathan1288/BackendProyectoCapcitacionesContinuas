@@ -29,7 +29,7 @@ public class Usuario {
     @Column(name = "foto_perfil", columnDefinition = "LONGBLOB")
     private String fotoPerfil;  // igamen para la base de datos
 
-    @Column(name = "estado_usuario_activo")
+    @Column(name = "estado_usuario_activo", columnDefinition = "BOOLEAN")
     private boolean estadoUsuarioActivo;
 
     // RELACIONES

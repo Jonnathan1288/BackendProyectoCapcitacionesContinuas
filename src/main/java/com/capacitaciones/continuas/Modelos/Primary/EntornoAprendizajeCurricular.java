@@ -16,18 +16,18 @@ public class EntornoAprendizajeCurricular {
     @Column(name = "id_entorno_curricular")
     private Integer idEntornoCurricular;
 
-    @Column(name = "instalaciones")
+    @Column(name = "instalaciones", length = 1000)
     private String instalaciones;
 
-    @Column(name = "fase_feorica")
+    @Column(name = "fase_feorica", length = 1200)
     private String faseTeorica;
 
-    @Column(name = "fase_practica")
+    @Column(name = "fase_practica", length = 1200)
     private String fasePractica ;
 
 
     //NUEVO ATRIBUTO
-    @Column(name = "estadoEntornoAprendizaje")
+    @Column(name = "estadoEntornoAprendizaje", columnDefinition = "BOOLEAN")
     private Boolean estadoEntornoAprendizaje;
 
     // se relaciona con curriculo

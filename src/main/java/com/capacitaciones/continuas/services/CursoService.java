@@ -13,6 +13,5 @@ public interface CursoService extends  GenericService<Curso, Integer>{
 
     public List<Curso> findCursosDelParticipante(Integer idParticipante);
 
-    public Boolean existsByIdCursoAndFechaFinalizacionCurso(Integer idCurso, LocalDate fecha);
 
 }
