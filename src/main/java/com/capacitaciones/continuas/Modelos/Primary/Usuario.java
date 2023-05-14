@@ -1,5 +1,6 @@
 package com.capacitaciones.continuas.Modelos.Primary;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -36,6 +37,7 @@ public class Usuario {
     @ManyToOne
     @JoinColumn(name="id_persona",referencedColumnName ="id_persona")
     private Persona persona;
+
 
     /*@ManyToOne
     @JoinColumn(name="id_rol",referencedColumnName ="id_rol")
