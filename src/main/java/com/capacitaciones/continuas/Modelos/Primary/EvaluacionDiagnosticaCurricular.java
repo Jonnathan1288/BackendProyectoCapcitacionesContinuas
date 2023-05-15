@@ -16,11 +16,15 @@ public class EvaluacionDiagnosticaCurricular {
     @Column(name = "id_evaluacion_diagnostica_curricular")
     private Integer idEvaluacionDiagnosticaCurricular;
 
-    @Column(name = "tecnica_evaluar")
+    @Column(name = "tecnica_evaluar", length = 1000)
     private String tecnicaEvaluar;
 
-    @Column(name = "instrumneto_evaluar")
+    @Column(name = "instrumneto_evaluar", length = 1000)
     private String instrumnetoEvaluar;
+
+    //NUEVO ATRIBUTO
+    @Column(name = "estadoEvaluacionDiagnostica", columnDefinition = "BOOLEAN")
+    private Boolean estadoEvaluacionDiagnostica;
 
     // se relaciona con mecanismo
     @ManyToOne

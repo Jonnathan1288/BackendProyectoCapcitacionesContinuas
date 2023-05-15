@@ -16,10 +16,10 @@ public class ListaNecesidadCurso {
     @Column(name = "id_lista_necesidad_cursos")
     private Integer idListaNecesidadCursos;
 
-    @Column(name = "detalle_nececidad_curso")
+    @Column(name = "detalle_nececidad_curso", length = 1500)
     private String detalleNececidadCurso;
 
-    @Column(name = "estado_detalle_necesidad")
+    @Column(name = "estado_detalle_necesidad", columnDefinition = "BOOLEAN")
     private Boolean estadoDetalleNecesidad;
 
     @ManyToOne

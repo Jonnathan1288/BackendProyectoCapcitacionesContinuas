@@ -13,5 +13,7 @@ public interface HojaVidaCapacitadorService extends GenericService<HojaVidaCapac
 
     public boolean findByCapacitadorUsuarioIdUsuario(Integer idUsuario);
 
+    public HojaVidaCapacitador updateCVCapacitador(byte[] documento, HojaVidaCapacitador hojaVidaCapacitador);
+
 
 }

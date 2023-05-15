@@ -16,19 +16,19 @@ public class HojaVidaCapacitador {
     @Column(name = "id_hoja_vida")
     private Integer idHojaVida;
 
-    @Column(name = "experiencial_laboral")
+    @Column(name = "experiencial_laboral", length = 1800)
     private String  experiencialLaboral;
 
-    @Column(name = "sobre_mi")
+    @Column(name = "sobre_mi", length = 1800)
     private String sobreMi;
 
-    @Column(name = "experiencia_escolar")
+    @Column(name = "experiencia_escolar", length = 1800)
     private String  experienciaEscolar;
 
-    @Column(name = "destrezas")
+    @Column(name = "destrezas", length = 1800)
     private String destrezas;
 
-    @Column(name = "idiomas")
+    @Column(name = "idiomas", length = 1200)
     private String idiomas;
 
     @Column(name = "estadoAprobacion")

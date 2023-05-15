@@ -17,10 +17,10 @@ public class TipoCurso {
     @Column(name = "id_tipo_curso")
     private Integer idTipoCurso;
 
-    @Column(name = "estado_tipo_curso")
+    @Column(name = "estado_tipo_curso", columnDefinition = "BOOLEAN")
     private Boolean estadoTipoCurso;
 
-    @Column(name = "nombre_tipo_curso")
+    @Column(name = "nombre_tipo_curso", length = 500)
     private String nombreTipoCurso;
 
 }

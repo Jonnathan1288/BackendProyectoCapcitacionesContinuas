@@ -26,7 +26,7 @@ public class Notas {
     @Column(name = "fecha_nota")
     private LocalDate fechaNota;
 
-    @Column(name = "observacion")
+    @Column(name = "observacion", length = 1500)
     private String observacion;
 
     // se relacioina con el estudiante matriculado

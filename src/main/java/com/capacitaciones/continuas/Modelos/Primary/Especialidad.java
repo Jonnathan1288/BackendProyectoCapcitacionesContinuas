@@ -21,10 +21,10 @@ public class Especialidad {
     @Column(name = "codigo_especialidad")
     private String codigoEspecialidad;
 
-    @Column(name = "nombre_especialidad")
+    @Column(name = "nombre_especialidad", length = 1000)
     private String nombreEspecialidad;
 
-    @Column(name = "estado_especialidad_activo")
+    @Column(name = "estado_especialidad_activo", columnDefinition = "BOOLEAN")
     private Boolean estadoEspecialidadActivo;
 
     // RELACION

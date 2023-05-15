@@ -29,7 +29,8 @@ public class UsuarioController {
     @PostMapping("/usuario/crear")
     public ResponseEntity<Usuario> crear(@RequestBody Usuario c) {
         try {
-        return new ResponseEntity<>(usuarioService.save(c), HttpStatus.CREATED);
+            c.setEstadoUsuarioActivo(true);
+            return new ResponseEntity<>(usuarioService.save(c), HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -60,6 +61,19 @@ public class UsuarioController {
             return new ResponseEntity<>(usuarioService.save(usuario), HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/usuario/existsbyUsername/{username}")
+    public Boolean existsbyIdentifcasion(@PathVariable("username") String username){
+        try {
+            if(usuarioService.existsByUsername(username)){
+                return true;
+            }
+            return false;
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return false;
         }
     }
 }

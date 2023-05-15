@@ -18,16 +18,16 @@ public class Silabo {
     @Column(name = "id_silabo")
     private Integer idSilabo;
 
-    @Column(name = "bibliografia")
+    @Column(name = "bibliografia", length = 1800)
     private String bibliografia;
 
-    @Column(name = "campo_formacion")
+    @Column(name = "campo_formacion", length = 1000)
     private String campoFormacion;
 
-    @Column(name = "campo_revisado_por")
+    @Column(name = "campo_revisado_por", length = 1000)
     private String campoRevisadoPor;
 
-    @Column(name = "campo_aprovado_por")
+    @Column(name = "campo_aprovado_por", length = 1000)
     private String campoAprovadoPor;
 
     // Se relaciona con curso

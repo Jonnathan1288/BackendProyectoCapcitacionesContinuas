@@ -15,10 +15,10 @@ public class PrerequisitoCurso {
     @Column(name = "id_prerequisito_curso")
     private Integer idPrerequisitoCurso;
 
-    @Column(name = "estado_prerequisito_curso")
+    @Column(name = "estado_prerequisito_curso", columnDefinition = "BOOLEAN")
     private Boolean estadoPrerequisitoCurso;
 
-    @Column(name = "nombre_prerequisito_curso")
+    @Column(name = "nombre_prerequisito_curso", length = 1300)
     private String nombrePrerequisitoCurso;
 
     @ManyToOne

@@ -80,9 +80,9 @@ public class JasperReportServiceImpl implements JasperReportService{
         try {
             InputStream reportStream = this.getClass().getResourceAsStream("/Reports/FormularioInscripción.jasper");
             Map<String, Object> params = new HashMap<>();
-            params.put("cene", "cene.png");
+            params.put("cene", "cenep.png");
             params.put("ista", "ista.jpeg");
-            params.put("idMatricula", id);
+            params.put("idDetalle", id);
 
             JasperPrint jasperPrint = JasperFillManager.fillReport(reportStream, params, jdbcTemplate.getDataSource().getConnection());
             byte[] reportContent = JasperExportManager.exportReportToPdf(jasperPrint);
@@ -244,7 +244,7 @@ public class JasperReportServiceImpl implements JasperReportService{
             InputStream reportStream = this.getClass().getResourceAsStream("/Reports/registroentregaCertificado.jasper");
             Map<String, Object> params = new HashMap<>();
             params.put("cene", "cene.png");
-            params.put("istaf", "ista.jpeg");
+            params.put("ista", "ista.jpeg");
             params.put("idCurso", idcurso);
 
             JasperPrint jasperPrint = JasperFillManager.fillReport(reportStream, params, jdbcTemplate.getDataSource().getConnection());
@@ -308,6 +308,93 @@ public class JasperReportServiceImpl implements JasperReportService{
             response.setContentType("application/pdf");
 
             response.setHeader("Content-Disposition", "attachment; filename=codigoAsignarSnecyt.pdf");
+
+            response.setContentLength(reportContent.length);
+
+            OutputStream outStream = response.getOutputStream();
+            outStream.write(reportContent);
+            outStream.flush();
+            outStream.close();
+        }catch (Exception e){
+            System.out.println( "eService " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void generateCertificadoEstudiante(HttpServletResponse response, Integer idCurso, String identificasion) {
+        try {
+            InputStream reportStream = this.getClass().getResourceAsStream("/Reports/Certificado.jasper");
+            Map<String, Object> params = new HashMap<>();
+            params.put("g", "g.png");
+            params.put("is", "is.jpg");
+            params.put("l", "l.png");
+            params.put("r", "r.png");
+            params.put("s", "s.png");
+            params.put("ti", "ti.png");
+            params.put("ts", "ts.png");
+            params.put("idCurso", idCurso);
+            params.put("ci", identificasion);
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(reportStream, params, jdbcTemplate.getDataSource().getConnection());
+            byte[] reportContent = JasperExportManager.exportReportToPdf(jasperPrint);
+
+            response.setContentType("application/pdf");
+
+            response.setHeader("Content-Disposition", "attachment; filename=" + "Certificado"+identificasion + ".pdf");
+            //response.setHeader("Content-Disposition", "attachment; filename=Certificado.pdf");
+
+            response.setContentLength(reportContent.length);
+
+            OutputStream outStream = response.getOutputStream();
+            outStream.write(reportContent);
+            outStream.flush();
+            outStream.close();
+        }catch (Exception e){
+            System.out.println( "eService " + e.getMessage());
+        }
+    }
+
+
+    @Override
+    public void generateDisenioC(HttpServletResponse response, Integer idDisenioCurricular) {
+        try {
+            InputStream reportStream = this.getClass().getResourceAsStream("/Reports/DiseñoC.jasper");
+            Map<String, Object> params = new HashMap<>();
+            params.put("senescyt", "senescyt.png");
+            params.put("idDisenioCPrimary", idDisenioCurricular);
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(reportStream, params, jdbcTemplate.getDataSource().getConnection());
+            byte[] reportContent = JasperExportManager.exportReportToPdf(jasperPrint);
+
+            response.setContentType("application/pdf");
+
+            response.setHeader("Content-Disposition", "attachment; filename=DiseñoCurricularReport.pdf");
+
+            response.setContentLength(reportContent.length);
+
+            OutputStream outStream = response.getOutputStream();
+            outStream.write(reportContent);
+            outStream.flush();
+            outStream.close();
+        }catch (Exception e){
+            System.out.println( "eService " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void generateFichaEvaluacionFinal(HttpServletResponse response, Integer idCurso) {
+        try {
+            InputStream reportStream = this.getClass().getResourceAsStream("/Reports/fichaevaluacionCurso.jasper");
+            Map<String, Object> params = new HashMap<>();
+            params.put("ista", "is.jpg");
+            params.put("idCurso", idCurso);
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(reportStream, params, jdbcTemplate.getDataSource().getConnection());
+            byte[] reportContent = JasperExportManager.exportReportToPdf(jasperPrint);
+
+            response.setContentType("application/pdf");
+
+            response.setHeader("Content-Disposition", "attachment; filename=FichaEvaluacionFinal.pdf");
 
             response.setContentLength(reportContent.length);
 

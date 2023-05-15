@@ -24,7 +24,7 @@ public class Area {
     @Column(name = "nombre_area")
     private String nombreArea;
 
-    @Column(name = "estado_area_activo")
+    @Column(name = "estado_area_activo", columnDefinition = "BOOLEAN")
     private Boolean estadoAreaActivo;
 
     // REFERENCIA DE LAS RELACIONES

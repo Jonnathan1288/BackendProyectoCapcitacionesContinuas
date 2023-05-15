@@ -1,9 +1,14 @@
 package com.capacitaciones.continuas.Modelos.Primary;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -25,7 +30,7 @@ public class Usuario {
     @Column(name = "foto_perfil", columnDefinition = "LONGBLOB")
     private String fotoPerfil;  // igamen para la base de datos
 
-    @Column(name = "estado_usuario_activo")
+    @Column(name = "estado_usuario_activo", columnDefinition = "BOOLEAN")
     private boolean estadoUsuarioActivo;
 
     // RELACIONES
@@ -33,7 +38,20 @@ public class Usuario {
     @JoinColumn(name="id_persona",referencedColumnName ="id_persona")
     private Persona persona;
 
-    @ManyToOne
+
+    /*@ManyToOne
     @JoinColumn(name="id_rol",referencedColumnName ="id_rol")
-    private Rol rol;
+    private Rol rol;*/
+
+
+
+    //RELACION DE MUCHOS A MUCHOS
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "id_usuario"),
+            inverseJoinColumns = @JoinColumn(name = "id_rol")
+    )
+    private List<Rol> roles;
 }

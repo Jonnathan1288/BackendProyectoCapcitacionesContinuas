@@ -7,5 +7,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DisenioCurricularRepository extends JpaRepository<DisenioCurricular, Integer> {
     DisenioCurricular findBySilaboIdSilabo(Integer idSilabo);
+
+    public DisenioCurricular findBySilaboCursoIdCurso(Integer idCurso);
 }
 

@@ -26,4 +26,10 @@ public interface JasperReportService {
 
     public void generateCodigoAsignarCenecyt(HttpServletResponse response, Integer idCurso);
 
+    public void generateCertificadoEstudiante(HttpServletResponse response, Integer idCurso, String identificasion);
+
+    public void generateDisenioC(HttpServletResponse response, Integer ids);
+
+    public void generateFichaEvaluacionFinal(HttpServletResponse response, Integer idCurso);
+
 }

@@ -122,5 +122,33 @@ public class ReportsController {
         }
     }
 
+    @GetMapping("/generarCertificadoEstudiante/download/{idCurso}/{identificasion}")
+    public void generarCodigosAsignarSenecyt(HttpServletResponse response, @PathVariable("idCurso") Integer idCurso, @PathVariable("identificasion") String identificasion) throws Exception {
+        try {
+            jasperReportService.generateCertificadoEstudiante(response, idCurso, identificasion);
+
+        }catch (Exception e){
+            System.out.println("Err-> "+e.getMessage());
+        }
+    }
+
+
+    @GetMapping("/generarDisenioCurricular/downloadDisenioC/{id}")
+    public void downloadDisenioC(HttpServletResponse response, @PathVariable("id") Integer id) throws Exception {
+        try {
+            jasperReportService.generateDisenioC(response, id);
+        }catch (Exception e){
+            System.out.println("Err-> "+e.getMessage());
+        }
+    }
+
+    @GetMapping("/generarFichaEvaluacionFinalCurso/downloadDisenioC/{idCurso}")
+    public void downloadFichaEvaluacionFinalCurso(HttpServletResponse response, @PathVariable("idCurso") Integer idCurso) throws Exception {
+        try {
+            jasperReportService.generateFichaEvaluacionFinal(response, idCurso);
+        }catch (Exception e){
+            System.out.println("Err-> "+e.getMessage());
+        }
+    }
 
 }

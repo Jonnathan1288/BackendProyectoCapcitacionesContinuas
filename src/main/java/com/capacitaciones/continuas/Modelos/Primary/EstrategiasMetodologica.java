@@ -15,13 +15,13 @@ public class EstrategiasMetodologica {
     @Column(name = "id_estrategia_metodologica")
     private Integer idEstrategiaMetodologica;
 
-    @Column(name = "nombre_estrategia_metodologica")
+    @Column(name = "nombre_estrategia_metodologica", length = 1000)
     private String nombreEstrategiaMetodologica;
 
-    @Column(name = "finalidad_estrategia_metodologica")
+    @Column(name = "finalidad_estrategia_metodologica", length = 1000)
     private String finalidadEstrategiaMetodologica;
 
-    @Column(name = "estado_estrategia_metodologica_activo")
+    @Column(name = "estado_estrategia_metodologica_activo", columnDefinition = "BOOLEAN")
     private Boolean estadoEstrategiaMetodologicaActivo;
 
     @ManyToOne

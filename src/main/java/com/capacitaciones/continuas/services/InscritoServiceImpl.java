@@ -33,4 +33,9 @@ public class InscritoServiceImpl extends GenericServiceImpl<Inscrito, Integer> i
             return false;
         }
     }
+
+    @Override
+    public Inscrito findByUsuarioIdUsuario(Integer idCurso, Integer idUsuario) {
+        return matriculaRepository.findByCursoIdCursoAndUsuarioIdUsuario(idCurso,idUsuario);
+    }
 }

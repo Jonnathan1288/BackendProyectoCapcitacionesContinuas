@@ -48,6 +48,19 @@ public class PersonaController {
         }
     }
 
+    @GetMapping("/persona/existsbyIdentifcasion/{identificasion}")
+    public Boolean existsbyIdentifcasion(@PathVariable("identificasion") String identificasion){
+        try {
+            if(personaService.existsByIdentificacion(identificasion)){
+                return true;
+            }
+            return false;
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
     @PutMapping("/persona/actualizar/{id}")
     public ResponseEntity<Persona> actualizarPersona(@PathVariable Integer id, @RequestBody Persona persona) {
         try {
