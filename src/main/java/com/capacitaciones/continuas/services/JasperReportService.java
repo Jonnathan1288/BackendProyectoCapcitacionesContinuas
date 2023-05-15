@@ -8,7 +8,7 @@ public interface JasperReportService {
 
     public void generateSilabo(HttpServletResponse response, Integer ids);
 
-    public void generateFichaInscripccion(HttpServletResponse response, Integer ids);
+    public void generateFichaInscripccion(HttpServletResponse response, Integer idCurso, Integer idUsuario);
 
     public void generateRegisterFotografico(HttpServletResponse response, Integer idCurso);
 
