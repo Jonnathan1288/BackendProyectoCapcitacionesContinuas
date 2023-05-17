@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpServletResponse;
+
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -154,17 +154,17 @@ public class JasperReportServiceImpl implements JasperReportService{
     public void generateRegisterFotografico(HttpServletResponse response, Integer idCurso) {
         try {
 
-            InputStream ista = getClass().getResourceAsStream("/images/ista.jpeg");
-            File tempFile = File.createTempFile("ista", ".jpeg");
-            tempFile.deleteOnExit();
-            Files.copy(ista, tempFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-            String imageista = tempFile.getAbsolutePath();
-
             InputStream cenep = getClass().getResourceAsStream("/images/cenep.png");
             File tempFile2 = File.createTempFile("cenep", ".png");
             tempFile2.deleteOnExit();
             Files.copy(cenep, tempFile2.toPath(), StandardCopyOption.REPLACE_EXISTING);
             String imagecenep = tempFile2.getAbsolutePath();
+
+            InputStream ista = getClass().getResourceAsStream("/images/ista.jpeg");
+            File tempFile = File.createTempFile("ista", ".jpeg");
+            tempFile.deleteOnExit();
+            Files.copy(ista, tempFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            String imageista = tempFile.getAbsolutePath();
 
             InputStream reportStream = this.getClass().getResourceAsStream("/Reports/RegistroFotografico.jasper");
             Map<String, Object> params = new HashMap<>();
@@ -371,7 +371,7 @@ public class JasperReportServiceImpl implements JasperReportService{
             InputStream reportStream = this.getClass().getResourceAsStream("/Reports/registroentregaCertificado.jasper");
             Map<String, Object> params = new HashMap<>();
             params.put("cene", imagecene);
-            params.put("ista", imageista);
+            params.put("istaf", imageista);
             params.put("idCurso", idcurso);
 
             JasperPrint jasperPrint = JasperFillManager.fillReport(reportStream, params, jdbcTemplate.getDataSource().getConnection());
@@ -478,57 +478,57 @@ public class JasperReportServiceImpl implements JasperReportService{
     public void generateCertificadoEstudiante(HttpServletResponse response, Integer idCurso, String identificasion) {
         try {
 
-            InputStream ga = getClass().getResourceAsStream("/images/g.png");
-            File tempFile3 = File.createTempFile("g", ".png");
+            InputStream ga = getClass().getResourceAsStream("/images/gobi.png");
+            File tempFile3 = File.createTempFile("gobi", ".png");
             tempFile3.deleteOnExit();
             Files.copy(ga, tempFile3.toPath(), StandardCopyOption.REPLACE_EXISTING);
-            String g = tempFile3.getAbsolutePath();
+            String gobi = tempFile3.getAbsolutePath();
 
-            InputStream ist = getClass().getResourceAsStream("/images/is.png");
-            File tempFile4 = File.createTempFile("is", ".png");
+            InputStream ist = getClass().getResourceAsStream("/images/istatec.jpg");
+            File tempFile4 = File.createTempFile("istatec", ".jpg");
             tempFile4.deleteOnExit();
             Files.copy(ist, tempFile4.toPath(), StandardCopyOption.REPLACE_EXISTING);
-            String is = tempFile4.getAbsolutePath();
+            String istatec = tempFile4.getAbsolutePath();
 
-            InputStream le = getClass().getResourceAsStream("/images/l.png");
-            File tempFile5 = File.createTempFile("l", ".png");
+            InputStream le = getClass().getResourceAsStream("/images/line.png");
+            File tempFile5 = File.createTempFile("line", ".png");
             tempFile5.deleteOnExit();
             Files.copy(le, tempFile5.toPath(), StandardCopyOption.REPLACE_EXISTING);
-            String l = tempFile5.getAbsolutePath();
+            String line = tempFile5.getAbsolutePath();
 
-            InputStream re = getClass().getResourceAsStream("/images/r.png");
-            File tempFile6 = File.createTempFile("r", ".png");
+            InputStream re = getClass().getResourceAsStream("/images/republic.png");
+            File tempFile6 = File.createTempFile("republic", ".png");
             tempFile6.deleteOnExit();
             Files.copy(re, tempFile6.toPath(), StandardCopyOption.REPLACE_EXISTING);
-            String r = tempFile6.getAbsolutePath();
+            String republic = tempFile6.getAbsolutePath();
 
-            InputStream se = getClass().getResourceAsStream("/images/s.png");
-            File tempFile7 = File.createTempFile("s", ".png");
+            InputStream se = getClass().getResourceAsStream("/images/secre.png");
+            File tempFile7 = File.createTempFile("secre", ".png");
             tempFile7.deleteOnExit();
             Files.copy(se, tempFile7.toPath(), StandardCopyOption.REPLACE_EXISTING);
-            String s = tempFile7.getAbsolutePath();
+            String secre = tempFile7.getAbsolutePath();
 
-            InputStream tis = getClass().getResourceAsStream("/images/ti.png");
-            File tempFile9 = File.createTempFile("ti", ".png");
+            InputStream tis = getClass().getResourceAsStream("/images/tian.png");
+            File tempFile9 = File.createTempFile("tian", ".png");
             tempFile9.deleteOnExit();
             Files.copy(tis, tempFile9.toPath(), StandardCopyOption.REPLACE_EXISTING);
-            String ti = tempFile9.getAbsolutePath();
+            String tian = tempFile9.getAbsolutePath();
 
-            InputStream tsp = getClass().getResourceAsStream("/images/ts.png");
-            File tempFile10 = File.createTempFile("ts", ".png");
+            InputStream tsp = getClass().getResourceAsStream("/images/tsin.png");
+            File tempFile10 = File.createTempFile("tsin", ".png");
             tempFile10.deleteOnExit();
             Files.copy(tsp, tempFile10.toPath(), StandardCopyOption.REPLACE_EXISTING);
-            String ts = tempFile10.getAbsolutePath();
+            String tsin = tempFile10.getAbsolutePath();
 
             InputStream reportStream = this.getClass().getResourceAsStream("/Reports/Certificado.jasper");
             Map<String, Object> params = new HashMap<>();
-            params.put("g", g);
-            params.put("is", is);
-            params.put("l", l);
-            params.put("r", r);
-            params.put("s", s);
-            params.put("ti", ti);
-            params.put("ts", ts);
+            params.put("g", gobi);
+            params.put("is", istatec);
+            params.put("l", line);
+            params.put("r", republic);
+            params.put("s", secre);
+            params.put("ti", tian);
+            params.put("ts", tsin);
             params.put("idCurso", idCurso);
             params.put("ci", identificasion);
 
