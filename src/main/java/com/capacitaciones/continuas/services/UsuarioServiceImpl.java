@@ -31,5 +31,10 @@ public class UsuarioServiceImpl extends GenericServiceImpl<Usuario, Integer> imp
     public Boolean existsByUsername(String username) {
         return usuarioRepository.existsByUsername(username);
     }
+
+    @Override
+    public Usuario findByUsername(String username) {
+        return usuarioRepository.findByUsername(username);
+    }
 }
 
