@@ -1,7 +1,9 @@
 package com.capacitaciones.continuas.Modelos.Primary;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -31,7 +33,7 @@ public class Usuario {
     private String fotoPerfil;  // igamen para la base de datos
 
     @Column(name = "estado_usuario_activo", columnDefinition = "BOOLEAN")
-    private boolean estadoUsuarioActivo;
+    private Boolean estadoUsuarioActivo;
 
     // RELACIONES
     @ManyToOne
@@ -54,6 +56,17 @@ public class Usuario {
             inverseJoinColumns = @JoinColumn(name = "id_rol")
     )
     private List<Rol> roles;
+
+
+    public Usuario(String username, String password, String fotoPerfil, Boolean estadoUsuarioActivo, Persona persona) {
+        this.username = username;
+        this.password = password;
+        this.fotoPerfil = fotoPerfil;
+        this.estadoUsuarioActivo = estadoUsuarioActivo;
+        this.persona = persona;
+    }
+
+    public Usuario(){}
 
 
 }

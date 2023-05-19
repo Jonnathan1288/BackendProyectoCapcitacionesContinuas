@@ -6,4 +6,6 @@ public interface UsuarioService extends GenericService<Usuario,Integer>{
     public Usuario findByUsernameAndPassword(String username, String password);
 
     public Boolean existsByUsername(String username);
+
+    Usuario findByUsername(String username);
 }

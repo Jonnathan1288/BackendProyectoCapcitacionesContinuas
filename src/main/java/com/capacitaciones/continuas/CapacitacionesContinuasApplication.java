@@ -10,4 +10,6 @@ public class CapacitacionesContinuasApplication {
 		SpringApplication.run(CapacitacionesContinuasApplication.class, args);
 	}
 
+
+
 }
