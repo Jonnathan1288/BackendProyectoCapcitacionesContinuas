@@ -3,10 +3,12 @@ package com.capacitaciones.continuas.controllers;
 import com.capacitaciones.continuas.Modelos.Primary.Curso;
 import com.capacitaciones.continuas.Modelos.Primary.Inscrito;
 import com.capacitaciones.continuas.Modelos.Primary.PartipantesMatriculados;
+import com.capacitaciones.continuas.emailPassword.Services.EmailServiceImpl;
 import com.capacitaciones.continuas.services.CursoService;
 import com.capacitaciones.continuas.services.InscritoService;
 import com.capacitaciones.continuas.services.ParticipantesMatriculadosService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +28,12 @@ public class ParticipanteMatriculadosController {
 
     @Autowired
     private CursoService cursoService;
+
+    @Value("${spring.mail.username}")
+    private String sendFrom;
+
+    @Autowired
+    private EmailServiceImpl emailService;
 
     @GetMapping("/participantesMatriculados/listar")
     public ResponseEntity<List<PartipantesMatriculados>> obtenerLista() {
@@ -64,12 +72,22 @@ public class ParticipanteMatriculadosController {
                 }
                 try {
                     Curso curso = cursoService.findById(idCurso);
-                    //curso.setIniciocurso(true);
                     curso.setEstadoPublicasionCurso("I");
                     cursoService.save(curso);
                 } catch (Exception e) {
-                    System.out.println(e.getMessage());
+                    System.out.println("ERRRO ACTUALIZAR ESTADO CURSO MATRICULADOS-> "+e.getMessage());
                 }
+
+                try {
+                    if(emailService.sendEmailEstudiantesMatriculadosNoMatriculados(idCurso, sendFrom)){
+                        System.out.println("BIEN ENVIADO CORREOS");
+                    }else{
+                        System.out.println("MAL ENVIADO CORREOS");
+                    }
+                }catch (Exception e){
+                    System.out.println("Email err PM-> "+e.getMessage());
+                }
+
                 return new ResponseEntity<>(inscritoList, HttpStatus.OK);
             }
         }catch (Exception e){
