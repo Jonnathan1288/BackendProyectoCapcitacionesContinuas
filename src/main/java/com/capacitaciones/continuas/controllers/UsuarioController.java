@@ -53,6 +53,19 @@ public class UsuarioController {
         }
     }
 
+    @GetMapping("/usuario/findbyCedula/{cedula}")
+    public ResponseEntity<?> findbyCedula(@PathVariable("cedula") String cedula){
+        try {
+            Usuario nc = usuarioService.findByPersonaIdentificacion(cedula);
+            if(nc != null){
+                return new ResponseEntity<>(nc, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("USUARIO NO ENCONTRADO",HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @PutMapping("/usuario/actualizar/{id}")
     public ResponseEntity<Usuario> actualizarUsuario(@PathVariable Integer id, @RequestBody Usuario usuario) {
         try {

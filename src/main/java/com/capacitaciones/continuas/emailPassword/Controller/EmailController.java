@@ -29,6 +29,7 @@ public class EmailController {
 
     @Autowired
     private EmailServiceImpl emailService;
+
     @Autowired
     private PersonaService personaservice;
 
@@ -46,10 +47,11 @@ public class EmailController {
     @Autowired
     private InscritoService inscritoService;
 
-    @GetMapping("/email/sendRecuperacionPassword/{idUsuario}")
-    public ResponseEntity<?> sendEmailREcuperacion(@PathVariable("idUsuario") Integer idUsuario){
+      @GetMapping("/email/sendRecuperacionPassword/{identificacion}")
+    public ResponseEntity<?> sendEmailRecuperacion(@PathVariable("identificacion") String identificacion){
+
         try {
-            Usuario usuario = usuarioService.findById(idUsuario);
+            Usuario usuario = usuarioService.findByPersonaIdentificacion(identificacion);
             if (usuario == null) {
                 return  ResponseEntity.status(HttpStatus.NOT_FOUND).body("NOT_FOUND_USUARIO");
             }
@@ -62,10 +64,9 @@ public class EmailController {
             String tokenPassword  = uuid.toString();
             values.setJwt(tokenPassword);
             usuario.setTokenPassword(tokenPassword);
-            usuarioRepository.save(usuario);
             if(usuario != null) {
                 if(emailService.sendEmail(values) == true) {
-                    return new ResponseEntity<>("Enviado Exitosamente", HttpStatus.OK);
+                    return new ResponseEntity<>(usuarioRepository.save(usuario), HttpStatus.OK);
                 }else {
                     return  ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("INCONVENIENTE");
                 }
@@ -93,8 +94,7 @@ public class EmailController {
         String passwordNew = passwordEncoder.encode(dto.getPassword());
         usuario.setPassword(passwordNew);
         usuario.setTokenPassword(null);
-        usuarioService.save(usuario);
-        return new ResponseEntity<>("Cambio de contrasela exitoso Exitosamente", HttpStatus.OK);
+        return new ResponseEntity<>(usuarioService.save(usuario), HttpStatus.OK);
     }
 
     @GetMapping("/email/sendEmailEstudentMatriculadoNoMatriculado/{idCurso}")
