@@ -1,11 +1,13 @@
 package com.capacitaciones.continuas.emailPassword.Controller;
 
+import com.capacitaciones.continuas.Modelos.Primary.Inscrito;
 import com.capacitaciones.continuas.Modelos.Primary.Persona;
 import com.capacitaciones.continuas.Modelos.Primary.Usuario;
 import com.capacitaciones.continuas.emailPassword.Dtos.CambiarPasswordDTO;
 import com.capacitaciones.continuas.emailPassword.Dtos.EmailValuesDTO;
 import com.capacitaciones.continuas.emailPassword.Services.EmailServiceImpl;
 import com.capacitaciones.continuas.repositorys.Primarys.UsuarioRepository;
+import com.capacitaciones.continuas.services.InscritoService;
 import com.capacitaciones.continuas.services.PersonaService;
 import com.capacitaciones.continuas.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.UUID;
 
 @CrossOrigin("*")
@@ -39,6 +42,9 @@ public class EmailController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private InscritoService inscritoService;
 
     @GetMapping("/email/sendRecuperacionPassword/{idUsuario}")
     public ResponseEntity<?> sendEmailREcuperacion(@PathVariable("idUsuario") Integer idUsuario){
@@ -91,5 +97,39 @@ public class EmailController {
         return new ResponseEntity<>("Cambio de contrasela exitoso Exitosamente", HttpStatus.OK);
     }
 
+    @GetMapping("/email/sendEmailEstudentMatriculadoNoMatriculado/{idCurso}")
+    public ResponseEntity<?> sendEmailEstudentMatriculadoNoMatriculado(@PathVariable("idCurso") Integer idCurso){
+        try {
+            if(emailService.sendEmailEstudiantesMatriculadosNoMatriculados(idCurso, sendFrom)){
+                return new ResponseEntity<>(HttpStatus.OK);
+            }else{
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }catch (Exception e){
+            System.out.println("Email err-> "+e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+
+
+
+    /*public ResponseEntity<?> sendEmailEstudentMatriculadoNoMatriculado(@PathVariable("idCurso") Integer idCurso){
+        try {
+            List<Inscrito> inscritoList = inscritoService.findByCursoIdCurso(idCurso);
+            if(inscritoList != null){
+                inscritoList.stream().forEach(inscrito ->{
+                    emailService.sendEmailEstudiantesMatriculadosNoMatriculados(idCurso, sendFrom);
+                });
+                return new ResponseEntity<>(HttpStatus.OK);
+            }else{
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }catch (Exception e){
+            System.out.println("Email err-> "+e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }*/
 
 }
