@@ -1,4 +1,4 @@
-package com.capacitaciones.continuas.Configuration;
+package com.capacitaciones.continuas.emailPassword.Configuration;
 
 import org.bouncycastle.util.encoders.UTF8;
 import org.springframework.context.annotation.Bean;

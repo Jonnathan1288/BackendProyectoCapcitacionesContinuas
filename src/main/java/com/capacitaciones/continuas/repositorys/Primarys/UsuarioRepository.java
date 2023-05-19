@@ -9,4 +9,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
     public Usuario findByUsernameAndPassword(String username, String password);
 
     public Boolean existsByUsername(String username);
+
+    public Usuario findByTokenPassword(String tokenPassword);
+
 }
