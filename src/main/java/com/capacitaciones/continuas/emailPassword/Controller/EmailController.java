@@ -40,10 +40,10 @@ public class EmailController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @GetMapping("/email/sendRecuperacionPassword/{idUsuario}")
-    public ResponseEntity<?> sendEmailREcuperacion(@PathVariable("idUsuario") Integer idUsuario){
+    @GetMapping("/email/sendRecuperacionPassword/{identificacion}")
+    public ResponseEntity<?> sendEmailRecuperacion(@PathVariable("identificacion") String identificacion){
         try {
-            Usuario usuario = usuarioService.findById(idUsuario);
+            Usuario usuario = usuarioService.findByPersonaIdentificacion(identificacion);
             if (usuario == null) {
                 return  ResponseEntity.status(HttpStatus.NOT_FOUND).body("NOT_FOUND_USUARIO");
             }

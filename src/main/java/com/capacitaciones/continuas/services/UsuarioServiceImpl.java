@@ -36,5 +36,10 @@ public class UsuarioServiceImpl extends GenericServiceImpl<Usuario, Integer> imp
     public Usuario findByUsername(String username) {
         return usuarioRepository.findByUsername(username);
     }
+
+    @Override
+    public Usuario findByPersonaIdentificacion(String cedula) {
+        return usuarioRepository.findByPersonaIdentificacion(cedula);
+    }
 }
 
