@@ -23,6 +23,11 @@ public class UsuarioServiceImpl extends GenericServiceImpl<Usuario, Integer> imp
     }
 
     @Override
+    public Usuario findByTokenPassword(String tokenPassword) {
+        return usuarioRepository.findByTokenPassword(tokenPassword);
+    }
+
+    @Override
     public Boolean existsByUsername(String username) {
         return usuarioRepository.existsByUsername(username);
     }

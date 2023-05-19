@@ -6,8 +6,8 @@
 </head>
 <body>
   <h2>Recuperar Contraseña</h2>
-  <h3> <span>Hola </span> <span>User</span></h3>
+  <h3> <span>Hola </span> <span th:text="${username}"></span></h3>
   <h4>Haz click en el siguiente enlace:</h4>
-  <a th:href="@{https://poe.com/ChatGPT}"><button>Ir a mi cuenta</button></a>
+  <a th:href="@{${url}}"><button>Ir a mi cuenta</button></a>
 </body>
 </html>

@@ -35,6 +35,9 @@ public class Usuario {
     @Column(name = "estado_usuario_activo", columnDefinition = "BOOLEAN")
     private Boolean estadoUsuarioActivo;
 
+    @Column(name = "token_password", length = 1800)
+    private String tokenPassword;
+
     // RELACIONES
     @ManyToOne
     @JoinColumn(name="id_persona",referencedColumnName ="id_persona")
