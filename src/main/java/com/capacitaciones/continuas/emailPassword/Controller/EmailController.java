@@ -17,12 +17,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Optional;
 import java.util.UUID;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/auth")
 public class EmailController {
 
     @Autowired
@@ -38,6 +37,8 @@ public class EmailController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping("/email/sendRecuperacionPassword/{idUsuario}")
     public ResponseEntity<?> sendEmailREcuperacion(@PathVariable("idUsuario") Integer idUsuario){
@@ -83,8 +84,8 @@ public class EmailController {
         if (usuario == null) {
             return new ResponseEntity<>("No encontrado el usuario", HttpStatus.BAD_REQUEST);
         }
-        //String passwordNew = crypt.encode(dto.getPassword());
-        usuario.setPassword("passwordNew");
+        String passwordNew = passwordEncoder.encode(dto.getPassword());
+        usuario.setPassword(passwordNew);
         usuario.setTokenPassword(null);
         usuarioService.save(usuario);
         return new ResponseEntity<>("Cambio de contrasela exitoso Exitosamente", HttpStatus.OK);
