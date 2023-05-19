@@ -16,10 +16,10 @@ public class HojaVidaCapacitador {
     @Column(name = "id_hoja_vida")
     private Integer idHojaVida;
 
-    @Column(name = "experiencial_laboral")
+    @Column(name = "experiencial_laboral", length = 1800)
     private String  experiencialLaboral;
 
-    @Column(name = "sobre_mi")
+    @Column(name = "sobre_mi", length = 1800)
     private String sobreMi;
 
     @Column(name = "experiencia_escolar", length = 1800)
