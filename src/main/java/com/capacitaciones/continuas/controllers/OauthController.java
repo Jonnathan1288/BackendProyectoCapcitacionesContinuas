@@ -7,6 +7,7 @@ import com.capacitaciones.continuas.Security.Dtos.LoginUser;
 import com.capacitaciones.continuas.Security.Dtos.NewUser;
 import com.capacitaciones.continuas.Security.JWT.JwtProvider;
 import com.capacitaciones.continuas.Security.Models.Message;
+import com.capacitaciones.continuas.services.PersonaService;
 import com.capacitaciones.continuas.services.RolService;
 import com.capacitaciones.continuas.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +69,7 @@ public class OauthController {
             return new ResponseEntity<>(new Message("Revise sus credenciales"), HttpStatus.BAD_REQUEST);
         }
         try {
+            System.out.println();
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(loginUser.getUsername(), loginUser.getPassword());
             Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
             SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -93,5 +95,20 @@ public class OauthController {
         user.setRoles(roles);
         userService.save(user);
         return new ResponseEntity<>(new Message("Registro exitoso! Inicie sesión"), HttpStatus.CREATED);
+    }
+
+
+    @GetMapping("/existByCorreo/{email}")
+    public ResponseEntity<?> existByCorreo(@PathVariable("email") String email) {
+        try {
+            Usuario usuario = userService.findByPersonaCorreo(email);
+            if(usuario != null){
+                return new ResponseEntity<>(usuario, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("NOT FOUND", HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
     }
 }

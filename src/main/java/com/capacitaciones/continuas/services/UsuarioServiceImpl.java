@@ -38,8 +38,18 @@ public class UsuarioServiceImpl extends GenericServiceImpl<Usuario, Integer> imp
     }
 
     @Override
+    public Usuario findByPersonaCorreo(String correo) {
+        return usuarioRepository.findByPersonaCorreo(correo);
+    }
+
+    @Override
     public Usuario findByPersonaIdentificacion(String cedula) {
         return usuarioRepository.findByPersonaIdentificacion(cedula);
+    }
+
+    @Override
+    public Boolean existsByPersonaCorreo(String email) {
+        return usuarioRepository.existsByPersonaCorreo(email);
     }
 }
 

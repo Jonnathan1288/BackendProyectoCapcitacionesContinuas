@@ -11,6 +11,10 @@ public interface UsuarioService extends GenericService<Usuario,Integer>{
 
     Usuario findByUsername(String username);
 
+    public Usuario findByPersonaCorreo(String correo);
+
     Usuario findByPersonaIdentificacion(String cedula);
+
+    public Boolean existsByPersonaCorreo(String email);
 
 }

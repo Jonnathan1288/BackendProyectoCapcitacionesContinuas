@@ -111,6 +111,21 @@ public class EmailController {
         }
     }
 
+    //PARA LAS PARTES PUEBLICAS
+    @GetMapping("/usuario/existsByPersonaCorreo/{email}")
+    public Boolean existsByPersonaCorreo(@PathVariable("email") String email){
+        try {
+            if(usuarioService.existsByPersonaCorreo(email)){
+                return true;
+            }else{
+                return false;
+            }
+        }catch (Exception e){
+            System.out.println("existsByPersonaCorreo err-> "+e.getMessage());
+            return null;
+        }
+    }
+
 
 
 
