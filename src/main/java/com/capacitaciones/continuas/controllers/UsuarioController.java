@@ -47,7 +47,7 @@ public class UsuarioController {
             if(nc != null){
                 return new ResponseEntity<>(nc, HttpStatus.OK);
             }
-            return new ResponseEntity<>("PARTICIPANTE APROBADOS NO ENCONTRADA",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("NO ENCONTRADA",HttpStatus.NOT_FOUND);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -81,16 +81,5 @@ public class UsuarioController {
         }
     }
 
-    @GetMapping("/usuario/existsbyUsername/{username}")
-    public Boolean existsbyIdentifcasion(@PathVariable("username") String username){
-        try {
-            if(usuarioService.existsByUsername(username)){
-                return true;
-            }
-            return false;
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-            return false;
-        }
-    }
+
 }

@@ -15,7 +15,7 @@ import java.util.List;
 public class PersonaController {
 
     @Autowired
-    PersonaService personaService;
+    private PersonaService personaService;
 
     @GetMapping("/persona/listar")
     public ResponseEntity<List<Persona>> obtenerLista() {
@@ -26,14 +26,6 @@ public class PersonaController {
         }
     }
 
-    @PostMapping("/persona/crear")
-    public ResponseEntity<Persona> crear(@RequestBody Persona c) {
-        try {
-            return new ResponseEntity<>(personaService.save(c), HttpStatus.CREATED);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
     @GetMapping("/persona/findbyId/{id}")
     public ResponseEntity<?> getPersonaById(@PathVariable("id") Integer id){
@@ -48,18 +40,7 @@ public class PersonaController {
         }
     }
 
-    @GetMapping("/persona/existsbyIdentifcasion/{identificasion}")
-    public Boolean existsbyIdentifcasion(@PathVariable("identificasion") String identificasion){
-        try {
-            if(personaService.existsByIdentificacion(identificasion)){
-                return true;
-            }
-            return false;
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-            return false;
-        }
-    }
+
 
     @PutMapping("/persona/actualizar/{id}")
     public ResponseEntity<Persona> actualizarPersona(@PathVariable Integer id, @RequestBody Persona persona) {

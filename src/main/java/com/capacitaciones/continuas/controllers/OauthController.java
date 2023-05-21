@@ -1,5 +1,6 @@
 package com.capacitaciones.continuas.controllers;
 
+import com.capacitaciones.continuas.Modelos.Primary.Persona;
 import com.capacitaciones.continuas.Modelos.Primary.Rol;
 import com.capacitaciones.continuas.Modelos.Primary.Usuario;
 import com.capacitaciones.continuas.Security.Dtos.JwtDto;
@@ -46,6 +47,9 @@ public class OauthController {
     private RolService roleService;
 
     @Autowired
+    private PersonaService personaService;
+
+    @Autowired
     private JwtProvider jwtProvider;
 
 
@@ -69,7 +73,7 @@ public class OauthController {
             return new ResponseEntity<>(new Message("Revise sus credenciales"), HttpStatus.BAD_REQUEST);
         }
         try {
-            System.out.println();
+
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(loginUser.getUsername(), loginUser.getPassword());
             Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
             SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -83,18 +87,39 @@ public class OauthController {
         }
     }
 
-    @PostMapping("/register")
+    /*@PostMapping("/register")
     public ResponseEntity<Object> resgister(@Valid @RequestBody NewUser newUser, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return new ResponseEntity<>(new Message("Revise los campos e intente nuevamente"), HttpStatus.BAD_REQUEST);
-        Usuario user = new Usuario(newUser.getUsername(), passwordEncoder.encode(newUser.getPassword()) , newUser.getFotoPerfil(), newUser.getEstadoUsuarioActivo(), newUser.getPersona());
-        List<Rol> roles = new ArrayList<>();
+        Usuario user = new Usuario(newUser.getUsername(), passwordEncoder.encode(newUser.getPassword()) , newUser.getFotoPerfil(), newUser.getEstadoUsuarioActivo(), newUser.getPersona(), newUser.getRoles());
+        user.setRoles(newUser.getRoles());
+         List<Rol> roles = new ArrayList<>();
         for (Rol rol : newUser.getRoles()) {
             roles.add(roleService.findByNombreRol(rol.getNombreRol()));
         }
         user.setRoles(roles);
         userService.save(user);
         return new ResponseEntity<>(new Message("Registro exitoso! Inicie sesión"), HttpStatus.CREATED);
+    }*/
+
+    @PostMapping("/register")
+    public ResponseEntity<Usuario> crear(@RequestBody Usuario c) {
+        try {
+            c.setEstadoUsuarioActivo(true);
+            c.setPassword(passwordEncoder.encode(c.getPassword()));
+            return new ResponseEntity<>(usuarioService.save(c), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/persona/crear")
+    public ResponseEntity<Persona> crear(@RequestBody Persona c) {
+        try {
+            return new ResponseEntity<>(personaService.save(c), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 

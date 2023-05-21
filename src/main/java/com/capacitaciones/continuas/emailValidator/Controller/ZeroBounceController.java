@@ -12,17 +12,24 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/auth")
 public class ZeroBounceController {
     private static final String ZEROBOUNCE_API_URL = "https://api.zerobounce.net/v2/validate";
-    private static final String ZEROBOUNCE_API_KEY = "fe6fd8a03fbc4a73939ac55f783569b3";
+    private static final String ZEROBOUNCE_API_KEY = "67ca1b5a7c2d4599b8ccf868f531601b";
     private static final Gson gson = new Gson();
     private static final OkHttpClient httpClient = new OkHttpClient();
 
     @GetMapping("/validate-email/{email}")
-    public ZeroBounceResponse validateEmail(@PathVariable String email) throws Exception {
-        String url = ZEROBOUNCE_API_URL + "?api_key=" + ZEROBOUNCE_API_KEY + "&email=" + email;
-        Request request = new Request.Builder().url(url).build();
-        Response response = httpClient.newCall(request).execute();
+    public ZeroBounceResponse validateEmail(@PathVariable String email){
 
-        ZeroBounceResponse zeroBounceResponse = gson.fromJson(response.body().string(), ZeroBounceResponse.class);
-        return zeroBounceResponse;
+        try {
+            String url = ZEROBOUNCE_API_URL + "?api_key=" + ZEROBOUNCE_API_KEY + "&email=" + email;
+            Request request = new Request.Builder().url(url).build();
+            Response response = httpClient.newCall(request).execute();
+
+            ZeroBounceResponse zeroBounceResponse = gson.fromJson(response.body().string(), ZeroBounceResponse.class);
+            return zeroBounceResponse;
+
+        }catch (Exception e){
+            System.out.println("Exception emialV-> "+e.getMessage());
+            return null;
+        }
     }
 }

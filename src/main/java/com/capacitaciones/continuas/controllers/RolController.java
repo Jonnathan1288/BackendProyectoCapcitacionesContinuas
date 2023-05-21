@@ -15,7 +15,7 @@ import java.util.List;
 public class RolController {
 
     @Autowired
-    RolService rolService;
+    private RolService rolService;
 
     @GetMapping("/rol/listar")
     public ResponseEntity<List<Rol>> obtenerLista() {
@@ -35,18 +35,6 @@ public class RolController {
         }
     }
 
-    @GetMapping("/rol/findbyId/{id}")
-    public ResponseEntity<?> getRolById(@PathVariable("id") Integer id){
-        try {
-            Rol nc = rolService.findById(id);
-            if(nc != null){
-                return new ResponseEntity<>(nc, HttpStatus.OK);
-            }
-            return new ResponseEntity<>("ROL NO ENCONTRADA",HttpStatus.NOT_FOUND);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
     @PutMapping("/rol/actualizar/{id}")
     public ResponseEntity<Rol> actualizarRol(@PathVariable Integer id, @RequestBody Rol rol) {
