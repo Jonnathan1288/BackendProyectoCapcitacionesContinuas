@@ -8,6 +8,8 @@ import com.capacitaciones.continuas.repositorys.Primarys.InscritoRepository;
 import com.capacitaciones.continuas.repositorys.Primarys.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,10 @@ import org.thymeleaf.context.Context;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -126,17 +132,33 @@ public class EmailServiceImpl implements EmailService {
             helper = new MimeMessageHelper(message, true);
             Context context = new Context();
             Map<String, Object> model = new HashMap<>();
-            model.put("documento", senecyt.getDocumentoExel());
+            String contenidoBase64 = senecyt.getDocumentoExel();
+            String base64 = contenidoBase64.substring(contenidoBase64.indexOf(',') + 1);
+
+            byte[] excelBytes = Base64.getDecoder().decode(base64);
+
+            // Obtén la fecha de inicio del curso en formato LocalDate
+            LocalDate now = LocalDate.now();
+            // Crea el formateador de fecha
+            DateTimeFormatter formateador = DateTimeFormatter.ofPattern("d 'de' MMMM 'de' yyyy", new Locale("es"));
+            // Formatea la fecha en el formato deseado
+            String fechaFormateada = now.format(formateador);
+
+            model.put("fechaEmision", fechaFormateada);
             context.setVariables(model);
             String htmlText = ITemplateEngine.process("codigos",context);
             helper.setFrom(sendFrom);
             helper.setTo(user.getPersona().getCorreo());
             helper.setSubject("CAPACITACIÓN CONTINUA.");
             helper.setText(htmlText,true);
+            //helper.addInline("excel", new ByteArrayResource(excelBytes), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+            helper.addAttachment("codigosSenescyt"+now+".xlsx", new ByteArrayResource(excelBytes), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+
             javaMailSender.send(message);
             return true;
 
         } catch (Exception e) {
+            System.out.println("Nuev_> "+e.getMessage());
             return false;
         }
     }

@@ -1,13 +1,12 @@
 package com.capacitaciones.continuas.emailPassword.Controller;
 
-import com.capacitaciones.continuas.Modelos.Primary.Inscrito;
-import com.capacitaciones.continuas.Modelos.Primary.Persona;
+import com.capacitaciones.continuas.Modelos.Primary.DocumentoSenecyt;
 import com.capacitaciones.continuas.Modelos.Primary.Usuario;
 import com.capacitaciones.continuas.emailPassword.Dtos.CambiarPasswordDTO;
 import com.capacitaciones.continuas.emailPassword.Dtos.EmailValuesDTO;
 import com.capacitaciones.continuas.emailPassword.Services.EmailServiceImpl;
 import com.capacitaciones.continuas.repositorys.Primarys.UsuarioRepository;
-import com.capacitaciones.continuas.services.InscritoService;
+import com.capacitaciones.continuas.services.DocumentoSenecytService;
 import com.capacitaciones.continuas.services.PersonaService;
 import com.capacitaciones.continuas.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.UUID;
 
 @CrossOrigin("*")
@@ -45,7 +43,7 @@ public class EmailController {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    private InscritoService inscritoService;
+    private DocumentoSenecytService documentoSenecytService;
 
       @GetMapping("/email/sendRecuperacionPassword/{identificacion}")
     public ResponseEntity<?> sendEmailRecuperacion(@PathVariable("identificacion") String identificacion){
@@ -111,12 +109,21 @@ public class EmailController {
         }
     }
 
-    @GetMapping("/email/sendEmailEstudentMatriculadoNoMatriculado/{idPersona}/{idDocumentSenecyt}")
-    public ResponseEntity<?> sendEmailDocumentoSenescyt(@PathVariable("idPersona") Integer idPersona, @PathVariable("idDocumentSenecyt") Integer idDocumentSenecyt){
+    @GetMapping("/email/sendEmailDocumentoSenescyt/{idUsuario}/{idDocumentSenecyt}")
+    public ResponseEntity<?> sendEmailDocumentoSenescyt(@PathVariable("idUsuario") Integer idUsuario, @PathVariable("idDocumentSenecyt") Integer idDocumentSenecyt){
         try {
-            if(emailService.sendEmailEstudiantesMatriculadosNoMatriculados(idCurso, sendFrom)){
-                return new ResponseEntity<>(HttpStatus.OK);
+            Usuario usuario = usuarioService.findById(idUsuario);
+            DocumentoSenecyt documentoSenecyt = documentoSenecytService.findById(idDocumentSenecyt);
+
+            if(usuario != null && documentoSenecyt != null){
+                if(emailService.sendEmailCodigosSenecyt(usuario, documentoSenecyt, sendFrom)){
+                    return new ResponseEntity<>(documentoSenecyt, HttpStatus.OK);
+                }else{
+                    System.out.println("Error");
+                    return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+                }
             }else{
+                System.out.println("NO ENCONTRADO");
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         }catch (Exception e){
