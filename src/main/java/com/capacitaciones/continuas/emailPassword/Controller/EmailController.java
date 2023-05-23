@@ -114,7 +114,7 @@ public class EmailController {
     @GetMapping("/email/sendEmailEstudentMatriculadoNoMatriculado/{idPersona}/{idDocumentSenecyt}")
     public ResponseEntity<?> sendEmailDocumentoSenescyt(@PathVariable("idPersona") Integer idPersona, @PathVariable("idDocumentSenecyt") Integer idDocumentSenecyt){
         try {
-            if(emailService.sendEmailEstudiantesMatriculadosNoMatriculados(idCurso, sendFrom)){
+            if(emailService.sendEmailEstudiantesMatriculadosNoMatriculados(idPersona, sendFrom)){
                 return new ResponseEntity<>(HttpStatus.OK);
             }else{
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
