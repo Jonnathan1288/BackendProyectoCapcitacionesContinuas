@@ -1,13 +1,13 @@
 package com.capacitaciones.continuas.emailPassword.Services;
 
+import com.capacitaciones.continuas.Modelos.Primary.DocumentoSenecyt;
 import com.capacitaciones.continuas.Modelos.Primary.Inscrito;
+import com.capacitaciones.continuas.Modelos.Primary.Usuario;
 import com.capacitaciones.continuas.emailPassword.Dtos.EmailValuesDTO;
 import com.capacitaciones.continuas.repositorys.Primarys.InscritoRepository;
-import com.capacitaciones.continuas.repositorys.Primarys.PersonaRepository;
+import com.capacitaciones.continuas.repositorys.Primarys.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -18,10 +18,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 
 @Service
@@ -34,7 +31,7 @@ public class EmailServiceImpl implements EmailService {
     ITemplateEngine ITemplateEngine;
 
     @Autowired
-    private PersonaRepository personarepository;
+    private UsuarioRepository usuarioRepository;
 
     @Value("${mail.urlFront}")
     private String urlFront;
@@ -119,5 +116,28 @@ public class EmailServiceImpl implements EmailService {
             return false;
         }
 
+    }
+
+    @Override
+    public boolean sendEmailCodigosSenecyt(Usuario user, DocumentoSenecyt senecyt, String sendFrom) {
+        MimeMessage message = javaMailSender.createMimeMessage();
+        MimeMessageHelper helper = null;
+        try {
+            helper = new MimeMessageHelper(message, true);
+            Context context = new Context();
+            Map<String, Object> model = new HashMap<>();
+            model.put("documento", senecyt.getDocumentoExel());
+            context.setVariables(model);
+            String htmlText = ITemplateEngine.process("codigos",context);
+            helper.setFrom(sendFrom);
+            helper.setTo(user.getPersona().getCorreo());
+            helper.setSubject("CAPACITACIÓN CONTINUA.");
+            helper.setText(htmlText,true);
+            javaMailSender.send(message);
+            return true;
+
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
