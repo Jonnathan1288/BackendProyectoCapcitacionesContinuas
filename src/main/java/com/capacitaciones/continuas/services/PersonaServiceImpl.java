@@ -22,4 +22,5 @@ public class PersonaServiceImpl extends GenericServiceImpl<Persona, Integer> imp
     public Boolean existsByIdentificacion(String identificasion) {
         return personaRepository.existsByIdentificacion(identificasion);
     }
+
 }

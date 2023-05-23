@@ -111,6 +111,22 @@ public class EmailController {
         }
     }
 
+    @GetMapping("/email/sendEmailEstudentMatriculadoNoMatriculado/{idPersona}/{idDocumentSenecyt}")
+    public ResponseEntity<?> sendEmailDocumentoSenescyt(@PathVariable("idPersona") Integer idPersona, @PathVariable("idDocumentSenecyt") Integer idDocumentSenecyt){
+        try {
+            if(emailService.sendEmailEstudiantesMatriculadosNoMatriculados(idCurso, sendFrom)){
+                return new ResponseEntity<>(HttpStatus.OK);
+            }else{
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }catch (Exception e){
+            System.out.println("Email err-> "+e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+
 
 
 
