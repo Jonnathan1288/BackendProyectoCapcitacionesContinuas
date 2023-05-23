@@ -105,21 +105,9 @@
 			<version>0.9.1</version>
 		</dependency>
 
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt</artifactId>
-			<version>0.9.1</version>
 		</dependency>
 
 		<!--DEPENDENCIA DE LA VALIDACION DEL CORREO ELECTRONICO-->
@@ -137,6 +125,7 @@
 			<artifactId>gson</artifactId>
 			<version>2.8.8</version>
 		</dependency>
+
 	</dependencies>
 
 	<build>

@@ -59,7 +59,7 @@ public class EmailController {
             values.setMailFrom(sendFrom);
             values.setMailTo(usuario.getPersona().getCorreo());
             values.setUsername(usuario.getPersona().getNombre1() + ' ' + usuario.getPersona().getNombre2() + ' ' + usuario.getPersona().getApellido1() + ' ' + usuario.getPersona().getApellido2());
-            values.setSubject("Cambio de Contraseña");
+            values.setSubject("RESTAURAR CONSTRASEÑA");
             UUID uuid = UUID.randomUUID();
             String tokenPassword  = uuid.toString();
             values.setJwt(tokenPassword);
