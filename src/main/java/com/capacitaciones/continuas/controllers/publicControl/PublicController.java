@@ -1,5 +1,7 @@
 package com.capacitaciones.continuas.controllers.publicControl;
 
+import com.capacitaciones.continuas.Modelos.Primary.Capacitador;
+import com.capacitaciones.continuas.Modelos.Primary.HojaVidaCapacitador;
 import com.capacitaciones.continuas.Modelos.Primary.ParticipantesAprobados;
 import com.capacitaciones.continuas.Modelos.Primary.Rol;
 import com.capacitaciones.continuas.services.*;
@@ -7,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @CrossOrigin("*")
 @RestController
@@ -29,6 +33,13 @@ public class PublicController {
 
     @Autowired
     private ParticipantesAprobadosService participantesAprobadosService;
+
+    @Autowired
+    private HojaVidaCapacitadorService hojaVidaCapacitadorService;
+
+
+    @Autowired
+    private CapacitadorService capacitadorService;
 
 
     @GetMapping("/usuario/existsbyUsername/{username}")
@@ -106,5 +117,31 @@ public class PublicController {
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @PostMapping("/hojaVida/updateDocumento/{idUsuario}")
+    public ResponseEntity<?> updateCVDocumento(@RequestParam("file") MultipartFile file, @PathVariable("idUsuario") Integer idUsuario) throws IOException {
+        HojaVidaCapacitador hojaVidaCapacitador = hojaVidaCapacitadorService.findHojaVidaCapacitadorByCapacitadorUsuarioIdUsuario(idUsuario);
+        if(hojaVidaCapacitador == null){
+            return ResponseEntity.badRequest().body("No se encontro CAPACITADOR.");
+        }
+        if (file == null || file.isEmpty()) {
+            return ResponseEntity.badRequest().body("No se ha proporcionado ningún archivo.");
+        }
+        byte[] bytesDocumento = file.getBytes();
+        return new ResponseEntity<>(hojaVidaCapacitadorService.updateCVCapacitador(bytesDocumento,hojaVidaCapacitador), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/hojaVida/saveDocumento/{idUsuario}")
+    public ResponseEntity<?> guardarCV(@RequestParam("file") MultipartFile file,@PathVariable("idUsuario") Integer idUsuario) throws IOException {
+        Capacitador capacitador = capacitadorService.findByUsuarioIdUsuario(idUsuario);
+        if(capacitador == null){
+            return ResponseEntity.badRequest().body("No se encontro CAPACITADOR.");
+        }
+        if (file == null || file.isEmpty()) {
+            return ResponseEntity.badRequest().body("No se ha proporcionado ningún archivo.");
+        }
+        byte[] bytesDocumento = file.getBytes();
+        return new ResponseEntity<>(hojaVidaCapacitadorService.guardarCV(bytesDocumento,capacitador), HttpStatus.CREATED);
     }
 }

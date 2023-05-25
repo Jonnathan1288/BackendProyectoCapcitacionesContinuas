@@ -69,13 +69,26 @@ public class UsuarioController {
     @PutMapping("/usuario/actualizar/{id}")
     public ResponseEntity<Usuario> actualizarUsuario(@PathVariable Integer id, @RequestBody Usuario usuario) {
         try {
-            if (usuarioService.findById(id) == null) {
-                return ResponseEntity.notFound().build();
+
+            Usuario usuario1 = usuarioService.findById(id);
+            if(usuario1 != null){
+                usuario1.setUsername(usuario.getUsername());
+                //usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+                usuario1.setFotoPerfil(usuario.getFotoPerfil());
+
+                if(usuario.getPassword().equals(usuario1.getPassword())){
+                    usuario1.setPassword(usuario.getPassword());
+                    System.out.println("igual");
+                }else{
+                    System.out.println("difetene");
+                    usuario1.setPassword(passwordEncoder.encode(usuario.getPassword()));
+                }
+                usuario1.setRoles(usuario.getRoles());
+
+                return new ResponseEntity<>(usuarioService.save(usuario1), HttpStatus.CREATED);
             }
-            usuario.setUsername(usuario.getUsername());
-            usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
-            usuario.setFotoPerfil(usuario.getFotoPerfil());
-            return new ResponseEntity<>(usuarioService.save(usuario), HttpStatus.CREATED);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
