@@ -23,8 +23,33 @@ public class UsuarioServiceImpl extends GenericServiceImpl<Usuario, Integer> imp
     }
 
     @Override
+    public Usuario findByTokenPassword(String tokenPassword) {
+        return usuarioRepository.findByTokenPassword(tokenPassword);
+    }
+
+    @Override
     public Boolean existsByUsername(String username) {
         return usuarioRepository.existsByUsername(username);
+    }
+
+    @Override
+    public Usuario findByUsername(String username) {
+        return usuarioRepository.findByUsername(username);
+    }
+
+    @Override
+    public Usuario findByPersonaCorreo(String correo) {
+        return usuarioRepository.findByPersonaCorreo(correo);
+    }
+
+    @Override
+    public Usuario findByPersonaIdentificacion(String cedula) {
+        return usuarioRepository.findByPersonaIdentificacion(cedula);
+    }
+
+    @Override
+    public Boolean existsByPersonaCorreo(String email) {
+        return usuarioRepository.existsByPersonaCorreo(email);
     }
 }
 

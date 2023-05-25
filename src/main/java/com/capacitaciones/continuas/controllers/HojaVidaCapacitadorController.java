@@ -53,31 +53,9 @@ public class HojaVidaCapacitadorController {
         return hojaVidaCapacitadorService.findByCapacitadorUsuarioIdUsuario(id);
     }
 
-    @PostMapping("/hojaVida/saveDocumento/{idUsuario}")
-    public ResponseEntity<?> guardarCV(@RequestParam("file") MultipartFile file,@PathVariable("idUsuario") Integer idUsuario) throws IOException {
-        Capacitador capacitador = capacitadorService.findByUsuarioIdUsuario(idUsuario);
-        if(capacitador == null){
-            return ResponseEntity.badRequest().body("No se encontro CAPACITADOR.");
-        }
-        if (file == null || file.isEmpty()) {
-            return ResponseEntity.badRequest().body("No se ha proporcionado ningún archivo.");
-        }
-        byte[] bytesDocumento = file.getBytes();
-        return new ResponseEntity<>(hojaVidaCapacitadorService.guardarCV(bytesDocumento,capacitador), HttpStatus.CREATED);
-    }
 
-    @PostMapping("/hojaVida/updateDocumento/{idUsuario}")
-    public ResponseEntity<?> updateCVDocumento(@RequestParam("file") MultipartFile file,@PathVariable("idUsuario") Integer idUsuario) throws IOException {
-        HojaVidaCapacitador hojaVidaCapacitador = hojaVidaCapacitadorService.findHojaVidaCapacitadorByCapacitadorUsuarioIdUsuario(idUsuario);
-        if(hojaVidaCapacitador == null){
-            return ResponseEntity.badRequest().body("No se encontro CAPACITADOR.");
-        }
-        if (file == null || file.isEmpty()) {
-            return ResponseEntity.badRequest().body("No se ha proporcionado ningún archivo.");
-        }
-        byte[] bytesDocumento = file.getBytes();
-        return new ResponseEntity<>(hojaVidaCapacitadorService.updateCVCapacitador(bytesDocumento,hojaVidaCapacitador), HttpStatus.CREATED);
-    }
+
+
 
     @PostMapping("/hojaVidaCapcitador/crear")
     public ResponseEntity<HojaVidaCapacitador> crear(@RequestBody HojaVidaCapacitador c) {
@@ -106,6 +84,8 @@ public class HojaVidaCapacitadorController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
 
     @GetMapping("/hojaVidaCapcitador/findbyIdCapacitador/{id}")
     public ResponseEntity<?> getHojaVidaCapacitadorByIdCapacitador(@PathVariable("id") Integer id){

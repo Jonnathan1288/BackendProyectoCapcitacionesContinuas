@@ -122,15 +122,7 @@ public class ReportsController {
         }
     }
 
-    @GetMapping("/generarCertificadoEstudiante/download/{idCurso}/{identificasion}")
-    public void generarCodigosAsignarSenecyt(HttpServletResponse response, @PathVariable("idCurso") Integer idCurso, @PathVariable("identificasion") String identificasion) throws Exception {
-        try {
-            jasperReportService.generateCertificadoEstudiante(response, idCurso, identificasion);
 
-        }catch (Exception e){
-            System.out.println("Err-> "+e.getMessage());
-        }
-    }
 
 
     @GetMapping("/generarDisenioCurricular/downloadDisenioC/{id}")

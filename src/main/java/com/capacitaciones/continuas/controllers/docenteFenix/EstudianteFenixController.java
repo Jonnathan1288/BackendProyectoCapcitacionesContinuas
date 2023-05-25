@@ -13,13 +13,13 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/fenix")
+@RequestMapping("/auth")
 public class EstudianteFenixController {
 
     @Autowired
     private EstudianteFenixService estudianteFenixService;
 
-    @GetMapping("/estudiante/ista/list")
+    @GetMapping("/fenix/estudiante/ista/list")
     public ResponseEntity<List<EstudianteFenix>> listarEstudianteFenix(){
         try {
             return new ResponseEntity<>(estudianteFenixService.findByAll(), HttpStatus.OK);
@@ -28,7 +28,7 @@ public class EstudianteFenixController {
         }
     }
 
-    @GetMapping("/estudiante/ista/findbyIdentificasion/{identificasion}")
+    @GetMapping("/fenix/estudiante/ista/findbyIdentificasion/{identificasion}")
     public ResponseEntity<EstudianteFenix> findByIdentificasionEstudianteFenix(@PathVariable("identificasion") String identificasion){
         try {
             EstudianteFenix estudianteFenix = estudianteFenixService.findByAndIdentificacion(identificasion);

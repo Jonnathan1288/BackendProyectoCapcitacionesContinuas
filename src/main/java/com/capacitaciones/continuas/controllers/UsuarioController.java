@@ -5,6 +5,7 @@ import com.capacitaciones.continuas.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,7 +16,10 @@ import java.util.List;
 public class UsuarioController {
 
     @Autowired
-    UsuarioService usuarioService;
+    private UsuarioService usuarioService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping("/usuario/listar")
     public ResponseEntity<List<Usuario>> obtenerLista() {
@@ -43,7 +47,20 @@ public class UsuarioController {
             if(nc != null){
                 return new ResponseEntity<>(nc, HttpStatus.OK);
             }
-            return new ResponseEntity<>("PARTICIPANTE APROBADOS NO ENCONTRADA",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("NO ENCONTRADA",HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/usuario/findbyCedula/{cedula}")
+    public ResponseEntity<?> findbyCedula(@PathVariable("cedula") String cedula){
+        try {
+            Usuario nc = usuarioService.findByPersonaIdentificacion(cedula);
+            if(nc != null){
+                return new ResponseEntity<>(nc, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("USUARIO NO ENCONTRADO",HttpStatus.NOT_FOUND);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -52,28 +69,30 @@ public class UsuarioController {
     @PutMapping("/usuario/actualizar/{id}")
     public ResponseEntity<Usuario> actualizarUsuario(@PathVariable Integer id, @RequestBody Usuario usuario) {
         try {
-            if (usuarioService.findById(id) == null) {
-                return ResponseEntity.notFound().build();
+
+            Usuario usuario1 = usuarioService.findById(id);
+            if(usuario1 != null){
+                usuario1.setUsername(usuario.getUsername());
+                //usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+                usuario1.setFotoPerfil(usuario.getFotoPerfil());
+
+                if(usuario.getPassword().equals(usuario1.getPassword())){
+                    usuario1.setPassword(usuario.getPassword());
+                    System.out.println("igual");
+                }else{
+                    System.out.println("difetene");
+                    usuario1.setPassword(passwordEncoder.encode(usuario.getPassword()));
+                }
+                usuario1.setRoles(usuario.getRoles());
+
+                return new ResponseEntity<>(usuarioService.save(usuario1), HttpStatus.CREATED);
             }
-            usuario.setUsername(usuario.getUsername());
-            usuario.setPassword(usuario.getPassword());
-            usuario.setFotoPerfil(usuario.getFotoPerfil());
-            return new ResponseEntity<>(usuarioService.save(usuario), HttpStatus.CREATED);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @GetMapping("/usuario/existsbyUsername/{username}")
-    public Boolean existsbyIdentifcasion(@PathVariable("username") String username){
-        try {
-            if(usuarioService.existsByUsername(username)){
-                return true;
-            }
-            return false;
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-            return false;
-        }
-    }
+
 }
