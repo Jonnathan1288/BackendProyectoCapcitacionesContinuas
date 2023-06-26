@@ -36,8 +36,10 @@ public class MainSecurity {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http.cors().and().csrf().disable()
         .authorizeRequests()
-            .antMatchers("/auth/**", "/swagger-ui/**","/api/cursoDisponibles/list", "/api/persona/listar", "/api/usuario/listar", "/api/rol/listar", "/api/capacitador/list", "/api/programa/listar", "/api/prerequisitoCurso/list", "/api/curso/list", "/api/capacitador/list", "/api/inscritocurso/listar", "/api/participantesMatriculados/listar", "/api/asistencia/list", "/api/asistencia/save", "/api/asistencia/actualizar/{id}", "/api/usuario/findbyCedula/{cedula}")
+            .antMatchers("/auth/**", "/api/cursoDisponibles/list", "/api/persona/listar", "/api/usuario/listar", "/api/rol/listar", "/api/capacitador/list", "/api/programa/listar", "/api/prerequisitoCurso/list", "/api/curso/list", "/api/capacitador/list", "/api/inscritocurso/listar", "/api/participantesMatriculados/listar", "/api/asistencia/list", "/api/asistencia/save", "/api/asistencia/actualizar/{id}", "/api/usuario/findbyCedula/{cedula}")
         .permitAll()
+                .antMatchers("/swagger-ui/**", "/v3/api-docs/**")
+                .permitAll()
         .anyRequest().authenticated()
         .and()
         .exceptionHandling().authenticationEntryPoint(jwtEntryPoint)
