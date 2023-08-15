@@ -1,5 +1,6 @@
 package com.capacitaciones.continuas.controllers;
 
+import com.capacitaciones.continuas.Dtos.ListApproved;
 import com.capacitaciones.continuas.Modelos.Primary.Curso;
 import com.capacitaciones.continuas.Modelos.Primary.Inscrito;
 import com.capacitaciones.continuas.Modelos.Primary.PartipantesMatriculados;
@@ -135,4 +136,32 @@ public class ParticipanteMatriculadosController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/participantesAprobados/findbyIdCurso/{id}")
+    public ResponseEntity<?> getPartipantesAprovadosById(@PathVariable("id") Integer id){
+        try {
+            List<PartipantesMatriculados> findList = participantesMatriculadosService.findByInscritoCursoIdCursoAndEstadoParticipanteAprobacion(id);
+            if(findList != null){
+                return new ResponseEntity<>(findList, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("PARTICIPANTES APROBADOS NOt FOUND",HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/all/participantesAprovados/findbyIdCourse/{id}")
+    public ResponseEntity<?> findALlParticipantesAprovadosByIdCursos(@RequestBody List<Integer> courses){
+        try {
+            List<ListApproved> findList = participantesMatriculadosService.findALlParticipantesAprovadosByIdCursos(courses);
+            if(findList != null){
+                return new ResponseEntity<>(findList, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("PARTICIPANTD APPROVEDS NOt FOUND",HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }
