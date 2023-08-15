@@ -20,11 +20,6 @@ public class PeriodoPrograma {
     @Column(name = "estado_periodo_programa", columnDefinition = "BOOLEAN")
     private Boolean estadoPeriodoPrograma;
 
-    @Column(name = "fecha_inicio_periodo_programa")
-    private LocalDate fechaInicioPeriodoPrograma;
-
-    @Column(name = "fecha_fin_periodo_programa")
-    private LocalDate fechaFinPeriodoPrograma;
 
     @Column(name = "nombre_periodo_programa", length = 500)
     private String nombrePeriodoPrograma;

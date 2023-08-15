@@ -55,8 +55,6 @@ public class PeriodoProgramaController {
                 return ResponseEntity.notFound().build();
             }
             periodoPrograma.setNombrePeriodoPrograma(periodoPrograma.getNombrePeriodoPrograma());
-            periodoPrograma.setFechaFinPeriodoPrograma(periodoPrograma.getFechaFinPeriodoPrograma());
-            periodoPrograma.setFechaInicioPeriodoPrograma(periodoPrograma.getFechaInicioPeriodoPrograma());
             periodoPrograma.setEstadoPeriodoPrograma(periodoPrograma.getEstadoPeriodoPrograma());
 
             return new ResponseEntity<>(periodoProgramaService.save(periodoPrograma), HttpStatus.CREATED);

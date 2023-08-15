@@ -2,7 +2,6 @@ package com.capacitaciones.continuas.controllers.publicControl;
 
 import com.capacitaciones.continuas.Modelos.Primary.Capacitador;
 import com.capacitaciones.continuas.Modelos.Primary.HojaVidaCapacitador;
-import com.capacitaciones.continuas.Modelos.Primary.ParticipantesAprobados;
 import com.capacitaciones.continuas.Modelos.Primary.Rol;
 import com.capacitaciones.continuas.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +29,6 @@ public class PublicController {
 
     @Autowired
     private JasperReportService jasperReportService;
-
-    @Autowired
-    private ParticipantesAprobadosService participantesAprobadosService;
 
     @Autowired
     private HojaVidaCapacitadorService hojaVidaCapacitadorService;
@@ -106,18 +102,7 @@ public class PublicController {
         }
     }
 
-    @GetMapping("/participantesAprobados/findbyIdIdCursoAndUsuario/{idCurso}/{ci}")
-    public ResponseEntity<?> participantesAprobadosFindbyIdIdCursoAndUsuario(@PathVariable("idCurso") Integer idCurso, @PathVariable("ci") String ci){
-        try {
-            ParticipantesAprobados certificate = participantesAprobadosService.findByCursoAndUsuario(idCurso, ci);
-            if(certificate != null){
-                return new ResponseEntity<>(certificate, HttpStatus.OK);
-            }
-            return new ResponseEntity<>("CERTIFICADO NOT FOUND",HttpStatus.NOT_FOUND);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+
 
     @PostMapping("/hojaVida/updateDocumento/{idUsuario}")
     public ResponseEntity<?> updateCVDocumento(@RequestParam("file") MultipartFile file, @PathVariable("idUsuario") Integer idUsuario) throws IOException {

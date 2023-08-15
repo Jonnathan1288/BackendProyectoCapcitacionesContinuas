@@ -28,6 +28,9 @@ public class ContenidoSilabo {
     @Column(name = "actividades_docencia")
     private String actividadesDocencia;
 
+    @Column(name = "talleres")
+    private String talleres;
+
     @Column(name = "horas_practicas")
     private Integer horasPracticas;
 
@@ -47,8 +50,6 @@ public class ContenidoSilabo {
     private Boolean estadoContenido;
 
     // Se relaciona con Silabo
-
-
     @ManyToOne
     @JoinColumn(name="id_silabo",referencedColumnName ="id_silabo")
     private Silabo silabo;

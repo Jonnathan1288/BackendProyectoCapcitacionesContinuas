@@ -2,7 +2,6 @@ package com.capacitaciones.continuas.controllers;
 
 import com.capacitaciones.continuas.Modelos.Primary.Asistencia;
 import com.capacitaciones.continuas.Modelos.Primary.Curso;
-import com.capacitaciones.continuas.Modelos.Primary.ParticipantesAprobados;
 import com.capacitaciones.continuas.Modelos.Primary.PartipantesMatriculados;
 import com.capacitaciones.continuas.services.AsistenciaService;
 import com.capacitaciones.continuas.services.CursoService;
