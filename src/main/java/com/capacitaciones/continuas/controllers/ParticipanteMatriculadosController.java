@@ -150,7 +150,7 @@ public class ParticipanteMatriculadosController {
         }
     }
 
-    @PostMapping("/all/participantesAprovados/findbyIdCourse/{id}")
+    @PostMapping("/all/participantesAprovados/findbyIdCourse")
     public ResponseEntity<?> findALlParticipantesAprovadosByIdCursos(@RequestBody List<Integer> courses){
         try {
             List<ListApproved> findList = participantesMatriculadosService.findALlParticipantesAprovadosByIdCursos(courses);

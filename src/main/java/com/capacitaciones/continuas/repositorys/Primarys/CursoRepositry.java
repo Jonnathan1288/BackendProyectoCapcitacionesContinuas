@@ -1,5 +1,6 @@
 package com.capacitaciones.continuas.repositorys.Primarys;
 
+import com.capacitaciones.continuas.Dtos.CoursesFilter;
 import com.capacitaciones.continuas.Modelos.Primary.Curso;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -18,4 +19,6 @@ public interface CursoRepositry extends JpaRepository<Curso, Integer> {
     List<Curso> findCursosDelParticipante(@Param("idParticipante") Integer idParticipante);
 
 
+    @Query ("SELECT c.idCurso as idCurso, c.nombreCurso as nombreCurso, CONCAT(cap.tipoAbreviaturaTitulo, ' ', p.nombre1, ' ', p.apellido1) as docente FROM Curso c INNER JOIN c.capacitador cap INNER JOIN cap.usuario u INNER JOIN u.persona p WHERE c.estadoPublicasionCurso = 'F'")
+    List<CoursesFilter> findFilterCoursesD();
 }

@@ -1,5 +1,6 @@
 package com.capacitaciones.continuas.controllers;
 
+import com.capacitaciones.continuas.Dtos.CoursesFilter;
 import com.capacitaciones.continuas.Modelos.Primary.Curso;
 import com.capacitaciones.continuas.services.CursoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -112,6 +113,21 @@ public class CursoController {
 
             Curso c = cursoService.save(curso);
             return new ResponseEntity<>(c, HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    //NEW METHODS---------------------------------------------------------
+
+    @GetMapping("/course/findAll/course/finally")
+    public ResponseEntity<?> findByAllCurseFinally(){
+        try {
+            List<CoursesFilter> cursoList= cursoService.findFilterCoursesD();
+            if(cursoList != null){
+                return new ResponseEntity<>(cursoList, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("CURSOS NO ENCONTRADOS", HttpStatus.NOT_FOUND);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
