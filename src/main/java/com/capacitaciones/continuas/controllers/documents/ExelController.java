@@ -1,7 +1,7 @@
 package com.capacitaciones.continuas.controllers.documents;
 
 import com.capacitaciones.continuas.Dtos.ListApproved;
-import com.capacitaciones.continuas.services.ParticipantesMatriculadosService;
+import com.capacitaciones.continuas.services.ParticipantesAprobadosService;
 import com.capacitaciones.continuas.util.ExporterExcel;
 import com.lowagie.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -21,11 +20,11 @@ import java.util.List;
 @RequestMapping("/api")
 public class ExelController {
 
-    private ParticipantesMatriculadosService participantesMatriculadosService;
+    private ParticipantesAprobadosService participantesAprobadosService;
 
     @Autowired
-    public ExelController(ParticipantesMatriculadosService participantesMatriculadosService){
-        this.participantesMatriculadosService = participantesMatriculadosService;
+    public ExelController(ParticipantesAprobadosService participantesAprobadosService){
+        this.participantesAprobadosService = participantesAprobadosService;
     }
 
     @PostMapping("/generate/exportExcel")
@@ -42,7 +41,7 @@ public class ExelController {
 
         List<Integer> data = Arrays.asList(1,2,9);
 
-        List<ListApproved> findList = participantesMatriculadosService.findALlParticipantesAprovadosByIdCursos(codeId);
+        List<ListApproved> findList = participantesAprobadosService.findALlParticipantesAprovadosByIdCursos(codeId);
 
         ExporterExcel exporter = new ExporterExcel(findList);
         exporter.exportDataExel(response);

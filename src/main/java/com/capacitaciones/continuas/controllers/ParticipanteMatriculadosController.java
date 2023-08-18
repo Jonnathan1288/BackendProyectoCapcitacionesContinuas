@@ -137,7 +137,7 @@ public class ParticipanteMatriculadosController {
         }
     }
 
-    @GetMapping("/participantesAprobados/findbyIdCurso/{id}")
+   /* @GetMapping("/participantesAprobados/findbyIdCurso/{id}")
     public ResponseEntity<?> getPartipantesAprovadosById(@PathVariable("id") Integer id){
         try {
             List<PartipantesMatriculados> findList = participantesMatriculadosService.findByInscritoCursoIdCursoAndEstadoParticipanteAprobacion(id);
@@ -163,5 +163,5 @@ public class ParticipanteMatriculadosController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+*/
 }

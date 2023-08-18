@@ -13,7 +13,6 @@ public interface ParticipantesMatriculadosService extends GenericService<Partipa
 
     public List<PartipantesMatriculados> findByInscritoCursoIdCursoAndEstadoParticipanteAprobacion(Integer idCurso); // Method correction use..
 
-    public List<ListApproved> findALlParticipantesAprovadosByIdCursos(List<Integer> courses);
 
 
 }

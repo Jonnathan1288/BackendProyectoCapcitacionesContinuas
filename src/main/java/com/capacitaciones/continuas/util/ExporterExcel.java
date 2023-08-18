@@ -25,10 +25,7 @@ public class ExporterExcel {
     private Integer auxIdCurso = null;
     private XSSFWorkbook libro;
     private XSSFSheet hoja;
-
     private List<ListApproved> listApprovedI;
-
-
 
     public ExporterExcel(List<ListApproved> listApprovedI) {
         this.listApprovedI = listApprovedI;
@@ -72,17 +69,15 @@ public class ExporterExcel {
         celda = fila.createCell(6);
         celda.setCellValue("DOCENTE");
         celda.setCellStyle(estilo);
-
     }
 
     private void writeInTheTable() {
         int numberRow = 1;
 
         Map<Integer, XSSFColor> idsColorMap = new HashMap<>();
-
         Random rand = new Random();
 
-        for(ListApproved empleado : listApprovedI) {
+        for(ListApproved approved : listApprovedI) {
             Row fila = hoja.createRow(numberRow ++);
 
             CellStyle estiloP = libro.createCellStyle();
@@ -90,58 +85,52 @@ public class ExporterExcel {
 
             fuenteP.setFontHeight(14);
 
-            int idCurso = empleado.getidCurso();
+            int idCurso = approved.getidCurso();
             XSSFColor fontColor = idsColorMap.get(idCurso);
 
             if(fontColor == null){
                 fontColor = new XSSFColor(new Color(rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
                 idsColorMap.put(idCurso, fontColor);
-
             }
 
             fuenteP.setColor(fontColor);
             estiloP.setFont(fuenteP);
 
-
             Cell celda = fila.createCell(0);
-            celda.setCellValue(validateNumber(empleado.getidCurso()));
+            celda.setCellValue(validateNumber(approved.getidCurso()));
             hoja.autoSizeColumn(0);
             celda.setCellStyle(estiloP);
 
-
             celda = fila.createCell(1);
-            celda.setCellValue(empleado.getnombres().toUpperCase());
+            celda.setCellValue(approved.getnombres().toUpperCase());
             hoja.autoSizeColumn(1);
             celda.setCellStyle(estiloP);
 
             celda = fila.createCell(2);
-            celda.setCellValue("");
+            celda.setCellValue(approved.getcodigo());
             hoja.autoSizeColumn(2);
             celda.setCellStyle(estiloP);
 
             celda = fila.createCell(3);
-            celda.setCellValue(empleado.getcurso().toUpperCase());
+            celda.setCellValue(approved.getcurso().toUpperCase());
             hoja.autoSizeColumn(3);
             celda.setCellStyle(estiloP);
 
             celda = fila.createCell(4);
-            celda.setCellValue(parseDateToStringCalendar(empleado.getfechaInicio().toString(), empleado.getfechaFin().toString()));
+            celda.setCellValue(parseDateToStringCalendar(approved.getfechaInicio().toString(), approved.getfechaFin().toString()));
             hoja.autoSizeColumn(4);
             celda.setCellStyle(estiloP);
 
             celda = fila.createCell(5);
-            celda.setCellValue(empleado.gethoras());
+            celda.setCellValue(approved.gethoras());
             hoja.autoSizeColumn(5);
             celda.setCellStyle(estiloP);
 
             celda = fila.createCell(6);
-            celda.setCellValue(empleado.getdocente());
+            celda.setCellValue(approved.getdocente());
             hoja.autoSizeColumn(6);
             celda.setCellStyle(estiloP);
-
         }
-
-
     }
 
     public Integer validateNumber(Integer idCurso){

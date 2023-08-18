@@ -19,7 +19,5 @@ public interface ParticipantesMatriculadosRepository extends JpaRepository<Parti
 
     public List<PartipantesMatriculados> findByInscritoCursoIdCursoAndEstadoParticipanteAprobacion(Integer idCurso, String aprovado); // Method correction use..
 
-    @Query("SELECT c.idCurso as idCurso, CONCAT(p.nombre1, ' ', p.nombre2, ' ', p.apellido1, ' ', p.apellido2) as nombres, c.nombreCurso as curso, c.fechaInicioCurso as fechaInicio, c.fechaFinalizacionCurso as fechaFin, c.duracionCurso as horas, CONCAT(cap.tipoAbreviaturaTitulo, ' ', docp.nombre1, ' ', docp.apellido1) as docente FROM PartipantesMatriculados m INNER JOIN m.inscrito ins INNER JOIN ins.curso c INNER JOIN ins.usuario user INNER JOIN user.persona p INNER JOIN c.capacitador cap INNER JOIN cap.usuario doc INNER JOIN doc.persona docp WHERE m.estadoParticipanteAprobacion = :status AND c.idCurso IN :courses")
-    public List<ListApproved> findALlParticipantesAprovadosByIdCursos(@Param("status") String status, @Param("courses") List<Integer> courses);
 }
 

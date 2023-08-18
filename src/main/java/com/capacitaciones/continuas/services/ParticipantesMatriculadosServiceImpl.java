@@ -36,8 +36,5 @@ public class ParticipantesMatriculadosServiceImpl extends GenericServiceImpl<Par
         return participantesMatriculadosRepository.findByInscritoCursoIdCursoAndEstadoParticipanteAprobacion(idCurso, "A");
     }
 
-    @Override
-    public List<ListApproved> findALlParticipantesAprovadosByIdCursos(List<Integer> courses) {
-        return participantesMatriculadosRepository.findALlParticipantesAprovadosByIdCursos("A", courses);
-    }
+
 }

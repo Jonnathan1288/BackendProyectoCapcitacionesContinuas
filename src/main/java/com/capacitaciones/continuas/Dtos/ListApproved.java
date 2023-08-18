@@ -11,6 +11,9 @@ public interface ListApproved {
     @Column(name = "nombres")
     String getnombres();
 
+    @Column(name = "codigo")
+    String getcodigo();
+
     @Column(name = "curso")
     String getcurso();
 
