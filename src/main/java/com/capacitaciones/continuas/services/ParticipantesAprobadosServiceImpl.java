@@ -3,6 +3,7 @@ package com.capacitaciones.continuas.services;
 
 import com.capacitaciones.continuas.interfaces.ListApproved;
 import com.capacitaciones.continuas.Modelos.Primary.ParticipantesAprobados;
+import com.capacitaciones.continuas.interfaces.ParticipantsApproved;
 import com.capacitaciones.continuas.repositorys.Primarys.ParticipanteAprobadosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
@@ -43,5 +44,10 @@ public class ParticipantesAprobadosServiceImpl  extends GenericServiceImpl<Parti
     @Override
     public List<ParticipantesAprobados> findALlParticipantesAprovadosAndUpdateByIdCursos(List<Integer> courses) {
         return participanteAprobadosRepository.findALlParticipantesAprovadosAndUpdateByIdCursos("A", courses);
+    }
+
+    @Override
+    public List<ParticipantsApproved> findALlParticipantesAprovadosByIdDocenteCourse(Integer idCurso) {
+        return participanteAprobadosRepository.findALlParticipantesAprovadosByIdDocenteCourse("A", idCurso);
     }
 }

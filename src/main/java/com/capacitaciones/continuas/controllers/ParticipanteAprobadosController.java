@@ -4,6 +4,7 @@ import com.capacitaciones.continuas.interfaces.ListApproved;
 import com.capacitaciones.continuas.Modelos.Primary.Curso;
 import com.capacitaciones.continuas.Modelos.Primary.ParticipantesAprobados;
 import com.capacitaciones.continuas.Modelos.Primary.PartipantesMatriculados;
+import com.capacitaciones.continuas.interfaces.ParticipantsApproved;
 import com.capacitaciones.continuas.services.CursoService;
 import com.capacitaciones.continuas.services.ParticipantesAprobadosService;
 import com.capacitaciones.continuas.services.ParticipantesMatriculadosService;
@@ -191,6 +192,21 @@ public class ParticipanteAprobadosController {
     public ResponseEntity<List<ParticipantesAprobados>> getParticipantesAprobadosByIdCurso(@PathVariable("id") Integer id){
         try {
             List<ParticipantesAprobados> nc = participantesAprobadosService.findByPartipantesMatriculadosInscritoCursoIdCurso(id);
+            if(nc != null){
+                return new ResponseEntity<>(nc, HttpStatus.OK);
+            }
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    //NEW-----------------------------
+
+    @GetMapping("/participantesAprobados/findby/docente/IdCurso/{id}")
+    public ResponseEntity<List<ParticipantsApproved>> getParticipantesAprobadosByDocenteIdCurso(@PathVariable("id") Integer id){
+        try {
+            List<ParticipantsApproved> nc = participantesAprobadosService.findALlParticipantesAprovadosByIdDocenteCourse(id);
             if(nc != null){
                 return new ResponseEntity<>(nc, HttpStatus.OK);
             }

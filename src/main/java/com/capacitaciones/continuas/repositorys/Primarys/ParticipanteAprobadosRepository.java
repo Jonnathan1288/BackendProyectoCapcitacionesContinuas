@@ -2,6 +2,7 @@ package com.capacitaciones.continuas.repositorys.Primarys;
 
 import com.capacitaciones.continuas.interfaces.ListApproved;
 import com.capacitaciones.continuas.Modelos.Primary.ParticipantesAprobados;
+import com.capacitaciones.continuas.interfaces.ParticipantsApproved;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -27,6 +28,8 @@ public interface ParticipanteAprobadosRepository extends JpaRepository<Participa
     @Query("SELECT ap FROM ParticipantesAprobados ap INNER JOIN ap.partipantesMatriculados m INNER JOIN m.inscrito ins INNER JOIN ins.curso c INNER JOIN ins.usuario user INNER JOIN user.persona p INNER JOIN c.capacitador cap INNER JOIN cap.usuario doc INNER JOIN doc.persona docp WHERE m.estadoParticipanteAprobacion = :status AND c.idCurso IN :courses")
     public List<ParticipantesAprobados> findALlParticipantesAprovadosAndUpdateByIdCursos(@Param("status") String status, @Param("courses") List<Integer> courses);
 
+    @Query("SELECT c.idCurso as idCurso,CONCAT(p.nombre1, ' ', p.nombre2) as nombres, CONCAT(p.apellido1, ' ', p.apellido2) as apellidos, p.identificacion as identificacion FROM ParticipantesAprobados ap INNER JOIN ap.partipantesMatriculados m INNER JOIN m.inscrito ins INNER JOIN ins.curso c INNER JOIN ins.usuario user INNER JOIN user.persona p INNER JOIN c.capacitador cap INNER JOIN cap.usuario doc INNER JOIN doc.persona docp WHERE m.estadoParticipanteAprobacion = :status AND c.idCurso  = :idCurso")
+    public List<ParticipantsApproved> findALlParticipantesAprovadosByIdDocenteCourse(@Param("status") String status, @Param("idCurso") Integer idCurso);
 
 }
 
