@@ -1,4 +1,4 @@
-package com.capacitaciones.continuas.Dtos;
+package com.capacitaciones.continuas.interfaces;
 
 import javax.persistence.Column;
 import java.time.LocalDate;
@@ -11,8 +11,14 @@ public interface ListApproved {
     @Column(name = "nombres")
     String getnombres();
 
-    @Column(name = "codigo")
-    String getcodigo();
+    @Column(name = "codigoSenecyt")
+    String getcodigoSenecyt();
+
+    @Column(name = "idParticipantesAprobados")
+    Integer getidParticipantesAprobados();
+
+    @Column(name = "idParticipanteMatriculado")
+    Integer getidParticipanteMatriculado();
 
     @Column(name = "curso")
     String getcurso();

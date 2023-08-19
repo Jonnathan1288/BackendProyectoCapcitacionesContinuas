@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.services;
 
-import com.capacitaciones.continuas.Dtos.ListApproved;
+
 import com.capacitaciones.continuas.Modelos.Primary.PartipantesMatriculados;
 import com.capacitaciones.continuas.repositorys.Primarys.ParticipantesMatriculadosRepository;
 import org.springframework.beans.factory.annotation.Autowired;

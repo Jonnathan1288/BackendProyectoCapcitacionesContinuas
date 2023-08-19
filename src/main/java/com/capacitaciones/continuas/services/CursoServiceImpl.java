@@ -1,13 +1,12 @@
 package com.capacitaciones.continuas.services;
 
-import com.capacitaciones.continuas.Dtos.CoursesFilter;
+import com.capacitaciones.continuas.interfaces.CoursesFilter;
 import com.capacitaciones.continuas.Modelos.Primary.Curso;
 import com.capacitaciones.continuas.repositorys.Primarys.CursoRepositry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Service

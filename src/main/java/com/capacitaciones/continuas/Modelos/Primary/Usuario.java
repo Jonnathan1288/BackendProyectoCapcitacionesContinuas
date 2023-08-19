@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.aspectj.apache.bcel.classfile.Code;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -44,11 +45,9 @@ public class Usuario {
     private Persona persona;
 
 
-    /*@ManyToOne
-    @JoinColumn(name="id_rol",referencedColumnName ="id_rol")
-    private Rol rol;*/
-
-
+    @JsonIgnore
+    @OneToMany(mappedBy = "usuario")
+    private List<CodeExcel> codeExcelList;
 
     //RELACION DE MUCHOS A MUCHOS
 
@@ -80,5 +79,7 @@ public class Usuario {
 
     public Usuario(){}
 
-
+    public Usuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
+    }
 }

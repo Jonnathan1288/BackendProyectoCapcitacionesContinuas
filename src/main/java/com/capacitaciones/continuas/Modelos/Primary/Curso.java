@@ -34,9 +34,6 @@ public class Curso {
     @Column(name = "estado_curso", columnDefinition = "BOOLEAN")
     private Boolean estadoCurso; // Elimina curso logico
 
-    //@Column(name = "iniciocurso")
-   // private Boolean iniciocurso; // Cuando el curos ya inicia, hacer que se valide
-
     @Column(name = "estado_aprovacion_curso")
     private String estadoAprovacionCurso; //aprovacion del curso // N = NO NO APROVADO, A = APROVADO, P = PENDIENTE
 
@@ -58,8 +55,11 @@ public class Curso {
     @Column(name = "fecha_finalizacion_curso")
     private LocalDate fechaFinalizacionCurso;
 
-    @Column(name = "curso_occ")
+    @Column(name = "curso_occ", length = 20)
     private String cursoocc;
+
+    @Column(name = "codigo_curso", length = 100)
+    private String codigoCurso;
 
     //Viene la lave de idprograma
     @ManyToOne
@@ -75,7 +75,6 @@ public class Curso {
     @ManyToOne
     @JoinColumn(name="id_capacitador",referencedColumnName ="id_capacitador")
     private Capacitador capacitador;
-
 
     //Falta todas las referencias..
     @ManyToOne

@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.controllers.documents;
 
-import com.capacitaciones.continuas.Dtos.ListApproved;
+import com.capacitaciones.continuas.interfaces.ListApproved;
 import com.capacitaciones.continuas.services.ParticipantesAprobadosService;
 import com.capacitaciones.continuas.util.ExporterExcel;
 import com.lowagie.text.DocumentException;

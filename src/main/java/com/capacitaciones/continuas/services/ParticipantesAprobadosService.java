@@ -1,7 +1,7 @@
 package com.capacitaciones.continuas.services;
 
 
-import com.capacitaciones.continuas.Dtos.ListApproved;
+import com.capacitaciones.continuas.interfaces.ListApproved;
 import com.capacitaciones.continuas.Modelos.Primary.ParticipantesAprobados;
 import org.springframework.data.repository.query.Param;
 

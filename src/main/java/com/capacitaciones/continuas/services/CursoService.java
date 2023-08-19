@@ -1,10 +1,9 @@
 package com.capacitaciones.continuas.services;
 
 
-import com.capacitaciones.continuas.Dtos.CoursesFilter;
+import com.capacitaciones.continuas.interfaces.CoursesFilter;
 import com.capacitaciones.continuas.Modelos.Primary.Curso;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public interface CursoService extends  GenericService<Curso, Integer>{

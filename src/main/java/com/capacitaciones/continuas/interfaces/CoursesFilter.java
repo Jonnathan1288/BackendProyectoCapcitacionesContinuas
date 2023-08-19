@@ -1,7 +1,6 @@
-package com.capacitaciones.continuas.Dtos;
+package com.capacitaciones.continuas.interfaces;
 
 import javax.persistence.Column;
-import java.time.LocalDate;
 
 public interface CoursesFilter {
 

@@ -1,8 +1,7 @@
 package com.capacitaciones.continuas.util;
 
-import com.capacitaciones.continuas.Dtos.ListApproved;
+import com.capacitaciones.continuas.interfaces.ListApproved;
 import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -107,7 +106,7 @@ public class ExporterExcel {
             celda.setCellStyle(estiloP);
 
             celda = fila.createCell(2);
-            celda.setCellValue(approved.getcodigo());
+            celda.setCellValue(approved.getcodigoSenecyt());
             hoja.autoSizeColumn(2);
             celda.setCellStyle(estiloP);
 

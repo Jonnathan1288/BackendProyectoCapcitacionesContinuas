@@ -1,8 +1,6 @@
 package com.capacitaciones.continuas.services;
 
-import com.capacitaciones.continuas.Dtos.ListApproved;
 import com.capacitaciones.continuas.Modelos.Primary.PartipantesMatriculados;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 

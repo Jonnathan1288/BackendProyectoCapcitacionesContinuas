@@ -1,6 +1,6 @@
 package com.capacitaciones.continuas.repositorys.Primarys;
 
-import com.capacitaciones.continuas.Dtos.ListApproved;
+import com.capacitaciones.continuas.interfaces.ListApproved;
 import com.capacitaciones.continuas.Modelos.Primary.ParticipantesAprobados;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -20,7 +20,7 @@ public interface ParticipanteAprobadosRepository extends JpaRepository<Participa
 
 
     //NEW METHODS-------------------------------------------------------------------------
-    @Query("SELECT c.idCurso as idCurso, CONCAT(p.nombre1, ' ', p.nombre2, ' ', p.apellido1, ' ', p.apellido2) as nombres, ap.codigoSenecyt as codigo, c.nombreCurso as curso, c.fechaInicioCurso as fechaInicio, c.fechaFinalizacionCurso as fechaFin, c.duracionCurso as horas, CONCAT(cap.tipoAbreviaturaTitulo, ' ', docp.nombre1, ' ', docp.apellido1) as docente FROM ParticipantesAprobados ap INNER JOIN ap.partipantesMatriculados m INNER JOIN m.inscrito ins INNER JOIN ins.curso c INNER JOIN ins.usuario user INNER JOIN user.persona p INNER JOIN c.capacitador cap INNER JOIN cap.usuario doc INNER JOIN doc.persona docp WHERE m.estadoParticipanteAprobacion = :status AND c.idCurso IN :courses")
+    @Query("SELECT c.idCurso as idCurso, CONCAT(p.nombre1, ' ', p.nombre2, ' ', p.apellido1, ' ', p.apellido2) as nombres, ap.codigoSenecyt as codigoSenecyt, ap.idParticipantesAprobados as idParticipantesAprobados, m.idParticipanteMatriculado as idParticipanteMatriculado, c.nombreCurso as curso, c.fechaInicioCurso as fechaInicio, c.fechaFinalizacionCurso as fechaFin, c.duracionCurso as horas, CONCAT(cap.tipoAbreviaturaTitulo, ' ', docp.nombre1, ' ', docp.apellido1) as docente FROM ParticipantesAprobados ap INNER JOIN ap.partipantesMatriculados m INNER JOIN m.inscrito ins INNER JOIN ins.curso c INNER JOIN ins.usuario user INNER JOIN user.persona p INNER JOIN c.capacitador cap INNER JOIN cap.usuario doc INNER JOIN doc.persona docp WHERE m.estadoParticipanteAprobacion = :status AND c.idCurso IN :courses")
     public List<ListApproved> findALlParticipantesAprovadosByIdCursos(@Param("status") String status, @Param("courses") List<Integer> courses);
 
     //THIS METHOD USED IN UPDATE CODE....

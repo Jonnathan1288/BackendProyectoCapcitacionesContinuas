@@ -1,7 +1,8 @@
 package com.capacitaciones.continuas.controllers;
 
-import com.capacitaciones.continuas.Dtos.CoursesFilter;
+
 import com.capacitaciones.continuas.Modelos.Primary.Curso;
+import com.capacitaciones.continuas.interfaces.CoursesFilter;
 import com.capacitaciones.continuas.services.CursoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
