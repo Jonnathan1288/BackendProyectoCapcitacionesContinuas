@@ -20,6 +20,16 @@ public class Notas {
     @Column(name = "parcial")
     private Integer parcial;
 
+    //NEW NOTAS
+    @Column(name = "informe1")
+    private Integer informe1;
+
+    @Column(name = "informe2")
+    private Integer informe2;
+
+    @Column(name = "informe3")
+    private Integer informe3;
+
     @Column(name = "examen_final")
     private Integer examenFinal;
 
