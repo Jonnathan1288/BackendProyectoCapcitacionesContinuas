@@ -5,6 +5,7 @@ import com.capacitaciones.continuas.interfaces.ListApproved;
 import com.capacitaciones.continuas.Modelos.Primary.ParticipantesAprobados;
 import com.capacitaciones.continuas.interfaces.ParticipantsApproved;
 import com.capacitaciones.continuas.repositorys.Primarys.ParticipanteAprobadosRepository;
+import com.capacitaciones.continuas.services.generic.GenericServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;

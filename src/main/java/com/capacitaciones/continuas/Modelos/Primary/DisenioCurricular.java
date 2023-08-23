@@ -1,9 +1,11 @@
 package com.capacitaciones.continuas.Modelos.Primary;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Setter
 @Getter
@@ -29,6 +31,17 @@ public class DisenioCurricular {
     @ManyToOne
     @JoinColumn(name="id_silabo",referencedColumnName ="id_silabo")
     private Silabo silabo;
+
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "disenioCurricular")
+    private List<FaseTeorica> faseTeoricas;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "disenioCurricular")
+    private List<FasePractica> fasePracticaList;
+
+
 
     //Falta refe -> EntornoAprendizajeCurricular, MecanismosEvaluacionCurricular
 }

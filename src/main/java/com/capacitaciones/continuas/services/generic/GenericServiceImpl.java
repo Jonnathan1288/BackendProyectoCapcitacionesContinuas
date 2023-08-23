@@ -1,5 +1,7 @@
-package com.capacitaciones.continuas.services;
+package com.capacitaciones.continuas.services.generic;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 
 import java.io.Serializable;
@@ -21,6 +23,24 @@ public abstract class GenericServiceImpl <T, ID extends Serializable> implements
     @Override
     public T save(T entity) {
         return getDao().save(entity);
+    }
+
+    @Override
+    public T update(ID id, T entity) {
+        Optional<T> optionaE = getDao().findById(id);
+        if(optionaE.isPresent()){
+            T entityUpdate = optionaE.get();
+            entityUpdate = getDao().save(entity);
+            return getDao().save(entityUpdate);
+        }
+        return null;
+    }
+
+    @Override
+    public Page<T> findByAll(Pageable pageable) {
+
+        //Page<T> list = getDao().findAll(pageable);
+        return null;
     }
 
     @Override

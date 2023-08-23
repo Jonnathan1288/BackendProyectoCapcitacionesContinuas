@@ -1,10 +1,9 @@
 package com.capacitaciones.continuas.services;
 
 
-import com.capacitaciones.continuas.Modelos.Primary.Notas;
 import com.capacitaciones.continuas.Modelos.Primary.Parroquia;
-import com.capacitaciones.continuas.repositorys.Primarys.NotasRepository;
 import com.capacitaciones.continuas.repositorys.Primarys.ParroquiaRepository;
+import com.capacitaciones.continuas.services.generic.GenericServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;

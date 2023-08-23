@@ -1,11 +1,12 @@
 package com.capacitaciones.continuas.services;
 
 import com.capacitaciones.continuas.Modelos.Primary.Asistencia;
+import com.capacitaciones.continuas.services.generic.GenericService;
 
 import java.time.LocalDate;
 import java.util.List;
 
-public interface AsistenciaService extends  GenericService<Asistencia, Integer>{
+public interface AsistenciaService extends GenericService<Asistencia, Integer> {
     //public Boolean findByFechaAsistencia(LocalDate fecha);
 
     public Boolean existsByPartipantesMatriculadosInscritoCursoIdCursoAndFechaAsistencia(Integer idCurso, LocalDate fecha);

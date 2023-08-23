@@ -3,6 +3,7 @@ package com.capacitaciones.continuas.services;
 import com.capacitaciones.continuas.Modelos.Primary.Capacitador;
 import com.capacitaciones.continuas.Modelos.Primary.HojaVidaCapacitador;
 import com.capacitaciones.continuas.repositorys.Primarys.HojaVidaCapacitadorRespository;
+import com.capacitaciones.continuas.services.generic.GenericServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;

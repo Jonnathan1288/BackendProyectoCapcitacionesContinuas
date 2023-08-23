@@ -1,10 +1,8 @@
 package com.capacitaciones.continuas.services;
 
-import com.capacitaciones.continuas.Modelos.Primary.Canton;
 import com.capacitaciones.continuas.Modelos.Primary.Provincia;
+import com.capacitaciones.continuas.services.generic.GenericService;
 
-import java.util.List;
-
-public interface ProvinciaService extends  GenericService<Provincia, Integer>{
+public interface ProvinciaService extends GenericService<Provincia, Integer> {
 
 }

@@ -1,10 +1,11 @@
 package com.capacitaciones.continuas.services;
 
 import com.capacitaciones.continuas.Modelos.Primary.Notas;
+import com.capacitaciones.continuas.services.generic.GenericService;
 
 import java.util.List;
 
-public interface NotasSevice extends GenericService<Notas, Integer>{
+public interface NotasSevice extends GenericService<Notas, Integer> {
 
     List<Notas> findByPartipantesMatriculadosInscritoCursoIdCurso(Integer idCurso);
 

@@ -2,6 +2,7 @@ package com.capacitaciones.continuas.services;
 
 import com.capacitaciones.continuas.Modelos.Primary.Especialidad;
 import com.capacitaciones.continuas.repositorys.Primarys.EspecialidadRepository;
+import com.capacitaciones.continuas.services.generic.GenericServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
