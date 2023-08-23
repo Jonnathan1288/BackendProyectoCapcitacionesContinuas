@@ -70,13 +70,8 @@ public class HojaVidaCapacitadorController {
         try {
             HojaVidaCapacitador hojavida = hojaVidaCapacitadorService.findById(id);
             if(hojavida != null){
-                hojavida.setExperiencialLaboral(hv.getExperiencialLaboral());
-                hojavida.setSobreMi(hv.getSobreMi());
-                hojavida.setExperienciaEscolar(hv.getExperienciaEscolar());
-                hojavida.setDestrezas(hv.getDestrezas());
-                hojavida.setIdiomas(hv.getIdiomas());
+                hojavida.setStatus(hv.getStatus());
                 hojavida.setCapacitador(hv.getCapacitador());
-                hojavida.setEstadoAprobacion(hv.getEstadoAprobacion());
                 return new ResponseEntity<>(hojaVidaCapacitadorService.save(hojavida), HttpStatus.CREATED);
             }
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);

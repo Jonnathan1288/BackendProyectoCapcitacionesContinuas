@@ -19,11 +19,9 @@ public class ParticipantesAprobados { //estado en  vigencia
     @Column(name = "codigo_senecyt")
     private String codigoSenecyt;
 
-    @Column(name = "certificado_participante", columnDefinition = "LONGBLOB")
-    private String certificadoParticipante;
+    @Column(name = "status")
+    private Boolean status;
 
-    @Column(name = "certificado_firmado", columnDefinition = "BOOLEAN")
-    private Boolean certificadoFirmado;
 
     // Se relaciona con participantes matriculado
 //viene la llave de id curso

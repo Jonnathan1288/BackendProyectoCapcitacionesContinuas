@@ -34,7 +34,7 @@ public class HojaVidaCapacitadorServiceImpl extends GenericServiceImpl<HojaVidaC
         HojaVidaCapacitador cv = new HojaVidaCapacitador();
         cv.setCapacitador(capacitador);
         cv.setDocumento(documento);
-        cv.setEstadoAprobacion("P");
+        cv.setStatus(true);
         return hojaVidaCapacitadorRespository.save(cv);
     }
 

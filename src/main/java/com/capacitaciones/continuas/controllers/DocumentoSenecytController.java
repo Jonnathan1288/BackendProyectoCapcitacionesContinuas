@@ -1,9 +1,7 @@
 package com.capacitaciones.continuas.controllers;
 
 import com.capacitaciones.continuas.Modelos.Primary.DocumentoSenecyt;
-import com.capacitaciones.continuas.Modelos.Primary.PruebaPdf;
 import com.capacitaciones.continuas.services.DocumentoSenecytService;
-import com.capacitaciones.continuas.services.pdfService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

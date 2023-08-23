@@ -45,10 +45,6 @@ public class Usuario {
     private Persona persona;
 
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "usuario")
-    private List<CodeExcel> codeExcelList;
-
     //RELACION DE MUCHOS A MUCHOS
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

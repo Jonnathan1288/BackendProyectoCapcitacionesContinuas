@@ -101,7 +101,7 @@ public class ParticipanteAprobadosController {
                     if(pm.getEstadoParticipanteAprobacion().equals("A")){
                         ParticipantesAprobados participantesAprobados = new ParticipantesAprobados();
                         participantesAprobados.setPartipantesMatriculados(pm);
-                        participantesAprobados.setCertificadoFirmado(false);
+                        participantesAprobados.setStatus(false);
                         participantesAprobados.setCodigoSenecyt("");
                         participantesActualizados.add(participantesAprobadosService.save(participantesAprobados));
                     }
@@ -136,18 +136,9 @@ public class ParticipanteAprobadosController {
                 if (participanteExistente == null) {
                     return ResponseEntity.notFound().build();
                 }
-                try {
-                    if(participante.getCertificadoParticipante() == null){
-                        participante.setCertificadoFirmado(false);
-                    }else{
-                        participante.setCertificadoFirmado(true);
-                    }
-                }catch (Exception e){
-                    System.out.println("Exeption status"+e.getMessage());
-                }
+
                 participanteExistente.setCodigoSenecyt(participante.getCodigoSenecyt());
-                participanteExistente.setCertificadoParticipante(participante.getCertificadoParticipante());
-                participanteExistente.setCertificadoFirmado(participante.getCertificadoFirmado());
+                participanteExistente.setStatus(participante.getStatus());
                 participantesActualizados.add(participantesAprobadosService.save(participanteExistente));
             }
 
