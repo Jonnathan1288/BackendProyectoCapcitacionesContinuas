@@ -20,7 +20,7 @@ public class DocumentoSenecyt {
     @Column(name = "descripcion", length = 1500)
     private String descripcion;
 
-    @Column(name = "documento_exel",  columnDefinition = "LONGBLOB")
+    @Column(name = "documento_exel",  length = 250)
     private String documentoExel;
 
     @Column(name = "estado_documento ", columnDefinition = "BOOLEAN")

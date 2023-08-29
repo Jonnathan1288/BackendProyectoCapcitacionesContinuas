@@ -16,7 +16,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-//@EnableWebSecurity
+@EnableWebSecurity
 //@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class MainSecurity {
     @Autowired
@@ -36,9 +36,11 @@ public class MainSecurity {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http.cors().and().csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/auth/**", "/api/**")
+                .antMatchers("/auth/**")
                 .permitAll()
-                .antMatchers("/swagger-ui/**", "/v3/api-docs/**")
+                .antMatchers("/swagger-ui/**", "/v3/api-docs/**",
+                        "/api/upload/{fileName:.+}/{folder}",
+                        "/api/uploadUri/{fileName:.+}/{folder}")
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()
