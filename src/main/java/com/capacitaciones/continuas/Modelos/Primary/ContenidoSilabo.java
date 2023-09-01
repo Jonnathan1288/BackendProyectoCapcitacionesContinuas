@@ -28,8 +28,8 @@ public class ContenidoSilabo {
     @Column(name = "actividades_docencia")
     private String actividadesDocencia;
 
-    @Column(name = "talleres")
-    private String talleres;
+    @Column(name = "horas_talleres")
+    private Integer horasTalleres;
 
     @Column(name = "horas_practicas")
     private Integer horasPracticas;
