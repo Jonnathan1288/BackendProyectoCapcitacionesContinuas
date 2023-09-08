@@ -450,10 +450,24 @@ public class JasperReportServiceImpl implements JasperReportService{
             Files.copy(cene, tempFile1.toPath(), StandardCopyOption.REPLACE_EXISTING);
             String imagecene = tempFile1.getAbsolutePath();
 
+            InputStream cenep = getClass().getResourceAsStream("/images/cenep.png");
+            File tempFile2 = File.createTempFile("cenep", ".png");
+            tempFile2.deleteOnExit();
+            Files.copy(cenep, tempFile2.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            String imagecenep = tempFile2.getAbsolutePath();
+
+            InputStream senescyt = getClass().getResourceAsStream("/images/senescyt.png");
+            File tempFile3 = File.createTempFile("senescyt", ".png");
+            tempFile3.deleteOnExit();
+            Files.copy(senescyt, tempFile3.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            String imagesenescyt = tempFile3.getAbsolutePath();
+
             InputStream reportStream = this.getClass().getResourceAsStream("/Reports/ListaCodigosAsiganar.jasper");
             Map<String, Object> params = new HashMap<>();
             params.put("cene", imagecene);
             params.put("ista", imageista);
+            params.put("cenep", imagecenep);
+            params.put("senescyt", imagesenescyt);
             params.put("idCurso", idCurso);
 
             JasperPrint jasperPrint = JasperFillManager.fillReport(reportStream, params, jdbcTemplate.getDataSource().getConnection());
