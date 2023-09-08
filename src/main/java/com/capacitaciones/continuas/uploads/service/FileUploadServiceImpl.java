@@ -32,7 +32,7 @@ public class FileUploadServiceImpl implements FileUploadService{
 
     @Override
     public Resource getUploadedFile(String fileName, String folder) throws IOException {
-        this.rootFolder = Paths.get(DOCUMENTS_EXEL);
+        this.rootFolder = Paths.get(FOLDER_MAPPING.get(folder));
         Path filePath = rootFolder.resolve(fileName);
         Resource resource = new UrlResource(filePath.toUri());
         if (resource.exists() && resource.isReadable()) {
