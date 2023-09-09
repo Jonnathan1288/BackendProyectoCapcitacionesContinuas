@@ -10,6 +10,8 @@ import com.capacitaciones.continuas.services.generic.GenericServiceImplv2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class FasePracticaServiceImpl extends GenericServiceImplv2<FasePractica, Integer> implements FasePracticaService {
 
@@ -19,6 +21,12 @@ public class FasePracticaServiceImpl extends GenericServiceImplv2<FasePractica, 
     @Override
     public GenericRepository<FasePractica, Integer> getDao() {
         return fasePracticaRepository;
+    }
+
+
+    @Override
+    public List<FasePractica> findAllByDisenioCurricularId(Integer disenioCurricularId) {
+        return fasePracticaRepository.findAllByDisenioCurricularId(disenioCurricularId);
     }
 
 

@@ -7,9 +7,10 @@ import com.capacitaciones.continuas.services.FaseTeoricaService;
 import com.capacitaciones.continuas.services.RecursoService;
 import com.capacitaciones.continuas.services.generic.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin("*")
 @RestController
@@ -28,5 +29,11 @@ public class FaseTeoricaController extends GenericControllerImpl<FaseTeorica, In
     @Override
     protected GenericService<FaseTeorica, Integer> getService() {
         return faseTeoricaService;
+    }
+
+    @GetMapping("/findAllByDisenioCurricularId/{disenioCurricularId}")
+    public ResponseEntity<List<FaseTeorica>> findAllByDisenioCurricularId(@PathVariable Integer disenioCurricularId) {
+        List<FaseTeorica> fasesTeoricas = faseTeoricaService.findAllByDisenioCurricularId(disenioCurricularId);
+        return ResponseEntity.ok(fasesTeoricas);
     }
 }

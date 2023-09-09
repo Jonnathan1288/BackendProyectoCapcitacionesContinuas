@@ -17,7 +17,7 @@ public class FasePractica implements Serializable {
     @Column(name = "idFasePractica")
     private Integer idFasePractica;
 
-    @Column(name = "nombreFase")
+    @Column(name = "nombreFase", length = 15000)
     private String nombreFase;
 
     @Column(name = "estado")

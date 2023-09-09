@@ -7,9 +7,10 @@ import com.capacitaciones.continuas.services.FasePracticaService;
 import com.capacitaciones.continuas.services.FaseTeoricaService;
 import com.capacitaciones.continuas.services.generic.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin("*")
 @RestController
@@ -28,5 +29,11 @@ public class FasePracticaController extends GenericControllerImpl<FasePractica, 
     @Override
     protected GenericService<FasePractica, Integer> getService() {
         return fasePracticaService;
+    }
+
+    @GetMapping("/findAllByDisenioCurricularId/{disenioCurricularId}")
+    public ResponseEntity<List<FasePractica>> findAllByDisenioCurricularId(@PathVariable Integer disenioCurricularId) {
+        List<FasePractica> fasesPracticas = fasePracticaService.findAllByDisenioCurricularId(disenioCurricularId);
+        return ResponseEntity.ok(fasesPracticas);
     }
 }

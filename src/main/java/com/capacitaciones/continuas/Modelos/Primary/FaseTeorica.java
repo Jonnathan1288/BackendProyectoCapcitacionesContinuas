@@ -17,7 +17,7 @@ public class FaseTeorica implements Serializable {
     @Column(name = "idFaseTeorica")
     private Integer idFaseTeorica;
 
-    @Column(name = "nombreFase")
+    @Column(name = "nombreFase" ,length = 15000)
     private String nombreFase;
 
     @Column(name = "estado")
