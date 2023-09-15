@@ -40,7 +40,7 @@ public class MainSecurity {
                 .permitAll()
                 .antMatchers("/swagger-ui/**", "/v3/api-docs/**",
                         "/api/upload/{fileName:.+}/{folder}",
-                        "/api/uploadUri/{fileName:.+}/{folder}")
+                        "/api/uploadUri/{fileName:.+}/{folder}","/api/**")
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()
