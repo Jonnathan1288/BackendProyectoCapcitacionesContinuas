@@ -2,8 +2,12 @@ package com.capacitaciones.continuas.controllers;
 
 
 import com.capacitaciones.continuas.Modelos.Primary.Curso;
+import com.capacitaciones.continuas.Modelos.Primary.Recurso;
+import com.capacitaciones.continuas.controllers.generic.GenericControllerImpl;
 import com.capacitaciones.continuas.interfaces.CoursesFilter;
 import com.capacitaciones.continuas.services.CursoService;
+import com.capacitaciones.continuas.services.RecursoService;
+import com.capacitaciones.continuas.services.generic.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,9 +18,20 @@ import java.util.List;
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/api")
-public class CursoController {
+public class CursoController extends GenericControllerImpl<Curso, Integer> {
     @Autowired
     private CursoService cursoService;
+
+    @Autowired
+    public CursoController(CursoService cursoService){
+        this.cursoService = cursoService;
+
+    }
+
+    @Override
+    protected GenericService<Curso, Integer> getService() {
+        return cursoService;
+    }
 
     @GetMapping("/curso/list")
     public ResponseEntity<List<Curso>> listCurso(){
@@ -133,4 +148,6 @@ public class CursoController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
 }

@@ -2,8 +2,11 @@ package com.capacitaciones.continuas.controllers;
 
 import com.capacitaciones.continuas.Modelos.Primary.Canton;
 import com.capacitaciones.continuas.Modelos.Primary.Parroquia;
+import com.capacitaciones.continuas.controllers.generic.GenericControllerImpl;
 import com.capacitaciones.continuas.services.CantonService;
 import com.capacitaciones.continuas.services.ParroquiaService;
+import com.capacitaciones.continuas.services.RecursoService;
+import com.capacitaciones.continuas.services.generic.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,9 +17,20 @@ import java.util.List;
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/api")
-public class CantonController {
+public class CantonController extends GenericControllerImpl<Canton,Integer> {
     @Autowired
     private CantonService cantonService;
+
+    @Override
+    protected GenericService<Canton, Integer> getService() {
+        return cantonService;
+    }
+
+    @Autowired
+    public CantonController(CantonService cantonService){
+        this.cantonService = cantonService;
+
+    }
 
     @GetMapping("/canton/list")
     public ResponseEntity<List<Canton>> listCanton(){
@@ -74,4 +88,6 @@ public class CantonController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
 }
