@@ -2,7 +2,6 @@ package com.capacitaciones.continuas.repositorys.Primarys;
 
 import com.capacitaciones.continuas.interfaces.CoursesFilter;
 import com.capacitaciones.continuas.Modelos.Primary.Curso;
-import com.capacitaciones.continuas.repositorys.Primarys.generic.GenericRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -11,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CursoRepositry extends GenericRepository<Curso, Integer> {
+public interface CursoRepositry extends JpaRepository<Curso, Integer> {
     public List<Curso> findByCapacitadorUsuarioIdUsuario(Integer idCapacitador);
     List<Curso> findByEstadoCursoAndEstadoPublicasionCurso(boolean estadoCurso, String estadoCurso2);
 
