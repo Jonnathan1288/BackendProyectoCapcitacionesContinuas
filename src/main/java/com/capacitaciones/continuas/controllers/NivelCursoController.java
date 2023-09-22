@@ -1,7 +1,11 @@
 package com.capacitaciones.continuas.controllers;
 
+import com.capacitaciones.continuas.Modelos.Primary.FasePractica;
 import com.capacitaciones.continuas.Modelos.Primary.NivelCurso;
+import com.capacitaciones.continuas.controllers.generic.GenericControllerImpl;
+import com.capacitaciones.continuas.services.FasePracticaService;
 import com.capacitaciones.continuas.services.NivelCursoService;
+import com.capacitaciones.continuas.services.generic.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,21 +15,25 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api")
-public class NivelCursoController {
+@RequestMapping("/api/nivelCurso")
+public class NivelCursoController extends GenericControllerImpl<NivelCurso, Integer> {
     @Autowired
     private NivelCursoService nivelCursoService;
 
-    @GetMapping("/nivelCurso/list")
-    public ResponseEntity<List<NivelCurso>> listNivelCurso(){
-        try {
-            return new ResponseEntity<>(nivelCursoService.findByAll(), HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @Override
+    protected GenericService<NivelCurso, Integer> getService() {
+        return nivelCursoService;
     }
 
-    @GetMapping("/nivelCurso/findbyId/{id}")
+    @Autowired
+    public NivelCursoController(NivelCursoService nivelCursoService){
+        this.nivelCursoService = nivelCursoService;
+
+    }
+
+
+
+    @GetMapping("/findbyId/{id}")
     public ResponseEntity<?> getNivelCursoById(@PathVariable("id") Integer id){
         try {
             NivelCurso nc = nivelCursoService.findById(id);
@@ -39,16 +47,8 @@ public class NivelCursoController {
         }
     }
 
-    @PostMapping("/nivelCurso/save")
-    public ResponseEntity<NivelCurso> saveNivelCurso(@RequestBody NivelCurso df){
-        try {
-            return new ResponseEntity<>(nivelCursoService.save(df), HttpStatus.CREATED);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
-    @PutMapping("/nivelCurso/actualizar/{id}")
+    @PutMapping("/actualizar/{id}")
     public ResponseEntity<NivelCurso> actualizarNivelCurso(@PathVariable Integer id, @RequestBody NivelCurso nivelCurso) {
         try {
             if (nivelCursoService.findById(id) == null) {
@@ -62,4 +62,6 @@ public class NivelCursoController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
 }

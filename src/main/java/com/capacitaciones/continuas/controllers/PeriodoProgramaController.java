@@ -1,7 +1,11 @@
 package com.capacitaciones.continuas.controllers;
 
+import com.capacitaciones.continuas.Modelos.Primary.FasePractica;
 import com.capacitaciones.continuas.Modelos.Primary.PeriodoPrograma;
+import com.capacitaciones.continuas.controllers.generic.GenericControllerImpl;
+import com.capacitaciones.continuas.services.FasePracticaService;
 import com.capacitaciones.continuas.services.PeriodoProgramaService;
+import com.capacitaciones.continuas.services.generic.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,31 +15,25 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api")
-public class PeriodoProgramaController {
+@RequestMapping("/api/periodoPrograma")
+public class PeriodoProgramaController extends GenericControllerImpl<PeriodoPrograma, Integer> {
     @Autowired
     private PeriodoProgramaService periodoProgramaService;
 
-    @GetMapping("/periodoPrograma/list")
-    public ResponseEntity<List<PeriodoPrograma>> listperiodoPrograma(){
-        try {
-            return new ResponseEntity<>(periodoProgramaService.findByAll(), HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @Override
+    protected GenericService<PeriodoPrograma, Integer> getService() {
+        return periodoProgramaService;
+    }
+
+    @Autowired
+    public PeriodoProgramaController(PeriodoProgramaService periodoProgramaService){
+        this.periodoProgramaService = periodoProgramaService;
+
     }
 
 
-    @PostMapping("/periodoPrograma/save")
-    public ResponseEntity<PeriodoPrograma> savePeriodoPrograma(@RequestBody PeriodoPrograma pp){
-        try {
-            return new ResponseEntity<>(periodoProgramaService.save(pp), HttpStatus.CREATED);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
-    @GetMapping("/periodoPrograma/findbyId/{id}")
+    @GetMapping("/findbyId/{id}")
     public ResponseEntity<?> getPeriodoProgramaById(@PathVariable("id") Integer id){
         try {
             PeriodoPrograma nc = periodoProgramaService.findById(id);
@@ -48,7 +46,7 @@ public class PeriodoProgramaController {
         }
     }
 
-    @PutMapping("/periodoPrograma/actualizar/{id}")
+    @PutMapping("/actualizar/{id}")
     public ResponseEntity<PeriodoPrograma> actualizarPeriodoPrograma(@PathVariable Integer id, @RequestBody PeriodoPrograma periodoPrograma) {
         try {
             if (periodoProgramaService.findById(id) == null) {
@@ -62,4 +60,6 @@ public class PeriodoProgramaController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
 }

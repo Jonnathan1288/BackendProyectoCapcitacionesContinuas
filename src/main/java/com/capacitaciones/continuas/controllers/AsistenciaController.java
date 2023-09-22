@@ -2,10 +2,14 @@ package com.capacitaciones.continuas.controllers;
 
 import com.capacitaciones.continuas.Modelos.Primary.Asistencia;
 import com.capacitaciones.continuas.Modelos.Primary.Curso;
+import com.capacitaciones.continuas.Modelos.Primary.FasePractica;
 import com.capacitaciones.continuas.Modelos.Primary.PartipantesMatriculados;
+import com.capacitaciones.continuas.controllers.generic.GenericControllerImpl;
 import com.capacitaciones.continuas.services.AsistenciaService;
 import com.capacitaciones.continuas.services.CursoService;
+import com.capacitaciones.continuas.services.FasePracticaService;
 import com.capacitaciones.continuas.services.ParticipantesMatriculadosService;
+import com.capacitaciones.continuas.services.generic.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -18,10 +22,23 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api")
-public class AsistenciaController {
+@RequestMapping("/api/asistencia")
+public class AsistenciaController extends GenericControllerImpl<Asistencia, Integer> {
     @Autowired
     private AsistenciaService asistenciaService;
+
+    @Override
+    protected GenericService<Asistencia, Integer> getService() {
+        return asistenciaService;
+    }
+
+
+    @Autowired
+    public AsistenciaController(AsistenciaService asistenciaService){
+        this.asistenciaService = asistenciaService;
+
+    }
+
 
     @Autowired
     private ParticipantesMatriculadosService participantesMatriculadosService;
@@ -29,25 +46,8 @@ public class AsistenciaController {
     @Autowired
     private CursoService cursoService;
 
-    @GetMapping("/asistencia/list")
-    public ResponseEntity<List<Asistencia>> listAsistencia(){
-        try {
-            return new ResponseEntity<>(asistenciaService.findByAll(), HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
-    @PostMapping("/asistencia/save")
-    public ResponseEntity<Asistencia> saveAsistencia(@RequestBody Asistencia asistencia){
-        try {
-            return new ResponseEntity<>(asistenciaService.save(asistencia), HttpStatus.CREATED);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @GetMapping("/asistencia/findbyId/{id}")
+    @GetMapping("/findbyId/{id}")
     public ResponseEntity<?> getAsistenciaById(@PathVariable("id") Integer id){
         try {
             Asistencia asistencia = asistenciaService.findById(id);
@@ -61,7 +61,7 @@ public class AsistenciaController {
         }
     }
 
-    @GetMapping("/asistencia/fecha/")
+    @GetMapping("/fecha/")
     public ResponseEntity<?> getfechaById(){
         LocalDate fecha = LocalDate.now();
         try {
@@ -76,7 +76,7 @@ public class AsistenciaController {
         }
     }
 
-    @GetMapping("/asistencia/GenerarAsistencia/{idCurso}")
+    @GetMapping("/GenerarAsistencia/{idCurso}")
     public ResponseEntity<?> generarAsistenciaPorFecha(@PathVariable("idCurso") Integer idCurso){
         LocalDate fecha = LocalDate.now();
         //LocalDate fechaPrueba = LocalDate.parse("2023-04-30");
@@ -114,7 +114,7 @@ public class AsistenciaController {
     }
 
 
-    @GetMapping("/asistencia/obtenerAsistenciaAnteriores/{idCurso}/{fecha}")
+    @GetMapping("/obtenerAsistenciaAnteriores/{idCurso}/{fecha}")
     public ResponseEntity<?> obtenerAsistenciaPorFechaCurso(@PathVariable("idCurso") Integer idCurso, @PathVariable("fecha") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fecha) {
         try {
             List<Asistencia> asistenciaList = asistenciaService.findByPartipantesMatriculadosInscritoCursoIdCursoAndFechaAsistencia(idCurso, fecha);
@@ -129,7 +129,7 @@ public class AsistenciaController {
 
 
 
-    @PutMapping("/asistencia/actualizar/{id}")
+    @PutMapping("/actualizar/{id}")
     public ResponseEntity<Asistencia> actualizarAsistencia(@PathVariable("id") Integer id, @RequestBody Asistencia asistencia) {
         try {
 
@@ -147,4 +147,6 @@ public class AsistenciaController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
 }

@@ -1,7 +1,11 @@
 package com.capacitaciones.continuas.controllers;
 
+import com.capacitaciones.continuas.Modelos.Primary.FasePractica;
 import com.capacitaciones.continuas.Modelos.Primary.MaterialConvencional;
+import com.capacitaciones.continuas.controllers.generic.GenericControllerImpl;
+import com.capacitaciones.continuas.services.FasePracticaService;
 import com.capacitaciones.continuas.services.MaterialConvencionalService;
+import com.capacitaciones.continuas.services.generic.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,30 +15,25 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api")
-public class MaterialConvencionalController {
+@RequestMapping("/api/materialConvencional")
+public class MaterialConvencionalController extends GenericControllerImpl<MaterialConvencional, Integer> {
     @Autowired
     private MaterialConvencionalService materialConvencionalService;
 
-    @GetMapping("/materialConvencional/list")
-    public ResponseEntity<List<MaterialConvencional>> listMaterialConvencional(){
-        try {
-            return new ResponseEntity<>(materialConvencionalService.findByAll(), HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @Override
+    protected GenericService<MaterialConvencional, Integer> getService() {
+        return materialConvencionalService;
     }
 
-    @PostMapping("/materialConvencional/save")
-    public ResponseEntity<MaterialConvencional> saveMaterialConvencional(@RequestBody MaterialConvencional materialConvencional){
-        try {
-            return new ResponseEntity<>(materialConvencionalService.save(materialConvencional), HttpStatus.CREATED);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @Autowired
+    public MaterialConvencionalController(MaterialConvencionalService materialConvencionalService){
+        this.materialConvencionalService = materialConvencionalService;
+
     }
 
-    @GetMapping("/materialConvencional/findbyId/{id}")
+
+
+    @GetMapping("/findbyId/{id}")
     public ResponseEntity<?> getMaterialConvencionalById(@PathVariable("id") Integer id){
         try {
             MaterialConvencional materialConvencional = materialConvencionalService.findById(id);
@@ -60,7 +59,7 @@ public class MaterialConvencionalController {
         }
     }
 
-    @PutMapping("/materialConvencional/actualizar/{id}")
+    @PutMapping("/actualizar/{id}")
     public ResponseEntity<MaterialConvencional> actualizarMaterialConvencional(@PathVariable Integer id, @RequestBody MaterialConvencional materialConvencional) {
         try {
             if (materialConvencionalService.findById(id) == null) {
@@ -73,4 +72,6 @@ public class MaterialConvencionalController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
 }

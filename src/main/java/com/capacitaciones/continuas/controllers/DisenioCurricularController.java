@@ -1,7 +1,11 @@
 package com.capacitaciones.continuas.controllers;
 
 import com.capacitaciones.continuas.Modelos.Primary.DisenioCurricular;
+import com.capacitaciones.continuas.Modelos.Primary.FasePractica;
+import com.capacitaciones.continuas.controllers.generic.GenericControllerImpl;
 import com.capacitaciones.continuas.services.DisenioCurricularService;
+import com.capacitaciones.continuas.services.FasePracticaService;
+import com.capacitaciones.continuas.services.generic.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,21 +15,24 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api")
-public class DisenioCurricularController {
+@RequestMapping("/api/disenioCurricular")
+public class DisenioCurricularController extends GenericControllerImpl<DisenioCurricular, Integer> {
     @Autowired
     private DisenioCurricularService disenioCurricularService;
 
-    @GetMapping("/disenioCurricular/list")
-    public ResponseEntity<List<DisenioCurricular>> listDisenioCurricular(){
-        try {
-            return new ResponseEntity<>(disenioCurricularService.findByAll(), HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @Override
+    protected GenericService<DisenioCurricular, Integer> getService() {
+        return disenioCurricularService;
     }
 
-    @GetMapping("/disenioCurricular/findbyId/{id}")
+    @Autowired
+    public DisenioCurricularController(DisenioCurricularService disenioCurricularService){
+        this.disenioCurricularService = disenioCurricularService;
+
+    }
+
+
+    @GetMapping("/findbyId/{id}")
     public ResponseEntity<?> getDisenioCurricularById(@PathVariable("id") Integer id){
         try {
             DisenioCurricular dc = disenioCurricularService.findById(id);
@@ -39,7 +46,7 @@ public class DisenioCurricularController {
         }
     }
 
-    @GetMapping("/disenioCurricular/findbyIdSilaboCurso/{id}")
+    @GetMapping("/findbyIdSilaboCurso/{id}")
     public ResponseEntity<?> getDisenioCurricularBySilaboCursoId(@PathVariable("id") Integer id){
         try {
             DisenioCurricular dc = disenioCurricularService.findBySilaboCursoIdCurso(id);
@@ -53,16 +60,9 @@ public class DisenioCurricularController {
         }
     }
 
-    @PostMapping("/disenioCurricular/save")
-    public ResponseEntity<DisenioCurricular> saveDisenioCurricular(@RequestBody DisenioCurricular disenioCurricular){
-        try {
-            return new ResponseEntity<>(disenioCurricularService.save(disenioCurricular), HttpStatus.CREATED);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
-    @PutMapping("/disenioCurricular/update/{id}")
+
+    @PutMapping("/actualizar/{id}")
     public ResponseEntity<DisenioCurricular> actualizarDisenioCurricular(@PathVariable Integer id, @RequestBody DisenioCurricular dc) {
         try {
             if (disenioCurricularService.findById(id) == null) {
@@ -80,7 +80,7 @@ public class DisenioCurricularController {
 
 
     //Implementacion de nuevos metodos
-    @GetMapping("/disenioCurricular/findbyIdSilaboPorDisenioCurricular/{id}")
+    @GetMapping("/findbyIdSilaboPorDisenioCurricular/{id}")
     public ResponseEntity<?> DisenioCurricularFindByIdPorSilabo(@PathVariable("id") Integer id){
         try {
             DisenioCurricular nc = disenioCurricularService.DisenioCurricularfindBySilaboIdSilabo(id);
@@ -93,8 +93,10 @@ public class DisenioCurricularController {
         }
     }
 
-    @GetMapping("/disenioCurricular/findbyIdSilabo/{idSilabo}")
+    @GetMapping("/findbyIdSilabo/{idSilabo}")
     public boolean DisenioCurricularfindbyIdSilabo(@PathVariable("idSilabo") Integer idSilabo){
         return disenioCurricularService.findBySilaboIdSilabo(idSilabo);
     }
+
+
 }

@@ -16,7 +16,7 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/canton")
 public class CantonController extends GenericControllerImpl<Canton,Integer> {
     @Autowired
     private CantonService cantonService;
@@ -32,16 +32,9 @@ public class CantonController extends GenericControllerImpl<Canton,Integer> {
 
     }
 
-    @GetMapping("/canton/list")
-    public ResponseEntity<List<Canton>> listCanton(){
-        try {
-            return new ResponseEntity<>(cantonService.findByAll(), HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
-    @GetMapping("/canton/findbyId/{id}")
+
+    @GetMapping("/findbyId/{id}")
     public ResponseEntity<?> getCantonById(@PathVariable("id") Integer id){
         try {
             Canton canton = cantonService.findById(id);
@@ -54,7 +47,7 @@ public class CantonController extends GenericControllerImpl<Canton,Integer> {
         }
     }
 
-    @GetMapping("/canton/findbyIdProvincia/{id}")
+    @GetMapping("/findbyIdProvincia/{id}")
     public ResponseEntity<List<Canton>> getCantonByIdProvincia(@PathVariable("id") Integer id){
         try {
             List<Canton> canton = cantonService.findByProvinciaIdProvincia(id);
@@ -67,16 +60,9 @@ public class CantonController extends GenericControllerImpl<Canton,Integer> {
         }
     }
 
-    @PostMapping("/canton/save")
-    public ResponseEntity<Canton> saveParroquia(@RequestBody Canton canton){
-        try {
-            return new ResponseEntity<>(cantonService.save(canton), HttpStatus.CREATED);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
-    @PutMapping("/canton/actualizar/{id}")
+
+    @PutMapping("/actualizar/{id}")
     public ResponseEntity<Canton> actualizarParroquia(@PathVariable Integer id, @RequestBody Canton canton) {
         try {
             if (cantonService.findById(id) == null) {

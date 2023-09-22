@@ -1,9 +1,13 @@
 package com.capacitaciones.continuas.controllers;
 
 import com.capacitaciones.continuas.Modelos.Primary.Area;
+import com.capacitaciones.continuas.Modelos.Primary.FasePractica;
 import com.capacitaciones.continuas.Modelos.Primary.Parroquia;
+import com.capacitaciones.continuas.controllers.generic.GenericControllerImpl;
 import com.capacitaciones.continuas.services.AreaService;
+import com.capacitaciones.continuas.services.FasePracticaService;
 import com.capacitaciones.continuas.services.ParroquiaService;
+import com.capacitaciones.continuas.services.generic.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,21 +17,24 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api")
-public class ParroquiaController {
+@RequestMapping("/api/parroquia")
+public class ParroquiaController extends GenericControllerImpl<Parroquia, Integer> {
     @Autowired
     private ParroquiaService parroquiaService;
 
-    @GetMapping("/parroquia/list")
-    public ResponseEntity<List<Parroquia>> listParroquia(){
-        try {
-            return new ResponseEntity<>(parroquiaService.findByAll(), HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @Override
+    protected GenericService<Parroquia, Integer> getService() {
+        return parroquiaService;
     }
 
-    @GetMapping("/parroquia/findbyId/{id}")
+    @Autowired
+    public ParroquiaController(ParroquiaService parroquiaService){
+        this.parroquiaService = parroquiaService;
+
+    }
+
+
+    @GetMapping("/findbyId/{id}")
     public ResponseEntity<?> getParroquiaById(@PathVariable("id") Integer id){
         try {
             Parroquia parroquia = parroquiaService.findById(id);
@@ -41,7 +48,7 @@ public class ParroquiaController {
         }
     }
 
-    @GetMapping("/parroquia/findbyIdCanton/{id}")
+    @GetMapping("/findbyIdCanton/{id}")
     public ResponseEntity<List<Parroquia>> getParroquiaByIdCanton(@PathVariable("id") Integer id){
         try {
             List<Parroquia> parroquia = parroquiaService.findByCanton_IdCanton(id);
@@ -55,16 +62,8 @@ public class ParroquiaController {
         }
     }
 
-    @PostMapping("/parroquia/save")
-    public ResponseEntity<Parroquia> saveParroquia(@RequestBody Parroquia parroquia){
-        try {
-            return new ResponseEntity<>(parroquiaService.save(parroquia), HttpStatus.CREATED);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
-    @PutMapping("/parroquia/actualizar/{id}")
+    @PutMapping("/actualizar/{id}")
     public ResponseEntity<Parroquia> actualizarParroquia(@PathVariable Integer id, @RequestBody Parroquia parroquia) {
         try {
             if (parroquiaService.findById(id) == null) {
@@ -77,4 +76,6 @@ public class ParroquiaController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
 }

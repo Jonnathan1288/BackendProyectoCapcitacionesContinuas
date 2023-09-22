@@ -1,7 +1,11 @@
 package com.capacitaciones.continuas.controllers;
 
 import com.capacitaciones.continuas.Modelos.Primary.EstrategiasMetodologica;
+import com.capacitaciones.continuas.Modelos.Primary.FasePractica;
+import com.capacitaciones.continuas.controllers.generic.GenericControllerImpl;
 import com.capacitaciones.continuas.services.EstrategiaMetodologicaService;
+import com.capacitaciones.continuas.services.FasePracticaService;
+import com.capacitaciones.continuas.services.generic.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,21 +15,23 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api")
-public class EstrategiaMetodologicaController {
+@RequestMapping("/api/estrategiaMetodologica")
+public class EstrategiaMetodologicaController extends GenericControllerImpl<EstrategiasMetodologica, Integer> {
     @Autowired
     private EstrategiaMetodologicaService estrategiaMetodologicaService;
 
-    @GetMapping("/estrategiaMetodologica/list")
-    public ResponseEntity<List<EstrategiasMetodologica>> listEstrategiaMetodologica(){
-        try {
-            return new ResponseEntity<>(estrategiaMetodologicaService.findByAll(), HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @Override
+    protected GenericService<EstrategiasMetodologica, Integer> getService() {
+        return estrategiaMetodologicaService;
     }
 
-    @GetMapping("/estrategiaMetodologica/findbyId/{id}")
+    @Autowired
+    public EstrategiaMetodologicaController(EstrategiaMetodologicaService estrategiaMetodologicaService){
+        this.estrategiaMetodologicaService = estrategiaMetodologicaService;
+
+    }
+
+    @GetMapping("/findbyId/{id}")
     public ResponseEntity<?> getEstrategiaMetodologicaById(@PathVariable("id") Integer id){
         try {
             EstrategiasMetodologica dc = estrategiaMetodologicaService.findById(id);
@@ -38,14 +44,7 @@ public class EstrategiaMetodologicaController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @PostMapping("/strategiaMetodologica/save")
-    public ResponseEntity<EstrategiasMetodologica> saveEstrategiaMetodologica(@RequestBody EstrategiasMetodologica estrategiasMetodologica){
-        try {
-            return new ResponseEntity<>(estrategiaMetodologicaService.save(estrategiasMetodologica), HttpStatus.CREATED);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+
 
     @GetMapping("/strategiaMetodologicaPorSilabo/findbyId/{IdSilabo}")
     public ResponseEntity<?> getResultadosPorSilabo(@PathVariable("IdSilabo") Integer IdSilabo){
@@ -59,7 +58,7 @@ public class EstrategiaMetodologicaController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @PutMapping("/strategiaMetodologica/update/{id}")
+    @PutMapping("/actualizar/{id}")
     public ResponseEntity<EstrategiasMetodologica> actualizarEspecialidad(@PathVariable Integer id, @RequestBody EstrategiasMetodologica estrategism) {
         try {
             if (estrategiaMetodologicaService.findById(id) == null) {
@@ -75,4 +74,6 @@ public class EstrategiaMetodologicaController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
 }

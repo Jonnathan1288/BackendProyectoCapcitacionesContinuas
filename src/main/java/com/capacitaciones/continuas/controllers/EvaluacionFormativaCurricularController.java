@@ -1,7 +1,9 @@
 package com.capacitaciones.continuas.controllers;
 
 import com.capacitaciones.continuas.Modelos.Primary.EvalucionFormativaCurricular;
+import com.capacitaciones.continuas.controllers.generic.GenericControllerImpl;
 import com.capacitaciones.continuas.services.EvaluacionFormativaCurricularService;
+import com.capacitaciones.continuas.services.generic.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,21 +13,23 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api")
-public class EvaluacionFormativaCurricularController {
+@RequestMapping("/api/evaluacionFormativaCurricular")
+public class EvaluacionFormativaCurricularController extends GenericControllerImpl<EvalucionFormativaCurricular, Integer> {
     @Autowired
     private EvaluacionFormativaCurricularService evaluacionFormativaCurricularService;
 
-    @GetMapping("/evaluacionFormativaCurricular/list")
-    public ResponseEntity<List<EvalucionFormativaCurricular>> listEvaluacionFormativaCurricular(){
-        try {
-            return new ResponseEntity<>(evaluacionFormativaCurricularService.findByAll(), HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @Override
+    protected GenericService<EvalucionFormativaCurricular, Integer> getService() {
+        return evaluacionFormativaCurricularService;
     }
 
-    @GetMapping("/evaluacionFormativaCurricular/findbyId/{id}")
+    @Autowired
+    public EvaluacionFormativaCurricularController(EvaluacionFormativaCurricularService evaluacionFormativaCurricularService){
+        this.evaluacionFormativaCurricularService = evaluacionFormativaCurricularService;
+
+    }
+
+    @GetMapping("/findbyId/{id}")
     public ResponseEntity<?> getEvalucionFormativaCurricularById(@PathVariable("id") Integer id){
         try {
             EvalucionFormativaCurricular dc = evaluacionFormativaCurricularService.findById(id);
@@ -38,16 +42,9 @@ public class EvaluacionFormativaCurricularController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @PostMapping("/evaluacionFormativaCurricular/save")
-    public ResponseEntity<EvalucionFormativaCurricular> saveEvaluacionFormativaCurricular(@RequestBody EvalucionFormativaCurricular efc){
-        try {
-            return new ResponseEntity<>(evaluacionFormativaCurricularService.save(efc), HttpStatus.CREATED);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
-    @PutMapping("/evaluacionFormativaCurricular/update/{id}")
+
+    @PutMapping("/actualizar/{id}")
     public ResponseEntity<EvalucionFormativaCurricular> actualizarEvalucionFormativaCurricular(@PathVariable Integer id, @RequestBody EvalucionFormativaCurricular evadiag) {
         try {
             if (evaluacionFormativaCurricularService.findById(id) == null) {
@@ -76,4 +73,6 @@ public class EvaluacionFormativaCurricularController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
 }

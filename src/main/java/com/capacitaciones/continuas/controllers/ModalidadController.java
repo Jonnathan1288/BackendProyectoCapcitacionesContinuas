@@ -1,8 +1,12 @@
 package com.capacitaciones.continuas.controllers;
 
 
+import com.capacitaciones.continuas.Modelos.Primary.FasePractica;
 import com.capacitaciones.continuas.Modelos.Primary.ModalidadCurso;
+import com.capacitaciones.continuas.controllers.generic.GenericControllerImpl;
+import com.capacitaciones.continuas.services.FasePracticaService;
 import com.capacitaciones.continuas.services.ModalidadCursoService;
+import com.capacitaciones.continuas.services.generic.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,21 +16,24 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api")
-public class ModalidadController {
+@RequestMapping("/api/modalidadCurso")
+public class ModalidadController extends GenericControllerImpl<ModalidadCurso, Integer> {
     @Autowired
     private ModalidadCursoService modalidadCursoService;
 
-    @GetMapping("/modalidadCurso/list")
-    public ResponseEntity<List<ModalidadCurso>> listModalidad(){
-        try {
-            return new ResponseEntity<>(modalidadCursoService.findByAll(), HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @Override
+    protected GenericService<ModalidadCurso, Integer> getService() {
+        return modalidadCursoService;
     }
 
-    @GetMapping("/modalidadCurso/findbyId/{id}")
+    @Autowired
+    public ModalidadController(ModalidadCursoService modalidadCursoService){
+        this.modalidadCursoService = modalidadCursoService;
+
+    }
+
+
+      @GetMapping("/findbyId/{id}")
     public ResponseEntity<?> getModalidadById(@PathVariable("id") Integer id){
         try {
             ModalidadCurso mc = modalidadCursoService.findById(id);
@@ -40,16 +47,7 @@ public class ModalidadController {
         }
     }
 
-    @PostMapping("/modalidadCurso/save")
-    public ResponseEntity<ModalidadCurso> saveModalidad(@RequestBody ModalidadCurso mc){
-        try {
-            return new ResponseEntity<>(modalidadCursoService.save(mc), HttpStatus.CREATED);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @PutMapping("/modalidadCurso/actualizar/{id}")
+      @PutMapping("/actualizar/{id}")
     public ResponseEntity<ModalidadCurso> actualizarMaterialConvencional(@PathVariable Integer id, @RequestBody ModalidadCurso modalidadCurso) {
         try {
             if (modalidadCursoService.findById(id) == null) {
@@ -62,4 +60,6 @@ public class ModalidadController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
 }

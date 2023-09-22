@@ -1,7 +1,11 @@
 package com.capacitaciones.continuas.controllers;
 
+import com.capacitaciones.continuas.Modelos.Primary.FasePractica;
 import com.capacitaciones.continuas.Modelos.Primary.MaterialAudiovisual;
+import com.capacitaciones.continuas.controllers.generic.GenericControllerImpl;
+import com.capacitaciones.continuas.services.FasePracticaService;
 import com.capacitaciones.continuas.services.MaterialAudiovisualService;
+import com.capacitaciones.continuas.services.generic.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,30 +15,24 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api")
-public class MaterialAudiovisualController {
+@RequestMapping("/api/materialAudiovisual")
+public class MaterialAudiovisualController extends GenericControllerImpl<MaterialAudiovisual, Integer> {
     @Autowired
     private MaterialAudiovisualService materialAudiovisualService;
 
-    @GetMapping("/materialAudiovisual/list")
-    public ResponseEntity<List<MaterialAudiovisual>> listMaterialAudiovisual(){
-        try {
-            return new ResponseEntity<>(materialAudiovisualService.findByAll(), HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @Override
+    protected GenericService<MaterialAudiovisual, Integer> getService() {
+        return materialAudiovisualService;
     }
 
-    @PostMapping("/materialAudiovisual/save")
-    public ResponseEntity<MaterialAudiovisual> saveMaterialAudiovisual(@RequestBody MaterialAudiovisual materialAudiovisual){
-        try {
-            return new ResponseEntity<>(materialAudiovisualService.save(materialAudiovisual), HttpStatus.CREATED);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @Autowired
+    public MaterialAudiovisualController(MaterialAudiovisualService materialAudiovisualService){
+        this.materialAudiovisualService = materialAudiovisualService;
+
     }
 
-    @GetMapping("/materialAudiovisual/findbyId/{id}")
+
+    @GetMapping("/findbyId/{id}")
     public ResponseEntity<?> getMaterialAudiovisualById(@PathVariable("id") Integer id){
         try {
             MaterialAudiovisual materialConvencional = materialAudiovisualService.findById(id);
@@ -60,7 +58,7 @@ public class MaterialAudiovisualController {
         }
     }
 
-    @PutMapping("/materialAudiovisual/actualizar/{id}")
+    @PutMapping("/actualizar/{id}")
     public ResponseEntity<MaterialAudiovisual> actualizarMaterialAudiovisual(@PathVariable Integer id, @RequestBody MaterialAudiovisual materialAudiovisual) {
         try {
             if (materialAudiovisualService.findById(id) == null) {
@@ -73,4 +71,6 @@ public class MaterialAudiovisualController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
 }

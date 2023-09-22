@@ -1,9 +1,9 @@
 package com.capacitaciones.continuas.controllers;
 
-import com.capacitaciones.continuas.Modelos.Primary.Parroquia;
 import com.capacitaciones.continuas.Modelos.Primary.Provincia;
-import com.capacitaciones.continuas.services.ParroquiaService;
+import com.capacitaciones.continuas.controllers.generic.GenericControllerImpl;
 import com.capacitaciones.continuas.services.ProvinciaService;
+import com.capacitaciones.continuas.services.generic.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,21 +13,24 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api")
-public class ProvinciaController {
+@RequestMapping("/api/provincia")
+public class ProvinciaController extends GenericControllerImpl<Provincia, Integer> {
     @Autowired
     private ProvinciaService provinciaService;
 
-    @GetMapping("/provincia/list")
-    public ResponseEntity<List<Provincia>> listProvincia(){
-        try {
-            return new ResponseEntity<>(provinciaService.findByAll(), HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @Autowired
+    public ProvinciaController(ProvinciaService provinciaService){
+        this.provinciaService = provinciaService;
+
     }
 
-    @GetMapping("/provincia/findbyId/{id}")
+    @Override
+    protected GenericService<Provincia, Integer> getService() {
+        return provinciaService;
+    }
+
+
+    @GetMapping("/findbyId/{id}")
     public ResponseEntity<?> getProvinciaById(@PathVariable("id") Integer id){
         try {
             Provincia provincia = provinciaService.findById(id);
@@ -41,16 +44,9 @@ public class ProvinciaController {
         }
     }
 
-    @PostMapping("/provincia/save")
-    public ResponseEntity<Provincia> saveProvincia(@RequestBody Provincia provincia){
-        try {
-            return new ResponseEntity<>(provinciaService.save(provincia), HttpStatus.CREATED);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
-    @PutMapping("/provincia/actualizar/{id}")
+
+    @PutMapping("/actualizar/{id}")
     public ResponseEntity<Provincia> actualizarProvincia(@PathVariable Integer id, @RequestBody Provincia provincia) {
         try {
             if (provinciaService.findById(id) == null) {
@@ -63,4 +59,6 @@ public class ProvinciaController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
 }

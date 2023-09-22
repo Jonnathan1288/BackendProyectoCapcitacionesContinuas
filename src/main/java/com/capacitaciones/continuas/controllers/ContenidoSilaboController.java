@@ -1,7 +1,11 @@
 package com.capacitaciones.continuas.controllers;
 
 import com.capacitaciones.continuas.Modelos.Primary.ContenidoSilabo;
+import com.capacitaciones.continuas.Modelos.Primary.FasePractica;
+import com.capacitaciones.continuas.controllers.generic.GenericControllerImpl;
 import com.capacitaciones.continuas.services.ContenidoSilaboService;
+import com.capacitaciones.continuas.services.FasePracticaService;
+import com.capacitaciones.continuas.services.generic.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,30 +15,24 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api")
-public class ContenidoSilaboController {
+@RequestMapping("/api/contenidosilabo")
+public class ContenidoSilaboController extends GenericControllerImpl<ContenidoSilabo, Integer> {
     @Autowired
     private ContenidoSilaboService contenidoSilaboService;
 
-    @GetMapping("/contenidosilabo/list")
-    public ResponseEntity<List<ContenidoSilabo>> listContenidoSilabo(){
-        try {
-            return new ResponseEntity<>(contenidoSilaboService.findByAll(), HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @Override
+    protected GenericService<ContenidoSilabo, Integer> getService() {
+        return contenidoSilaboService;
     }
 
-    @PostMapping("/contenidosilabo/save")
-    public ResponseEntity<ContenidoSilabo> saveContenidoSilabo(@RequestBody ContenidoSilabo contenidoSilabo){
-        try {
-            return new ResponseEntity<>(contenidoSilaboService.save(contenidoSilabo), HttpStatus.CREATED);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @Autowired
+    public ContenidoSilaboController(ContenidoSilaboService contenidoSilaboService){
+        this.contenidoSilaboService = contenidoSilaboService;
+
     }
 
-    @GetMapping("/contenidosilabo/findbyId/{id}")
+
+    @GetMapping("/findbyId/{id}")
     public ResponseEntity<?> getContenidosilaboById(@PathVariable("id") Integer id){
         try {
             ContenidoSilabo contenidoSilabo = contenidoSilaboService.findById(id);
@@ -60,7 +58,7 @@ public class ContenidoSilaboController {
         }
     }
 
-    @PutMapping("/contenidosilabo/actualizar/{id}")
+    @PutMapping("/actualizar/{id}")
     public ResponseEntity<ContenidoSilabo> actualizarCapacitador(@PathVariable Integer id, @RequestBody ContenidoSilabo contenidoSilabo) {
 
         try {
@@ -84,4 +82,6 @@ public class ContenidoSilaboController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
 }

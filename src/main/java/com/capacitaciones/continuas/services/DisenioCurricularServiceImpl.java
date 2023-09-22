@@ -2,17 +2,19 @@ package com.capacitaciones.continuas.services;
 
 import com.capacitaciones.continuas.Modelos.Primary.DisenioCurricular;
 import com.capacitaciones.continuas.repositorys.Primarys.DisenioCurricularRepository;
+import com.capacitaciones.continuas.repositorys.Primarys.generic.GenericRepository;
 import com.capacitaciones.continuas.services.generic.GenericServiceImpl;
+import com.capacitaciones.continuas.services.generic.GenericServiceImplv2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DisenioCurricularServiceImpl extends GenericServiceImpl<DisenioCurricular, Integer> implements DisenioCurricularService{
+public class DisenioCurricularServiceImpl extends GenericServiceImplv2<DisenioCurricular, Integer> implements DisenioCurricularService{
     @Autowired
     private DisenioCurricularRepository disenioCurricularRepository;
     @Override
-    public CrudRepository<DisenioCurricular, Integer> getDao() {
+    public GenericRepository<DisenioCurricular, Integer> getDao() {
         return disenioCurricularRepository;
     }
 

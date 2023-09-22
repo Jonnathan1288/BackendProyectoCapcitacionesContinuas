@@ -1,7 +1,9 @@
 package com.capacitaciones.continuas.controllers;
 
 import com.capacitaciones.continuas.Modelos.Primary.EvaluacionDiagnosticaCurricular;
+import com.capacitaciones.continuas.controllers.generic.GenericControllerImpl;
 import com.capacitaciones.continuas.services.EvaluacionDiacnosticaCurricularService;
+import com.capacitaciones.continuas.services.generic.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,21 +13,23 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api")
-public class EvaluacionDiacnosticoCurricularController {
+@RequestMapping("/api/evaluacionDiacnosticaCurricular")
+public class EvaluacionDiacnosticoCurricularController extends GenericControllerImpl<EvaluacionDiagnosticaCurricular, Integer> {
     @Autowired
     private EvaluacionDiacnosticaCurricularService evaluacionDiacnosticaCurricularService;
 
-    @GetMapping("/evaluacionDiacnosticaCurricular/list")
-    public ResponseEntity<List<EvaluacionDiagnosticaCurricular>> listEvaluacionDiacnosticoCurricular(){
-        try {
-            return new ResponseEntity<>(evaluacionDiacnosticaCurricularService.findByAll(), HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @Override
+    protected GenericService<EvaluacionDiagnosticaCurricular, Integer> getService() {
+        return evaluacionDiacnosticaCurricularService;
     }
 
-    @GetMapping("/evaluacionDiacnosticaCurricular/findbyId/{id}")
+    @Autowired
+    public EvaluacionDiacnosticoCurricularController(EvaluacionDiacnosticaCurricularService evaluacionDiacnosticaCurricularService){
+        this.evaluacionDiacnosticaCurricularService = evaluacionDiacnosticaCurricularService;
+
+    }
+
+    @GetMapping("/findbyId/{id}")
     public ResponseEntity<?> getEvaluacionDiacnosticaCurricularById(@PathVariable("id") Integer id){
         try {
             EvaluacionDiagnosticaCurricular dc = evaluacionDiacnosticaCurricularService.findById(id);
@@ -38,16 +42,9 @@ public class EvaluacionDiacnosticoCurricularController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @PostMapping("/evaluacionDiacnosticaCurricular/save")
-    public ResponseEntity<?> saveEvaluacionDiacnosticoCurricular(@RequestBody EvaluacionDiagnosticaCurricular ev){
-        try {
-            return new ResponseEntity<>(evaluacionDiacnosticaCurricularService.save(ev), HttpStatus.CREATED);
-        }catch (Exception e){
-            return new ResponseEntity<>("-> "+e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
-    @PutMapping("/evaluacionDiacnosticaCurricular/update/{id}")
+
+    @PutMapping("/actualizar/{id}")
     public ResponseEntity<EvaluacionDiagnosticaCurricular> actualizarEvaluacionDiagnosticaCurricular(@PathVariable Integer id, @RequestBody EvaluacionDiagnosticaCurricular evadiag) {
         try {
             if (evaluacionDiacnosticaCurricularService.findById(id) == null) {
@@ -76,4 +73,6 @@ public class EvaluacionDiacnosticoCurricularController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
 }

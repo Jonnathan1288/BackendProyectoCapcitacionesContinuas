@@ -1,7 +1,11 @@
 package com.capacitaciones.continuas.controllers;
 
 import com.capacitaciones.continuas.Modelos.Primary.Especialidad;
+import com.capacitaciones.continuas.Modelos.Primary.FasePractica;
+import com.capacitaciones.continuas.controllers.generic.GenericControllerImpl;
 import com.capacitaciones.continuas.services.EspecialidadService;
+import com.capacitaciones.continuas.services.FasePracticaService;
+import com.capacitaciones.continuas.services.generic.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,21 +15,23 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api")
-public class EspecialidadController {
+@RequestMapping("/api/especialidad")
+public class EspecialidadController extends GenericControllerImpl<Especialidad, Integer> {
     @Autowired
     private EspecialidadService especialidadService;
 
-    @GetMapping("/especialidad/list")
-    public ResponseEntity<List<Especialidad>> listEspecialidad(){
-        try {
-            return new ResponseEntity<>(especialidadService.findByAll(), HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @Override
+    protected GenericService<Especialidad, Integer> getService() {
+        return especialidadService;
     }
 
-    @GetMapping("/especialidad/findbyId/{id}")
+    @Autowired
+    public EspecialidadController(EspecialidadService especialidadService){
+        this.especialidadService = especialidadService;
+
+    }
+
+    @GetMapping("/findbyId/{id}")
     public ResponseEntity<?> getespecialidadById(@PathVariable("id") Integer id){
         try {
             Especialidad dc = especialidadService.findById(id);
@@ -39,7 +45,7 @@ public class EspecialidadController {
         }
     }
 
-    @GetMapping("/especialidad/findbyIdArea/{id}")
+    @GetMapping("/findbyIdArea/{id}")
     public ResponseEntity<List<Especialidad>> getespecialidadByIdArea(@PathVariable("id") Integer id){
         try {
             return new ResponseEntity<>(especialidadService.findByAreaIdArea(id),HttpStatus.OK);
@@ -49,17 +55,7 @@ public class EspecialidadController {
         }
     }
 
-
-    @PostMapping("/especialidad/save")
-    public ResponseEntity<Especialidad> saveEspecialidad(@RequestBody Especialidad especialidad){
-        try {
-            return new ResponseEntity<>(especialidadService.save(especialidad), HttpStatus.CREATED);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @PutMapping("/especialidad/update/{id}")
+    @PutMapping("/actualizar/{id}")
     public ResponseEntity<Especialidad> actualizarEspecialidad(@PathVariable Integer id, @RequestBody Especialidad especialidad) {
         try {
             if (especialidadService.findById(id) == null) {
@@ -75,4 +71,6 @@ public class EspecialidadController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
 }

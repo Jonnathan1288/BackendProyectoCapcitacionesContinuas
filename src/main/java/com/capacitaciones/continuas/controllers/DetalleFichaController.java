@@ -65,7 +65,7 @@ public class DetalleFichaController {
         }
     }
 
-    @PutMapping("/detalleFicha/update/{id}")
+    @PutMapping("/detalleFichaService/update/{id}")
     public ResponseEntity<DetalleFichaMatricula> actualizarDetalleFichaMatricula(@PathVariable Integer id, @RequestBody DetalleFichaMatricula dfm) {
         try {
             if (detalleFichaService.findById(id) == null) {

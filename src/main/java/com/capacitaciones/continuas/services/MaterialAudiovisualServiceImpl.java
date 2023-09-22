@@ -2,7 +2,9 @@ package com.capacitaciones.continuas.services;
 
 import com.capacitaciones.continuas.Modelos.Primary.MaterialAudiovisual;
 import com.capacitaciones.continuas.repositorys.Primarys.MaterialAudiovisualRepository;
+import com.capacitaciones.continuas.repositorys.Primarys.generic.GenericRepository;
 import com.capacitaciones.continuas.services.generic.GenericServiceImpl;
+import com.capacitaciones.continuas.services.generic.GenericServiceImplv2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
@@ -10,13 +12,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class MaterialAudiovisualServiceImpl extends GenericServiceImpl<MaterialAudiovisual, Integer> implements MaterialAudiovisualService {
+public class MaterialAudiovisualServiceImpl extends GenericServiceImplv2<MaterialAudiovisual, Integer> implements MaterialAudiovisualService {
 
     @Autowired
     private MaterialAudiovisualRepository materialAudiovisualRepository;
 
     @Override
-    public CrudRepository<MaterialAudiovisual, Integer> getDao() {
+    public GenericRepository<MaterialAudiovisual, Integer> getDao() {
         return materialAudiovisualRepository;
     }
 

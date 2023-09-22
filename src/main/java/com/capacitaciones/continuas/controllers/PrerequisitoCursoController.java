@@ -1,7 +1,9 @@
 package com.capacitaciones.continuas.controllers;
 
 import com.capacitaciones.continuas.Modelos.Primary.PrerequisitoCurso;
+import com.capacitaciones.continuas.controllers.generic.GenericControllerImpl;
 import com.capacitaciones.continuas.services.PrerequisitoCursoService;
+import com.capacitaciones.continuas.services.generic.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,21 +13,24 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api")
-public class PrerequisitoCursoController {
+@RequestMapping("/api/prerequisitoCurso")
+public class PrerequisitoCursoController extends GenericControllerImpl<PrerequisitoCurso, Integer> {
     @Autowired
     private PrerequisitoCursoService prerequisitoCursoService;
 
-    @GetMapping("/prerequisitoCurso/list")
-    public ResponseEntity<List<PrerequisitoCurso>> listPrerequisitoCurso(){
-        try {
-            return new ResponseEntity<>(prerequisitoCursoService.findByAll(), HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @Override
+    protected GenericService<PrerequisitoCurso, Integer> getService() {
+        return prerequisitoCursoService;
     }
 
-    @GetMapping("/prerequisitoCurso/findbyId/{id}")
+    @Autowired
+    public PrerequisitoCursoController(PrerequisitoCursoService prerequisitoCursoService){
+        this.prerequisitoCursoService = prerequisitoCursoService;
+
+    }
+
+
+    @GetMapping("/findbyId/{id}")
     public ResponseEntity<?> getPrerequisitoCursoById(@PathVariable("id") Integer id){
         try {
             PrerequisitoCurso pr = prerequisitoCursoService.findById(id);
@@ -39,7 +44,7 @@ public class PrerequisitoCursoController {
         }
     }
 
-    @GetMapping("/prerequisitoCurso/findbyIdCurso/{id}")
+    @GetMapping("/findbyIdCurso/{id}")
     public ResponseEntity<?> getPrerequisitoCursoByIdCurso(@PathVariable("id") Integer id){
         try {
             List<PrerequisitoCurso> pr = prerequisitoCursoService.findByCursoIdCurso(id);
@@ -53,16 +58,8 @@ public class PrerequisitoCursoController {
         }
     }
 
-    @PostMapping("/prerequisitoCurso/save")
-    public ResponseEntity<PrerequisitoCurso> savePrerequisitoCurso(@RequestBody PrerequisitoCurso df){
-        try {
-            return new ResponseEntity<>(prerequisitoCursoService.save(df), HttpStatus.CREATED);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
-    @PutMapping("/prerequisitoCurso/actualizar/{id}")
+    @PutMapping("/actualizar/{id}")
     public ResponseEntity<PrerequisitoCurso> actualizarPrerequisitoCurso(@PathVariable Integer id, @RequestBody PrerequisitoCurso prerequisitoCurso) {
         try {
             if (prerequisitoCursoService.findById(id) == null) {
@@ -75,4 +72,6 @@ public class PrerequisitoCursoController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
 }

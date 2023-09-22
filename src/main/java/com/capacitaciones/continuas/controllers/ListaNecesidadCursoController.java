@@ -1,7 +1,11 @@
 package com.capacitaciones.continuas.controllers;
 
+import com.capacitaciones.continuas.Modelos.Primary.FasePractica;
 import com.capacitaciones.continuas.Modelos.Primary.ListaNecesidadCurso;
+import com.capacitaciones.continuas.controllers.generic.GenericControllerImpl;
+import com.capacitaciones.continuas.services.FasePracticaService;
 import com.capacitaciones.continuas.services.ListaNecesidadCursoService;
+import com.capacitaciones.continuas.services.generic.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,30 +15,24 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api")
-public class ListaNecesidadCursoController {
+@RequestMapping("/api/listaNecesidadCurso")
+public class ListaNecesidadCursoController extends GenericControllerImpl<ListaNecesidadCurso, Integer> {
     @Autowired
     private ListaNecesidadCursoService listaNecesidadCursoService;
 
-    @GetMapping("/listaNecesidadCurso/list")
-    public ResponseEntity<List<ListaNecesidadCurso>> listListaNecesidadCurso(){
-        try {
-            return new ResponseEntity<>(listaNecesidadCursoService.findByAll(), HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @Override
+    protected GenericService<ListaNecesidadCurso, Integer> getService() {
+        return listaNecesidadCursoService;
     }
 
-    @PostMapping("/listaNecesidadCurso/save")
-    public ResponseEntity<ListaNecesidadCurso> saveListaNecesidadCurso(@RequestBody ListaNecesidadCurso ln){
-        try {
-            return new ResponseEntity<>(listaNecesidadCursoService.save(ln), HttpStatus.CREATED);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @Autowired
+    public ListaNecesidadCursoController(ListaNecesidadCursoService listaNecesidadCursoService){
+        this.listaNecesidadCursoService = listaNecesidadCursoService;
+
     }
 
-    @GetMapping("/listaNecesidadCurso/findbyId/{id}")
+
+    @GetMapping("/findbyId/{id}")
     public ResponseEntity<?> getListaNecesidadCursoById(@PathVariable("id") Integer id){
         try {
             ListaNecesidadCurso materialConvencional = listaNecesidadCursoService.findById(id);
@@ -47,7 +45,7 @@ public class ListaNecesidadCursoController {
         }
     }
 
-    @GetMapping("/listaNecesidadCurso/findbyIdNecesidad/{id}")
+    @GetMapping("/findbyIdNecesidad/{id}")
     public ResponseEntity<?> findByNecesidadCurso_IdNecesidadCurso(@PathVariable("id") Integer id){
         try {
             List<ListaNecesidadCurso> materialConvencional = listaNecesidadCursoService.findByNecesidadCurso_IdNecesidadCurso(id);
@@ -61,7 +59,7 @@ public class ListaNecesidadCursoController {
     }
 
 
-    @PutMapping("/listaNecesidadCurso/actualizar/{id}")
+    @PutMapping("/actualizar/{id}")
     public ResponseEntity<ListaNecesidadCurso> actualizarListaNecesidadCurso(@PathVariable Integer id, @RequestBody ListaNecesidadCurso listaNecesidadCurso) {
         try {
             if (listaNecesidadCursoService.findById(id) == null) {
@@ -74,4 +72,6 @@ public class ListaNecesidadCursoController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
 }

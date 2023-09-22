@@ -2,7 +2,11 @@ package com.capacitaciones.continuas.controllers;
 
 
 import com.capacitaciones.continuas.Modelos.Primary.Capacitador;
+import com.capacitaciones.continuas.Modelos.Primary.FasePractica;
+import com.capacitaciones.continuas.controllers.generic.GenericControllerImpl;
 import com.capacitaciones.continuas.services.CapacitadorService;
+import com.capacitaciones.continuas.services.FasePracticaService;
+import com.capacitaciones.continuas.services.generic.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,21 +16,25 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api")
-public class CapacitadorController {
+@RequestMapping("/api/capacitador")
+public class CapacitadorController extends GenericControllerImpl<Capacitador, Integer> {
     @Autowired
     private CapacitadorService capacitadorService;
 
-    @GetMapping("/capacitador/list")
-    public ResponseEntity<List<Capacitador>> listCapacitador(){
-        try {
-            return new ResponseEntity<>(capacitadorService.findByAll(), HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @Override
+    protected GenericService<Capacitador, Integer> getService() {
+        return capacitadorService;
     }
 
-    @GetMapping("/capacitador/findbyId/{id}")
+    @Autowired
+    public CapacitadorController(CapacitadorService capacitadorService){
+        this.capacitadorService = capacitadorService;
+
+    }
+
+
+
+    @GetMapping("/findbyId/{id}")
     public ResponseEntity<?> getCapacitadorById(@PathVariable("id") Integer id){
         try {
             Capacitador capacitador = capacitadorService.findById(id);
@@ -39,7 +47,7 @@ public class CapacitadorController {
         }
     }
 
-    @GetMapping("/capacitador/exists/findbyIdUsuario/{idUsuario}")
+    @GetMapping("/exists/findbyIdUsuario/{idUsuario}")
     public Boolean getCapacitadorExistsByIdUsuario(@PathVariable("idUsuario") Integer idUsuario){
         try {
             if(capacitadorService.existsByUsuarioIdUsuario(idUsuario)){
@@ -52,7 +60,7 @@ public class CapacitadorController {
         }
     }
 
-    @GetMapping("/capacitador/findbyIdUsuario/{id}")
+    @GetMapping("/findbyIdUsuario/{id}")
     public ResponseEntity<?> findByUsuarioIdUsuario(@PathVariable("id") Integer id){
         try {
             Capacitador capacitador = capacitadorService.findByUsuarioIdUsuario(id);
@@ -66,16 +74,9 @@ public class CapacitadorController {
     }
 
 
-    @PostMapping("/capacitador/save")
-    public ResponseEntity<Capacitador> saveCapacitador(@RequestBody Capacitador capacitador){
-        try {
-            return new ResponseEntity<>(capacitadorService.save(capacitador), HttpStatus.CREATED);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
-    @PutMapping("/capacitador/actualizar/{id}")
+
+    @PutMapping("/actualizar/{id}")
     public ResponseEntity<Capacitador> actualizarCapacitador(@PathVariable Integer id, @RequestBody Capacitador capacitador) {
         try {
             if (capacitadorService.findById(id) == null) {
@@ -90,4 +91,6 @@ public class CapacitadorController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
 }

@@ -2,19 +2,21 @@ package com.capacitaciones.continuas.services;
 
 import com.capacitaciones.continuas.Modelos.Primary.Provincia;
 import com.capacitaciones.continuas.repositorys.Primarys.ProvinciaRepository;
+import com.capacitaciones.continuas.repositorys.Primarys.generic.GenericRepository;
 import com.capacitaciones.continuas.services.generic.GenericServiceImpl;
+import com.capacitaciones.continuas.services.generic.GenericServiceImplv2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ProvinciaServiceImpl extends GenericServiceImpl<Provincia, Integer> implements ProvinciaService {
+public class ProvinciaServiceImpl extends GenericServiceImplv2<Provincia, Integer> implements ProvinciaService {
 
     @Autowired
     private ProvinciaRepository provinciaRepository;
 
     @Override
-    public CrudRepository<Provincia, Integer> getDao() {
+    public GenericRepository<Provincia, Integer> getDao() {
         return provinciaRepository;
     }
 }

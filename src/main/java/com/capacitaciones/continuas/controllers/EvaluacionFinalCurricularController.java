@@ -1,7 +1,11 @@
 package com.capacitaciones.continuas.controllers;
 
 import com.capacitaciones.continuas.Modelos.Primary.EvaluacionFinalCurricular;
+import com.capacitaciones.continuas.Modelos.Primary.FasePractica;
+import com.capacitaciones.continuas.controllers.generic.GenericControllerImpl;
 import com.capacitaciones.continuas.services.EvaluacionFinalCurricularService;
+import com.capacitaciones.continuas.services.FasePracticaService;
+import com.capacitaciones.continuas.services.generic.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,21 +15,26 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api")
-public class EvaluacionFinalCurricularController {
+@RequestMapping("/api/evaluacionFinalCurricular")
+public class EvaluacionFinalCurricularController extends GenericControllerImpl<EvaluacionFinalCurricular, Integer> {
     @Autowired
     private EvaluacionFinalCurricularService evaluacionFinalCurricularService;
 
-    @GetMapping("/evaluacionFinalCurricular/list")
-    public ResponseEntity<List<EvaluacionFinalCurricular>> listEvaluacionFinalCurricular(){
-        try {
-            return new ResponseEntity<>(evaluacionFinalCurricularService.findByAll(), HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @Override
+    protected GenericService<EvaluacionFinalCurricular, Integer> getService() {
+        return evaluacionFinalCurricularService;
     }
 
-    @GetMapping("/evaluacionFinalCurricular/findbyId/{id}")
+    @Autowired
+    public EvaluacionFinalCurricularController(EvaluacionFinalCurricularService evaluacionFinalCurricularService){
+        this.evaluacionFinalCurricularService = evaluacionFinalCurricularService;
+
+    }
+
+
+
+
+    @GetMapping("/findbyId/{id}")
     public ResponseEntity<?> getEvaluacionFinalCurricularById(@PathVariable("id") Integer id){
         try {
             EvaluacionFinalCurricular dc = evaluacionFinalCurricularService.findById(id);
@@ -39,16 +48,9 @@ public class EvaluacionFinalCurricularController {
         }
     }
 
-    @PostMapping("/evaluacionFinalCurricular/save")
-    public ResponseEntity<EvaluacionFinalCurricular> saveEvaluacionFinalCurricular(@RequestBody EvaluacionFinalCurricular ef){
-        try {
-            return new ResponseEntity<>(evaluacionFinalCurricularService.save(ef), HttpStatus.CREATED);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
-    @PutMapping("/evaluacionFinalCurricular/update/{id}")
+
+    @PutMapping("/actualizar/{id}")
     public ResponseEntity<EvaluacionFinalCurricular> actualizarEvaluacionDiagnosticaCurricular(@PathVariable Integer id, @RequestBody EvaluacionFinalCurricular evadiag) {
         try {
             if (evaluacionFinalCurricularService.findById(id) == null) {
@@ -77,4 +79,6 @@ public class EvaluacionFinalCurricularController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
 }

@@ -1,7 +1,11 @@
 package com.capacitaciones.continuas.controllers;
 
 import com.capacitaciones.continuas.Modelos.Primary.Area;
+import com.capacitaciones.continuas.Modelos.Primary.FasePractica;
+import com.capacitaciones.continuas.controllers.generic.GenericControllerImpl;
 import com.capacitaciones.continuas.services.AreaService;
+import com.capacitaciones.continuas.services.FasePracticaService;
+import com.capacitaciones.continuas.services.generic.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,21 +15,26 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api")
-public class AreaController {
+@RequestMapping("/api/area")
+public class AreaController extends GenericControllerImpl<Area, Integer> {
     @Autowired
     private AreaService areaService;
 
-    @GetMapping("/area/list")
-    public ResponseEntity<List<Area>> listArea(){
-        try {
-            return new ResponseEntity<>(areaService.findByAll(), HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+
+    @Autowired
+    public AreaController(AreaService areaService){
+        this.areaService = areaService;
+
     }
 
-    @GetMapping("/area/findbyId/{id}")
+    @Override
+    protected GenericService<Area, Integer> getService() {
+        return areaService;
+    }
+
+
+
+    @GetMapping("/findbyId/{id}")
     public ResponseEntity<?> getAreaById(@PathVariable("id") Integer id){
         try {
             Area area = areaService.findById(id);
@@ -39,16 +48,9 @@ public class AreaController {
         }
     }
 
-    @PostMapping("/area/save")
-    public ResponseEntity<Area> saveArea(@RequestBody Area area){
-        try {
-            return new ResponseEntity<>(areaService.save(area), HttpStatus.CREATED);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
-    @PutMapping("/area/actualizar/{id}")
+
+    @PutMapping("/actualizar/{id}")
     public ResponseEntity<Area> actualizarArea(@PathVariable Integer id, @RequestBody Area area) {
         try {
         if (areaService.findById(id) == null) {
@@ -61,4 +63,6 @@ public class AreaController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
 }
