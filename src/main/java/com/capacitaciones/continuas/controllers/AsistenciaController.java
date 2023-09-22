@@ -149,4 +149,41 @@ public class AsistenciaController extends GenericControllerImpl<Asistencia, Inte
     }
 
 
+    @GetMapping("/GenerarAsistencia2/{idCurso}/{fecha}")
+    public ResponseEntity<?> generarAsistenciaPorFecha2(@PathVariable("idCurso") Integer idCurso,@PathVariable("fecha") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fecha){
+        //LocalDate fechaPrueba = LocalDate.parse("2023-04-30");
+        try {
+            Curso curso = cursoService.findById(idCurso);
+            if(fecha.isAfter(curso.getFechaFinalizacionCurso())){
+                return new ResponseEntity<>(asistenciaService.findByPartipantesMatriculadosInscritoCursoIdCursoAndFechaAsistencia(idCurso, curso.getFechaFinalizacionCurso()), HttpStatus.OK);
+                //System.out.println("despues-> ");
+            }else {
+                //if(asistenciaService.findByFechaAsistencia(fecha) ){
+                if(asistenciaService.existsByPartipantesMatriculadosInscritoCursoIdCursoAndFechaAsistencia(idCurso, fecha)){
+                    return new ResponseEntity<>(asistenciaService.findByPartipantesMatriculadosInscritoCursoIdCursoAndFechaAsistencia(idCurso,fecha), HttpStatus.OK);
+                }else{
+                    List<PartipantesMatriculados> partipantesMatriculadosList = participantesMatriculadosService.findByInscritoCursoIdCurso(idCurso);
+                    List<Asistencia> asistenciaList = new ArrayList<>();
+
+                    if(partipantesMatriculadosList != null){
+                        for (PartipantesMatriculados partipantesMatriculados: partipantesMatriculadosList){
+                            Asistencia asistencia = new Asistencia();
+                            asistencia.setFechaAsistencia(fecha);
+                            asistencia.setPartipantesMatriculados(partipantesMatriculados);
+                            asistencia.setEstadoAsistencia(false);
+                            asistencia.setObservacionAsistencia("");
+                            System.out.println(asistencia.getFechaAsistencia());
+                            asistenciaList.add(asistenciaService.save(asistencia));
+                        }
+                    }
+                    return new ResponseEntity<>(asistenciaList,HttpStatus.OK);
+                }
+                //System.out.println("antes-> ");
+            }
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
 }
