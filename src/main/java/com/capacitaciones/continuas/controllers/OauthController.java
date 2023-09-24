@@ -70,6 +70,7 @@ public class OauthController {
     @PostMapping("/login")
     public ResponseEntity<Object> login(@Valid @RequestBody LoginUser loginUser, BindingResult bidBindingResult) {
         if (bidBindingResult.hasErrors()) {
+            System.out.println(bidBindingResult.hasErrors());
             return new ResponseEntity<>(new Message("Revise sus credenciales"), HttpStatus.BAD_REQUEST);
         }
         try {
@@ -83,6 +84,7 @@ public class OauthController {
             JwtDto jwtDto = new JwtDto(jwt, usuario);
             return ResponseEntity.ok(jwtDto);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return new ResponseEntity<>(new Message("Revise sus credenciales" + e), HttpStatus.BAD_REQUEST);
         }
     }

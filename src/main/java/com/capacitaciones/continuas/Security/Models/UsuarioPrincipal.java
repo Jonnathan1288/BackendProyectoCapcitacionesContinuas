@@ -22,7 +22,6 @@ public class UsuarioPrincipal implements UserDetails {
     private int idUsuario;
     private String username;
     private String password;
-    private String fotoUsuario;
     private Boolean estadoUsuario;
     private Collection<? extends GrantedAuthority> authorities;
 
@@ -33,7 +32,6 @@ public class UsuarioPrincipal implements UserDetails {
                 user.getIdUsuario(),
                 user.getUsername(),
                 user.getPassword(),
-                user.getFotoPerfil(),
                 user.getEstadoUsuarioActivo(),
                 authorities);
     }

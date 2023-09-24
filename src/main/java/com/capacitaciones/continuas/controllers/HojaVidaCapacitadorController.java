@@ -1,9 +1,13 @@
 package com.capacitaciones.continuas.controllers;
 
+import com.capacitaciones.continuas.Modelos.Primary.Area;
 import com.capacitaciones.continuas.Modelos.Primary.Capacitador;
 import com.capacitaciones.continuas.Modelos.Primary.HojaVidaCapacitador;
+import com.capacitaciones.continuas.controllers.generic.GenericControllerImpl;
+import com.capacitaciones.continuas.interfaces.HojaVida;
 import com.capacitaciones.continuas.services.CapacitadorService;
 import com.capacitaciones.continuas.services.HojaVidaCapacitadorService;
+import com.capacitaciones.continuas.services.generic.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,36 +20,19 @@ import java.util.List;
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/api")
-public class HojaVidaCapacitadorController {
+public class HojaVidaCapacitadorController extends GenericControllerImpl<HojaVidaCapacitador, Integer> {
+    private HojaVidaCapacitadorService hojaVidaCapacitadorService;
+    private CapacitadorService capacitadorService;
 
-    @Autowired
-    HojaVidaCapacitadorService hojaVidaCapacitadorService;
-
-    @Autowired
-    CapacitadorService capacitadorService;
-
-    @GetMapping("/hojaVidaCapcitador/listar")
-    public ResponseEntity<List<HojaVidaCapacitador>> obtenerLista() {
-        try {
-            return new ResponseEntity<>(hojaVidaCapacitadorService.findByAll(), HttpStatus.OK);
-
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @Override
+    protected GenericService<HojaVidaCapacitador, Integer> getService() {
+        return hojaVidaCapacitadorService;
     }
 
-    @GetMapping("/hojaVidaCapcitador/findbyId/{id}")
-    public ResponseEntity<?> getHojaVidaCapacitadorById(@PathVariable("id") Integer id){
-        try {
-            HojaVidaCapacitador dc = hojaVidaCapacitadorService.findById(id);
-            if(dc != null){
-                return new ResponseEntity<>(dc, HttpStatus.OK);
-            }
-            return new ResponseEntity<>("hojaVidaCapcitador NO ENCONTRADA",HttpStatus.NOT_FOUND);
-
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @Autowired
+    public HojaVidaCapacitadorController(HojaVidaCapacitadorService hojaVidaCapacitadorService, CapacitadorService capacitadorService){
+        this.hojaVidaCapacitadorService = hojaVidaCapacitadorService;
+        this.capacitadorService = capacitadorService;
     }
 
     @GetMapping("/hojaVidaCapcitadorValidar/findbyIdUsuario/{id}")
@@ -53,36 +40,19 @@ public class HojaVidaCapacitadorController {
         return hojaVidaCapacitadorService.findByCapacitadorUsuarioIdUsuario(id);
     }
 
-
-
-
-
-    @PostMapping("/hojaVidaCapcitador/crear")
-    public ResponseEntity<HojaVidaCapacitador> crear(@RequestBody HojaVidaCapacitador c) {
+    @GetMapping("/findDocumentByIdUsuario/{id}")
+    public ResponseEntity<HojaVida> findDocumentByIdUsuario(@PathVariable("id") Integer id){
         try {
-            return new ResponseEntity<>(hojaVidaCapacitadorService.save(c), HttpStatus.CREATED);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-    @PutMapping("/hojaVidaCapcitador/update/{id}")
-    public ResponseEntity<HojaVidaCapacitador> actualizarHojaVidaCapacitador(@PathVariable Integer id, @RequestBody HojaVidaCapacitador hv) {
-        try {
-            HojaVidaCapacitador hojavida = hojaVidaCapacitadorService.findById(id);
-            if(hojavida != null){
-                hojavida.setStatus(hv.getStatus());
-                hojavida.setCapacitador(hv.getCapacitador());
-                return new ResponseEntity<>(hojaVidaCapacitadorService.save(hojavida), HttpStatus.CREATED);
-            }
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+            return new ResponseEntity<>(hojaVidaCapacitadorService.findHojaVidaByIdUsuario(id), HttpStatus.OK);
+
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
 
-
-    @GetMapping("/hojaVidaCapcitador/findbyIdCapacitador/{id}")
+     /*@GetMapping("/hojaVidaCapcitador/findbyIdCapacitador/{id}")
     public ResponseEntity<?> getHojaVidaCapacitadorByIdCapacitador(@PathVariable("id") Integer id){
         try {
             HojaVidaCapacitador dc = hojaVidaCapacitadorService.findHojaVidaCapacitadorByCapacitador_IdCapacitador(id);
@@ -96,7 +66,7 @@ public class HojaVidaCapacitadorController {
         }
     }
 
-    @GetMapping("/hojaVidaCapcitador/findbyCapacitdorUsuarioId/{id}")
+   @GetMapping("/hojaVidaCapcitador/findbyCapacitdorUsuarioId/{id}")
     public ResponseEntity<?> getHojaVidaCapacitadorUsuarioById(@PathVariable("id") Integer id){
         try {
             HojaVidaCapacitador dc = hojaVidaCapacitadorService.findHojaVidaCapacitadorByCapacitadorUsuarioIdUsuario(id);
@@ -108,6 +78,6 @@ public class HojaVidaCapacitadorController {
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    }
+    }*/
 
 }
