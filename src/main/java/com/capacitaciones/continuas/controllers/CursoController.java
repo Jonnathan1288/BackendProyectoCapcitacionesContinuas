@@ -1,9 +1,12 @@
 package com.capacitaciones.continuas.controllers;
 
 
+import com.capacitaciones.continuas.Modelos.Primary.Area;
 import com.capacitaciones.continuas.Modelos.Primary.Curso;
+import com.capacitaciones.continuas.controllers.generic.GenericControllerImpl;
 import com.capacitaciones.continuas.interfaces.CoursesFilter;
 import com.capacitaciones.continuas.services.CursoService;
+import com.capacitaciones.continuas.services.generic.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,20 +16,19 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api")
-public class CursoController {
-    @Autowired
+@RequestMapping("/api/curso")
+public class CursoController extends GenericControllerImpl<Curso, Integer> {
     private CursoService cursoService;
 
-    @GetMapping("/curso/list")
-    public ResponseEntity<List<Curso>> listCurso(){
-        try {
-            return new ResponseEntity<>(cursoService.findByAll(), HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @Autowired
+    public CursoController(CursoService cursoService){
+        this.cursoService = cursoService;
     }
 
+    @Override
+    protected GenericService<Curso, Integer> getService() {
+        return cursoService;
+    }
 
     @GetMapping("/cursoDisponibles/list")
     public ResponseEntity<List<Curso>> listCursoDisponibles(){
@@ -46,7 +48,7 @@ public class CursoController {
         }
     }
 
-    @GetMapping("/curso/findbyId/{id}")
+    @GetMapping("/findbyId/{id}")
     public ResponseEntity<?> getCursoById(@PathVariable("id") Integer id){
         try {
             Curso curso = cursoService.findById(id);
@@ -59,7 +61,7 @@ public class CursoController {
         }
     }
 
-    @GetMapping("/curso/findAllIdUsuario/{id}")
+    @GetMapping("/findAllIdUsuario/{id}")
     public ResponseEntity<?> obtenerTodoslosCursosPorIdCapacitador(@PathVariable("id") Integer id){
         try {
             List<Curso> cursoList= cursoService.findByCapacitadorIdCapacitador(id);
@@ -72,7 +74,7 @@ public class CursoController {
         }
     }
 
-    @PostMapping("/curso/save")
+    @PostMapping("/save1")
     public ResponseEntity<Curso> saveCurso(@RequestBody Curso curso){
         try {
             //Aprovacion del curso // N = NO NO APROVADO, A = APROVADO, P = PENDIENTE
@@ -86,7 +88,7 @@ public class CursoController {
         }
     }
 
-    @PutMapping("/curso/update/{id}")
+    @PutMapping("/update1/{id}")
     public ResponseEntity<Curso> updateCurso(@PathVariable Integer id, @RequestBody Curso curso) {
         try {
             if (cursoService.findById(id) == null) {
@@ -121,7 +123,7 @@ public class CursoController {
 
     //NEW METHODS---------------------------------------------------------
 
-    @GetMapping("/course/findAll/course/finally")
+    @GetMapping("/findAll/course/finally")
     public ResponseEntity<?> findByAllCurseFinally(){
         try {
             List<CoursesFilter> cursoList= cursoService.findFilterCoursesD();
