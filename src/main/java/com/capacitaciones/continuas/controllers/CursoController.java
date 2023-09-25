@@ -5,6 +5,7 @@ import com.capacitaciones.continuas.Modelos.Primary.Area;
 import com.capacitaciones.continuas.Modelos.Primary.Curso;
 import com.capacitaciones.continuas.controllers.generic.GenericControllerImpl;
 import com.capacitaciones.continuas.interfaces.CoursesFilter;
+import com.capacitaciones.continuas.interfaces.CoursesFilterByDocente;
 import com.capacitaciones.continuas.services.CursoService;
 import com.capacitaciones.continuas.services.generic.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -131,6 +132,15 @@ public class CursoController extends GenericControllerImpl<Curso, Integer> {
                 return new ResponseEntity<>(cursoList, HttpStatus.OK);
             }
             return new ResponseEntity<>("CURSOS NO ENCONTRADOS", HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/findFilterCoursesByUsuarioDocente/{id}")
+    public ResponseEntity<List<CoursesFilterByDocente>> findFilterCoursesByUsuarioDocente(@PathVariable("id") Integer id){
+        try {
+            return new ResponseEntity<>(cursoService.findFilterCoursesByUsuarioDocente(id), HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

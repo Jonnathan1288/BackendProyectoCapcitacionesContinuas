@@ -2,6 +2,7 @@ package com.capacitaciones.continuas.services;
 
 import com.capacitaciones.continuas.interfaces.CoursesFilter;
 import com.capacitaciones.continuas.Modelos.Primary.Curso;
+import com.capacitaciones.continuas.interfaces.CoursesFilterByDocente;
 import com.capacitaciones.continuas.repositorys.Primarys.CursoRepositry;
 import com.capacitaciones.continuas.services.generic.GenericServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,11 @@ public class CursoServiceImpl extends GenericServiceImpl<Curso, Integer> impleme
     @Override
     public List<CoursesFilter> findFilterCoursesD() {
         return cursoRepositry.findFilterCoursesD();
+    }
+
+    @Override
+    public List<CoursesFilterByDocente> findFilterCoursesByUsuarioDocente(Integer idUser) {
+        return cursoRepositry.findFilterCoursesByUsuarioDocente(idUser);
     }
 
 }

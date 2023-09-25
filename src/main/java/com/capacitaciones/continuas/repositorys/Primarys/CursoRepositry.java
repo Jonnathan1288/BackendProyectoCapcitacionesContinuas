@@ -2,6 +2,7 @@ package com.capacitaciones.continuas.repositorys.Primarys;
 
 import com.capacitaciones.continuas.interfaces.CoursesFilter;
 import com.capacitaciones.continuas.Modelos.Primary.Curso;
+import com.capacitaciones.continuas.interfaces.CoursesFilterByDocente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -18,6 +19,24 @@ public interface CursoRepositry extends JpaRepository<Curso, Integer> {
     List<Curso> findCursosDelParticipante(@Param("idParticipante") Integer idParticipante);
 
 
-    @Query ("SELECT c.idCurso as idCurso, c.nombreCurso as nombreCurso, CONCAT(cap.tipoAbreviaturaTitulo, ' ', p.nombre1, ' ', p.apellido1) as docente FROM Curso c INNER JOIN c.capacitador cap INNER JOIN cap.usuario u INNER JOIN u.persona p WHERE c.estadoPublicasionCurso = 'F'")
+    @Query ("SELECT c.idCurso as idCurso, "+
+            "c.nombreCurso as nombreCurso, "+
+            "CONCAT(cap.tipoAbreviaturaTitulo, ' ', p.nombre1, ' ', p.apellido1) as docente "+
+            "FROM Curso c "+
+            "INNER JOIN c.capacitador cap "+
+            "INNER JOIN cap.usuario u "+
+            "INNER JOIN u.persona p "+
+            "WHERE c.estadoPublicasionCurso = 'F' "+
+            "ORDER BY idCurso DESC")
     List<CoursesFilter> findFilterCoursesD();
+
+    @Query ("SELECT c.idCurso as idCurso, "+
+            "c.nombreCurso as nombreCurso, "+
+            "CONCAT(cap.tipoAbreviaturaTitulo, ' ', cap.usuario.persona.nombre1, ' ', cap.usuario.persona.apellido1) as docente, "+
+            "c.estadoPublicasionCurso as estadoPublicasionCurso "+
+            "FROM Curso c INNER JOIN c.capacitador cap "+
+            "WHERE cap.usuario.idUsuario = :idUser "+
+            "ORDER BY idCurso DESC")
+    List<CoursesFilterByDocente> findFilterCoursesByUsuarioDocente(@Param("idUser") Integer idUser);
+
 }
