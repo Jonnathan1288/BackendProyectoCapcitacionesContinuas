@@ -9,6 +9,7 @@ public class ConstantsNames {
     public static final String DOCUMENTS_HOJA_VIDA = "uploads/documents_pdfs";
     public static final String IMAGE_COURSE = "uploads/images_course";
     public static final String IMAGE_USER = "uploads/images_user";
+    public static final String IMAGE_RFOTO = "uploads/images_rfotografico";
 
     public static final Map<String, String> FOLDER_MAPPING = new HashMap<>();
     static {
@@ -16,5 +17,6 @@ public class ConstantsNames {
         FOLDER_MAPPING.put("documents_pdfs", DOCUMENTS_HOJA_VIDA);
         FOLDER_MAPPING.put("images_course", IMAGE_COURSE);
         FOLDER_MAPPING.put("images_user", IMAGE_USER);
+        FOLDER_MAPPING.put("images_rfotografico", IMAGE_RFOTO);
     }
 }
