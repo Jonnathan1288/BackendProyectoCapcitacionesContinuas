@@ -21,7 +21,9 @@ public class FileUploadServiceImpl implements FileUploadService{
     private Path rootFolder;
     @Override
     public String saveFile(MultipartFile file, String folder) throws IOException {
-        String uniqueFileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+        String originalFileName = file.getOriginalFilename().replaceAll("\\s+", "");
+
+        String uniqueFileName = UUID.randomUUID().toString() + "_" + originalFileName;
 
         byte[] bytes = file.getBytes();
         Path path = Paths.get(folder + "/" + uniqueFileName);
