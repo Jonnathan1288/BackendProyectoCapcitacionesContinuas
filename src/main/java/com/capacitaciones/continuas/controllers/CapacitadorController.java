@@ -18,21 +18,18 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/capacitador")
 public class CapacitadorController extends GenericControllerImpl<Capacitador, Integer> {
-    @Autowired
+
     private CapacitadorService capacitadorService;
+
+    @Autowired
+    public CapacitadorController(CapacitadorService capacitadorService){
+        this.capacitadorService = capacitadorService;
+    }
 
     @Override
     protected GenericService<Capacitador, Integer> getService() {
         return capacitadorService;
     }
-
-    @Autowired
-    public CapacitadorController(CapacitadorService capacitadorService){
-        this.capacitadorService = capacitadorService;
-
-    }
-
-
 
     @GetMapping("/findbyId/{id}")
     public ResponseEntity<?> getCapacitadorById(@PathVariable("id") Integer id){
