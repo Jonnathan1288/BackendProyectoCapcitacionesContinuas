@@ -4,6 +4,8 @@ import com.capacitaciones.continuas.interfaces.CoursesFilter;
 import com.capacitaciones.continuas.Modelos.Primary.Curso;
 import com.capacitaciones.continuas.interfaces.CoursesFilterByDocente;
 import com.capacitaciones.continuas.repositorys.Primarys.generic.GenericRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -52,4 +54,5 @@ public interface CursoRepositry extends GenericRepository<Curso, Integer> {
             "ORDER BY idCurso DESC")
     public List<CoursesFilterByDocente> findByIdUsuarioEstadoCursoFinalizado(@Param("idUser") Integer idUser);
 
+    public Page<Curso> findByCapacitadorUsuarioIdUsuario(Integer idCapacitador, Pageable pageable);
 }

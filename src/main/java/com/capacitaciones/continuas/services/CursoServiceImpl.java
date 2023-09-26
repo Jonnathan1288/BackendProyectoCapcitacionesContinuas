@@ -8,6 +8,8 @@ import com.capacitaciones.continuas.repositorys.Primarys.generic.GenericReposito
 import com.capacitaciones.continuas.services.generic.GenericServiceImpl;
 import com.capacitaciones.continuas.services.generic.GenericServiceImplv2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
@@ -50,6 +52,11 @@ public class CursoServiceImpl extends GenericServiceImplv2<Curso, Integer> imple
     @Override
     public List<CoursesFilterByDocente> findByIdUsuarioEstadoCursoFinalizado(Integer idUser) {
         return cursoRepositry.findByIdUsuarioEstadoCursoFinalizado(idUser);
+    }
+
+    @Override
+    public Page<Curso> findByCapacitadorUsuarioIdUsuarioPageable(Integer idCapacitador, Pageable pageable) {
+        return cursoRepositry.findByCapacitadorUsuarioIdUsuario(idCapacitador, pageable);
     }
 
 }

@@ -5,6 +5,8 @@ import com.capacitaciones.continuas.interfaces.CoursesFilter;
 import com.capacitaciones.continuas.Modelos.Primary.Curso;
 import com.capacitaciones.continuas.interfaces.CoursesFilterByDocente;
 import com.capacitaciones.continuas.services.generic.GenericService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
@@ -23,6 +25,9 @@ public interface CursoService extends GenericService<Curso, Integer> {
     public List<CoursesFilterByDocente> findFilterCoursesByUsuarioDocente(Integer idUser);
 
     public List<CoursesFilterByDocente> findByIdUsuarioEstadoCursoFinalizado(Integer idUser);
+
+    public Page<Curso> findByCapacitadorUsuarioIdUsuarioPageable(Integer idCapacitador, Pageable pageable);
+
 
 
 }

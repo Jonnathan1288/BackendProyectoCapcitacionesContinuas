@@ -9,6 +9,10 @@ import com.capacitaciones.continuas.interfaces.CoursesFilterByDocente;
 import com.capacitaciones.continuas.services.CursoService;
 import com.capacitaciones.continuas.services.generic.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -146,10 +150,19 @@ public class CursoController extends GenericControllerImpl<Curso, Integer> {
         }
     }
 
-    @GetMapping("/findByIdUsuarioEstadoCursoFinalizado/{id}/{status}")
-    public ResponseEntity<List<CoursesFilterByDocente>> findByIdUsuarioEstadoCursoFinalizado(@PathVariable("id") Integer id, @PathVariable("status") String status ){
+    @GetMapping("/findByIdUsuarioEstadoCursoFinalizado/{id}")
+    public ResponseEntity<List<CoursesFilterByDocente>> findByIdUsuarioEstadoCursoFinalizado(@PathVariable("id") Integer id ){
         try {
             return new ResponseEntity<>(cursoService.findByIdUsuarioEstadoCursoFinalizado(id), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/findByCapacitadorUsuarioIdUsuarioPageable/{idUser}")
+    public ResponseEntity<Page<?>> findByCapacitadorUsuarioIdUsuarioPageable(@PathVariable("idUser") Integer idUser, @PageableDefault(page = 0, size = 5, direction = Sort.Direction.ASC) Pageable pageable ){
+        try {
+            return new ResponseEntity<>(cursoService.findByCapacitadorUsuarioIdUsuarioPageable(idUser, pageable), HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

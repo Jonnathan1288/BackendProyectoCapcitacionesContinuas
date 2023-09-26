@@ -30,7 +30,7 @@ public class Usuario {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "foto_perfil", length = 250)
+    @Column(name = "foto_perfil", columnDefinition = "LONGBLOB")
     private String fotoPerfil;  // igamen para la base de datos
 
     @Column(name = "estado_usuario_activo", columnDefinition = "BOOLEAN")
