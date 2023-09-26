@@ -12,4 +12,6 @@ public interface CoursesFilterByDocente {
 
     String getestadoPublicasionCurso();
 
+    String getestadoAprovacionCurso();
+
 }

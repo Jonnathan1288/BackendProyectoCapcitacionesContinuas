@@ -73,7 +73,7 @@ public class UsuarioController {
             Usuario usuario1 = usuarioService.findById(id);
             if(usuario1 != null){
                 usuario1.setUsername(usuario.getUsername());
-                //usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+                usuario1.setEstadoUsuarioActivo(usuario.getEstadoUsuarioActivo());
                 usuario1.setFotoPerfil(usuario.getFotoPerfil());
 
                 if(usuario.getPassword().equals(usuario1.getPassword())){

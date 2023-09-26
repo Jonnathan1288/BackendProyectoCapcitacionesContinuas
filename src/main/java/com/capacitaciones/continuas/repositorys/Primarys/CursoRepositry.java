@@ -3,6 +3,7 @@ package com.capacitaciones.continuas.repositorys.Primarys;
 import com.capacitaciones.continuas.interfaces.CoursesFilter;
 import com.capacitaciones.continuas.Modelos.Primary.Curso;
 import com.capacitaciones.continuas.interfaces.CoursesFilterByDocente;
+import com.capacitaciones.continuas.repositorys.Primarys.generic.GenericRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CursoRepositry extends JpaRepository<Curso, Integer> {
+public interface CursoRepositry extends GenericRepository<Curso, Integer> {
     public List<Curso> findByCapacitadorUsuarioIdUsuario(Integer idCapacitador);
     List<Curso> findByEstadoCursoAndEstadoPublicasionCurso(boolean estadoCurso, String estadoCurso2);
 
@@ -28,15 +29,27 @@ public interface CursoRepositry extends JpaRepository<Curso, Integer> {
             "INNER JOIN u.persona p "+
             "WHERE c.estadoPublicasionCurso = 'F' "+
             "ORDER BY idCurso DESC")
-    List<CoursesFilter> findFilterCoursesD();
+    public List<CoursesFilter> findFilterCoursesD();
 
     @Query ("SELECT c.idCurso as idCurso, "+
             "c.nombreCurso as nombreCurso, "+
             "CONCAT(cap.tipoAbreviaturaTitulo, ' ', cap.usuario.persona.nombre1, ' ', cap.usuario.persona.apellido1) as docente, "+
-            "c.estadoPublicasionCurso as estadoPublicasionCurso "+
+            "c.estadoPublicasionCurso as estadoPublicasionCurso, "+
+            "c.estadoAprovacionCurso as estadoAprovacionCurso "+
             "FROM Curso c INNER JOIN c.capacitador cap "+
             "WHERE cap.usuario.idUsuario = :idUser "+
             "ORDER BY idCurso DESC")
-    List<CoursesFilterByDocente> findFilterCoursesByUsuarioDocente(@Param("idUser") Integer idUser);
+    public List<CoursesFilterByDocente> findFilterCoursesByUsuarioDocente(@Param("idUser") Integer idUser);
+
+    @Query ("SELECT c.idCurso as idCurso, "+
+            "c.nombreCurso as nombreCurso, "+
+            "CONCAT(cap.tipoAbreviaturaTitulo, ' ', cap.usuario.persona.nombre1, ' ', cap.usuario.persona.apellido1) as docente, "+
+            "c.estadoPublicasionCurso as estadoPublicasionCurso, "+
+            "c.estadoAprovacionCurso as estadoAprovacionCurso "+
+            "FROM Curso c INNER JOIN c.capacitador cap "+
+            "WHERE cap.usuario.idUsuario = :idUser "+
+            "AND c.estadoPublicasionCurso = 'F'"+
+            "ORDER BY idCurso DESC")
+    public List<CoursesFilterByDocente> findByIdUsuarioEstadoCursoFinalizado(@Param("idUser") Integer idUser);
 
 }

@@ -1,5 +1,7 @@
 package com.capacitaciones.continuas.uploads.service;
 
+import com.capacitaciones.continuas.util.MethodsConverter;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,7 +25,7 @@ public class FileUploadServiceImpl implements FileUploadService{
     public String saveFile(MultipartFile file, String folder) throws IOException {
         String originalFileName = file.getOriginalFilename().replaceAll("\\s+", "");
 
-        String uniqueFileName = UUID.randomUUID().toString() + "_" + originalFileName;
+        String uniqueFileName = UUID.randomUUID().toString() + "_" + MethodsConverter.normalizeFileName(originalFileName);
 
         byte[] bytes = file.getBytes();
         Path path = Paths.get(folder + "/" + uniqueFileName);
@@ -31,6 +33,8 @@ public class FileUploadServiceImpl implements FileUploadService{
 
         return uniqueFileName;
     }
+
+
 
     @Override
     public Resource getUploadedFile(String fileName, String folder) throws IOException {

@@ -18,8 +18,11 @@ public interface CursoService extends GenericService<Curso, Integer> {
 
 
     //NEW METHODS
-    List<CoursesFilter> findFilterCoursesD();
+    public List<CoursesFilter> findFilterCoursesD();
 
-    List<CoursesFilterByDocente> findFilterCoursesByUsuarioDocente(Integer idUser);
+    public List<CoursesFilterByDocente> findFilterCoursesByUsuarioDocente(Integer idUser);
+
+    public List<CoursesFilterByDocente> findByIdUsuarioEstadoCursoFinalizado(Integer idUser);
+
 
 }

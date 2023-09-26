@@ -145,4 +145,13 @@ public class CursoController extends GenericControllerImpl<Curso, Integer> {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/findByIdUsuarioEstadoCursoFinalizado/{id}/{status}")
+    public ResponseEntity<List<CoursesFilterByDocente>> findByIdUsuarioEstadoCursoFinalizado(@PathVariable("id") Integer id, @PathVariable("status") String status ){
+        try {
+            return new ResponseEntity<>(cursoService.findByIdUsuarioEstadoCursoFinalizado(id), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
