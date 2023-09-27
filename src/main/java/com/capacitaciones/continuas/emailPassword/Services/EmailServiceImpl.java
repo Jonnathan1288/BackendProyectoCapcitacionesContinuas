@@ -1,5 +1,6 @@
 package com.capacitaciones.continuas.emailPassword.Services;
 
+import com.capacitaciones.continuas.Dtos.EmailCourseApprovedDto;
 import com.capacitaciones.continuas.Modelos.Primary.DocumentoSenecyt;
 import com.capacitaciones.continuas.Modelos.Primary.Inscrito;
 import com.capacitaciones.continuas.Modelos.Primary.Usuario;
@@ -161,5 +162,11 @@ public class EmailServiceImpl implements EmailService {
             System.out.println("Nuev_> "+e.getMessage());
             return false;
         }
+    }
+
+    @Override
+    public boolean sendEmailCpurseApprovedAdmin(EmailCourseApprovedDto courseApprovedDto, String sendFrom) {
+        MimeMessage message = javaMailSender.createMimeMessage();
+        return false;
     }
 }
