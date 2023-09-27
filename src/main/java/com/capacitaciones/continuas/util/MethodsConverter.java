@@ -1,5 +1,7 @@
 package com.capacitaciones.continuas.util;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.StringJoiner;
@@ -19,5 +21,10 @@ public class MethodsConverter {
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+    }
+
+    public static String normalizeFileName(String fileName) {
+        return StringUtils.stripAccents(fileName)
+                .replaceAll("[^a-zA-Z0-9._-]", "");
     }
 }

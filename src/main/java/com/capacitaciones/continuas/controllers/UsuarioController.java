@@ -1,7 +1,10 @@
 package com.capacitaciones.continuas.controllers;
 
+import com.capacitaciones.continuas.Modelos.Primary.Capacitador;
 import com.capacitaciones.continuas.Modelos.Primary.Usuario;
+import com.capacitaciones.continuas.controllers.generic.GenericControllerImpl;
 import com.capacitaciones.continuas.services.UsuarioService;
+import com.capacitaciones.continuas.services.generic.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,25 +15,25 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api")
-public class UsuarioController {
+@RequestMapping("/api/usuario")
+public class UsuarioController extends GenericControllerImpl<Usuario, Integer> {
 
-    @Autowired
     private UsuarioService usuarioService;
-
-    @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @GetMapping("/usuario/listar")
-    public ResponseEntity<List<Usuario>> obtenerLista() {
-        try {
-        return new ResponseEntity<>(usuarioService.findByAll(), HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @Autowired
+    public UsuarioController(UsuarioService usuarioService, PasswordEncoder passwordEncoder){
+        this.usuarioService = usuarioService;
+        this.passwordEncoder = passwordEncoder;
     }
 
-    @PostMapping("/usuario/crear")
+    @Override
+    protected GenericService<Usuario, Integer> getService() {
+        return usuarioService;
+    }
+
+
+    @PostMapping("/crear")
     public ResponseEntity<Usuario> crear(@RequestBody Usuario c) {
         try {
             c.setEstadoUsuarioActivo(true);
@@ -40,20 +43,7 @@ public class UsuarioController {
         }
     }
 
-    @GetMapping("/usuario/findbyId/{id}")
-    public ResponseEntity<?> getUsuarioById(@PathVariable("id") Integer id){
-        try {
-            Usuario nc = usuarioService.findById(id);
-            if(nc != null){
-                return new ResponseEntity<>(nc, HttpStatus.OK);
-            }
-            return new ResponseEntity<>("NO ENCONTRADA",HttpStatus.NOT_FOUND);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @GetMapping("/usuario/findbyCedula/{cedula}")
+    @GetMapping("/findbyCedula/{cedula}")
     public ResponseEntity<?> findbyCedula(@PathVariable("cedula") String cedula){
         try {
             Usuario nc = usuarioService.findByPersonaIdentificacion(cedula);
@@ -66,14 +56,14 @@ public class UsuarioController {
         }
     }
 
-    @PutMapping("/usuario/actualizar/{id}")
+    @PutMapping("/actualizar/{id}")
     public ResponseEntity<Usuario> actualizarUsuario(@PathVariable Integer id, @RequestBody Usuario usuario) {
         try {
 
             Usuario usuario1 = usuarioService.findById(id);
             if(usuario1 != null){
                 usuario1.setUsername(usuario.getUsername());
-                //usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+                usuario1.setEstadoUsuarioActivo(usuario.getEstadoUsuarioActivo());
                 usuario1.setFotoPerfil(usuario.getFotoPerfil());
 
                 if(usuario.getPassword().equals(usuario1.getPassword())){

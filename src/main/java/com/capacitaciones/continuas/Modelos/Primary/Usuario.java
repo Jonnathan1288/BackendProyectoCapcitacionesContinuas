@@ -47,11 +47,20 @@ public class Usuario {
 
     //RELACION DE MUCHOS A MUCHOS
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+   /* @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(name = "id_usuario"),
             inverseJoinColumns = @JoinColumn(name = "id_rol")
+    )
+    private List<Rol> roles;
+*/
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "id_usuario"),
+            inverseJoinColumns = @JoinColumn(name = "id_rol"),
+            uniqueConstraints = @UniqueConstraint(columnNames = { "id_usuario", "id_rol" })
     )
     private List<Rol> roles;
 

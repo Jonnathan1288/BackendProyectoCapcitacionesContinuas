@@ -16,8 +16,8 @@ public class HojaVidaCapacitador {
     @Column(name = "id_hoja_vida")
     private Integer idHojaVida;
 
-    @Column(name = "documento", columnDefinition = "LONGBLOB")
-    private byte[] documento;
+    @Column(name = "documento", length = 100)
+    private String documento;
 
     @Column(name = "status")
     private Boolean status;
