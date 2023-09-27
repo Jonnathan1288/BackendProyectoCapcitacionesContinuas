@@ -17,22 +17,16 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/area")
 public class AreaController extends GenericControllerImpl<Area, Integer> {
-    @Autowired
     private AreaService areaService;
-
 
     @Autowired
     public AreaController(AreaService areaService){
         this.areaService = areaService;
-
     }
-
     @Override
     protected GenericService<Area, Integer> getService() {
         return areaService;
     }
-
-
 
     @GetMapping("/findbyId/{id}")
     public ResponseEntity<?> getAreaById(@PathVariable("id") Integer id){

@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface GenericController <T, ID extends Serializable> {
     public ResponseEntity<List<T>> findByAll();
-    public ResponseEntity<?> findByAll(@PageableDefault(page = 0, size = 3, direction = Sort.Direction.ASC) Pageable pageable);
+    public ResponseEntity<?> findByAll(@PageableDefault(page = 0, size = 5, direction = Sort.Direction.ASC) Pageable pageable);
 
     public ResponseEntity<T> findByOne(@PathVariable ID id);
     public ResponseEntity<?> save(@RequestBody T entity);

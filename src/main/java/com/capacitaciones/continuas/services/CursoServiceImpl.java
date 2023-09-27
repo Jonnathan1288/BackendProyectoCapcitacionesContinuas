@@ -2,20 +2,25 @@ package com.capacitaciones.continuas.services;
 
 import com.capacitaciones.continuas.interfaces.CoursesFilter;
 import com.capacitaciones.continuas.Modelos.Primary.Curso;
+import com.capacitaciones.continuas.interfaces.CoursesFilterByDocente;
 import com.capacitaciones.continuas.repositorys.Primarys.CursoRepositry;
+import com.capacitaciones.continuas.repositorys.Primarys.generic.GenericRepository;
 import com.capacitaciones.continuas.services.generic.GenericServiceImpl;
+import com.capacitaciones.continuas.services.generic.GenericServiceImplv2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class CursoServiceImpl extends GenericServiceImpl<Curso, Integer> implements CursoService{
+public class CursoServiceImpl extends GenericServiceImplv2<Curso, Integer> implements CursoService{
     @Autowired
     private CursoRepositry cursoRepositry;
     @Override
-    public CrudRepository<Curso, Integer> getDao() {
+    public GenericRepository<Curso, Integer> getDao() {
         return cursoRepositry;
     }
 
@@ -37,6 +42,21 @@ public class CursoServiceImpl extends GenericServiceImpl<Curso, Integer> impleme
     @Override
     public List<CoursesFilter> findFilterCoursesD() {
         return cursoRepositry.findFilterCoursesD();
+    }
+
+    @Override
+    public List<CoursesFilterByDocente> findFilterCoursesByUsuarioDocente(Integer idUser) {
+        return cursoRepositry.findFilterCoursesByUsuarioDocente(idUser);
+    }
+
+    @Override
+    public List<CoursesFilterByDocente> findByIdUsuarioEstadoCursoFinalizado(Integer idUser) {
+        return cursoRepositry.findByIdUsuarioEstadoCursoFinalizado(idUser);
+    }
+
+    @Override
+    public Page<Curso> findByCapacitadorUsuarioIdUsuarioPageable(Integer idCapacitador, Pageable pageable) {
+        return cursoRepositry.findByCapacitadorUsuarioIdUsuario(idCapacitador, pageable);
     }
 
 }

@@ -1,11 +1,11 @@
 package com.capacitaciones.continuas.repositorys.Primarys;
 
 import com.capacitaciones.continuas.Modelos.Primary.Usuario;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.capacitaciones.continuas.repositorys.Primarys.generic.GenericRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
+public interface UsuarioRepository extends GenericRepository<Usuario, Integer> {
     public Usuario findByUsernameAndPassword(String username, String password);
 
     public Boolean existsByUsername(String username);

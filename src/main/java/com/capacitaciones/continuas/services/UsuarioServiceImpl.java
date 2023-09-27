@@ -2,19 +2,21 @@ package com.capacitaciones.continuas.services;
 
 import com.capacitaciones.continuas.Modelos.Primary.Usuario;
 import com.capacitaciones.continuas.repositorys.Primarys.UsuarioRepository;
+import com.capacitaciones.continuas.repositorys.Primarys.generic.GenericRepository;
 import com.capacitaciones.continuas.services.generic.GenericServiceImpl;
+import com.capacitaciones.continuas.services.generic.GenericServiceImplv2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UsuarioServiceImpl extends GenericServiceImpl<Usuario, Integer> implements UsuarioService {
+public class UsuarioServiceImpl extends GenericServiceImplv2<Usuario, Integer> implements UsuarioService {
 
     @Autowired
     UsuarioRepository usuarioRepository;
 
     @Override
-    public CrudRepository<Usuario, Integer> getDao() {
+    public GenericRepository<Usuario, Integer> getDao() {
         return usuarioRepository;
     }
 
