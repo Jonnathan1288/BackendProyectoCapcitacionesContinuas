@@ -45,7 +45,7 @@ public class EmailController {
     @Autowired
     private DocumentoSenecytService documentoSenecytService;
 
-      @GetMapping("/email/sendRecuperacionPassword/{identificacion}")
+    @GetMapping("/email/sendRecuperacionPassword/{identificacion}")
     public ResponseEntity<?> sendEmailRecuperacion(@PathVariable("identificacion") String identificacion){
 
         try {

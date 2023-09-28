@@ -30,22 +30,23 @@ import java.util.*;
 
 @Service
 public class EmailServiceImpl implements EmailService {
-
-    @Autowired
-    JavaMailSender javaMailSender;
-
-    @Autowired
-    ITemplateEngine ITemplateEngine;
-
-    @Autowired
+    private JavaMailSender javaMailSender;
+    private ITemplateEngine ITemplateEngine;
     private UsuarioRepository usuarioRepository;
+    private InscritoRepository inscritoRepository;
 
     @Value("${mail.urlFront}")
     private String urlFront;
 
+    @Value("${spring.mail.username}")
+    private String sendFrom;
 
-    @Autowired
-    private InscritoRepository inscritoRepository;
+    public EmailServiceImpl(JavaMailSender javaMailSender, ITemplateEngine ITemplateEngine, UsuarioRepository usuarioRepository, InscritoRepository inscritoRepository){
+        this.javaMailSender = javaMailSender;
+        this.ITemplateEngine = ITemplateEngine;
+        this.usuarioRepository = usuarioRepository;
+        this.inscritoRepository = inscritoRepository;
+    }
 
     @Override
     public boolean sendEmail(EmailValuesDTO values) {
@@ -165,8 +166,28 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public boolean sendEmailCpurseApprovedAdmin(EmailCourseApprovedDto courseApprovedDto, String sendFrom) {
+    public boolean sendEmailCpurseApprovedAdmin(EmailCourseApprovedDto courseApprovedDto) {
         MimeMessage message = javaMailSender.createMimeMessage();
-        return false;
+        try {
+                MimeMessageHelper helper = new MimeMessageHelper(message, true);
+                Context context = new Context();
+
+                Map<String, Object> model = new HashMap<>();
+                model.put("sumary", courseApprovedDto.getSumary());
+                model.put("status", courseApprovedDto.getStatus());
+                model.put("course", courseApprovedDto.getNameCourse());
+                context.setVariables(model);
+
+                String htmlText = ITemplateEngine.process("course_approved_admin", context);
+                helper.setFrom(sendFrom);
+                helper.setTo(courseApprovedDto.getReceptor());
+                helper.setSubject(courseApprovedDto.getTopic());
+                helper.setText(htmlText, true);
+                javaMailSender.send(message);
+            return true;
+        }catch (Exception e){
+            System.out.println("Errro en la parte del server-> "+e.getMessage());
+            return false;
+        }
     }
 }

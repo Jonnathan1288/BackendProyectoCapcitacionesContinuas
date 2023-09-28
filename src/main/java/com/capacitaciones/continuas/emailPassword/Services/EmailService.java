@@ -14,6 +14,6 @@ public interface EmailService {
 
     public boolean sendEmailCodigosSenecyt(Usuario user, DocumentoSenecyt senecyt, String sendFrom);
 
-    public boolean sendEmailCpurseApprovedAdmin(EmailCourseApprovedDto courseApprovedDto, String sendFrom);
+    public boolean sendEmailCpurseApprovedAdmin(EmailCourseApprovedDto courseApprovedDto);
 
 }
