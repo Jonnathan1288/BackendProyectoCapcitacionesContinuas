@@ -28,7 +28,7 @@ public class DatabaseConfig {
 
     private void runSQLScript() {
         try {
-            ClassPathResource resource = new ClassPathResource("import.sql");
+            ClassPathResource resource = new ClassPathResource("import/import.sql");
             InputStream inputStream = resource.getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 

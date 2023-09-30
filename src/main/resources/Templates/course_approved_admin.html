@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso Aceptado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+
+        h1 {
+            color: #333333;
+            text-align: center;
+        }
+
+        p {
+            color: #666666;
+            line-height: 1.5;
+        }
+
+        @media only screen and (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>  <img
+            src="https://i.imgur.com/C6k3WsB.png"
+            alt="Image" height="130" width="170" class="mb-3"></h1>
+    <h1 th:text="${estado}"></h1>
+
+    <p th:if="${status == true}">
+        ¡Felicidades! Ya puedes publicar tu curso, <strong th:text="${course}"></strong>
+    </p>
+
+    <p th:if="${status == false}">
+        ¡Lamentamos informarte que tu curso. <strong th:text="${course}"></strong> tiene algunos inconvenientes.
+    </p>
+
+    <div>
+        <p th:text="${sumary}"></p>
+    </div>
+
+    <p>Si tienes alguna pregunta o necesitas más información, no dudes en contactarnos. ¡Esperamos verte pronto en el curso!</p>
+    <p>Saludos,</p>
+    <p>Equipo del Curso Online</p>
+</div>
+</body>
+</html>
