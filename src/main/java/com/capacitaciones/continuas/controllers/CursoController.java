@@ -17,7 +17,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 @CrossOrigin("*")
@@ -181,8 +183,15 @@ public class CursoController extends GenericControllerImpl<Curso, Integer> {
     }
 
     @GetMapping("/updateStatusCourseAcepted/{idCourse}/{status}")
-    public Integer updateStatusCourseAcepted(@PathVariable("idCourse") Integer idCourse, @PathVariable("status") String status) {
-        return cursoService.updateStatusCourseAcepted(idCourse, status);
+    public ResponseEntity<Map<String, Integer>> updateStatusCourseAcepted(@PathVariable("idCourse") Integer idCourse, @PathVariable("status") String status) {
+        try {
+            Map<String, Integer> response = new HashMap<>();
+            response.put("idCurso", idCourse);
+            Integer result = cursoService.updateStatusCourseAcepted(idCourse, status);
+            return (result == 1) ? new ResponseEntity<>(response, HttpStatus.OK) :  new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 
