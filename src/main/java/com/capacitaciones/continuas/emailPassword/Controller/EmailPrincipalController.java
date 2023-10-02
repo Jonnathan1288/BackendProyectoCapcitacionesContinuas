@@ -2,6 +2,7 @@ package com.capacitaciones.continuas.emailPassword.Controller;
 
 
 import com.capacitaciones.continuas.Dtos.EmailCourseApprovedDto;
+import com.capacitaciones.continuas.emailPassword.Services.EmailService;
 import com.capacitaciones.continuas.emailPassword.Services.EmailServiceImpl;
 import com.capacitaciones.continuas.repositorys.Primarys.UsuarioRepository;
 import com.capacitaciones.continuas.services.DocumentoSenecytService;
@@ -18,9 +19,10 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api")
 public class EmailPrincipalController {
-    private EmailServiceImpl emailService;
+    private EmailService emailService;
 
-    public EmailPrincipalController(EmailServiceImpl emailService) {
+    @Autowired
+    public EmailPrincipalController(EmailService emailService) {
         this.emailService = emailService;
     }
 

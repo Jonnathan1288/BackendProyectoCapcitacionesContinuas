@@ -3,22 +3,29 @@ package com.capacitaciones.continuas.services;
 import com.capacitaciones.continuas.interfaces.CoursesFilter;
 import com.capacitaciones.continuas.Modelos.Primary.Curso;
 import com.capacitaciones.continuas.interfaces.CoursesFilterByDocente;
+import com.capacitaciones.continuas.interfaces.ListCourseReduce;
 import com.capacitaciones.continuas.repositorys.Primarys.CursoRepositry;
 import com.capacitaciones.continuas.repositorys.Primarys.generic.GenericRepository;
-import com.capacitaciones.continuas.services.generic.GenericServiceImpl;
 import com.capacitaciones.continuas.services.generic.GenericServiceImplv2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 @Service
 public class CursoServiceImpl extends GenericServiceImplv2<Curso, Integer> implements CursoService{
-    @Autowired
+
     private CursoRepositry cursoRepositry;
+
+    @Autowired
+    public CursoServiceImpl(CursoRepositry cursoRepositry){
+        this.cursoRepositry = cursoRepositry;
+    }
     @Override
     public GenericRepository<Curso, Integer> getDao() {
         return cursoRepositry;
@@ -57,6 +64,29 @@ public class CursoServiceImpl extends GenericServiceImplv2<Curso, Integer> imple
     @Override
     public Page<Curso> findByCapacitadorUsuarioIdUsuarioPageable(Integer idCapacitador, Pageable pageable) {
         return cursoRepositry.findByCapacitadorUsuarioIdUsuario(idCapacitador, pageable);
+    }
+
+    @Override
+    @Transactional
+    public Integer updateStatusCourseAcepted(Integer idCurso, String status) {
+        return cursoRepositry.updateStatusCourseAcepted(idCurso, status);
+    }
+
+    @Override
+    public List<Curso> findByAllC() {
+        return cursoRepositry.findAll();
+    }
+
+    @Override
+    @Async("asyncExecutor")
+    public CompletableFuture<List<Curso>> findByAllAsync() {
+        List<Curso> data = cursoRepositry.findAll();
+        return CompletableFuture.completedFuture(data);
+    }
+
+    @Override
+    public Page<ListCourseReduce> findByAllCourseDataReducePageable(Pageable pageable) {
+        return cursoRepositry.findByAllCourseDataReducePageable(pageable);
     }
 
 }

@@ -4,6 +4,7 @@ import com.capacitaciones.continuas.Modelos.Primary.DocumentoSenecyt;
 import com.capacitaciones.continuas.Modelos.Primary.Usuario;
 import com.capacitaciones.continuas.emailPassword.Dtos.CambiarPasswordDTO;
 import com.capacitaciones.continuas.emailPassword.Dtos.EmailValuesDTO;
+import com.capacitaciones.continuas.emailPassword.Services.EmailService;
 import com.capacitaciones.continuas.emailPassword.Services.EmailServiceImpl;
 import com.capacitaciones.continuas.repositorys.Primarys.UsuarioRepository;
 import com.capacitaciones.continuas.services.DocumentoSenecytService;
@@ -26,10 +27,7 @@ import java.util.UUID;
 public class EmailController {
 
     @Autowired
-    private EmailServiceImpl emailService;
-
-    @Autowired
-    private PersonaService personaservice;
+    private EmailService emailService;
 
     @Autowired
     private UsuarioService usuarioService;
