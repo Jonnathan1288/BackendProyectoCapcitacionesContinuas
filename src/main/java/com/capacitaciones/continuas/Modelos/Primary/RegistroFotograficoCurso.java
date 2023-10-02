@@ -25,7 +25,7 @@ public class RegistroFotograficoCurso {
     @Column(name = "fecha")
     private LocalDate fecha;
 
-    @Column(name = "estado", columnDefinition = "BOOLEAN")
+    @Column(name = "estado", length = 300)
     private Boolean estado;
 
     //viene la llave de id curso
