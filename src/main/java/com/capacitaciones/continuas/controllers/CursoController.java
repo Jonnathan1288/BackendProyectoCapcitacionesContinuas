@@ -1,11 +1,11 @@
 package com.capacitaciones.continuas.controllers;
 
 
-import com.capacitaciones.continuas.Modelos.Primary.Area;
 import com.capacitaciones.continuas.Modelos.Primary.Curso;
 import com.capacitaciones.continuas.controllers.generic.GenericControllerImpl;
 import com.capacitaciones.continuas.interfaces.CoursesFilter;
 import com.capacitaciones.continuas.interfaces.CoursesFilterByDocente;
+import com.capacitaciones.continuas.interfaces.ListCourseReduce;
 import com.capacitaciones.continuas.services.CursoService;
 import com.capacitaciones.continuas.services.generic.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 @CrossOrigin("*")
 @RestController
@@ -166,5 +169,39 @@ public class CursoController extends GenericControllerImpl<Curso, Integer> {
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    //NEW -------------------------------------------------------------------------------------------
+
+    @GetMapping("/findByAllCourseDataReducePageable")
+    public ResponseEntity<Page<ListCourseReduce>> findByAllCourseDataReducePageable(@PageableDefault(page = 0, size = 5, direction = Sort.Direction.DESC) Pageable pageable ){
+        try {
+            return new ResponseEntity<>(cursoService.findByAllCourseDataReducePageable(pageable), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/updateStatusCourseAcepted/{idCourse}/{status}")
+    public ResponseEntity<Map<String, Integer>> updateStatusCourseAcepted(@PathVariable("idCourse") Integer idCourse, @PathVariable("status") String status) {
+        try {
+            Map<String, Integer> response = new HashMap<>();
+            response.put("idCurso", idCourse);
+            Integer result = cursoService.updateStatusCourseAcepted(idCourse, status);
+            return (result == 1) ? new ResponseEntity<>(response, HttpStatus.OK) :  new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+
+    @GetMapping("/normal")
+    public List<Curso> getAll() {
+        return cursoService.findByAll();
+    }
+    @GetMapping("/async")
+    public CompletableFuture<List<Curso>> getAllCoursesAsync() {
+        return cursoService.findByAllAsync();
     }
 }

@@ -13,6 +13,7 @@ import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.ITemplateEngine;
 import org.thymeleaf.context.Context;
@@ -26,6 +27,7 @@ import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
 
 
 @Service
@@ -41,6 +43,7 @@ public class EmailServiceImpl implements EmailService {
     @Value("${spring.mail.username}")
     private String sendFrom;
 
+    @Autowired
     public EmailServiceImpl(JavaMailSender javaMailSender, ITemplateEngine ITemplateEngine, UsuarioRepository usuarioRepository, InscritoRepository inscritoRepository){
         this.javaMailSender = javaMailSender;
         this.ITemplateEngine = ITemplateEngine;
@@ -188,6 +191,33 @@ public class EmailServiceImpl implements EmailService {
         }catch (Exception e){
             System.out.println("Errro en la parte del server-> "+e.getMessage());
             return false;
+        }
+    }
+
+    @Override
+   // @Async("asyncExecutor")
+    public CompletableFuture<Boolean> sendEmailCpurseApprovedAdminAsync(EmailCourseApprovedDto courseApprovedDto) {
+        MimeMessage message = javaMailSender.createMimeMessage();
+        try {
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+            Context context = new Context();
+
+            Map<String, Object> model = new HashMap<>();
+            model.put("sumary", courseApprovedDto.getSumary());
+            model.put("status", courseApprovedDto.getStatus());
+            model.put("course", courseApprovedDto.getNameCourse());
+            context.setVariables(model);
+
+            String htmlText = ITemplateEngine.process("course_approved_admin", context);
+            helper.setFrom(sendFrom);
+            helper.setTo(courseApprovedDto.getReceptor());
+            helper.setSubject(courseApprovedDto.getTopic());
+            helper.setText(htmlText, true);
+            javaMailSender.send(message);
+            return CompletableFuture.completedFuture(true);
+        }catch (Exception e){
+            System.out.println("Errro en la parte del server-> "+e.getMessage());
+            return CompletableFuture.completedFuture(false);
         }
     }
 }

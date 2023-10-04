@@ -3,10 +3,11 @@ package com.capacitaciones.continuas.repositorys.Primarys;
 import com.capacitaciones.continuas.interfaces.CoursesFilter;
 import com.capacitaciones.continuas.Modelos.Primary.Curso;
 import com.capacitaciones.continuas.interfaces.CoursesFilterByDocente;
+import com.capacitaciones.continuas.interfaces.ListCourseReduce;
 import com.capacitaciones.continuas.repositorys.Primarys.generic.GenericRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -55,4 +56,26 @@ public interface CursoRepositry extends GenericRepository<Curso, Integer> {
     public List<CoursesFilterByDocente> findByIdUsuarioEstadoCursoFinalizado(@Param("idUser") Integer idUser);
 
     public Page<Curso> findByCapacitadorUsuarioIdUsuario(Integer idCapacitador, Pageable pageable);
+
+    //NEW ----------------------------------------------------------------------------------------
+    @Modifying
+    @Query("UPDATE Curso c SET c.estadoAprovacionCurso = :status WHERE c.idCurso = :idCurso")
+    public Integer updateStatusCourseAcepted(@Param("idCurso") Integer idCurso, @Param("status") String status);
+
+    @Query("SELECT c.idCurso as idCurso, "+
+            "c.fechaInicioCurso as fechaInicio, "+
+            "c.nombreCurso as nameCourse, "+
+            "c.fechaFinalizacionCurso as fechaFin, "+
+            "c.estadoAprovacionCurso as statusApproved, "+
+            "c.estadoCurso as statusFinalized, "+
+            "p.nombrePrograma as nameProgram, "+
+            "cap.usuario.username as username, "+
+            "CONCAT(cap.tipoAbreviaturaTitulo, ' ', cap.usuario.persona.nombre1, ' ', cap.usuario.persona.apellido1) as docente, "+
+            "cap.usuario.persona.correo as email, "+
+            "cap.usuario.fotoPerfil as urlPhoto "+
+            "FROM Curso c "+
+            "INNER JOIN c.programas p "+
+            "INNER JOIN c.capacitador cap "+
+            "ORDER BY c.idCurso DESC")
+    public Page<ListCourseReduce> findByAllCourseDataReducePageable(Pageable pageable);
 }
