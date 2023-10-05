@@ -1,8 +1,6 @@
-package com.capacitaciones.continuas.controllers.docenteFenix;
+package com.capacitaciones.continuas.controllers.fenix;
 
-import com.capacitaciones.continuas.Modelos.Secondary.DocenteFenix;
 import com.capacitaciones.continuas.Modelos.Secondary.EstudianteFenix;
-import com.capacitaciones.continuas.services.DocenteFenixService;
 import com.capacitaciones.continuas.services.EstudianteFenixService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -18,4 +18,6 @@ public interface UsuarioService extends GenericService<Usuario,Integer> {
 
     public Boolean existsByPersonaCorreo(String email);
 
+    public Integer updatePictureUser(Integer idUser, String picture);
+
 }

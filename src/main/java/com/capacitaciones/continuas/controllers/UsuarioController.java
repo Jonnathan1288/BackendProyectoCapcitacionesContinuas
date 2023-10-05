@@ -84,5 +84,9 @@ public class UsuarioController extends GenericControllerImpl<Usuario, Integer> {
         }
     }
 
+    @PutMapping("/updatePictureUser/{idUser}/{picture}")
+    public Integer updatePictureUser(@PathVariable("idUser") Integer idUser, @PathVariable("picture") String picture) {
+        return usuarioService.updatePictureUser(idUser, picture);
+    }
 
 }

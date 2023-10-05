@@ -8,6 +8,7 @@ import com.capacitaciones.continuas.services.generic.GenericServiceImplv2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UsuarioServiceImpl extends GenericServiceImplv2<Usuario, Integer> implements UsuarioService {
@@ -53,6 +54,12 @@ public class UsuarioServiceImpl extends GenericServiceImplv2<Usuario, Integer> i
     @Override
     public Boolean existsByPersonaCorreo(String email) {
         return usuarioRepository.existsByPersonaCorreo(email);
+    }
+
+    @Override
+    @Transactional
+    public Integer updatePictureUser(Integer idUser, String picture) {
+        return usuarioRepository.updatePictureUser(idUser, picture);
     }
 }
 

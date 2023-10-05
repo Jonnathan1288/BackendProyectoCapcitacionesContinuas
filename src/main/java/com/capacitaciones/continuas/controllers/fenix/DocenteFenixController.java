@@ -1,6 +1,5 @@
-package com.capacitaciones.continuas.controllers.docenteFenix;
+package com.capacitaciones.continuas.controllers.fenix;
 
-import com.capacitaciones.continuas.Modelos.Primary.Area;
 import com.capacitaciones.continuas.Modelos.Secondary.DocenteFenix;
 import com.capacitaciones.continuas.services.DocenteFenixService;
 import org.springframework.beans.factory.annotation.Autowired;
