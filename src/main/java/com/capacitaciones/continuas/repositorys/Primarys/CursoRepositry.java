@@ -4,6 +4,7 @@ import com.capacitaciones.continuas.interfaces.CoursesFilter;
 import com.capacitaciones.continuas.Modelos.Primary.Curso;
 import com.capacitaciones.continuas.interfaces.CoursesFilterByDocente;
 import com.capacitaciones.continuas.interfaces.ListCourseReduce;
+import com.capacitaciones.continuas.payload.PayloadCurso;
 import com.capacitaciones.continuas.repositorys.Primarys.generic.GenericRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +19,9 @@ import java.util.List;
 public interface CursoRepositry extends GenericRepository<Curso, Integer> {
     public List<Curso> findByCapacitadorUsuarioIdUsuario(Integer idCapacitador);
     List<Curso> findByEstadoCursoAndEstadoPublicasionCurso(boolean estadoCurso, String estadoCurso2);
+
+    @Query("SELECT c.idCurso AS idCurso, c.nombreCurso AS nombreCurso, p.nombre1 || p.apellido1 AS nombre, c.duracionCurso AS duracionCurso, h.horaInicio as horaInicio,  h.horaFin as horaFin, h.dias as dias,c.fechaInicioCurso as fechaInicioCurso, c.fechaFinalizacionCurso as fechaFinalizacionCurso, c.numeroCuposCurso as numeroCuposCurso, m.nombreModalidadCurso as nombreModalidadCurso, t.nombreTipoCurso as nombreTipoCurso, n.nombreNivelCurso as nombreNivelCurso, e.nombreEspecialidad as nombreEspecialidad FROM Curso c JOIN c.capacitador ca JOIN ca.usuario u JOIN u.persona p JOIN c.modalidadCurso m JOIN c.horarioCurso h JOIN c.nivelCurso n JOIN  c.tipoCurso t JOIN c.especialidad e  WHERE c.estadoCurso = true and c.estadoPublicasionCurso ='V'")
+    public Page<PayloadCurso> findByEstadoCursoPublicado(Pageable pageable);
 
     @Query( value = "SELECT c.* FROM cursos c INNER JOIN inscritos i ON c.id_curso = i.id_curso INNER JOIN usuarios u ON i.id_usuario = u.id_usuario INNER JOIN partipantesmatriculados pm ON i.id_inscrito = pm.id_inscrito WHERE u.id_usuario = :idParticipante", nativeQuery = true)
     List<Curso> findCursosDelParticipante(@Param("idParticipante") Integer idParticipante);
