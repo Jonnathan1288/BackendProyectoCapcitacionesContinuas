@@ -2,6 +2,7 @@ package com.capacitaciones.continuas.services;
 
 
 import com.capacitaciones.continuas.Modelos.Primary.PartipantesMatriculados;
+import com.capacitaciones.continuas.interfaces.MatriculadoReduce;
 import com.capacitaciones.continuas.repositorys.Primarys.ParticipantesMatriculadosRepository;
 import com.capacitaciones.continuas.services.generic.GenericServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,11 @@ public class ParticipantesMatriculadosServiceImpl extends GenericServiceImpl<Par
     public List<PartipantesMatriculados> findByInscritoCursoIdCursoAndEstadoParticipanteAprobacion(Integer idCurso) {
         //Este metodo recojera toda la información de la anterior tabla.
         return participantesMatriculadosRepository.findByInscritoCursoIdCursoAndEstadoParticipanteAprobacion(idCurso, "A");
+    }
+
+    @Override
+    public List<MatriculadoReduce> findByAllMatriculadoCursoDocenteCapacitador(Integer idCurso) {
+        return participantesMatriculadosRepository.findByAllMatriculadoCursoDocenteCapacitador(idCurso);
     }
 
 
