@@ -5,6 +5,7 @@ import com.capacitaciones.continuas.interfaces.CoursesFilter;
 import com.capacitaciones.continuas.Modelos.Primary.Curso;
 import com.capacitaciones.continuas.interfaces.CoursesFilterByDocente;
 import com.capacitaciones.continuas.interfaces.ListCourseReduce;
+import com.capacitaciones.continuas.payload.PayloadCurso;
 import com.capacitaciones.continuas.services.generic.GenericService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -36,4 +37,6 @@ public interface CursoService extends GenericService<Curso, Integer> {
     public CompletableFuture<List<Curso>> findByAllAsync();
 
     public Page<ListCourseReduce> findByAllCourseDataReducePageable(Pageable pageable);
+
+    Page<PayloadCurso> findByEstadoCursoPublicado(Pageable pageable);
 }

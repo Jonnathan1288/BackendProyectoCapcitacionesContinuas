@@ -4,6 +4,7 @@ import com.capacitaciones.continuas.interfaces.CoursesFilter;
 import com.capacitaciones.continuas.Modelos.Primary.Curso;
 import com.capacitaciones.continuas.interfaces.CoursesFilterByDocente;
 import com.capacitaciones.continuas.interfaces.ListCourseReduce;
+import com.capacitaciones.continuas.payload.PayloadCurso;
 import com.capacitaciones.continuas.repositorys.Primarys.CursoRepositry;
 import com.capacitaciones.continuas.repositorys.Primarys.generic.GenericRepository;
 import com.capacitaciones.continuas.services.generic.GenericServiceImplv2;
@@ -39,6 +40,11 @@ public class CursoServiceImpl extends GenericServiceImplv2<Curso, Integer> imple
     @Override
     public List<Curso> findByEstadoCursoAndEstadoPublicasionCurso(boolean estadoCurso) {
         return cursoRepositry.findByEstadoCursoAndEstadoPublicasionCurso(estadoCurso,"V");
+    }
+
+    @Override
+    public Page<PayloadCurso> findByEstadoCursoPublicado(Pageable pageable) {
+        return cursoRepositry.findByEstadoCursoPublicado(pageable);
     }
 
     @Override
