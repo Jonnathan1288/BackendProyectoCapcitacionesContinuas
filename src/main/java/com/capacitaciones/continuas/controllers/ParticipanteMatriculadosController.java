@@ -4,6 +4,7 @@ import com.capacitaciones.continuas.Modelos.Primary.Curso;
 import com.capacitaciones.continuas.Modelos.Primary.Inscrito;
 import com.capacitaciones.continuas.Modelos.Primary.PartipantesMatriculados;
 import com.capacitaciones.continuas.emailPassword.Services.EmailServiceImpl;
+import com.capacitaciones.continuas.interfaces.MatriculadoReduce;
 import com.capacitaciones.continuas.services.CursoService;
 import com.capacitaciones.continuas.services.InscritoService;
 import com.capacitaciones.continuas.services.ParticipantesMatriculadosService;
@@ -19,21 +20,23 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class ParticipanteMatriculadosController {
-
-    @Autowired
     private ParticipantesMatriculadosService participantesMatriculadosService;
 
-    @Autowired
     private InscritoService inscritoService;
 
-    @Autowired
     private CursoService cursoService;
+
+    private EmailServiceImpl emailService;
 
     @Value("${spring.mail.username}")
     private String sendFrom;
 
-    @Autowired
-    private EmailServiceImpl emailService;
+    public ParticipanteMatriculadosController(ParticipantesMatriculadosService participantesMatriculadosService, InscritoService inscritoService, CursoService cursoService, EmailServiceImpl emailService){
+        this.participantesMatriculadosService = participantesMatriculadosService;
+        this.inscritoService = inscritoService;
+        this.cursoService = cursoService;
+        this.emailService = emailService;
+    }
 
     @GetMapping("/participantesMatriculados/listar")
     public ResponseEntity<List<PartipantesMatriculados>> obtenerLista() {
@@ -131,6 +134,16 @@ public class ParticipanteMatriculadosController {
             partipantesMatriculados.setEstadoParticipanteActivo(partipantesMatriculados.getEstadoParticipanteActivo());
             partipantesMatriculados.setEstadoParticipanteAprobacion(partipantesMatriculados.getEstadoParticipanteAprobacion());
             return new ResponseEntity<>(participantesMatriculadosService.save(partipantesMatriculados), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    //---------------------------------------------------------------------
+    @GetMapping("/participantesMatriculados/findByAllMatriculadoCursoDocenteCapacitador/{idCurso}")
+    public ResponseEntity<List<MatriculadoReduce>> findByAllMatriculadoCursoDocenteCapacitador(@PathVariable("idCurso") Integer idCurso){
+        try {
+            return new ResponseEntity<>(participantesMatriculadosService.findByAllMatriculadoCursoDocenteCapacitador(idCurso), HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
