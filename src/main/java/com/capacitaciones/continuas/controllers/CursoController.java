@@ -6,6 +6,7 @@ import com.capacitaciones.continuas.controllers.generic.GenericControllerImpl;
 import com.capacitaciones.continuas.interfaces.CoursesFilter;
 import com.capacitaciones.continuas.interfaces.CoursesFilterByDocente;
 import com.capacitaciones.continuas.interfaces.ListCourseReduce;
+import com.capacitaciones.continuas.payload.PayloadCurso;
 import com.capacitaciones.continuas.services.CursoService;
 import com.capacitaciones.continuas.services.generic.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,15 @@ public class CursoController extends GenericControllerImpl<Curso, Integer> {
     public ResponseEntity<List<Curso>> listCursoDisponibles(){
         try {
             return new ResponseEntity<>(cursoService.findByEstadoCursoAndEstadoPublicasionCurso(true), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/cursoDisponibles/publicados")
+    public ResponseEntity<Page<PayloadCurso>> obtenerCursosPublicados(@PageableDefault(page = 0, size = 3, direction = Sort.Direction.ASC) Pageable pageable) {
+        try {
+            return new ResponseEntity<>(cursoService.findByEstadoCursoPublicado(pageable), HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
