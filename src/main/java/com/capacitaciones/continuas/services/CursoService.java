@@ -9,6 +9,7 @@ import com.capacitaciones.continuas.payload.PayloadCurso;
 import com.capacitaciones.continuas.services.generic.GenericService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -39,4 +40,7 @@ public interface CursoService extends GenericService<Curso, Integer> {
     public Page<ListCourseReduce> findByAllCourseDataReducePageable(Pageable pageable);
 
     Page<PayloadCurso> findByEstadoCursoPublicado(Pageable pageable);
+
+    public Integer updateCourseStatus(Integer idCurso, String status);
+
 }

@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
 @Getter
 @Entity
 @Table(name = "cursos")
-public class Curso {
+public class Curso implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +23,7 @@ public class Curso {
     @Column(name = "nombre_curso")
     private String nombreCurso;
 
-    @Column(name = "foto_curso",  length = 250) //Foto al directorio
+    @Column(name = "foto_curso",  length = 300) //Foto al directorio
     private String fotoCurso;
 
     @Column(name = "duracion_curso")
