@@ -1,6 +1,7 @@
 package com.capacitaciones.continuas.controllers;
 
 import com.capacitaciones.continuas.Modelos.Primary.Notas;
+import com.capacitaciones.continuas.interfaces.NotasReduce;
 import com.capacitaciones.continuas.services.NotasSevice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -90,6 +91,21 @@ public class NotasController {
             notas.setObservacion(notas.getObservacion());
 
             return new ResponseEntity<>(notasSevice.save(notas), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+    //--------------------------------------------
+    @GetMapping("/notas/findAllNotasFinalesByIdCurso/{id}")
+    public ResponseEntity<List<NotasReduce>> findAllNotasFinalesByIdCurso(@PathVariable("id") Integer id){
+        try {
+            List<NotasReduce> nc = notasSevice.findAllNotasFinalesByIdCurso(id);
+            if(nc != null){
+                return new ResponseEntity<>(nc, HttpStatus.OK);
+            }
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
