@@ -5,13 +5,14 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Setter
 @Getter
 @Entity
 @Table(name = "diseniocurriculares")
-public class DisenioCurricular {
+public class DisenioCurricular implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

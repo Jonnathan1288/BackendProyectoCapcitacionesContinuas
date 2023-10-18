@@ -5,13 +5,14 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Setter
 @Getter
 @Entity
 @Table(name = "tipos_cursos")
-public class TipoCurso {
+public class TipoCurso implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_tipo_curso")
@@ -20,7 +21,7 @@ public class TipoCurso {
     @Column(name = "estado_tipo_curso", columnDefinition = "BOOLEAN")
     private Boolean estadoTipoCurso;
 
-    @Column(name = "nombre_tipo_curso", length = 500)
+    @Column(name = "nombre_tipo_curso", length = 100)
     private String nombreTipoCurso;
 
 }

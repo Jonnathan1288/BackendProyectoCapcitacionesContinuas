@@ -20,7 +20,7 @@ public class Curso implements Serializable {
     @Column(name = "id_curso")
     private Integer idCurso;
 
-    @Column(name = "nombre_curso")
+    @Column(name = "nombre_curso", length = 150)
     private String nombreCurso;
 
     @Column(name = "foto_curso",  length = 300) //Foto al directorio
@@ -35,10 +35,10 @@ public class Curso implements Serializable {
     @Column(name = "estado_curso", columnDefinition = "BOOLEAN")
     private Boolean estadoCurso; // Elimina curso logico
 
-    @Column(name = "estado_aprovacion_curso")
+    @Column(name = "estado_aprovacion_curso", length = 30)
     private String estadoAprovacionCurso; //aprovacion del curso // N = NO NO APROVADO, A = APROVADO, P = PENDIENTE
 
-    @Column(name = "estado_publicasion_curso")
+    @Column(name = "estado_publicasion_curso", length = 30)
     private String estadoPublicasionCurso; // para el usuario V visible, O oculto, I inicio, F finalizo
 
     @Column(name = "descripcion_curso", length = 1200)

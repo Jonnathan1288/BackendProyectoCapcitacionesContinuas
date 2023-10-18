@@ -5,13 +5,14 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Setter
 @Getter
 @Entity
 @Table(name = "silabos")
-public class Silabo {
+public class Silabo implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,10 +25,10 @@ public class Silabo {
     @Column(name = "campo_formacion", length = 1000)
     private String campoFormacion;
 
-    @Column(name = "campo_revisado_por", length = 1000)
+    @Column(name = "campo_revisado_por", length = 150)
     private String campoRevisadoPor;
 
-    @Column(name = "campo_aprovado_por", length = 1000)
+    @Column(name = "campo_aprovado_por", length = 150)
     private String campoAprovadoPor;
 
     // Se relaciona con curso
