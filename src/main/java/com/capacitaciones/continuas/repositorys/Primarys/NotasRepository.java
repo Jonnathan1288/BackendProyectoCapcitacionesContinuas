@@ -13,6 +13,8 @@ import java.util.List;
 public interface NotasRepository extends JpaRepository<Notas, Integer> {
     List<Notas> findByPartipantesMatriculadosInscritoCursoIdCurso(Integer idCurso);
 
+    public Boolean existsByPartipantesMatriculadosInscritoCursoIdCurso(Integer idCurso);
+
     List<Notas> findByPartipantesMatriculadosIdParticipanteMatriculado(Integer idParticipantesFinales);
 
     //public boolean

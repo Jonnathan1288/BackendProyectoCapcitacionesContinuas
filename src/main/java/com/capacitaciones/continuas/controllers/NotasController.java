@@ -16,7 +16,7 @@ import java.util.List;
 public class NotasController {
 
     @Autowired
-    NotasSevice notasSevice;
+    private NotasSevice notasSevice;
 
     @GetMapping("/notas/listar")
     public ResponseEntity<List<Notas>> obtenerLista() {

@@ -46,4 +46,9 @@ public class NotasSeviceImpl extends GenericServiceImpl<Notas, Integer> implemen
     public List<NotasReduce> findAllNotasFinalesByIdCurso(Integer idCurso) {
         return notasRepository.findAllNotasFinalesByIdCurso(idCurso);
     }
+
+    @Override
+    public Boolean existByPartipantesMatriculadosInscritoCursoIdCurso(Integer idCurso) {
+        return notasRepository.existsByPartipantesMatriculadosInscritoCursoIdCurso(idCurso);
+    }
 }
