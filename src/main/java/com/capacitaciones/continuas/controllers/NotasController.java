@@ -86,7 +86,7 @@ public class NotasController {
             if (notasSevice.findById(id) == null) {
                 return ResponseEntity.notFound().build();
             }
-            notas.setParcial(notas.getParcial());
+
             notas.setExamenFinal(notas.getExamenFinal());
             notas.setObservacion(notas.getObservacion());
 

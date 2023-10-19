@@ -66,7 +66,8 @@ public interface ParticipanteAprobadosRepository extends JpaRepository<Participa
     @Query("SELECT c.idCurso as idCurso, "+
     "CONCAT(p.nombre1, ' ', p.nombre2) as nombres, "+
             "CONCAT(p.apellido1, ' ', p.apellido2) as apellidos, "+
-            "p.identificacion as identificacion "+
+            "p.identificacion as identificacion, "+
+            "p.genero as genero "+
             "FROM ParticipantesAprobados ap "+
             "INNER JOIN ap.partipantesMatriculados m "+
             "INNER JOIN m.inscrito ins "+

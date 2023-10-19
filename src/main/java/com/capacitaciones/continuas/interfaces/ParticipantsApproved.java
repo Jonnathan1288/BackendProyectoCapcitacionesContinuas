@@ -9,4 +9,6 @@ public interface ParticipantsApproved {
 
      String getapellidos();
 
+     String getgenero();
+
 }
