@@ -17,5 +17,8 @@ public interface NotasSevice extends GenericService<Notas, Integer> {
 
     public List<NotasReduce> findAllNotasFinalesByIdCurso(Integer idCurso);
 
+    public Boolean existByPartipantesMatriculadosInscritoCursoIdCurso(Integer idCurso);
+
+
 
 }

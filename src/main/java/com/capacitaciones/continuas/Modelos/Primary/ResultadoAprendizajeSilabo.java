@@ -4,12 +4,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Setter
 @Getter
 @Entity
 @Table(name = "resultado_aprendizaje_silabo")
-public class ResultadoAprendizajeSilabo {
+public class ResultadoAprendizajeSilabo implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

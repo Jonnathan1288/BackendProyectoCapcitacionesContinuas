@@ -5,19 +5,20 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Setter
 @Getter
 @Entity
 @Table(name = "parroquias")
-public class Parroquia {
+public class Parroquia implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_parroquia")
     private Integer idParroquia;
 
-    @Column(name = "parroquia")
+    @Column(name = "parroquia", length = 100, unique = true)
     private String parroquia;
 
     @ManyToOne

@@ -4,13 +4,14 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 
 @Setter
 @Getter
 @Entity
 @Table(name = "detallefichamatriculas")
-public class DetalleFichaMatricula { // esta entidad esta en vigencia.
+public class DetalleFichaMatricula implements Serializable { // esta entidad esta en vigencia.
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

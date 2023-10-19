@@ -1,6 +1,7 @@
 package com.capacitaciones.continuas.controllers;
 
 import com.capacitaciones.continuas.Modelos.Primary.Programas;
+import com.capacitaciones.continuas.interfaces.ChartProgramaCourse;
 import com.capacitaciones.continuas.services.ProgramaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -62,5 +63,17 @@ public class ProgramasController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
+    @GetMapping("/programa/chart/data")
+    public ResponseEntity<List<ChartProgramaCourse>> chartProgramaC() {
+        try {
+
+            return new ResponseEntity<>(programaService.findProgramaCourseChart(), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
 }

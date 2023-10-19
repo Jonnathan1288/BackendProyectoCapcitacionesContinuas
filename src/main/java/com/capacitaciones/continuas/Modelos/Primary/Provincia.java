@@ -17,7 +17,7 @@ public class Provincia {
     @Column(name = "id_provincia")
     private Integer idProvincia;
 
-    @Column(name = "provincia ")
+    @Column(name = "provincia ", length = 100, unique = true)
     private String provincia;
 
     @JsonIgnore
