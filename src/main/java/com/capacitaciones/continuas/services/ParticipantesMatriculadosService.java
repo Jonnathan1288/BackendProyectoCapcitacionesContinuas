@@ -16,5 +16,6 @@ public interface ParticipantesMatriculadosService extends GenericService<Partipa
 
     public List<MatriculadoReduce> findByAllMatriculadoCursoDocenteCapacitador(Integer idCurso);
 
+    public Integer updateEstadoAprobacionParticipanteMatriculado(Integer idPm, String status);
 
 }

@@ -8,6 +8,7 @@ import com.capacitaciones.continuas.services.generic.GenericServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -41,6 +42,12 @@ public class ParticipantesMatriculadosServiceImpl extends GenericServiceImpl<Par
     @Override
     public List<MatriculadoReduce> findByAllMatriculadoCursoDocenteCapacitador(Integer idCurso) {
         return participantesMatriculadosRepository.findByAllMatriculadoCursoDocenteCapacitador(idCurso);
+    }
+
+    @Override
+    @Transactional
+    public Integer updateEstadoAprobacionParticipanteMatriculado(Integer idPm, String status) {
+        return participantesMatriculadosRepository.updateEstadoAprobacionParticipanteMatriculado(idPm, status);
     }
 
 
