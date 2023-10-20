@@ -17,7 +17,7 @@ public class PartipantesMatriculados implements Serializable { //estado en  vige
     @Column(name = "id_participante_matriculado")
     private Integer idParticipanteMatriculado;
 
-    @Column(name = "estado_participante_aprobacion", length = 15)
+    @Column(name = "estado_participante_aprobacion", length = 15) //D: INICIADO ; A: APROVADO, R:REPROVADO ; X: RETIRADO
     private String estadoParticipanteAprobacion;
 
     @Column(name = "estado_participante_activo", columnDefinition = "BOOLEAN")
