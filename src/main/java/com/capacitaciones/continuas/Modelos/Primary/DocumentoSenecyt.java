@@ -4,13 +4,14 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Setter
 @Getter
 @Entity
 @Table(name = "documentossenecyt")
-public class DocumentoSenecyt {
+public class DocumentoSenecyt implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +21,7 @@ public class DocumentoSenecyt {
     @Column(name = "descripcion", length = 1500)
     private String descripcion;
 
-    @Column(name = "documento_exel",  length = 250)
+    @Column(name = "documento_exel",  length = 300)
     private String documentoExel;
 
     @Column(name = "estado_documento ", columnDefinition = "BOOLEAN")

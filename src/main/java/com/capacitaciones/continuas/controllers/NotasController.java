@@ -1,12 +1,15 @@
 package com.capacitaciones.continuas.controllers;
 
 import com.capacitaciones.continuas.Modelos.Primary.Notas;
+import com.capacitaciones.continuas.interfaces.NotasReduce;
 import com.capacitaciones.continuas.services.NotasSevice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -15,7 +18,7 @@ import java.util.List;
 public class NotasController {
 
     @Autowired
-    NotasSevice notasSevice;
+    private NotasSevice notasSevice;
 
     @GetMapping("/notas/listar")
     public ResponseEntity<List<Notas>> obtenerLista() {
@@ -73,7 +76,8 @@ public class NotasController {
     @PostMapping("/notas/crear")
     public ResponseEntity<Notas> crear(@RequestBody Notas c) {
         try {
-        return new ResponseEntity<>(notasSevice.save(c), HttpStatus.CREATED);
+
+            return new ResponseEntity<>(notasSevice.save(c), HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -85,11 +89,26 @@ public class NotasController {
             if (notasSevice.findById(id) == null) {
                 return ResponseEntity.notFound().build();
             }
-            notas.setParcial(notas.getParcial());
+            notas.setFechaNota(LocalDate.now());
             notas.setExamenFinal(notas.getExamenFinal());
             notas.setObservacion(notas.getObservacion());
 
             return new ResponseEntity<>(notasSevice.save(notas), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+    //--------------------------------------------
+    @GetMapping("/notas/findAllNotasFinalesByIdCurso/{id}")
+    public ResponseEntity<List<NotasReduce>> findAllNotasFinalesByIdCurso(@PathVariable("id") Integer id){
+        try {
+            List<NotasReduce> nc = notasSevice.findAllNotasFinalesByIdCurso(id);
+            if(nc != null){
+                return new ResponseEntity<>(nc, HttpStatus.OK);
+            }
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

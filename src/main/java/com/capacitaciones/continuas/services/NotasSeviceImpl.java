@@ -2,6 +2,7 @@ package com.capacitaciones.continuas.services;
 
 
 import com.capacitaciones.continuas.Modelos.Primary.Notas;
+import com.capacitaciones.continuas.interfaces.NotasReduce;
 import com.capacitaciones.continuas.repositorys.Primarys.NotasRepository;
 import com.capacitaciones.continuas.services.generic.GenericServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +40,15 @@ public class NotasSeviceImpl extends GenericServiceImpl<Notas, Integer> implemen
         }else {
             return false;
         }
+    }
+
+    @Override
+    public List<NotasReduce> findAllNotasFinalesByIdCurso(Integer idCurso) {
+        return notasRepository.findAllNotasFinalesByIdCurso(idCurso);
+    }
+
+    @Override
+    public Boolean existByPartipantesMatriculadosInscritoCursoIdCurso(Integer idCurso) {
+        return notasRepository.existsByPartipantesMatriculadosInscritoCursoIdCurso(idCurso);
     }
 }

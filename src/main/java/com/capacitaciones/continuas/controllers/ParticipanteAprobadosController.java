@@ -107,13 +107,7 @@ public class ParticipanteAprobadosController {
                     }
                 });
 
-                try {
-                    Curso curso = cursoService.findById(id);
-                    curso.setEstadoPublicasionCurso("F");
-                    cursoService.save(curso);
-                }catch (Exception ex){
-                    System.out.println(ex.getMessage());
-                }
+                cursoService.updateCourseStatus(id, "F");
 
                 return new ResponseEntity<>(participantesActualizados, HttpStatus.OK);
             }

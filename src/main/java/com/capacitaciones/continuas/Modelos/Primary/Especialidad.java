@@ -5,20 +5,21 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 
 @Setter
 @Getter
 @Entity
 @Table(name = "especialidades")
-public class Especialidad {
+public class Especialidad implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_especialidad")
     private Integer idEspecialidad;
 
-    @Column(name = "codigo_especialidad")
+    @Column(name = "codigo_especialidad", length = 100)
     private String codigoEspecialidad;
 
     @Column(name = "nombre_especialidad", length = 1000)

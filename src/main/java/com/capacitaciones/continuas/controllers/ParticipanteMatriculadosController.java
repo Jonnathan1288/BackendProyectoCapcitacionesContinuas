@@ -14,7 +14,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin("*")
 @RestController
@@ -144,6 +146,18 @@ public class ParticipanteMatriculadosController {
     public ResponseEntity<List<MatriculadoReduce>> findByAllMatriculadoCursoDocenteCapacitador(@PathVariable("idCurso") Integer idCurso){
         try {
             return new ResponseEntity<>(participantesMatriculadosService.findByAllMatriculadoCursoDocenteCapacitador(idCurso), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/participantesMatriculados/updateEstadoAprobacionParticipanteMatriculado/{id}/{status}")
+    public ResponseEntity<Map<String, Integer>> updateEstadoAprobacionParticipanteMatriculado(@PathVariable("id") Integer id, @PathVariable("status") String status) {
+        try {
+            Map<String, Integer> response = new HashMap<>();
+            response.put("idParticipanteMatriculado", id);
+            Integer result = participantesMatriculadosService.updateEstadoAprobacionParticipanteMatriculado(id, status);
+            return (result == 1) ? new ResponseEntity<>(response, HttpStatus.OK) :  new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

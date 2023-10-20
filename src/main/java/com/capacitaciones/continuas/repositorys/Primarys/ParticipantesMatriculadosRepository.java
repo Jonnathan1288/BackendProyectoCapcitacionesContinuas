@@ -3,6 +3,7 @@ package com.capacitaciones.continuas.repositorys.Primarys;
 import com.capacitaciones.continuas.Modelos.Primary.PartipantesMatriculados;
 import com.capacitaciones.continuas.interfaces.MatriculadoReduce;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -27,6 +28,11 @@ public interface ParticipantesMatriculadosRepository extends JpaRepository<Parti
             "INNER JOIN pm.inscrito i "+
             "INNER JOIN i.usuario u WHERE pm.inscrito.curso.idCurso = :idCurso")
     public List<MatriculadoReduce> findByAllMatriculadoCursoDocenteCapacitador(@Param("idCurso") Integer idCurso);
+
+
+    @Modifying
+    @Query("UPDATE PartipantesMatriculados pm SET pm.estadoParticipanteAprobacion = :status WHERE pm.idParticipanteMatriculado = :idPm")
+    public Integer updateEstadoAprobacionParticipanteMatriculado(@Param("idPm") Integer idPm, @Param("status") String status);
 
 }
 

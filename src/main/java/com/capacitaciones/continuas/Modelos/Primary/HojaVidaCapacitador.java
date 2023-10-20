@@ -4,19 +4,20 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Setter
 @Getter
 @Entity
 @Table(name = "hojavidacapacitadores")
-public class HojaVidaCapacitador {
+public class HojaVidaCapacitador implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_hoja_vida")
     private Integer idHojaVida;
 
-    @Column(name = "documento", length = 100)
+    @Column(name = "documento", length = 300)
     private String documento;
 
     @Column(name = "status")

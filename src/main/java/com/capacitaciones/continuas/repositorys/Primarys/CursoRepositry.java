@@ -82,4 +82,11 @@ public interface CursoRepositry extends GenericRepository<Curso, Integer> {
             "INNER JOIN c.capacitador cap "+
             "ORDER BY c.idCurso DESC")
     public Page<ListCourseReduce> findByAllCourseDataReducePageable(Pageable pageable);
+
+    @Modifying
+    @Query("UPDATE Curso c SET c.estadoPublicasionCurso = :status WHERE c.idCurso = :idCurso")
+    public Integer updateCourseStatus(@Param("idCurso") Integer idCurso, @Param("status") String status);
+
+
+
 }

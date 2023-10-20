@@ -48,6 +48,12 @@ public class CursoServiceImpl extends GenericServiceImplv2<Curso, Integer> imple
     }
 
     @Override
+    @Transactional
+    public Integer updateCourseStatus(Integer idCurso, String status) {
+        return cursoRepositry.updateCourseStatus(idCurso, status);
+    }
+
+    @Override
     public List<Curso> findCursosDelParticipante(Integer idParticipante) {
         return cursoRepositry.findCursosDelParticipante(idParticipante);
     }

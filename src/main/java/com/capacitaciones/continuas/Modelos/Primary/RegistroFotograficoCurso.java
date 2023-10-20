@@ -16,16 +16,16 @@ public class RegistroFotograficoCurso {
     @Column(name = "id_registro_fotografico_curso")
     private Integer idRegistroFotograficoCurso;
 
-    @Column(name = "descripcion_foto")
+    @Column(name = "descripcion_foto", length = 1300)
     private String descripcionFoto;
 
-    @Column(name = "foto",  columnDefinition = "LONGBLOB")
+    @Column(name = "foto", length = 300)
     private String foto;
 
     @Column(name = "fecha")
     private LocalDate fecha;
 
-    @Column(name = "estado", length = 300)
+    @Column(name = "estado")
     private Boolean estado;
 
     //viene la llave de id curso

@@ -20,43 +20,43 @@ public class Persona implements Serializable {
     @Column(name = "id_persona")
     private Integer idPersona;
 
-    @Column(name = "identificacion")
+    @Column(name = "identificacion", length = 11, unique = true)
     private String identificacion;
 
-    @Column(name = "nombre1")
+    @Column(name = "nombre1", length = 20)
     private String nombre1;
 
-    @Column(name = "nombre2")
+    @Column(name = "nombre2", length = 20)
     private String nombre2;
 
-    @Column(name = "apellido1")
+    @Column(name = "apellido1", length = 20)
     private String apellido1;
 
-    @Column(name = "apellido2")
+    @Column(name = "apellido2", length = 20)
     private String apellido2;
 
     @Column(name = "fecha_nacimiento")
     private LocalDate fechaNacimiento;
 
-    @Column(name = "direccion")
+    @Column(name = "direccion", length = 180)
     private String direccion;
 
-    @Column(name = "correo")
+    @Column(name = "correo", length = 80)
     private String correo;
 
-    @Column(name = "telefono")
+    @Column(name = "telefono", length = 11)
     private String telefono;
 
-    @Column(name = "celular")
+    @Column(name = "celular", length = 10)
     private String celular;
 
-    @Column(name = "genero")
+    @Column(name = "genero", length = 30)
     private String genero;
 
-    @Column(name = "etnia")
+    @Column(name = "etnia", length = 30)
     private String etnia;
 
-    @Column(name = "nivel_instruccion")
+    @Column(name = "nivel_instruccion", length = 30)
     private String nivelInstruccion;
 
     // REFERENCIA DE LAS RELACIONES
