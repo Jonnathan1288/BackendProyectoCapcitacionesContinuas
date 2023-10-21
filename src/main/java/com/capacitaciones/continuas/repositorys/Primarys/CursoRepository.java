@@ -5,6 +5,7 @@ import com.capacitaciones.continuas.Modelos.Primary.Curso;
 import com.capacitaciones.continuas.interfaces.CoursesFilterByDocente;
 import com.capacitaciones.continuas.interfaces.ListCourseReduce;
 import com.capacitaciones.continuas.payload.PayloadCurso;
+import com.capacitaciones.continuas.payload.PayloadEncabezadoNotasFinales;
 import com.capacitaciones.continuas.repositorys.Primarys.generic.GenericRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CursoRepositry extends GenericRepository<Curso, Integer> {
+public interface CursoRepository extends GenericRepository<Curso, Integer> {
     public List<Curso> findByCapacitadorUsuarioIdUsuario(Integer idCapacitador);
     List<Curso> findByEstadoCursoAndEstadoPublicasionCurso(boolean estadoCurso, String estadoCurso2);
 
@@ -87,6 +88,9 @@ public interface CursoRepositry extends GenericRepository<Curso, Integer> {
     @Query("UPDATE Curso c SET c.estadoPublicasionCurso = :status WHERE c.idCurso = :idCurso")
     public Integer updateCourseStatus(@Param("idCurso") Integer idCurso, @Param("status") String status);
 
+
+    @Query("SELECT c.id_curso AS idCurso, c.nombre_curso AS nombreCurso, hc.hora_inicio AS horaInicio, hc.hora_fin AS horaFin, c.fecha_inicio_curso AS fechaInicioCurso, mc.nombre_modalidad_curso AS nombreModalidadCurso, c.duracion_curso AS duracionCurso, c.codigo_curso AS codigoCurso, c.fecha_finalizacion_curso AS fechaFinalizacionCurso, CONCAT(p.apellido1, ' ', p.apellido2, ' ', p.nombre1, ' ', p.nombre2) AS nombreDocente, c.observacion_curso AS observacionCurso, inf.canton_informe_final_curso AS cantonInformeFinalCurso FROM cursos c INNER JOIN horarioscursos hc ON c.id_horario_curso = hc.id_horario_curso INNER JOIN modalidades_cursos mc ON mc.id_modalidad_curso = c.id_modalidad_curso INNER JOIN tipos_cursos tc ON tc.id_tipo_curso = c.id_tipo_curso INNER JOIN capacitadores cap ON c.id_capacitador = cap.id_capacitador INNER JOIN usuarios us ON us.id_usuario = cap.id_usuario INNER JOIN personas p ON p.id_persona = us.id_persona INNER JOIN inscritos ins ON ins.id_curso = c.id_curso INNER JOIN partipantesmatriculados pm ON pm.id_inscrito = ins.id_inscrito INNER JOIN asistencias asis ON asis.id_participante_matriculado = pm.id_participante_matriculado INNER JOIN informefinalcursos inf ON inf.id_curso = c.id_curso WHERE c.id_curso = :idCurso GROUP BY c.id_curso, p.id_persona, mc.id_modalidad_curso, inf.id_informe_final_curso")
+    public PayloadEncabezadoNotasFinales getEncabezadoNotasFinales(Integer idCurso);
 
 
 }

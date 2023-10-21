@@ -7,6 +7,7 @@ import com.capacitaciones.continuas.interfaces.CoursesFilter;
 import com.capacitaciones.continuas.interfaces.CoursesFilterByDocente;
 import com.capacitaciones.continuas.interfaces.ListCourseReduce;
 import com.capacitaciones.continuas.payload.PayloadCurso;
+import com.capacitaciones.continuas.payload.PayloadEncabezadoNotasFinales;
 import com.capacitaciones.continuas.services.CursoService;
 import com.capacitaciones.continuas.services.generic.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,6 +88,19 @@ public class CursoController extends GenericControllerImpl<Curso, Integer> {
                 return new ResponseEntity<>(cursoList, HttpStatus.OK);
             }
             return new ResponseEntity<>("MIS CURSOS NO ENCONTRADOS", HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/getEncabezadoNotasFinales/{idCurso}")
+    public ResponseEntity<?> getEncabezadoNotasFinales(@PathVariable("idCurso") Integer idCurso){
+        try {
+            PayloadEncabezadoNotasFinales encabezado = cursoService.getEncabezadoNotasFinales(idCurso);
+            if(encabezado != null){
+                return new ResponseEntity<>(encabezado, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("NOT FOUND", HttpStatus.NOT_FOUND);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
