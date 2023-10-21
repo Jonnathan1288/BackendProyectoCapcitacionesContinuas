@@ -42,4 +42,7 @@ public interface PayloadCurso {
 
     @Column(name="nombreEspecialidad")
     String getnombreEspecialidad();
+
+    @Column(name="fotoCurso")
+    String getfotoCurso();
 }

@@ -5,7 +5,8 @@ import com.capacitaciones.continuas.Modelos.Primary.Curso;
 import com.capacitaciones.continuas.interfaces.CoursesFilterByDocente;
 import com.capacitaciones.continuas.interfaces.ListCourseReduce;
 import com.capacitaciones.continuas.payload.PayloadCurso;
-import com.capacitaciones.continuas.repositorys.Primarys.CursoRepositry;
+import com.capacitaciones.continuas.payload.PayloadEncabezadoNotasFinales;
+import com.capacitaciones.continuas.repositorys.Primarys.CursoRepository;
 import com.capacitaciones.continuas.repositorys.Primarys.generic.GenericRepository;
 import com.capacitaciones.continuas.services.generic.GenericServiceImplv2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +22,10 @@ import java.util.concurrent.CompletableFuture;
 @Service
 public class CursoServiceImpl extends GenericServiceImplv2<Curso, Integer> implements CursoService{
 
-    private CursoRepositry cursoRepositry;
+    private CursoRepository cursoRepositry;
 
     @Autowired
-    public CursoServiceImpl(CursoRepositry cursoRepositry){
+    public CursoServiceImpl(CursoRepository cursoRepositry){
         this.cursoRepositry = cursoRepositry;
     }
     @Override
@@ -56,6 +57,11 @@ public class CursoServiceImpl extends GenericServiceImplv2<Curso, Integer> imple
     @Override
     public List<Curso> findCursosDelParticipante(Integer idParticipante) {
         return cursoRepositry.findCursosDelParticipante(idParticipante);
+    }
+
+    @Override
+    public PayloadEncabezadoNotasFinales getEncabezadoNotasFinales(Integer idCurso) {
+        return cursoRepositry.getEncabezadoNotasFinales(idCurso);
     }
 
     @Override
