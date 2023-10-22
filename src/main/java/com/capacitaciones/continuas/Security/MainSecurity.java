@@ -17,7 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class MainSecurity {
     @Autowired
     private JwtEntryPoint jwtEntryPoint;
@@ -40,7 +40,7 @@ public class MainSecurity {
                 .permitAll()
                 .antMatchers("/swagger-ui/**", "/v3/api-docs/**",
                         "/api/upload/{fileName:.+}/{folder}",
-                        "/api/uploadUri/{fileName:.+}/{folder}","/api/**")
+                        "/api/uploadUri/{fileName:.+}/{folder}","/api/curso/cursoDisponibles/publicados")
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -50,20 +50,4 @@ public class MainSecurity {
         http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
-  /* @Bean
-    SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
-        http.cors().and().csrf().disable()
-        .authorizeRequests()
-            .antMatchers("/auth/**", "/api/cursoDisponibles/list", "/api/persona/listar", "/api/usuario/listar", "/api/rol/listar", "/api/capacitador/list", "/api/programa/listar", "/api/prerequisitoCurso/list", "/api/curso/list", "/api/capacitador/list", "/api/inscritocurso/listar", "/api/participantesMatriculados/listar", "/api/asistencia/list", "/api/asistencia/save", "/api/asistencia/actualizar/{id}", "/api/usuario/findbyCedula/{cedula}")
-        .permitAll()
-                .antMatchers("/swagger-ui/**", "/v3/api-docs/**")
-                .permitAll()
-        .anyRequest().authenticated()
-        .and()
-        .exceptionHandling().authenticationEntryPoint(jwtEntryPoint)
-        .and()
-        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-        return http.build();
-    }*/
 }
