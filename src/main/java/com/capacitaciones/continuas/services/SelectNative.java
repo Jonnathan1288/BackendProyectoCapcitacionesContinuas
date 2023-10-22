@@ -66,7 +66,7 @@ public class SelectNative {
                 "END AS estado_aprobacion " +
                 "FROM partipantesmatriculados pm ) aprueba ON aprueba.id_participante_matriculado = pm.id_participante_matriculado " +
                 "WHERE c.id_curso = "+cursoId+" " +
-                "GROUP BY p.id_persona, d.dias, estudiante, p.identificacion, informe1";
+                "GROUP BY p.id_persona, d.dias, estudiante, p.identificacion, informe1, informe2, informe3, examen_final, aprueba.estado_aprobacion";
 
         return  jdbcTemplate.queryForList(sql);
 
