@@ -2,13 +2,9 @@ package com.capacitaciones.continuas.controllers;
 
 import com.capacitaciones.continuas.Modelos.Primary.Asistencia;
 import com.capacitaciones.continuas.Modelos.Primary.Curso;
-import com.capacitaciones.continuas.Modelos.Primary.FasePractica;
 import com.capacitaciones.continuas.Modelos.Primary.PartipantesMatriculados;
 import com.capacitaciones.continuas.controllers.generic.GenericControllerImpl;
-import com.capacitaciones.continuas.services.AsistenciaService;
-import com.capacitaciones.continuas.services.CursoService;
-import com.capacitaciones.continuas.services.FasePracticaService;
-import com.capacitaciones.continuas.services.ParticipantesMatriculadosService;
+import com.capacitaciones.continuas.services.*;
 import com.capacitaciones.continuas.services.generic.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -19,34 +15,32 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/api/asistencia")
 public class AsistenciaController extends GenericControllerImpl<Asistencia, Integer> {
-    @Autowired
     private AsistenciaService asistenciaService;
+
+    private SelectNative selectNative;
+
+    private ParticipantesMatriculadosService participantesMatriculadosService;
+
+    private CursoService cursoService;
 
     @Override
     protected GenericService<Asistencia, Integer> getService() {
         return asistenciaService;
     }
 
-
     @Autowired
-    public AsistenciaController(AsistenciaService asistenciaService){
+    public AsistenciaController(AsistenciaService asistenciaService, SelectNative selectNative, ParticipantesMatriculadosService participantesMatriculadosService, CursoService cursoService){
         this.asistenciaService = asistenciaService;
-
+        this.selectNative = selectNative;
+        this.participantesMatriculadosService = participantesMatriculadosService;
+        this.cursoService = cursoService;
     }
-
-
-    @Autowired
-    private ParticipantesMatriculadosService participantesMatriculadosService;
-
-    @Autowired
-    private CursoService cursoService;
-
-
     @GetMapping("/findbyId/{id}")
     public ResponseEntity<?> getAsistenciaById(@PathVariable("id") Integer id){
         try {
@@ -185,5 +179,10 @@ public class AsistenciaController extends GenericControllerImpl<Asistencia, Inte
         }
     }
 
+    @GetMapping("/obtenerAsistenciaFinal/{id}")
+    public List<Map<String, Object>> obtenerAsistenciaFinal(@PathVariable("id") Long id) {
+        List<Map<String, Object>> resultados = selectNative.ejecutarConsultaSql(id);
+        return resultados;
+    }
 
 }

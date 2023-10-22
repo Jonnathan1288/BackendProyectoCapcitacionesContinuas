@@ -2,7 +2,6 @@ package com.capacitaciones.continuas.repositorys.Primarys;
 
 import com.capacitaciones.continuas.Modelos.Primary.Asistencia;
 import com.capacitaciones.continuas.repositorys.Primarys.generic.GenericRepository;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
@@ -17,5 +16,4 @@ public interface AsistenciaRepository extends GenericRepository<Asistencia, Inte
     public List<Asistencia> findByPartipantesMatriculadosInscritoCursoIdCursoAndFechaAsistencia(Integer idCurso, LocalDate fecha);
 
 
-    //public List<PartipantesMatriculados> findByInscritoCursoIdCurso(Integer idCurso);
 }
