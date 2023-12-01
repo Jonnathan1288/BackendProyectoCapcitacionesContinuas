@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin("*")
+@CrossOrigin(origins = { "https://apps.tecazuay.edu.ec" })
 @RestController
-@RequestMapping("/api/periodoPrograma")
+@RequestMapping("/edc/api/periodoPrograma")
 public class PeriodoProgramaController extends GenericControllerImpl<PeriodoPrograma, Integer> {
     @Autowired
     private PeriodoProgramaService periodoProgramaService;

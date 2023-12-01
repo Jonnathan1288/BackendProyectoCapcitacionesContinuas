@@ -23,9 +23,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
-@CrossOrigin("*")
+@CrossOrigin(origins = { "https://apps.tecazuay.edu.ec" })
 @RestController
-@RequestMapping("/api/curso")
+@RequestMapping("/edc/api/curso")
 public class CursoController extends GenericControllerImpl<Curso, Integer> {
     private CursoService cursoService;
 

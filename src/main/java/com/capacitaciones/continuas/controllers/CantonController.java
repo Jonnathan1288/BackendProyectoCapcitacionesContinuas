@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin("*")
+@CrossOrigin(origins = { "https://apps.tecazuay.edu.ec" })
 @RestController
-@RequestMapping("/api/canton")
+@RequestMapping("/edc/api/canton")
 public class CantonController extends GenericControllerImpl<Canton,Integer> {
     @Autowired
     private CantonService cantonService;

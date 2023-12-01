@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin("*")
+@CrossOrigin(origins = { "https://apps.tecazuay.edu.ec" })
 @RestController
-@RequestMapping("/api/materialAudiovisual")
+@RequestMapping("/edc/api/materialAudiovisual")
 public class MaterialAudiovisualController extends GenericControllerImpl<MaterialAudiovisual, Integer> {
     @Autowired
     private MaterialAudiovisualService materialAudiovisualService;

@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "estudiantesfenix")
+@Table(name = "edcestudiantesfenix")
 public class EstudianteFenix {
     @Id
     @Column(name = "identificacion", nullable = false,updatable = false)

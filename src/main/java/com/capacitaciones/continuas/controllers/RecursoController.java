@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin("*")
+@CrossOrigin(origins = { "https://apps.tecazuay.edu.ec" })
 @RestController
-@RequestMapping("/api/recurso")
+@RequestMapping("/edc/api/recurso")
 public class RecursoController extends GenericControllerImpl<Recurso, Integer> {
 
 

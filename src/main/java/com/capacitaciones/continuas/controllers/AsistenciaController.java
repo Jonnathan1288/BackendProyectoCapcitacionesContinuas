@@ -20,9 +20,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@CrossOrigin("*")
+@CrossOrigin(origins = { "https://apps.tecazuay.edu.ec" })
 @RestController
-@RequestMapping("/api/asistencia")
+@RequestMapping("/edc/api/asistencia")
 public class AsistenciaController extends GenericControllerImpl<Asistencia, Integer> {
     @Autowired
     private AsistenciaService asistenciaService;

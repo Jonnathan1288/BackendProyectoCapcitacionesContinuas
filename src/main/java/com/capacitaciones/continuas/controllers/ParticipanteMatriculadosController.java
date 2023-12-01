@@ -18,9 +18,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin("*")
+@CrossOrigin(origins = { "https://apps.tecazuay.edu.ec" })
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/edc/api")
 public class ParticipanteMatriculadosController {
     private ParticipantesMatriculadosService participantesMatriculadosService;
 

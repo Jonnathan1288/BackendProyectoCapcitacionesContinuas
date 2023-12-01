@@ -15,9 +15,9 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-@CrossOrigin("*")
+@CrossOrigin(origins = { "https://apps.tecazuay.edu.ec" })
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/aseguramiento/api/excels")
 public class ExelController {
 
     private ParticipantesAprobadosService participantesAprobadosService;

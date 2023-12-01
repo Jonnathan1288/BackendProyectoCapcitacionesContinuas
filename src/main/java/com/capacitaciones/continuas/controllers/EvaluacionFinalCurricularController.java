@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin("*")
+@CrossOrigin(origins = { "https://apps.tecazuay.edu.ec" })
 @RestController
-@RequestMapping("/api/evaluacionFinalCurricular")
+@RequestMapping("/edc/api/evaluacionFinalCurricular")
 public class EvaluacionFinalCurricularController extends GenericControllerImpl<EvaluacionFinalCurricular, Integer> {
     @Autowired
     private EvaluacionFinalCurricularService evaluacionFinalCurricularService;

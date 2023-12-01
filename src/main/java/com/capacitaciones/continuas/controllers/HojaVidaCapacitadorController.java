@@ -17,9 +17,9 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List;
 
-@CrossOrigin("*")
+@CrossOrigin(origins = { "https://apps.tecazuay.edu.ec" })
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/edc/api")
 public class HojaVidaCapacitadorController extends GenericControllerImpl<HojaVidaCapacitador, Integer> {
     private HojaVidaCapacitadorService hojaVidaCapacitadorService;
     private CapacitadorService capacitadorService;

@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @Setter
 @Getter
 @Entity
-@Table(name = "personasfenix")
+@Table(name = "edcpersonasfenix")
 public class PersonaFenix implements Serializable {
 
     @Id

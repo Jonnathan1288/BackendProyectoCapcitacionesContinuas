@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 
-@CrossOrigin("*")
+@CrossOrigin(origins = { "https://apps.tecazuay.edu.ec" })
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/edc/api")
 public class ReportsController {
     @Autowired
     private JasperReportService jasperReportService;
